@@ -92,9 +92,9 @@ const PlayerLayout: FC<iAuthLayout> = ({ children }) => {
           },
         ]}
       />
-      <div className="w-[calc(100vw-280px)] h-[100vh] flex flex-col justify-between">
+      <div className="w-[calc(100vw-300px)] h-[100vh] flex flex-col justify-between">
         <TopBar />
-        <div className="h-full w-full bg-background-gray">{children}</div>
+        <div className="h-fit overflow-y-scroll w-full bg-background-gray px-5 pt-[100px] pb-5">{children}</div>
       </div>
     </div>
   );

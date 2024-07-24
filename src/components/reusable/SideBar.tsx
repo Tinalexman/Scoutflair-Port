@@ -18,13 +18,13 @@ const SideBar: React.FC<{ sections: iNavSection[] }> = ({ sections }) => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
 
   return (
-    <div className="w-[280px] h-[100vh] flex flex-col rounded-tr-3xl rounded-br-3xl bg-[#041931] relative">
+    <div className="w-[300px] h-[100vh] flex flex-col rounded-tr-3xl rounded-br-3xl bg-[#041931] relative">
       <Logo />
       <div className="w-full h-fit flex flex-col gap-5 scrollbar-custom overflow-y-scroll">
         {sections.map((navSection, index) => (
           <>
-            <div className="flex flex-col gap-2">
-              <div className="opacity-[0.72] text-[12px] text-white pl-6">
+            <div key={index * 45} className="flex flex-col gap-2">
+              <div className="opacity-[0.72] text-[12px] text-white pl-10">
                 <p>{navSection.name}</p>
               </div>
               {navSection.items.map((item, i) => {
@@ -36,7 +36,7 @@ const SideBar: React.FC<{ sections: iNavSection[] }> = ({ sections }) => {
 
                 return (
                   <NavComponent
-                    key={i}
+                    key={i + 2}
                     item={item}
                     active={currentIndex === trueIndex}
                     setActive={() => {
@@ -52,7 +52,7 @@ const SideBar: React.FC<{ sections: iNavSection[] }> = ({ sections }) => {
         ))}
 
         <div
-          className={`nav-item text-white leading-5 px-6 pt-2 pb-6 flex gap-2 items-center font-bold cursor-pointer`}
+          className={`nav-item text-white leading-5 px-10 pt-2 pb-6 flex gap-2 items-center font-bold cursor-pointer`}
           onClick={() => {}}
         >
           <Image
@@ -76,7 +76,7 @@ const NavComponent: React.FC<{
 }> = ({ item, active, setActive }) => {
   return (
     <div
-      className={`nav-item text-white leading-5 border-white border-x-0 border-y-[1px] px-6 py-2 flex gap-2 items-center cursor-pointer ${
+      className={`nav-item text-white leading-5 border-white border-x-0 border-y-[1px] px-10 py-2 flex gap-2 items-center cursor-pointer ${
         active ? " border-opacity-20" : "border-opacity-0"
       } relative`}
       style={{
