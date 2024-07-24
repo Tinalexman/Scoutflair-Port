@@ -8,11 +8,31 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      colors: {
+        primary: "#192B4D",
+        "primary-2": "#041931",
+        secondary: "#F2A725",
+        "pale-green": "#4BBAC1",
+        "secondary-2": "#946108",
+        "background-gray": "#EBE9EB"
       },
+      fontFamily: {
+        'merriweather': ['var(--font-merriweather)', 'sans-serif'],
+        'lato': ['var(--font-lato)', 'sans-serif'],
+      },
+      screens: {
+        sm: {
+          max: "400px",
+        },
+  
+        md: {
+          max: "768px",
+        },
+      },
+      boxShadow: {
+        'custom': '0 0 10px rgba(0, 0, 0, 0.07)',
+        'custom-1': "0 0 20px rgba(0, 0, 0, 0.15)"
+      }
     },
   },
   plugins: [],
