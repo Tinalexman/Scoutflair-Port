@@ -2,10 +2,7 @@ import React from "react";
 
 const TopBar: React.FC = () => {
   return (
-    <div
-      className="flex justify-between items-center w-full bg-white shadow-md h-20 fixed z-10"
-      
-    >
+    <div className="flex justify-between items-center w-full bg-white shadow-md h-20 fixed z-10">
       <p className="text-lg font-lato font-bold text-black ml-4 md:ml-6">
         Welcome, Team ScoutFlair
       </p>

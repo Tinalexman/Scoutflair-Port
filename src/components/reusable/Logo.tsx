@@ -2,7 +2,7 @@ import React from "react";
 
 const Logo:React.FC = () => {
   return (
-    <div className="flex items-center gap-4 p-6">
+    <div className="flex items-center gap-4 px-10 py-6">
       <svg
         width={48}
         height={48}
