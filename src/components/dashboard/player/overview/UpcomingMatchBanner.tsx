@@ -31,7 +31,7 @@ const UpcomingMatchBanner: React.FC = () => {
 
   return (
     <div
-      className="w-full h-[240px] relative overflow-hidden rounded-2xl shadow-custom-2 bg-[url('../../public/dashboard/player/upcoming-matches-banner.jpeg')] bg-cover bg-no-repeat bg-center"
+      className="w-full h-[240px] relative overflow-hidden font-lato rounded-2xl shadow-custom-2 bg-[url('../../public/dashboard/player/upcoming-matches-banner.jpeg')] bg-cover bg-no-repeat bg-center"
     >
       <div className="w-full h-full absolute left-0 top-0 overflow-hidden rounded-lg bg-[#041931]/90">
         <div className="flex flex-col justify-start items-start absolute left-4 md:left-7 top-14 gap-6">

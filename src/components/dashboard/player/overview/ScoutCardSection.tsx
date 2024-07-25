@@ -32,7 +32,7 @@ const ScoutCardSection: React.FC = () => {
   );
 
   return (
-    <div className="flex flex-col justify-center items-center w-full relative gap-6 pl-12 pr-[50px] pt-3 pb-5 rounded-2xl bg-white border-2 border-border-gray shadow-custom-2">
+    <div className="font-lato flex flex-col justify-center items-center w-full relative gap-6 pl-12 pr-[50px] pt-3 pb-5 rounded-2xl bg-white border-2 border-border-gray shadow-custom-2">
       <p className="text-xl font-bold text-left text-black">SCOUT REPORT</p>
       <div className="flex justify-start items-start opacity-[0.88] gap-8">
         <div className="grid grid-cols-3 gap-5">
@@ -48,7 +48,7 @@ const ScoutCardSection: React.FC = () => {
 const ScoutCard: React.FC<{ data: iScoutData }> = ({ data }) => {
   return (
     <div className="w-[180px] flex flex-col shadow-custom-2 justify-start items-center relative gap-4 p-2 rounded-xl bg-white border-[0.48px] border-border-gray">
-      <img className="flex-grow-0 flex-shrink-0" src="ellipse-2374.png" />
+      <Image className="flex-grow-0 flex-shrink-0" src={data.image} alt="player-image" width={50} height={50} />
       <div className="flex flex-col justify-start items-center gap-3 w-full">
         <div className="flex flex-col justify-start items-center relative">
           <p className="text-lg font-medium text-left text-black">

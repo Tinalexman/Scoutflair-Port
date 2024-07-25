@@ -36,20 +36,20 @@ const StandingsTable = () => {
   );
 
   return (
-    <div className="w-full h-[540px] shadow-custom-2 overflow-hidden rounded-2xl bg-white border-2 border-border-gray">
+    <div className="w-full font-lato h-[540px] shadow-custom-2 overflow-hidden rounded-2xl bg-white border-2 border-border-gray">
       <div className="flex flex-col justify-center items-start gap-6 px-6 py-2 bg-white">
         <div className="h-16 w-full flex justify-between items-center">
           <p className="text-xl font-bold text-left text-black">
             LEAGUE STANDING
           </p>
           <div className="flex w-fit items-center gap-1 cursor-pointer">
-            <p className="opacity-[0.92] text-lg text-left text-black">
+            <p className="text-lg text-left text-black">
               2023/2024
             </p>
             <IoIosArrowDown size={"16px"} className="text-black" />
           </div>
         </div>
-        <div className="flex flex-col w-full justify-center items-center opacity-[0.88] gap-4">
+        <div className="flex flex-col w-full justify-center items-center gap-4">
           <div className="flex flex-col justify-start items-center relative gap-1.5 w-full">
             <div className="flex justify-between items-center w-full">
               <p className="text-sm font-semibold text-left text-black">Club</p>
@@ -80,9 +80,9 @@ const StandingsTable = () => {
                     width={21}
                     height={21}
                     alt="Team Logo"
-                    className="w-[21px] h-[21px] object-cover"
+                    className="size-[21px] object-cover"
                   />
-                  <p className="opacity-[0.84] text-lg font-medium text-left text-black">
+                  <p className="text-lg font-semibold text-left text-opacity-80 text-black">
                     {club.name}
                   </p>
                 </div>

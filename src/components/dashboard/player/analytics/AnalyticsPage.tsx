@@ -7,7 +7,7 @@ import Performance from "./Performance";
 
 const AnalyticsPage = () => {
   return (
-    <div className="flex gap-5">
+    <div className="flex gap-5 font-lato">
       <div className="flex flex-col gap-5 w-2/3">
         <Details />
         <MatchResults />
