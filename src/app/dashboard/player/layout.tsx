@@ -28,10 +28,12 @@ const insight: iNavItem[] = [
   {
     name: "Overview",
     icon: OverviewIcon,
+    link: "/dashboard/player/overview",
   },
   {
     name: "Analytics",
     icon: AnalyticsIcon,
+    link: "/dashboard/player/analytics",
   },
 ];
 
@@ -39,22 +41,27 @@ const main: iNavItem[] = [
   {
     name: "Profile",
     icon: ProfileIcon,
+    link: "/dashboard/player/profile",
   },
   {
     name: "Tactics",
     icon: TacticsIcon,
+    link: "/dashboard/player/tactics",
   },
   {
     name: "Matches",
     icon: MatchesIcon,
+    link: "/dashboard/player/matches",
   },
   {
     name: "Academies",
     icon: AcademicIcon,
+    link: "/dashboard/player/academies",
   },
   {
     name: "Football Clubs",
     icon: FootballClubIcon,
+    link: "/dashboard/player/clubs",
   },
 ];
 
@@ -62,20 +69,23 @@ const resources: iNavItem[] = [
   {
     name: "Messages",
     icon: MessagesIcon,
+    link: "/dashboard/player/messages",
   },
   {
     name: "Notifications",
     icon: NotificationsIcon,
+    link: "/dashboard/player/notifications",
   },
   {
     name: "Settings",
     icon: SettingsIcon,
+    link: "/dashboard/player/settings",
   },
 ];
 
 const PlayerLayout: FC<iAuthLayout> = ({ children }) => {
   return (
-    <div className="w-[100vw] h-[100vh] bg-white flex justify-between">
+    <div className="w-[100vw] h-[100vh] bg-gradient-to-b from-white to-background-gray flex justify-between">
       <SideBar
         sections={[
           {
@@ -92,9 +102,11 @@ const PlayerLayout: FC<iAuthLayout> = ({ children }) => {
           },
         ]}
       />
-      <div className="w-[calc(100vw-300px)] h-[100vh] flex flex-col justify-between">
+      <div className="w-[calc(100vw-270px)] h-[100vh] flex flex-col justify-between">
         <TopBar />
-        <div className="h-fit overflow-y-scroll w-full bg-background-gray px-5 pt-[100px] pb-5">{children}</div>
+        <div className="h-fit overflow-y-scroll w-full bg-background-gray px-5 pt-[100px] pb-5">
+          {children}
+        </div>
       </div>
     </div>
   );

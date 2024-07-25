@@ -7,6 +7,7 @@ import SignOutIcon from "@/public/icons/Sign Out Icon.svg";
 export interface iNavItem {
   name: string;
   icon: StaticImageData;
+  link: string;
 }
 
 export interface iNavSection {
@@ -18,12 +19,12 @@ const SideBar: React.FC<{ sections: iNavSection[] }> = ({ sections }) => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
 
   return (
-    <div className="w-[300px] h-[100vh] flex flex-col rounded-tr-3xl rounded-br-3xl bg-[#041931] relative">
+    <div className="w-[270px] h-[100vh] flex flex-col rounded-tr-3xl rounded-br-3xl bg-[#041931] relative">
       <Logo />
       <div className="w-full h-fit flex flex-col gap-5 scrollbar-custom overflow-y-scroll">
         {sections.map((navSection, index) => (
-          <>
-            <div key={index * 45} className="flex flex-col gap-2">
+          <div key={index * 45} className="pb-1">
+            <div className="flex flex-col gap-2">
               <div className="opacity-[0.72] text-[12px] text-white pl-10">
                 <p>{navSection.name}</p>
               </div>
@@ -41,6 +42,7 @@ const SideBar: React.FC<{ sections: iNavSection[] }> = ({ sections }) => {
                     active={currentIndex === trueIndex}
                     setActive={() => {
                       setCurrentIndex(trueIndex);
+                      window.location.assign(item.link);
                     }}
                   />
                 );
@@ -48,7 +50,7 @@ const SideBar: React.FC<{ sections: iNavSection[] }> = ({ sections }) => {
             </div>
 
             <hr className="border-white border-opacity-[0.56]" />
-          </>
+          </div>
         ))}
 
         <div
