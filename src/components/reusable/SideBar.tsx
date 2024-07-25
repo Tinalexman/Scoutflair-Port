@@ -49,7 +49,7 @@ const SideBar: React.FC<{ sections: iNavSection[] }> = ({ sections }) => {
               })}
             </div>
 
-            <hr className="border-white border-opacity-[0.56]" />
+            <hr className="border-white border-opacity-[0.56] mt-4" />
           </div>
         ))}
 
