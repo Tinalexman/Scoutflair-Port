@@ -25,7 +25,7 @@ const SideBar: React.FC<{ sections: iNavSection[] }> = ({ sections }) => {
         {sections.map((navSection, index) => (
           <div key={index * 45} className="pb-1">
             <div className="flex flex-col gap-2">
-              <div className="opacity-[0.72] text-[12px] text-white pl-10">
+              <div className="opacity-[0.72] text-[12px] font-lato text-white pl-10">
                 <p>{navSection.name}</p>
               </div>
               {navSection.items.map((item, i) => {

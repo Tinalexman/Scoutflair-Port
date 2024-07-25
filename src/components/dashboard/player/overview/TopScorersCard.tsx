@@ -51,7 +51,7 @@ const TopScorerCard: React.FC = () => {
   ]);
 
   return (
-    <div className="w-full flex flex-col justify-start items-start rounded-bl-2xl rounded-br-2xl bg-white border-2 border-[#d1d1d1] rounded-2xl shadow-lg">
+    <div className="font-lato w-full flex flex-col justify-start items-start rounded-bl-2xl rounded-br-2xl bg-white border-2 border-[#d1d1d1] rounded-2xl shadow-lg">
       <div className="flex w-full justify-between items-center p-5 gap-8">
         <div>
           <p className="text-xl font-bold text-black">TOP SCORER</p>

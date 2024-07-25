@@ -24,13 +24,13 @@ const LatestNewsCard: React.FC = () => {
   );
 
   return (
-    <div className="flex flex-col shadow-custom-2 justify-start items-start relative gap-4 p-4 rounded-2xl bg-white border-2 border-border-gray">
+    <div className="font-lato flex flex-col shadow-custom-2 justify-start items-start relative gap-4 p-4 rounded-2xl bg-white border-2 border-border-gray">
       <div className="flex justify-between items-center w-full">
         <p className="text-xl font-bold text-left text-black">
           LATEST NEWS
         </p>
         <div className="flex items-center gap-1 cursor-pointer">
-          <p className="text-base text-left text-black">View All</p>
+          <p className="text-base text-left text-black-92">View All</p>
           <IoIosArrowForward size={"16px"} className="text-black" />
         </div>
       </div>

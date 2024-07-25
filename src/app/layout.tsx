@@ -1,6 +1,6 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Merriweather, Lato } from "next/font/google";
+import { Merriweather, Lato, Inter } from "next/font/google";
 
 import "@mantine/core/styles.css";
 import {
@@ -21,6 +21,12 @@ const lato = Lato({
   weight: ["300", "400", "700", "900"],
   variable: "--font-lato",
 });
+
+const inter = Inter({
+  subsets: ['latin'],
+  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
+  variable: "--font-inter",
+})
 
 export const metadata: Metadata = {
   title: {
@@ -73,7 +79,7 @@ export default function RootLayout({
       <head>
         <ColorSchemeScript defaultColorScheme="light"  />
       </head>
-      <body className={`${merriweather.variable} ${lato.variable} font-sans-serif`}>
+      <body className={`${merriweather.variable} ${lato.variable} ${inter.variable} font-sans-serif`}>
         <MantineProvider theme={theme}>{children}</MantineProvider>
       </body>
     </html>
