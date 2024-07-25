@@ -47,9 +47,9 @@ const ScoutCardSection: React.FC = () => {
 
 const ScoutCard: React.FC<{ data: iScoutData }> = ({ data }) => {
   return (
-    <div className="flex flex-col shadow-custom-2 justify-start items-center relative gap-4 p-2 rounded-xl bg-white border-[0.48px] border-border-gray">
+    <div className="w-[180px] flex flex-col shadow-custom-2 justify-start items-center relative gap-4 p-2 rounded-xl bg-white border-[0.48px] border-border-gray">
       <img className="flex-grow-0 flex-shrink-0" src="ellipse-2374.png" />
-      <div className="flex flex-col justify-start items-center gap-3">
+      <div className="flex flex-col justify-start items-center gap-3 w-full">
         <div className="flex flex-col justify-start items-center relative">
           <p className="text-lg font-medium text-left text-black">
             {data.name}
@@ -63,28 +63,28 @@ const ScoutCard: React.FC<{ data: iScoutData }> = ({ data }) => {
             </p>
           </div>
         </div>
-        <div className="flex flex-col justify-start items-start gap-3">
+        <div className="flex flex-col w-full gap-3">
           <div className="flex w-full justify-between items-center">
             <p className="text-xs text-left text-black">Mentality</p>
-            <div className="w-[88px] h-1.5">
+            <div className="w-[75px] h-1.5">
               <ProgressBar value={data.mentality}/>
             </div>
           </div>
           <div className="flex w-full justify-between items-center">
             <p className="text-xs text-left text-black">Balance</p>
-            <div className="w-[88px] h-1.5">
+            <div className="w-[75px] h-1.5">
               <ProgressBar value={data.balance}/>
             </div>
           </div>
           <div className="flex w-full justify-between items-center">
             <p className="text-xs text-left text-black">Composure</p>
-            <div className="w-[88px] h-1.5">
+            <div className="w-[75px] h-1.5">
               <ProgressBar value={data.composure}/>
             </div>
           </div>
           <div className="flex w-full justify-between items-center">
             <p className="text-xs text-left text-black">Aggression</p>
-            <div className="w-[88px] h-1.5">
+            <div className="w-[75px] h-1.5">
               <ProgressBar value={data.aggression}/>
             </div>
           </div>
