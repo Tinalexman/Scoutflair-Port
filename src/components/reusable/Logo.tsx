@@ -4,12 +4,12 @@ const Logo:React.FC = () => {
   return (
     <div className="flex items-center gap-4 px-10 py-6">
       <svg
-        width={48}
-        height={48}
+        width={36}
+        height={36}
         viewBox="0 0 48 48"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="size-10"
+        className="size-9"
         preserveAspectRatio="xMidYMid meet"
       >
         <g clipPath="url(#clip0_225_1342)">

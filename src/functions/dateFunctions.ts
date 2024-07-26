@@ -1,3 +1,28 @@
+const monthNames = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
+
+const dayNames = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+];
+
 export function convertDate(date: string | Date) {
   let dateObject = new Date(date);
 
@@ -5,20 +30,6 @@ export function convertDate(date: string | Date) {
   let month = dateObject.getMonth();
   let year = dateObject.getFullYear();
 
-  let monthNames = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
   let monthName = monthNames[month];
 
   let dayWithSuffix = day + getOrdinalSuffix(day);
@@ -32,31 +43,6 @@ export function convertDateWithDay(date: string | Date) {
   let day = dateObject.getDate();
   let month = dateObject.getMonth();
   let year = dateObject.getFullYear();
-
-  let monthNames = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
-
-  let dayNames = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
 
   let monthName = monthNames[month];
 
@@ -79,6 +65,16 @@ function getOrdinalSuffix(day: number) {
     default:
       return "th";
   }
+}
+
+export function getCurrentMonthWithYear() {
+  let dateObject = new Date();
+
+  let month = dateObject.getMonth();
+  let year = dateObject.getFullYear();
+
+  let monthName = monthNames[month];
+  return `${monthName}, ${year}`;
 }
 
 export function convertDateWithSlashes(date: Date) {
