@@ -4,7 +4,7 @@ import { StaticImageData } from "next/image";
 import React, { useState } from "react";
 
 import Image from "next/image";
-import Flag from "@/assets/twemoji_flag-nigeria.png";
+import Flag from "@/public/images/twemoji_flag-nigeria.png";
 import Logo from "@/public/dashboard/player/dinamo-zagreb-1.png";
 
 import { LiaTrophySolid } from "react-icons/lia";
