@@ -3,7 +3,7 @@ import Image from "next/image";
 import React from "react";
 import PlayerImg from "@/assets/passport.png";
 import NigFlag from "@/assets/twemoji_flag-nigeria.png";
-import LineChart from "@/src/components/LineChart/LineChart";
+import LineChart from "@/src/components/reusable/LineChart";
 import Link from "next/link";
 import Vid1 from "@/assets/vid1.png";
 import Vid2 from "@/assets/vid2.png";
@@ -11,9 +11,9 @@ import Vid3 from "@/assets/vid3.png";
 import pvid1 from "@/assets/pvid1.png";
 import pvid2 from "@/assets/pvid2.png";
 import pvid3 from "@/assets/pvid3.png";
-import HighlightCard from "@/src/components/HighlightCard/HightlightCard";
-import BackButton from "@/src/components/Buttons/BackButton";
-import NextButton from "@/src/components/Buttons/NextButton";
+import HighlightCard from "@/src/components/reusable/HightlightCard";
+import BackButton from "@/src/components/reusable/BackButton";
+import NextButton from "@/src/components/reusable/NextButton";
 
 
 const ProfilePage = () => {
