@@ -1,9 +1,9 @@
 "use client";
 import Image from "next/image";
 import React from "react";
-import PlayerImg from "@/public/images/passport.png";
-import NigFlag from "@/public/images/twemoji_flag-nigeria.png";
-import LineChart from "@/src/components/LineChart/LineChart";
+import PlayerImg from "@/assets/passport.png";
+import NigFlag from "@/assets/twemoji_flag-nigeria.png";
+import LineChart from "@/src/components/reusable/LineChart";
 import Link from "next/link";
 import Vid1 from "@/public/images/vid1.png";
 import Vid2 from "@/public/images/vid2.png";
@@ -11,13 +11,13 @@ import Vid3 from "@/public/images/vid3.png";
 import pvid1 from "@/public/images/pvid1.png";
 import pvid2 from "@/public/images/pvid2.png";
 import pvid3 from "@/public/images/pvid3.png";
-import HighlightCard from "@/src/components/HighlightCard/HightlightCard";
-import BackButton from "@/src/components/reusable/Buttons/BackButton";
-import NextButton from "@/src/components/reusable/Buttons/NextButton";
 import { DonutChart } from "@mantine/charts";
 import { data } from "@/src/data/data";
 import "@mantine/charts/styles.css";
 import { MdArrowRightAlt } from "react-icons/md";
+import HighlightCard from "@/src/components/reusable/HightlightCard";
+import BackButton from "@/src/components/reusable/BackButton";
+import NextButton from "@/src/components/reusable/NextButton";
 
 const ProfilePage = () => {
   const highlightCardsData = [
@@ -42,7 +42,7 @@ const ProfilePage = () => {
   ];
 
   return (
-    <>
+    <div className='flex flex-col'>
       <div className="bg-slate-900 text-white w-full flex items-center gap-20 h-[200px] rounded-lg px-5">
         <div className="flex items-center flex-row gap-4">
           <Image className="w-[124px] h-[124px]" src={PlayerImg} alt={""} />
@@ -152,32 +152,32 @@ const ProfilePage = () => {
 
       <div className="mt-5 px-5 py-6 w-[100%] bg-white flex flex-col gap-4 rounded-xl">
         <div className="flex items-center justify-between">
-          <span className="rounded-2xl border border-[#D1D1D1] w-[230px] h-[180px] py-3 pl-2 flex flex-col justify-between">
-            <h5 className="font-lato font-extrabold text-[20px] leading-[30px] text-black">
+          <span className="text-black rounded-2xl border border-[#D1D1D1] w-[230px] h-[180px] py-3 pl-2 flex flex-col justify-between">
+            <h5 className="font-lato font-extrabold text-[20px] leading-[30px]">
               Goals Scored
             </h5>
             <h1 className="text-black font-lato font-normal text-[48px] leading-[57px]">
               67
             </h1>
           </span>
-          <span className="rounded-2xl border border-[#D1D1D1] w-[230px] h-[180px] py-3 pl-2 flex flex-col justify-between">
-            <h5 className="font-lato font-extrabold text-[20px] leading-[30px] text-black">
+          <span className="text-black rounded-2xl border border-[#D1D1D1] w-[230px] h-[180px] py-3 pl-2 flex flex-col justify-between">
+            <h5 className="font-lato font-extrabold text-[20px] leading-[30px]">
               Total Shots
             </h5>
             <h1 className="text-black font-lato font-normal text-[48px] leading-[57px]">
               99
             </h1>
           </span>
-          <span className="rounded-2xl border border-[#D1D1D1] w-[230px] h-[180px] py-3 pl-2 flex flex-col justify-between">
-            <h5 className="font-lato font-extrabold text-[20px] leading-[30px] text-black">
+          <span className="text-black rounded-2xl border border-[#D1D1D1] w-[230px] h-[180px] py-3 pl-2 flex flex-col justify-between">
+            <h5 className="font-lato font-extrabold text-[20px] leading-[30px]">
               Hat-tricks
             </h5>
             <h1 className="text-black font-lato font-normal text-[48px] leading-[57px]">
               07
             </h1>
           </span>
-          <span className="rounded-2xl border border-[#D1D1D1] w-[230px] h-[180px] py-3 pl-2 flex flex-col justify-between">
-            <h5 className="font-lato font-extrabold text-[20px] leading-[30px] text-black">
+          <span className="text-black rounded-2xl border border-[#D1D1D1] w-[230px] h-[180px] py-3 pl-2 flex flex-col justify-between">
+            <h5 className="font-lato font-extrabold text-[20px] leading-[30px]">
               Free Kick Goals
             </h5>
             <h1 className="text-black font-lato font-normal text-[48px] leading-[57px]">
@@ -187,32 +187,32 @@ const ProfilePage = () => {
         </div>
 
         <div className="flex items-center justify-between">
-          <span className="rounded-2xl border border-[#D1D1D1] w-[230px] h-[180px] py-3 pl-2 flex flex-col justify-between">
-            <h5 className="font-lato font-extrabold text-[20px] leading-[30px] text-black">
+          <span className="text-black rounded-2xl border border-[#D1D1D1] w-[230px] h-[180px] py-3 pl-2 flex flex-col justify-between">
+            <h5 className="font-lato font-extrabold text-[20px] leading-[30px]">
               Minutes Played
             </h5>
             <h1 className="text- black font-lato font-normal text-[48px] leading-[57px]">
               4500
             </h1>
           </span>
-          <span className="rounded-2xl border border-[#D1D1D1] w-[230px] h-[180px] py-3 pl-2 flex flex-col justify-between">
-            <h5 className="font-lato font-extrabold text-[20px] leading-[30px] text-black">
+          <span className="text-black rounded-2xl border border-[#D1D1D1] w-[230px] h-[180px] py-3 pl-2 flex flex-col justify-between">
+            <h5 className="font-lato font-extrabold text-[20px] leading-[30px]">
               Shot Accuracy
             </h5>
             <h1 className="text-black font-lato font-normal text-[48px] leading-[57px]">
               72%
             </h1>
           </span>
-          <span className="rounded-2xl border border-[#D1D1D1] w-[230px] h-[180px] py-3 pl-2 flex flex-col justify-between">
-            <h5 className="font-lato font-extrabold text-[20px] leading-[30px] text-black">
+          <span className="text-black rounded-2xl border border-[#D1D1D1] w-[230px] h-[180px] py-3 pl-2 flex flex-col justify-between">
+            <h5 className="font-lato font-extrabold text-[20px] leading-[30px]">
               Penalty Goals
             </h5>
             <h1 className="text-black font-lato font-normal text-[48px] leading-[57px]">
               12
             </h1>
           </span>
-          <span className="rounded-2xl border border-[#D1D1D1] w-[230px] h-[180px] py-3 pl-2 flex flex-col justify-between">
-            <h5 className="font-lato font-extrabold text-[20px] leading-[30px] text-black">
+          <span className="text-black rounded-2xl border border-[#D1D1D1] w-[230px] h-[180px] py-3 pl-2 flex flex-col justify-between">
+            <h5 className="font-lato font-extrabold text-[20px] leading-[30px]">
               Conversion Rate
             </h5>
             <h1 className="text-black font-lato font-normal text-[48px] leading-[57px]">
@@ -223,7 +223,7 @@ const ProfilePage = () => {
       </div>
 
       <div className="mt-5 px-3 py-6 w-[100%] bg-white rounded-xl">
-        <h2 className="font-lato font-bold text-[20px] leading-[23px] mb-2">
+        <h2 className="font-lato font-bold text-[20px] leading-[23px] mb-2 text-black">
           Highlights
         </h2>
         <div className="flex justify-end">
@@ -254,7 +254,7 @@ const ProfilePage = () => {
         <NextButton />
         </Link>
       </div>
-    </>
+    </div>
   );
 };
 
