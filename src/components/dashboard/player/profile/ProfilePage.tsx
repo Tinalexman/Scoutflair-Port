@@ -1,42 +1,45 @@
 "use client";
 import Image from "next/image";
 import React from "react";
-import PlayerImg from "@/assets/passport.png";
-import NigFlag from "@/assets/twemoji_flag-nigeria.png";
+import PlayerImg from "@/public/images/passport.png";
+import NigFlag from "@/public/images/twemoji_flag-nigeria.png";
 import LineChart from "@/src/components/LineChart/LineChart";
 import Link from "next/link";
-import Vid1 from "@/assets/vid1.png";
-import Vid2 from "@/assets/vid2.png";
-import Vid3 from "@/assets/vid3.png";
-import pvid1 from "@/assets/pvid1.png";
-import pvid2 from "@/assets/pvid2.png";
-import pvid3 from "@/assets/pvid3.png";
+import Vid1 from "@/public/images/vid1.png";
+import Vid2 from "@/public/images/vid2.png";
+import Vid3 from "@/public/images/vid3.png";
+import pvid1 from "@/public/images/pvid1.png";
+import pvid2 from "@/public/images/pvid2.png";
+import pvid3 from "@/public/images/pvid3.png";
 import HighlightCard from "@/src/components/HighlightCard/HightlightCard";
-import BackButton from "@/src/components/Buttons/BackButton";
-import NextButton from "@/src/components/Buttons/NextButton";
-
+import BackButton from "@/src/components/reusable/Buttons/BackButton";
+import NextButton from "@/src/components/reusable/Buttons/NextButton";
+import { DonutChart } from "@mantine/charts";
+import { data } from "@/src/data/data";
+import "@mantine/charts/styles.css";
+import { MdArrowRightAlt } from "react-icons/md";
 
 const ProfilePage = () => {
-    const highlightCardsData = [
-        {
-          videoSrc: Vid1,
-          profileSrc: pvid1,
-          uploaderName: "Michael Hamps",
-          uploadDate: "Today",
-        },
-        {
-          videoSrc: Vid2,
-          profileSrc: pvid2,
-          uploaderName: "Mitchel Abram",
-          uploadDate: "Today",
-        },
-        {
-          videoSrc: Vid3,
-          profileSrc: pvid3,
-          uploaderName: "Abigail davis",
-          uploadDate: "Today",
-        },
-      ];
+  const highlightCardsData = [
+    {
+      videoSrc: Vid1,
+      profileSrc: pvid1,
+      uploaderName: "Michael Hamps",
+      uploadDate: "Today",
+    },
+    {
+      videoSrc: Vid2,
+      profileSrc: pvid2,
+      uploaderName: "Mitchel Abram",
+      uploadDate: "Today",
+    },
+    {
+      videoSrc: Vid3,
+      profileSrc: pvid3,
+      uploaderName: "Abigail davis",
+      uploadDate: "Today",
+    },
+  ];
 
   return (
     <>
@@ -133,7 +136,18 @@ const ProfilePage = () => {
           {/* <LineChart /> */}
         </div>
 
-        <div className="w-[25%] h-[275px] bg-white rounded-xl"></div>
+        <div className="w-[25%] flex items-center flex-col justify-center mt-2 h-[275px] bg-white rounded-xl">
+          <h2 className="text-black text-[18px] leading-[23px] font-lato font-bold mb-5">
+            Goals Percentage
+          </h2>
+          <div className="relative">
+            <DonutChart data={data} startAngle={180} endAngle={0} />
+            <h2 className="text-black text-[32px] leading-[41px] font-lato font-bold absolute top-12 left-12">
+              84%
+            </h2>
+          </div>
+          <Link className=" flex gap-2 text-14 font-normal leading-[18px]" href={""}>All Goals <span><MdArrowRightAlt /></span></Link>
+        </div>
       </div>
 
       <div className="mt-5 px-5 py-6 w-[100%] bg-white flex flex-col gap-4 rounded-xl">
@@ -142,7 +156,7 @@ const ProfilePage = () => {
             <h5 className="font-lato font-extrabold text-[20px] leading-[30px] text-black">
               Goals Scored
             </h5>
-            <h1 className="font-lato font-normal text-[48px] leading-[57px]">
+            <h1 className="text-black font-lato font-normal text-[48px] leading-[57px]">
               67
             </h1>
           </span>
@@ -150,7 +164,7 @@ const ProfilePage = () => {
             <h5 className="font-lato font-extrabold text-[20px] leading-[30px] text-black">
               Total Shots
             </h5>
-            <h1 className="font-lato font-normal text-[48px] leading-[57px]">
+            <h1 className="text-black font-lato font-normal text-[48px] leading-[57px]">
               99
             </h1>
           </span>
@@ -158,7 +172,7 @@ const ProfilePage = () => {
             <h5 className="font-lato font-extrabold text-[20px] leading-[30px] text-black">
               Hat-tricks
             </h5>
-            <h1 className="font-lato font-normal text-[48px] leading-[57px]">
+            <h1 className="text-black font-lato font-normal text-[48px] leading-[57px]">
               07
             </h1>
           </span>
@@ -166,7 +180,7 @@ const ProfilePage = () => {
             <h5 className="font-lato font-extrabold text-[20px] leading-[30px] text-black">
               Free Kick Goals
             </h5>
-            <h1 className="font-lato font-normal text-[48px] leading-[57px]">
+            <h1 className="text-black font-lato font-normal text-[48px] leading-[57px]">
               10
             </h1>
           </span>
@@ -177,7 +191,7 @@ const ProfilePage = () => {
             <h5 className="font-lato font-extrabold text-[20px] leading-[30px] text-black">
               Minutes Played
             </h5>
-            <h1 className="font-lato font-normal text-[48px] leading-[57px]">
+            <h1 className="text- black font-lato font-normal text-[48px] leading-[57px]">
               4500
             </h1>
           </span>
@@ -185,7 +199,7 @@ const ProfilePage = () => {
             <h5 className="font-lato font-extrabold text-[20px] leading-[30px] text-black">
               Shot Accuracy
             </h5>
-            <h1 className="font-lato font-normal text-[48px] leading-[57px]">
+            <h1 className="text-black font-lato font-normal text-[48px] leading-[57px]">
               72%
             </h1>
           </span>
@@ -193,7 +207,7 @@ const ProfilePage = () => {
             <h5 className="font-lato font-extrabold text-[20px] leading-[30px] text-black">
               Penalty Goals
             </h5>
-            <h1 className="font-lato font-normal text-[48px] leading-[57px]">
+            <h1 className="text-black font-lato font-normal text-[48px] leading-[57px]">
               12
             </h1>
           </span>
@@ -201,7 +215,7 @@ const ProfilePage = () => {
             <h5 className="font-lato font-extrabold text-[20px] leading-[30px] text-black">
               Conversion Rate
             </h5>
-            <h1 className="font-lato font-normal text-[48px] leading-[57px]">
+            <h1 className="text-black font-lato font-normal text-[48px] leading-[57px]">
               80%
             </h1>
           </span>
@@ -213,12 +227,12 @@ const ProfilePage = () => {
           Highlights
         </h2>
         <div className="flex justify-end">
-        <Link
-          href={""}
-          className="font-lato font-normal text-[14px] leading-[16px]"
-        >
-          View All
-        </Link>
+          <Link
+            href={""}
+            className="font-lato font-normal text-[14px] leading-[16px]"
+          >
+            View All
+          </Link>
         </div>
 
         <div className="flex mt-5 flex-wrap gap-4">
@@ -236,7 +250,9 @@ const ProfilePage = () => {
 
       <div className="flex mt-10 justify-between items-center">
         <BackButton />
+        <Link href={"/dashboard/player/edit-profile"}>
         <NextButton />
+        </Link>
       </div>
     </>
   );
