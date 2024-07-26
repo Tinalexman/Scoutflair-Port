@@ -20,6 +20,7 @@ const config: Config = {
         "black-56": "rgba(0, 0, 0, 0.56)",
         "black-80": "rgba(0, 0, 0, 0.8)",
         "black-92": "rgba(0, 0, 0, 0.92)",
+        "border-black": "rgba(0, 0, 0, 0.48)",
       },
       fontFamily: {
         'merriweather': ['var(--font-merriweather)', 'sans-serif'],
