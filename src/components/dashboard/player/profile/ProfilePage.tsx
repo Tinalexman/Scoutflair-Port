@@ -1,8 +1,8 @@
 "use client";
 import Image from "next/image";
 import React from "react";
-import PlayerImg from "@/assets/passport.png";
-import NigFlag from "@/assets/twemoji_flag-nigeria.png";
+import PlayerImg from "@/public/images/passport.png";
+import NigFlag from "@/public/images/twemoji_flag-nigeria.png";
 import LineChart from "@/src/components/reusable/LineChart";
 import Link from "next/link";
 import Vid1 from "@/public/images/vid1.png";
