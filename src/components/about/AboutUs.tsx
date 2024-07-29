@@ -7,7 +7,7 @@ import aboutUsBg from "@/public/images/aboutusbg.png"
 
 const AboutUs: React.FC = () => {
     return (
-        <div className="bg-[#192B4D] relative px-32">
+        <div className="bg-[#192B4D] relative md:px-[120px]">
             <div
                 className="absolute inset-0 opacity-10 bg-cover pointer-events-none"
                 style={{ backgroundImage: `url(${aboutUsBg})` }}

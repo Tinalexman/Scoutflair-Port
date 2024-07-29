@@ -19,7 +19,7 @@ const Footer: React.FC = () => {
                 <div className="flex flex-row justify-around w-full gap-8 px-4 md:px-8 lg:px-16">
                     <div className="flex flex-col items-start gap-10 w-full sm:w-auto">
                         <div className="flex items-center gap-4">
-                            <img className="w-14 h-14" src={Scoutflairlogo} alt="Scoutflair Logo" />
+                            <Image className="w-14 h-14" src={Scoutflairlogo} alt="Scoutflair Logo" />
                             <p className="text-2xl font-bold text-black">
                                 Scout<span className="font-normal">Flair</span>
                             </p>
