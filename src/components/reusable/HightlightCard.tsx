@@ -10,8 +10,8 @@ interface HighlightCardProps {
 
 const HighlightCard: React.FC<HighlightCardProps> = ({ videoSrc, profileSrc, uploaderName, uploadDate }) => {
   return (
-    <div className="rounded-xl border border-[#D1D1D1] w-[310px] h-[395px] shadow-md">
-      <Image src={videoSrc} alt="Video" className="w-[305px]" />
+    <div className="rounded-xl border border-[#D1D1D1] w-[310px] h-[380px] shadow-md">
+      <Image src={videoSrc} alt="Video" className="w-full" />
       <div className="px-4 pt-2 flex justify-between items-center">
         <div className="flex gap-2 items-center">
           <Image src={profileSrc} className="w-[48px] h-[48px]" alt="Profile" />

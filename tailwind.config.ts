@@ -11,6 +11,7 @@ const config: Config = {
       colors: {
         primary: "#192B4D",
         "primary-2": "#041931",
+        "primary-3": "#4BBAC1",
         secondary: "#F2A725",
         "pale-green": "#4BBAC1",
         "secondary-2": "#946108",
@@ -19,6 +20,7 @@ const config: Config = {
         "black-56": "rgba(0, 0, 0, 0.56)",
         "black-80": "rgba(0, 0, 0, 0.8)",
         "black-92": "rgba(0, 0, 0, 0.92)",
+        "border-black": "rgba(0, 0, 0, 0.48)",
       },
       fontFamily: {
         'merriweather': ['var(--font-merriweather)', 'sans-serif'],
