@@ -1,5 +1,5 @@
 "use client";
-import DatePickerComponent from "@/src/components/DatePickerComponent/DatePickerComponent";
+import DatePickerComponent from "@/src/components/reusable/DatePickerComponent";
 import React from "react";
 
 const BasicInfo = () => {
