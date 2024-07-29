@@ -61,7 +61,7 @@ const main: iNavItem[] = [
   {
     name: "Football Clubs",
     icon: FootballClubIcon,
-    link: "/dashboard/player/clubs",
+    link: "/dashboard/player/football-clubs",
   },
 ];
 
@@ -85,7 +85,7 @@ const resources: iNavItem[] = [
 
 const PlayerLayout: FC<iAuthLayout> = ({ children }) => {
   return (
-    <div className="w-[100vw] h-[100vh] bg-gradient-to-b from-white to-background-gray flex justify-between">
+    <div className="w-[100vw] h-[100vh] font-lato bg-gradient-to-b from-white to-background-gray flex justify-between">
       <SideBar
         sections={[
           {
@@ -102,7 +102,7 @@ const PlayerLayout: FC<iAuthLayout> = ({ children }) => {
           },
         ]}
       />
-      <div className="w-[calc(100vw-270px)] h-[100vh] flex flex-col justify-between">
+      <div className="w-[calc(100vw-280px)] h-[100vh] flex flex-col justify-between">
         <TopBar />
         <div className="h-fit overflow-y-scroll w-full bg-background-gray px-5 pt-[100px] pb-5">
           {children}

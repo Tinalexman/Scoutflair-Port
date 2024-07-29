@@ -37,19 +37,29 @@ const Notes = () => {
   ]);
 
   return (
-    <div className="flex flex-col h-[370px] rounded-[16px] overflow-hidden border-2 border-border-gray shadow-custom-2 items-center bg-white">
+    <div className="flex flex-col rounded-[16px] overflow-hidden border-2 border-border-gray shadow-custom-2 items-center bg-white">
       <div className="bg-primary-2 bg-opacity-[0.96] py-2 w-full">
         <h2 className="text-white text-lg text-center font-bold py-3">
           Tactical Notes
         </h2>
       </div>
-      <div className="flex flex-col gap-5 px-5 py-5 w-full">
+      <div className="flex justify-between px-5 py-5 w-full">
         {notes.map((n, i) => (
           <div
             key={i}
-            className="flex items-center w-full border border-border-gray py-1 px-2 rounded-[8px]"
+            className="flex flex-col gap-4 items-start w-full py-1 px-3"
           >
-            
+            <div className="flex gap-4 w-fit items-center">
+              <Image
+                src={n.image}
+                alt="image"
+                className="w-6 h-7 object-cover"
+                width={24}
+                height={28}
+              />
+              <h2 className="text-black text-[16px] font-semibold">{n.title}</h2>
+            </div>
+            <p className="text-[14px] text-black">{n.content}</p>
           </div>
         ))}
       </div>
