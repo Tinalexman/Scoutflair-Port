@@ -26,13 +26,11 @@ const config: Config = {
         'inter': ['var(--font-inter)', 'sans-serif'],
       },
       screens: {
-        sm: {
-          max: "400px",
-        },
-  
-        md: {
-          max: "768px",
-        },
+        xs: "120px",
+        sm: '480px',
+        md: '768px',
+        lg: '976px',
+        xl: '1440px',
       },
       boxShadow: {
         'custom': '0 0 10px rgba(0, 0, 0, 0.07)',

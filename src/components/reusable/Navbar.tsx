@@ -1,6 +1,7 @@
 "use client"
 
 import React, { useState } from "react";
+import Image from "next/image"
 import Link from "next/link";
 import Logo from "@/public/icons/Scoutflairlogo.svg";
 import { FiMenu, FiX } from "react-icons/fi";
@@ -22,7 +23,7 @@ const Navbar: React.FC = () => {
         <div className="w-full xs:bg-inherit md:bg-[#192b4d] shadow-md">
             <div className="flex justify-between items-center px-6 py-4 md:px-12">
                 <div className="flex items-center gap-4">
-                    <img className="w-12 h-12" src={Logo} alt="Scoutflair Logo" />
+                    <Image className="w-12 h-12" src={Logo} alt="Scoutflair Logo" />
                     <p className="text-2xl font-bold text-white">
                         Scout<span className="font-normal">Flair</span>
                     </p>

@@ -1,4 +1,6 @@
 import React from "react";
+import Image from "next/image"
+import faqImage from "@/public/images/mystery-box-with-gifts-concept.png"
 
 interface FaqCardProps {
     question: string;
@@ -11,9 +13,12 @@ export const FaqCardBlue: React.FC <FaqCardProps> = ({question, answer}) => {
             className="flex flex-col justify-start items-center relative gap-4 px-6 pt-4 pb-7 rounded-2xl bg-[#4bbac1] border-4 border-[#d1d1d1]"
             style={{ boxShadow: "0px 8px 10px 0 rgba(209,209,209,0.12)" }}
         >
-            <img
-                src="mystery-box-with-gifts-concept.png"
+            <Image
+                src={faqImage}
                 className="w-[54.2px] h-[72.19px] opacity-[0.86] object-cover"
+                alt=""
+                width={54}
+                height={72}
             />
             <div className="flex flex-col justify-start items-center self-stretch relative gap-2">
                 <p className="self-stretch w-fit opacity-[0.92] text-2xl font-semibold text-center text-white">
@@ -33,9 +38,12 @@ export const FaqCardWhite: React.FC <FaqCardProps> = ({question, answer}) => {
             className="flex flex-col justify-start items-center relative gap-4 px-6 pt-4 pb-7 rounded-2xl bg-white border-4 border-[#d1d1d1]"
             style={{ boxShadow: "0px 8px 10px 0 rgba(209,209,209,0.12)" }}
         >
-            <img
-                src="mystery-box-with-gifts-concept.png"
+            <Image
+                src={faqImage}
                 className="w-[54.2px] h-[72.19px] opacity-[0.86] object-cover"
+                alt=""
+                width={54}
+                height={72}
             />
             <div className="flex flex-col justify-start items-center self-stretch relative gap-2">
                 <p className="self-stretch w-fit opacity-[0.92] text-2xl font-semibold text-center text-black">
