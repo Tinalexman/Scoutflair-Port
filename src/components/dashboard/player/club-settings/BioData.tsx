@@ -3,7 +3,6 @@
 import React from "react";
 
 import { Formik, Form } from "formik";
-import { Loader } from "@mantine/core";
 
 interface iBioData {
   clubName: string;
@@ -42,6 +41,34 @@ const AddBioData = () => {
             !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
           ) {
             errors.email = "Invalid email address";
+          }
+
+          if (!values.phone) {
+            errors.phone = "Required";
+          }
+
+          if (!values.coach) {
+            errors.coach = "Required";
+          }
+
+          if (!values.clubName) {
+            errors.clubName = "Required";
+          }
+
+          if (!values.address) {
+            errors.address = "Required";
+          }
+
+          if (!values.gps) {
+            errors.gps = "Required";
+          }
+
+          if (!values.country) {
+            errors.country = "Required";
+          }
+
+          if (!values.state) {
+            errors.state = "Required";
           }
 
           return errors;
@@ -179,17 +206,8 @@ const AddBioData = () => {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 className="px-4 w-full text-black border border-border-gray h-10 rounded-lg bg-transparent"
-              >
-                <option value="united states">United States</option>
-              </select>
-              {/* <input
-                type="text"
-                value={values.country}
-                name="country"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                className="px-4 w-full text-black border border-border-gray h-10 rounded-lg bg-transparent"
-              /> */}
+              ></select>
+
               <p className="text-error text-[12px]">
                 {errors.country && touched.country && errors.country}
               </p>
@@ -197,14 +215,12 @@ const AddBioData = () => {
 
             <div className="flex flex-col gap-1 w-full">
               <p className="text-[14px]">State</p>
-              <input
-                type="text"
-                value={values.state}
+              <select
                 name="state"
                 onChange={handleChange}
                 onBlur={handleBlur}
                 className="px-4 w-full text-black border border-border-gray h-10 rounded-lg bg-transparent"
-              />
+              ></select>
               <p className="text-error text-[12px]">
                 {errors.state && touched.state && errors.state}
               </p>

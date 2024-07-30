@@ -88,6 +88,14 @@ h6 {
   @apply text-[24px] leading-[36px];
 } */
 
+input {
+  @apply focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent;
+}
+
+select {
+  @apply focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent;
+}
+
 .body-text-regular-20 {
   @apply text-[20px] leading-[27px];
 }
