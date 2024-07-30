@@ -1,9 +1,18 @@
 "use client";
 import DatePickerComponent from "@/src/components/DatePickerComponent/DatePickerComponent";
-import React from "react";
+import React, { useState } from "react";
+import Select, { SingleValue } from "react-select";
+import countryList from "react-select-country-list";
+
+type CountryOption = {
+    label: string;
+    value: string;
+  };
 
 const BasicInfo = () => {
-  const [selectedDate, setSelectedDate] = React.useState<Date | null>(null);
+    const [location, setLocation] = useState<CountryOption | null>(null);
+
+    const countries = countryList().getData();
 
   return (
     <>
@@ -52,6 +61,19 @@ const BasicInfo = () => {
               name="place_of_birth"
               placeholder=""
               className="rounded-[10px] border border-border-black h-[40px] w-full pl-4 outline-none"
+            />
+          </div>
+
+          <div className="mt-[16px]">
+            <label className="text-black font-normal text-base mb-[8px]">
+              Nationality
+            </label>
+            <Select
+              options={countries}
+              value={location}
+              onChange={(option) => setLocation(option as SingleValue<CountryOption>)}
+              placeholder="Select Your Location"
+              className="text-black"
             />
           </div>
         </div>
