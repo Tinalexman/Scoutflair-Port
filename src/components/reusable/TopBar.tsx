@@ -11,12 +11,12 @@ const TopBar: React.FC = () => {
         placeholder="Search"
       />
       {/* <div className="flex items-center gap-4 mr-4 md:mr-6">
-          <img
+          <Image
             className="w-5 h-5 md:w-6 md:h-6"
             src={NotificationIcon}
             alt="Notification"
           />
-          <img
+          <Image
             className="w-5 h-5 md:w-6 md:h-6"
             src={SettingIcon}
             alt="Settings"
