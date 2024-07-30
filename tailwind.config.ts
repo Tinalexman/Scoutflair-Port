@@ -9,6 +9,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        error: "#FF0000",
         primary: "#192B4D",
         "primary-2": "#041931",
         "primary-3": "#4BBAC1",
@@ -21,6 +22,7 @@ const config: Config = {
         "black-80": "rgba(0, 0, 0, 0.8)",
         "black-92": "rgba(0, 0, 0, 0.92)",
         "border-black": "rgba(0, 0, 0, 0.48)",
+        "white-56": "rgba(255, 255, 255, 0.56)",
       },
       fontFamily: {
         'merriweather': ['var(--font-merriweather)', 'sans-serif'],

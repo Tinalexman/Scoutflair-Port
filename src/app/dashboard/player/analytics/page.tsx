@@ -2,7 +2,7 @@ import AnalyticsPage from "@/src/components/dashboard/player/analytics/Analytics
 import { Metadata } from "next";
 
 export const metadata : Metadata = {
-    title: "Player Analytics"
+    title: "Analytics"
 }
 
 export default function PlayerAnalytics() {

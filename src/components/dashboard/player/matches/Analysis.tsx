@@ -14,7 +14,7 @@ interface iAnalysis {
 
 const Analysis = () => {
   const [analysis, setAnalysis] = useState<iAnalysis[]>(
-    Array(3).fill({
+    Array(9).fill({
       image: AnalysisImage,
       title:
         "Last Match (vs. ARISE FC): High pressing forced turnovers, created goal-scoring opportunities.",

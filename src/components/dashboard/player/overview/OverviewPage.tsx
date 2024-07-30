@@ -1,5 +1,5 @@
 import React from "react";
-import UpcomingMatchBanner from "./UpcomingMatchBanner";
+import UpcomingMatchBanner from "../../../reusable/UpcomingMatchBanner";
 import StandingsTable from "./StandingsTable";
 import LatestNewsCard from "./LatestNewsCard";
 import ScoutCardSection from "./ScoutCardSection";
