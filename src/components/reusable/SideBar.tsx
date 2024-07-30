@@ -19,13 +19,13 @@ const SideBar: React.FC<{ sections: iNavSection[] }> = ({ sections }) => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
 
   return (
-    <div className="w-[270px] h-[100vh] flex flex-col rounded-tr-3xl rounded-br-3xl bg-[#041931] relative">
+    <div className="w-[280px] h-[100vh] flex flex-col rounded-tr-3xl rounded-br-3xl bg-[#041931] relative">
       <Logo />
       <div className="w-full h-fit flex flex-col gap-5 scrollbar-custom overflow-y-scroll">
         {sections.map((navSection, index) => (
           <div key={index * 45} className="pb-1">
             <div className="flex flex-col gap-2">
-              <div className="opacity-[0.72] text-[12px] font-lato text-white pl-10">
+              <div className="opacity-[0.72] text-[12px] text-white pl-10">
                 <p>{navSection.name}</p>
               </div>
               {navSection.items.map((item, i) => {
@@ -49,7 +49,7 @@ const SideBar: React.FC<{ sections: iNavSection[] }> = ({ sections }) => {
               })}
             </div>
 
-            <hr className="border-white border-opacity-[0.56] mt-4" />
+            <hr className="border-white-56 border mt-4" />
           </div>
         ))}
 

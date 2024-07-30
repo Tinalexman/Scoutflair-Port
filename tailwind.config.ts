@@ -9,8 +9,10 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        error: "#FF0000",
         primary: "#192B4D",
         "primary-2": "#041931",
+        "primary-3": "#4BBAC1",
         secondary: "#F2A725",
         "pale-green": "#4BBAC1",
         "secondary-2": "#946108",
@@ -20,6 +22,7 @@ const config: Config = {
         "black-80": "rgba(0, 0, 0, 0.8)",
         "black-92": "rgba(0, 0, 0, 0.92)",
         "border-black": "rgba(0, 0, 0, 0.48)",
+        "white-56": "rgba(255, 255, 255, 0.56)",
       },
       fontFamily: {
         'merriweather': ['var(--font-merriweather)', 'sans-serif'],
@@ -27,13 +30,11 @@ const config: Config = {
         'inter': ['var(--font-inter)', 'sans-serif'],
       },
       screens: {
-        sm: {
-          max: "400px",
-        },
-  
-        md: {
-          max: "768px",
-        },
+        xs: "120px",
+        sm: '480px',
+        md: '768px',
+        lg: '976px',
+        xl: '1440px',
       },
       boxShadow: {
         'custom': '0 0 10px rgba(0, 0, 0, 0.07)',

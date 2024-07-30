@@ -36,7 +36,7 @@ const UpcomingMatchBanner: React.FC = () => {
       <div className="w-full h-full absolute left-0 top-0 overflow-hidden rounded-lg bg-[#041931]/90">
         <div className="flex flex-col justify-start items-start absolute left-4 md:left-7 top-14 gap-6">
           <div className="flex flex-col justify-start items-start relative gap-2">
-            <p className="text-lg font-bold text-left text-white">
+            <p className="nav-item text-left text-white">
               UPCOMING MATCH
             </p>
             <p className="text-md text-left text-white">

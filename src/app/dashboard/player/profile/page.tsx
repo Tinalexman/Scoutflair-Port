@@ -2,7 +2,7 @@ import ProfilePage from "@/src/components/dashboard/player/profile/ProfilePage";
 import { Metadata } from "next";
 
 export const metadata : Metadata = {
-    title: "Player Profile"
+    title: "Profile"
 }
 
 export default function PlayerProfile() {

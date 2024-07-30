@@ -1,5 +1,5 @@
 import React from "react";
-import MatchResults from "./MatchResults";
+import MatchResults from "../../../reusable/MatchResults";
 import Details from "./Details";
 import Formation from "./Formation";
 import Metrics from "./Metrics";

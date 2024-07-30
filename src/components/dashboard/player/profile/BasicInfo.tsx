@@ -1,5 +1,5 @@
 "use client";
-import DatePickerComponent from "@/src/components/DatePickerComponent/DatePickerComponent";
+import DatePickerComponent from "@/src/components/reusable/DatePickerComponent";
 import React, { useState } from "react";
 import Select, { SingleValue } from "react-select";
 import countryList from "react-select-country-list";

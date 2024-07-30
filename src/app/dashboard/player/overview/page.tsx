@@ -2,7 +2,7 @@ import OverviewPage from "@/src/components/dashboard/player/overview/OverviewPag
 import { Metadata } from "next";
 
 export const metadata : Metadata = {
-    title: "Player Overview"
+    title: "Overview"
 }
 
 export default function PlayerOverview() {
