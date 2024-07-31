@@ -1,4 +1,5 @@
 import React from "react"
+import Image from "next/image"
 import goldlock from "@/public/icons/goldlock.svg"
 
 const Hero: React.FC = () => {
@@ -9,7 +10,7 @@ const Hero: React.FC = () => {
                     <p className="font-semibold text-lg xs:text-center md:text-left text-[#946108]">
                         Uncover Hidden Talent
                     </p>
-                    <img className="w-5 h-5" src={goldlock} alt="" />
+                    <Image className="w-5 h-5" src={goldlock} alt="" />
                 </div>
                 <div className="flex flex-col justify-start items-start self-stretch gap-[38px]">
                     <div className="flex flex-col">

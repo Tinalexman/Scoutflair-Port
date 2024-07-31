@@ -1,21 +1,23 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Logo from "@/public/icons/Scoutflairlogo.svg";
 import { FiMenu, FiX } from "react-icons/fi";
 import { Urls } from "../../constants/constants";
+import { useRouter } from "next/router";
 
 const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+  const [currentPath, setCurrentPath] = useState<string>('');   
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
   const getLinkClass = (path: string) => {
-    return window.location.pathname === path
+    return currentPath === path
       ? "text-xl xs:text-black md:text-white font-bold"
       : "text-xl xs:text-black md:text-white";
   };
