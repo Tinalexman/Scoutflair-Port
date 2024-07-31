@@ -9,6 +9,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        black: "#000000",
         error: "#FF0000",
         primary: "#192B4D",
         "primary-2": "#041931",
