@@ -16,6 +16,7 @@ const config: Config = {
         "primary-3": "#4BBAC1",
         secondary: "#F2A725",
         "pale-green": "#4BBAC1",
+        "green-80": "rgba(183, 234, 237, 0.8)",
         "secondary-2": "#946108",
         "background-gray": "#EBE9EB",
         "border-gray": "#D1D1D1",

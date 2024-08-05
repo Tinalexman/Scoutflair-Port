@@ -111,3 +111,13 @@ select {
 .body-text-small {
   @apply text-[10px] leading-[15px];
 }
+
+.custom-checkbox input[type="checkbox"] {
+  outline: none;
+  border: 1px solid black;
+}
+
+.custom-checkbox input[type="checkbox"]:focus {
+  outline: none;
+  border-color: transparent !important;
+}
