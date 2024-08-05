@@ -106,7 +106,7 @@ const Details = () => {
             {Array(detail.trophies)
               .fill(0)
               .map((_, i) => (
-                <LiaTrophySolid className="text-white" size={"20px"} />
+                <LiaTrophySolid key={i} className="text-white" size={"20px"} />
               ))}
           </div>
         </div>

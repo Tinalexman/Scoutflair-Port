@@ -4,7 +4,7 @@ import AddImages from "@/src/components/dashboard/player/club-settings/Images";
 
 const AddNewClub = () => {
   return (
-    <div className="w-full font-lato flex flex-col gap-5 text-black">
+    <div className="w-full font-lato flex flex-col gap-5 p-5 text-black">
       <div className="w-[860px] h-12 flex items-center text-lg font-bold bg-white shadow-custom-2 border border-border-gray px-5">
         <h2>Add New</h2>
       </div>

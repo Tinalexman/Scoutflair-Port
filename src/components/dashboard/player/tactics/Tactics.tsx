@@ -8,7 +8,7 @@ import SetPieces from "./SetPieces";
 
 const Tactics = () => {
   return (
-    <div className="flex flex-col gap-5 font-lato w-full">
+    <div className="flex flex-col gap-5 p-5 font-lato w-full">
       <Details />
       <div className="w-full flex gap-5 justify-between">
         <div className="flex flex-col gap-5 w-2/3 h-[900px]">

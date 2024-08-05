@@ -7,7 +7,7 @@ import TopScorerCard from "./TopScorersCard";
 
 const OverviewPage = () => {
   return (
-    <div className="flex gap-5">
+    <div className="flex gap-5 p-5">
       <div className="flex flex-col gap-5 w-2/3">
         <UpcomingMatchBanner />
         <StandingsTable />

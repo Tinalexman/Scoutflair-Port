@@ -6,7 +6,7 @@ import Updates from "./Updates";
 
 const Academies = () => {
   return (
-    <div className="w-full font-lato flex gap-5">
+    <div className="w-full font-lato flex p-5 gap-5">
       <div className="w-1/3">
         <AvailableAcademies />
       </div>
