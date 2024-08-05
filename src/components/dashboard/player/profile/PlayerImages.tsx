@@ -3,6 +3,7 @@ import { FiChevronDown } from 'react-icons/fi';
 import Upload from "@/public/images/basil_file-upload-solid.png"
 import Image from 'next/image';
 import Link from 'next/link';
+import { FaDownload } from 'react-icons/fa';
 
 const PlayerImages = () => {
     const [playerImages, setPlayerImages] = useState("");
@@ -17,7 +18,7 @@ const PlayerImages = () => {
           <h5 className="font-lato font-semibold text-[14px] leading-[24px] text-black">Upload Image</h5>
           <p className="font-lato font-normal text-[12px] leading-[14px] text-black mb-[16px]">Track your activities in real time</p>
 
-          <div className='mb-14 border-2 border-border-gray border-dotted w-full h-[115px] rounded-md'>
+          <div className='mb-10 border-2 border-border-gray border-dotted w-full h-[115px] rounded-md'>
             <div className="flex flex-col gap-4 pt-4 items-center justify-center">
                 <Image src={Upload} alt="" />
                 <div>
@@ -28,12 +29,17 @@ const PlayerImages = () => {
           </div>
 
         <div className="relative">
-            <label className="text-black font-normal text-base mb-[8px]">
-              Player&apos;s Availabilty
+            <div className="flex items-center justify-between mb-4">
+            <label className="font-lato text-black font-normal text-base mb-[8px]">
+              Upload Videos
             </label>
+            <div className='cursor-pointer'>
+            <FaDownload />
+            </div>
+            </div>
             <div className="relative">
               <select
-                name="player_availabilty"
+                name="upload"
                 value={playerImages}
                 onChange={(e) => setPlayerImages(e.target.value)}
                 className="rounded-[10px] text-base text-black border border-border-black h-[40px] w-full pl-4 pr-10 outline-none appearance-none"
