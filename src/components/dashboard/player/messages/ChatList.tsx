@@ -15,8 +15,9 @@ import { iChatUser } from "./types";
 const ChatList = () => {
   const [pinnedUsers, setPinnedUsers] = useState<iChatUser[]>(
     Array(4).fill({
+      id: "dummyID",
       image: Person,
-      name: "Noraly Faheema",
+      name: "Joshua Fayomi",
       count: 1,
       timestamp: new Date(),
       lastMessage: "Hello, How are you?",
@@ -25,8 +26,9 @@ const ChatList = () => {
 
   const [allUser, setAllUsers] = useState<iChatUser[]>(
     Array(15).fill({
+      id: "dummyID",
       image: Person,
-      name: "Noraly Faheema",
+      name: "Joshua Fayomi",
       count: 1,
       timestamp: new Date(),
       lastMessage: "Hello, How are you?",
@@ -89,7 +91,13 @@ const ChatTile: FC<{
 }> = ({ image, name, count, lastMessage, timestamp }) => {
   return (
     <div className="grid grid-cols-[2fr_4fr_1fr] border-b cursor-pointer border-border-gray pb-1 place-content-center place-items-center w-full text-black">
-      <Image src={image} alt="chat user" className="size-12" />
+      <Image
+        src={image}
+        alt="chat user"
+        className="size-12"
+        width={48}
+        height={48}
+      />
       <div className="flex flex-col w-full">
         <h3 className="text-md font-semibold truncate">{name}</h3>
         <p className="text-sm font-normal truncate">{lastMessage}</p>
