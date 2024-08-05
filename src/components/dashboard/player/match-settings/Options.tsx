@@ -63,7 +63,7 @@ const Options = () => {
                 type="text"
                 value={p.name}
                 placeholder="Full Name"
-                // onChange={handleChange}
+                onChange={(e) => {}}
                 className="px-2 w-[180px] text-black border border-border-gray py-1 rounded-lg bg-transparent"
               />
             </div>

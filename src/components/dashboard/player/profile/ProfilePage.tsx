@@ -42,7 +42,7 @@ const ProfilePage = () => {
   ];
 
   return (
-    <div className='flex flex-col'>
+    <div className="flex flex-col p-5">
       <div className="bg-slate-900 text-white w-full flex items-center gap-20 h-[200px] rounded-lg px-5">
         <div className="flex items-center flex-row gap-4">
           <Image className="w-[124px] h-[124px]" src={PlayerImg} alt={""} />
@@ -146,7 +146,15 @@ const ProfilePage = () => {
               84%
             </h2>
           </div>
-          <Link className=" flex gap-2 text-14 font-normal leading-[18px]" href={""}>All Goals <span><MdArrowRightAlt /></span></Link>
+          <Link
+            className=" flex gap-2 text-14 font-normal leading-[18px]"
+            href={""}
+          >
+            All Goals{" "}
+            <span>
+              <MdArrowRightAlt />
+            </span>
+          </Link>
         </div>
       </div>
 
@@ -251,7 +259,7 @@ const ProfilePage = () => {
       <div className="flex mt-10 justify-between items-center">
         <BackButton />
         <Link href={"/dashboard/player/edit-profile"}>
-        <NextButton />
+          <NextButton />
         </Link>
       </div>
     </div>

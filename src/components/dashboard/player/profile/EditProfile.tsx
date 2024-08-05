@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React from "react";
 import BasicInfo from "./BasicInfo";
 import ContactInfo from "./ContactInfo";
@@ -18,8 +18,8 @@ import NextButton from "@/src/components/reusable/NextButton";
 
 const EditProfile = () => {
   return (
-    <>
-      <div className="bg-white rounded-md pt-2 pb-5">
+    <div className="p-5">
+      <div className="bg-white rounded-md">
         <div className="flex justify-between items-center pl-[24px] pr-[80px] pb-2">
           <p className="font-lato text-black text-[14px] leading-[24px] font-bold">
             Add New
@@ -59,10 +59,10 @@ const EditProfile = () => {
         </div>
 
         <div className="flex justify-end pr-[30px]">
-            <NextButton />
+          <NextButton />
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

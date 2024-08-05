@@ -6,9 +6,9 @@ import SocialLinks from "./SocialLinks";
 import ActivityLog from "./ActivityLog";
 
 const SettingsPage = () => {
-    return (
-        <>
-        <div className="bg-white rounded-md pt-2 pb-5">
+  return (
+    <div className="p-5">
+      <div className="bg-white rounded-md pt-2 pb-5">
         <div className="flex justify-between items-center pl-[24px] pr-[80px] pb-2">
           <p className="font-lato text-black text-[14px] leading-[24px] font-bold">
             Edit Profile
@@ -39,14 +39,15 @@ const SettingsPage = () => {
         </div>
 
         <div className="flex justify-center">
-        <button className="flex items-center justify-center w-[400px] h-[40px] bg-[#041931] text-white rounded-lg border border-black">
-            <p className="font-lato font-semibold text-[14px] leading-[24px]">Save All Changes</p>
-            </button>
+          <button className="flex items-center justify-center w-[400px] h-[40px] bg-[#041931] text-white rounded-lg border border-black">
+            <p className="font-lato font-semibold text-[14px] leading-[24px]">
+              Save All Changes
+            </p>
+          </button>
         </div>
-
-        </div>
-        </>
-    )
-}
+      </div>
+    </div>
+  );
+};
 
 export default SettingsPage;
