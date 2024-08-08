@@ -12,7 +12,7 @@ export const SignUpValidationSchema = Yup.object().shape({
   position: Yup.string()
     .min(2, "Position must be at least 2 characters")
     .max(50, "Position must be less than 50 characters")
-    .required("Position is required"),
+    .optional(),
   dob: Yup.date()
     .required("Date of Birth is required")
     .max(new Date(), "Date of Birth cannot be in the future"),

@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import signUpImage from "@/public/images/3d-rendering-of-cartoon-like-man-working-on-computer.png"
 import stars from "@/public/images/close-up-view-of-christmas-balls-concept.png"
 import Scoutflairlogo from "@/public/icons/Scoutflairlogo.svg";
@@ -16,9 +16,11 @@ import Image from "next/image";
 
 const PlayerSignUp: React.FC = () => {
     const { requestApi } = useAxios();
-    const searchParams = useSearchParams();
-    const type = searchParams.get('type');
-    const router = useRouter()
+    const pathname = usePathname();        
+    const router = useRouter() 
+    const urlParts = pathname.split('/').filter(Boolean);
+    const type = urlParts[1];       
+    console.log(type)  
     const [teams, setTeams] = useState<[]>([])
 
     useEffect(() => {
@@ -57,12 +59,14 @@ const PlayerSignUp: React.FC = () => {
             ...values,
             fullName: values.firstName + " " + values.lastName
         }
+        const {confirmPassword, firstName, lastName, ...rest} = newValues
+        console.log("Submission Block", rest);
         try {
-            const response = await requestApi('/scoutflair/v1/signup', 'POST', newValues);
+            const response = await requestApi('/scoutflair/v1/signup', 'POST', rest);
             console.log(response.data);
 
             if (response.status) {                
-                router.push("auth/sign-up/success")
+                router.push("/auth/sign-up/success")
             } else {
                 Swal.fire({
                     title: "Oops...",

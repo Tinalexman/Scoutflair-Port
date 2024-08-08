@@ -1,7 +1,7 @@
 import React from 'react';
 import bgImage from "@/public/images/frame-3404.png"
 import { Urls } from '../../constants/constants';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 const SignUpSuccessPage: React.FC = () => {
   return (
@@ -30,7 +30,7 @@ const SignUpSuccessPage: React.FC = () => {
                   Account created successfully
                 </p>
                 <p className="text-sm text-center text-black/80">
-                  Check your email to verify your account. Move to <Link to={Urls.LOGIN}><span className='inline-block text-slate-800 font-semibold underline'>Login</span></Link>
+                  Check your email to verify your account. Move to <Link href={Urls.LOGIN}><span className='inline-block text-slate-800 font-semibold underline'>Login</span></Link>
                 </p>
               </div>
             </div>

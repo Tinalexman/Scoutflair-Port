@@ -37,7 +37,7 @@ const PasswordResetForm: React.FC = () => {
       const response = await requestApi('/scoutflair/v1/signup/recover/second', 'POST', newValues);
       console.log(response.data);
       if (response.status) {
-        router.push("/password-reset/success")
+        router.push("/auth/password-reset/success")
       } else {
         Swal.fire({
           title: "Oops...",

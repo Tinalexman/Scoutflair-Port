@@ -4,15 +4,15 @@ export const Urls = {
     BLOGS: "/blogs",
     CONTACT: "/contact",
     SERVICES: "/services",
-    PASSWORDRESET: "auth/password-reset",
-    PASSWORDRESETTOKEN: "auth/password-reset/token",
-    PASSWORDRESETFORM: "auth/password-reset/form",
+    PASSWORDRESET: "/auth/password-reset",
+    PASSWORDRESETTOKEN: "/auth/password-reset/token",
+    PASSWORDRESETFORM: "/auth/password-reset/form",
     PASSWORDRESETSUCCESS: "auth/password-reset/success",
-    LOGIN: "auth/login",
-    SIGNUP: "auth/sign-up",
-    PLAYERSIGNUP: "auth/player/sign-up",
-    SCOUTSIGNUP: "auth/scout/sign-up",
-    COACHSIGNUP: "auth/coach/sign-up",
+    LOGIN: "/auth/login",
+    SIGNUP: "/auth/sign-up",
+    PLAYERSIGNUP: "/auth/player/sign-up",
+    SCOUTSIGNUP: "/auth/scout/sign-up",
+    COACHSIGNUP: "/auth/coach/sign-up",
     DASHBOARD: "/dashboard"
 }
 
