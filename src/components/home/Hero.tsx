@@ -1,6 +1,6 @@
-import React from "react"
-import Image from "next/image"
-import goldlock from "@/public/icons/goldlock.svg"
+import React from "react";
+import Image from "next/image";
+import goldlock from "@/public/icons/goldlock.svg";
 
 const Hero: React.FC = () => {
     return (
@@ -45,4 +45,4 @@ const Hero: React.FC = () => {
     )
 }
 
-export default Hero
+export default Hero;

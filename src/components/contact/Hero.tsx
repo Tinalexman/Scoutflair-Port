@@ -1,5 +1,5 @@
 import React from "react";
-import Image from "next/image"
+import Image from "next/image";
 import emailpic from "@/public/images/3d render email message newsletter notification.png";
 import backgroundImage from "@/public/images/image.png";
 
@@ -24,9 +24,8 @@ const ContactHero: React.FC = () => {
 
 export default ContactHero;
 
-
 // export const TestHero = () => {
 //     return (
-        
+
 //     )
 // }
