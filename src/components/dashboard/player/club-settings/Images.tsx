@@ -1,6 +1,6 @@
 "use client";
 
-import { StaticImageData } from "next/image";
+import Image from "next/image";
 import React, { useState, useRef } from "react";
 
 import { FaFileUpload } from "react-icons/fa";
@@ -77,7 +77,7 @@ const AddImages = () => {
         {images.map((img, i) => (
           <div key={i} className="flex w-full items-center justify-between">
             <div className="flex gap-2 items-center">
-              <img
+              <Image
                 src={img.src}
                 alt="img"
                 width={60}
