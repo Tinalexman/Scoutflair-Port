@@ -25,7 +25,7 @@ const Footer: React.FC = () => {
                             </p>
                         </div>
                         <p className="max-w-sm xs:hidden md:flex text-base text-black">
-                            At ScoutFlair, our mission is to provide football enthusiasts, coaches, and analysts with the tools they need to unlock the game's hidden insights.
+                            At ScoutFlair, our mission is to provide football enthusiasts, coaches, and analysts with the tools they need to unlock the games hidden insights.
                         </p>
                     </div>
                     <div className="flex flex-col gap-4 w-full sm:w-auto">

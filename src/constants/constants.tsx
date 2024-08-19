@@ -13,7 +13,7 @@ export const Urls = {
     PLAYERSIGNUP: "/auth/player/sign-up",
     SCOUTSIGNUP: "/auth/scout/sign-up",
     COACHSIGNUP: "/auth/coach/sign-up",
-    DASHBOARD: "/dashboard"
+    DASHBOARD: "/dashboard/player/overview"
 }
 
 export const positions = [

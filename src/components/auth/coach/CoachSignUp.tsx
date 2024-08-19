@@ -33,7 +33,7 @@ const CoachSignUp: React.FC = () => {
             }
         };
         fetchTeams();
-    }, []);
+    });
 
     const [formData, setFormData] = useState({
         firstName: "",

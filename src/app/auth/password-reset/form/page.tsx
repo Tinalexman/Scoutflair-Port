@@ -1,10 +1,15 @@
 import PasswordResetForm from "@/src/components/auth/PasswordResetForm";
 import { Metadata } from "next";
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "Reset Link Sent",
 };
 
 export default function Onboarding() {
-  return <PasswordResetForm />;
+  return (
+    <Suspense fallback={<div>Loading.....</div>}>
+      <PasswordResetForm />
+    </Suspense>
+  );
 }

@@ -21,7 +21,7 @@ const Hero: React.FC = () => {
                             Our solution democratizes football by providing elite-level scouting, comprehensive talent
                             development data, and cutting-edge information mapping tools to every club. This empowers
                             coaches and scouts to identify and nurture talent effectively, bridging the gap between
-                            grassroots and professional football."
+                            grassroots and professional football.
                         </p>
                     </div>
                 </div>

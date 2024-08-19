@@ -1,54 +1,74 @@
-import { createContext, useState, useContext } from 'react';
+"use client"; // Only if using App Router
+import { createContext, useState, useEffect, useContext } from 'react';
 
 interface IAuthContext {
-  login: (token: any) => any,
-  logout: () => any,
-  isLoggedIn: () => boolean,
-  startRecover: (userame: any) => any,
-  endRecover: () => any,
-  getUserame: () => any,
+  login: (token: string) => void;
+  logout: () => void;
+  isLoggedIn: () => boolean;
+  startRecover: (username: string) => void;
+  endRecover: () => void;
+  getUsername: () => string | null;
 }
-// Create AuthContext
-const AuthContext = createContext<IAuthContext>({login: ({}) => null, logout: () => null, isLoggedIn: () => false, startRecover: () => null, endRecover: () => null, getUserame: () => null });
 
-// Custom hook to use the AuthContext
+const AuthContext = createContext<IAuthContext>({
+  login: () => null,
+  logout: () => null,
+  isLoggedIn: () => false,
+  startRecover: () => null,
+  endRecover: () => null,
+  getUsername: () => null,
+});
+
 export const useAuthContext = () => {
   return useContext(AuthContext);
 };
 
-export default function AuthProvider ({ children }: any) {
-  const [authToken, setAuthToken] = useState(localStorage.getItem('authToken') || null);
-  const [userame, setuserame] = useState(localStorage.getItem('userame') || null);
+export default function AuthProvider({ children }: { children: React.ReactNode }) {
+  const [authToken, setAuthToken] = useState<string | null>(null);
+  const [username, setUsername] = useState<string | null>(null);
 
-  const startRecover = (userame: any) => {
-    localStorage.setItem('userame', userame);
-    setuserame(userame)
-  }
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setAuthToken(localStorage.getItem('authToken'));
+      setUsername(localStorage.getItem('username'));
+    }
+  }, []);
+
+  const startRecover = (username: string) => {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('username', username);
+      setUsername(username);
+    }
+  };
 
   const endRecover = () => {
-    localStorage.removeItem("userame");
-    setuserame(null)
-  }
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem('username');
+      setUsername(null);
+    }
+  };
 
-  const getUserame = () => {
-    return userame
-  }
+  const getUsername = () => username;
 
-  const login = (token: any) => {
-    localStorage.setItem('authToken', token);
-    setAuthToken(token);
+  const login = (token: string) => {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('authToken', token);
+      setAuthToken(token);
+    }
   };
 
   const logout = () => {
-    localStorage.removeItem('authToken');
-    setAuthToken(null);
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem('authToken');
+      setAuthToken(null);
+    }
   };
 
   const isLoggedIn = () => !!authToken;
 
   return (
-    <AuthContext.Provider value={{ login, logout, isLoggedIn, startRecover, endRecover, getUserame }}>
+    <AuthContext.Provider value={{ login, logout, isLoggedIn, startRecover, endRecover, getUsername }}>
       {children}
     </AuthContext.Provider>
   );
-};
+}
