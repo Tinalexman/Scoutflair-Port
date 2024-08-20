@@ -7,15 +7,19 @@ import { Field, Form, Formik } from "formik";
 import Image from "next/image";
 import { SignUpValidationSchema } from "../../../schemas/Schema";
 import { useAxios } from "../../../api/base";
-import { useSearchParams, useNavigate, Link } from "react-router-dom";
+import Link from "next/link"
+import { useRouter } from "next/navigation"
+import { usePathname } from "next/navigation";
 import Swal from "sweetalert2";
 import { Urls } from "../../../constants/constants";
 
 const CoachSignUp: React.FC = () => {
     const { requestApi } = useAxios();
-    const [searchParams] = useSearchParams();
-    const type = searchParams.get('type');
-    const navigate = useNavigate();
+    const pathname = usePathname();        
+    const router = useRouter() 
+    const urlParts = pathname.split('/').filter(Boolean);
+    const type = urlParts[1];       
+    console.log(type)    
     const [teams, setTeams] = useState<[]>([])
 
     useEffect(() => {
@@ -23,14 +27,13 @@ const CoachSignUp: React.FC = () => {
             try {
                 const response = await requestApi('/api/v1/est/namesList', 'GET');
                 setTeams(response.data)
-            }
-            catch (error: any) {
+            } catch (error: any) {
                 console.error("Submission error:", error.response.data);
                 alert("An error occurred during submission. Please try again.");
             }
-        }
-        fetchTeams()
-    })
+        };
+        fetchTeams();
+    });
 
     const [formData, setFormData] = useState({
         firstName: "",
@@ -44,30 +47,23 @@ const CoachSignUp: React.FC = () => {
         password: "",
         confirmPassword: "",
         preferredFoot: "",
-        usertype: { type }
+        usertype: type
     });
 
-    const handleChange = (e: any) => {
-        const { name, value } = e.target;
-        setFormData((prevData) => ({
-            ...prevData,
-            [name]: value
-        }));
-    };
-
     const handleSubmit = async (values: any, { setSubmitting }: any) => {
-        setSubmitting(true)
-        console.log("Submission Block", values);
+        setSubmitting(true);        
         const newValues = {
             ...values,
             fullName: values.firstName + " " + values.lastName
-        }
+        };
+        const {confirmPassword, firstName, lastName, ...rest} = newValues
+        console.log("Submission Block", rest);
         try {
-            const response = await requestApi('/scoutflair/v1/signup', 'POST', newValues);
+            const response = await requestApi('/scoutflair/v1/signup', 'POST', rest);
             console.log(response.data);
 
-            if (response.status) {  
-                navigate("/signup/success", { replace: true })
+            if (response.status) {
+                router.push("/auth/sign-up/success");
             } else {
                 Swal.fire({
                     title: "Oops...",
@@ -84,13 +80,13 @@ const CoachSignUp: React.FC = () => {
     };
 
     return (
-        <div className="w-full min-h-screen bg-[#041931] flex flex-col md:flex-row">
+        <div className="w-full min-h-screen bg-[#041931] flex flex-col md:flex-row overflow-hidden">
             <div className="xs:hidden h-full md:block w-full md:w-1/2 flex justify-center items-center max-h-screen bg-[#041931] p-4 md:p-0">
                 <div className="text-white text-center md:text-left p-10 pb-0">
                     <h1 className="text-2xl md:text-4xl font-bold mb-4">
                         Unlock Your Football Potentials With Scoutflair
                     </h1>
-                    <Link to={Urls.HOME} className="flex items-center justify-center md:justify-start gap-4">
+                    <Link href={Urls.HOME} className="flex items-center justify-center md:justify-start gap-4">
                         <Image className="w-8 h-8" src={Scoutflairlogo} alt="" />
                         <span className="text-xl font-bold">Scout</span>
                         <span className="text-xl">Flair</span>
@@ -122,102 +118,93 @@ const CoachSignUp: React.FC = () => {
                                         type="text"
                                         placeholder="First Name"
                                         name="firstName"
-                                        onChange={handleChange}
                                         className="flex-1 w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
                                     />
                                     {errors.firstName && touched.firstName ? (
-                                        <div><p style={{ color: "red" }}>{errors.firstName}</p></div>
+                                        <div><p className="text-red-500">{errors.firstName}</p></div>
                                     ) : null}
                                     <Field
                                         type="text"
                                         placeholder="Last Name"
                                         name="lastName"
-                                        onChange={handleChange}
                                         className="flex-1 w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
                                     />
                                     {errors.lastName && touched.lastName ? (
-                                        <div><p style={{ color: "red" }}>{errors.lastName}</p></div>
+                                        <div><p className="text-red-500">{errors.lastName}</p></div>
                                     ) : null}
                                 </div>
                                 <div className="flex flex-col md:flex-row gap-4">
                                     <Field
-                                        type="number"
+                                        type="text"
                                         placeholder="Coaching Experience"
                                         name="experience"
-                                        onChange={handleChange}
                                         className="flex-1 w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
                                     />
                                     {errors.experience && touched.experience ? (
-                                        <div><p style={{ color: "red" }}>{errors.experience}</p></div>
+                                        <div><p className="text-red-500">{errors.experience}</p></div>
                                     ) : null}
                                     <Field
                                         type="date"
                                         placeholder="Date of Birth"
                                         name="dob"
-                                        onChange={handleChange}
                                         className="flex-1 w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
                                     />
                                     {errors.dob && touched.dob ? (
-                                        <div><p style={{ color: "red" }}>{errors.dob}</p></div>
+                                        <div><p className="text-red-500">{errors.dob}</p></div>
                                     ) : null}
                                 </div>
                                 <div className="flex flex-col md:flex-row gap-4">
                                     <Field
                                         type="text"
                                         placeholder="Coaching Licence Number"
-                                        name="licencenumber"
-                                        onChange={handleChange}
+                                        name="licenceNumber" // Correct key here
                                         className="flex-1 w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
                                     />
                                     {errors.licenceNumber && touched.licenceNumber ? (
-                                        <div><p style={{ color: "red" }}>{errors.licenceNumber}</p></div>
+                                        <div><p className="text-red-500">{errors.licenceNumber}</p></div>
                                     ) : null}
                                     <Field
                                         as="select"
-                                        placeholder="Current Team"
                                         name="currentTeam"
                                         className="flex-1 w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
                                     >
                                         <option value="" label="Select a team" />
-                                        {teams.map((team: any) => (
-                                            <option key={team.indexOf()} value={team}>
+                                        {teams.map((team: any, index: number) => (
+                                            <option key={index} value={team}>
                                                 {team}
                                             </option>
                                         ))}
                                     </Field>
                                     {errors.currentTeam && touched.currentTeam ? (
-                                        <div><p style={{ color: "red" }}>{errors.currentTeam}</p></div>
+                                        <div><p className="text-red-500">{errors.currentTeam}</p></div>
                                     ) : null}
                                 </div>
                                 <Field
                                     type="email"
                                     placeholder="Email"
                                     name="email"
-                                    onChange={handleChange}
                                     className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
                                 />
                                 {errors.email && touched.email ? (
-                                    <div><p style={{ color: "red" }}>{errors.email}</p></div>
+                                    <div><p className="text-red-500">{errors.email}</p></div>
                                 ) : null}
                                 <Field
                                     type="password"
                                     placeholder="Password"
                                     name="password"
-                                    onChange={handleChange}
                                     className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
                                 />
                                 {errors.password && touched.password ? (
-                                    <div><p style={{ color: "red" }}>{errors.password}</p></div>
+                                    <div><p className="text-red-500">{errors.password}</p></div>
                                 ) : null}
                                 <Field
                                     type="password"
                                     placeholder="Confirm Password"
-                                    name="cofirmPassword"
-                                    onChange={handleChange}
+                                    name="confirmPassword"
                                     className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
                                 />
                                 {errors.confirmPassword && touched.confirmPassword ? (
-                                    <div><p style={{ color: "red" }}>{errors.confirmPassword}</p></div>
+                                    <div><p className="text-red-500">{errors.confirmPassword}</p></div>
                                 ) : null}
                                 <div className="flex items-center space-x-2">
                                     <Field type="checkbox" className="form-checkbox" />
@@ -228,7 +215,7 @@ const CoachSignUp: React.FC = () => {
                                 <button
                                     type="submit"
                                     className="w-full py-2 bg-[#f2a725] text-black font-bold rounded-md hover:bg-yellow-500 transition"
-                                // disabled={isSubmitting}
+                                    // disabled={isSubmitting}
                                 >
                                     {isSubmitting ? 'Submitting...' : 'Sign Up'}
                                 </button>
@@ -251,7 +238,7 @@ const CoachSignUp: React.FC = () => {
                     </div>
                     <div className="text-center mt-4">
                         <p className="text-gray-700">Already have an account?
-                            <Link to={Urls.LOGIN}>
+                            <Link href={Urls.LOGIN}>
                                 <span className="font-bold text-[#010e1d]"> Sign In</span>
                             </Link>
                         </p>

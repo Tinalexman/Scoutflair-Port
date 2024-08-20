@@ -8,16 +8,17 @@ import Image from "next/image";
 import { SignUpValidationSchema } from "../../../schemas/Schema";
 import { useAxios } from "../../../api/base";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
 import { Urls, positions } from "../../../constants/constants";
 import Swal from "sweetalert2";
 
 const ScoutSignUp: React.FC = () => {
     const { requestApi } = useAxios();
-    const searchParams = useSearchParams();
-    const type = searchParams.get('type');
-    const router = useRouter()
+    const pathname = usePathname();        
+    const router = useRouter() 
+    const urlParts = pathname.split('/').filter(Boolean);
+    const type = urlParts[1];           
     const [teams, setTeams] = useState<[]>([])
 
     useEffect(() => {
@@ -55,13 +56,14 @@ const ScoutSignUp: React.FC = () => {
             ...values,
             fullName: values.firstName + " " + values.lastName
         }
-        console.log("Submission Block", newValues);
+        const {confirmPassword, firstName, lastName, ...rest} = newValues    
+        console.log("Submission Block", rest);
         try {
-            const response = await requestApi('/scoutflair/v1/signup', 'POST', newValues);
+            const response = await requestApi('/scoutflair/v1/signup', 'POST', rest);
             console.log(response.data);
 
             if (response.status) {                
-                router.push("/signup/success")
+                router.push("/auth/sign-up/success")
             } else {
                 Swal.fire({
                     title: "Oops...",

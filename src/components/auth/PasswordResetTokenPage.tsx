@@ -24,15 +24,15 @@ const PasswordResetTokenPage: React.FC = () => {
   const handleSubmit = async (values: FormValues) => {
     console.log("Submission Block", values);
     try {
-      const response = await requestApi(`/scoutflair/v1/signup/confirm?token=${values.token}`, "GET")
+      const response = await requestApi(`/scoutflair/v1/signup/confirm?token=${values.token}`, "GET", {}, {"Content-Type": 'application/json'})
       console.log(response.data);
       if (response.status) {
         Swal.fire({
-          title: `${response.data}`,
-          text: "",
+          title: `Token Verified`,
+          text: "Redirecting",
           icon: "success"
         });
-        router.push(`/password-reset/form?token=${values.token}`)
+        router.push(`/auth/password-reset/form?token=${values.token}`)
       } else {
         Swal.fire({
           title: "Oops...",

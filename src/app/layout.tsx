@@ -9,6 +9,7 @@ import {
   MantineProvider,
   createTheme,
 } from "@mantine/core";
+import AuthProvider from "../providers/AuthContext";
 
 const merriweather = Merriweather({
   subsets: ["latin"],
@@ -77,10 +78,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <ColorSchemeScript defaultColorScheme="light"  />
+        <ColorSchemeScript defaultColorScheme="light" />
       </head>
       <body className={`${merriweather.variable} ${lato.variable} ${inter.variable} font-sans-serif`}>
-        <MantineProvider theme={theme}>{children}</MantineProvider>
+        <AuthProvider>
+          <MantineProvider theme={theme}>{children}</MantineProvider>
+        </AuthProvider>
       </body>
     </html>
   );

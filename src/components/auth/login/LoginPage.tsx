@@ -36,7 +36,7 @@ const LoginPage: React.FC = () => {
       console.log(response);
 
       if (response.status) {
-        const token = response.data.token
+        const token = response.data.jwtToken
         login(token)
         Swal.fire({
           title: "Logged In successfully!",
