@@ -66,7 +66,7 @@ const Footer: React.FC = () => {
                 </button>
               </div>
               <div className="flex flex-col gap-4 opacity-80">
-                <p className="text-xl text-black">No 14, Wuse 24, Abuja, Nigeria</p>
+                <p className="text-xl text-black">Floor 2, Morom Plaza, Utako, Abuja, Nigeria</p>
                 <p className="text-xl text-black">support@scoutflair.com</p>
               </div>
             </div>
