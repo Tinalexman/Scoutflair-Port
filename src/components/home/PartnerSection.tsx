@@ -20,11 +20,11 @@ const PartnerSection: React.FC = () => {
                 </div>
                 <div className="grid xs:grid-cols-1 md:grid-cols-2 gap-6">
                     <div
-                        className="flex lg:flex-row justify-start items-start gap-12 px-12 py-8 rounded-2xl bg-[#4bbac1]"
+                        className="flex lg:flex-row justify-start items-start xs:gap-6 xs:px-4 lg:gap-12  lg:px-12 py-8 rounded-2xl bg-[#4bbac1]"
                         style={{ boxShadow: "0px 8px 10px 0 rgba(0,0,0,0.14)" }}
                     >
-                        <div>
-                            <Image className="min-w-24 min-h-24" src={Binoculars} alt="" />
+                        <div className="my-auto">
+                            <Image className="min-w-24 min-h-24 my-auto" src={Binoculars} alt="" />
                         </div>
                         <div className="flex flex-col justify-start items-start relative gap-[6.045801162719727px]">
                             <p className="self-stretch text-[18.13740348815918px] font-semibold text-left text-black">
@@ -37,10 +37,10 @@ const PartnerSection: React.FC = () => {
                         </div>
                     </div>
                     <div
-                        className="flex lg:flex-row justify-start items-start gap-12 px-12 py-8 rounded-2xl bg-white"
+                        className="flex lg:flex-row justify-start items-start xs:gap-6 xs:px-4 lg:gap-12 lg:px-12 py-8 rounded-2xl bg-white"
                         style={{ boxShadow: "0px 8px 10px 0 rgba(0,0,0,0.14)" }}
                     >
-                        <div>
+                        <div className="my-auto">
                             <Image className="min-w-24 min-h-24" src={InfoMapIcon} alt="" />
                         </div>
                         <div className="flex flex-col justify-start items-start relative gap-[6.045801162719727px]">
@@ -54,10 +54,10 @@ const PartnerSection: React.FC = () => {
                         </div>
                     </div>
                     <div
-                        className="flex lg:flex-row justify-start items-start gap-12 px-12 py-8 rounded-2xl bg-white"
+                        className="flex lg:flex-row justify-start items-start xs:gap-6 xs:px-4 lg:gap-12 lg:px-12 py-8 rounded-2xl bg-white"
                         style={{ boxShadow: "0px 8px 10px 0 rgba(0,0,0,0.14)" }}
                     >
-                        <div>
+                        <div className="my-auto">
                             <Image className="min-w-24 min-h-24" src={DataAnalyticsIcon} alt="" />
                         </div>
                         <div className="flex flex-col justify-start items-start relative gap-[6.045801162719727px]">
@@ -71,10 +71,10 @@ const PartnerSection: React.FC = () => {
                         </div>
                     </div>
                     <div
-                        className="flex lg:flex-row justify-start items-start gap-12 px-12 py-8 rounded-2xl bg-white"
+                        className="flex lg:flex-row justify-start items-start xs:gap-6 xs:px-4 lg:gap-12 lg:px-12 py-8 rounded-2xl bg-white"
                         style={{ boxShadow: "0px 8px 10px 0 rgba(0,0,0,0.14)" }}
                     >
-                        <div>
+                        <div className="my-auto">
                             <Image className="min-w-24 min-h-24" src={TalentDevIcon} alt="" />
                         </div>
                         <div className="flex flex-col justify-start items-start relative gap-[6.045801162719727px]">

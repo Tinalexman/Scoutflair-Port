@@ -16,7 +16,7 @@ const Footer: React.FC = () => {
         alt="Background"
       />
       <div className="flex flex-col justify-start items-center relative pt-8 gap-8">
-        <div className="flex flex-row justify-around w-full gap-8 px-4 md:px-8 lg:px-16">
+        <div className="flex xs:flex-col lg::flex-row justify-around w-full gap-8 px-4 md:px-8 lg:px-16">
           <div className="flex flex-col items-start gap-10 w-full sm:w-auto">
             <div className="flex items-center gap-4">
               <Image className="w-14 h-14" src={Scoutflairlogo} alt="Scoutflair Logo" />
@@ -66,7 +66,7 @@ const Footer: React.FC = () => {
                 </button>
               </div>
               <div className="flex flex-col gap-4 opacity-80">
-                <p className="text-xl text-black">No 14, Wuse 24, Abuja, Nigeria</p>
+                <p className="text-xl text-black">Floor 2, Morom Plaza, Utako, Abuja, Nigeria</p>
                 <p className="text-xl text-black">support@scoutflair.com</p>
               </div>
             </div>
