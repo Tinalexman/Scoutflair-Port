@@ -29,7 +29,7 @@ body {
 }
 
 .nav-item {
-  @apply text-[16px] leading-6 font-bold;
+  @apply font-lato text-[1rem] leading-[1.2rem] font-medium;
 }
 
 .body-text-1-bold {

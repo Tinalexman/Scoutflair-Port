@@ -87,7 +87,7 @@ const PlayerLayout: FC<iAuthLayout> = ({ children }) => {
   return (
     <div className="w-[100vw] h-[100vh] font-lato bg-gradient-to-b from-white to-background-gray flex justify-between">
       <SideBar
-        sections={[
+        items={[
           {
             name: "INSIGHTS",
             items: insight,

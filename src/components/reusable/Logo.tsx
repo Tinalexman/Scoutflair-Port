@@ -1,15 +1,15 @@
 import React from "react";
 
-const Logo:React.FC = () => {
+const Logo: React.FC = () => {
   return (
-    <div className="flex items-center gap-4 px-10 py-6">
+    <div className="flex items-center gap-2">
       <svg
-        width={48}
-        height={48}
+        width={32}
+        height={32}
         viewBox="0 0 48 48"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="size-12"
+        className="size-8"
         preserveAspectRatio="xMidYMid meet"
       >
         <g clipPath="url(#clip0_225_1342)">
@@ -27,7 +27,7 @@ const Logo:React.FC = () => {
           />
         </g>
       </svg>
-      <div className="flex text-[28px] leading-[32px] font-merriweather text-white font-bold">
+      <div className="flex text-xl font-merriweather text-white font-bold">
         <p>Scout</p>
         <p className="font-normal">Flair</p>
       </div>

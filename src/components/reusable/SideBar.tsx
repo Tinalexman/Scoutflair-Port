@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import Logo from "./Logo";
 import Image, { StaticImageData } from "next/image";
+
+import Link from "next/link";
 
 import SignOutIcon from "@/public/icons/Sign Out Icon.svg";
 
@@ -10,51 +12,20 @@ export interface iNavItem {
   link: string;
 }
 
-export interface iNavSection {
-  name: string;
-  items: iNavItem[];
-}
-
-const SideBar: React.FC<{ sections: iNavSection[] }> = ({ sections }) => {
-  const [currentIndex, setCurrentIndex] = useState<number>(0);
-
+const SideBar: React.FC<{ items: iNavItem[]; active: number }> = ({
+  items,
+  active,
+}) => {
   return (
-    <div className="w-[280px] h-[100vh] flex flex-col rounded-tr-3xl rounded-br-3xl bg-[#041931] relative">
+    <div className="w-[320px] h-[100vh] flex flex-col gap-12 bg-primary-2 pl-10 py-5">
       <Logo />
-      <div className="w-full h-fit flex flex-col gap-5 scrollbar-custom overflow-y-scroll">
-        {sections.map((navSection, index) => (
-          <div key={index * 45} className="pb-1">
-            <div className="flex flex-col gap-2">
-              <div className="opacity-[0.72] text-[12px] text-white pl-10">
-                <p>{navSection.name}</p>
-              </div>
-              {navSection.items.map((item, i) => {
-                const trueIndex =
-                  sections
-                    .slice(0, index)
-                    .reduce((sum, section) => sum + section.items.length, 0) +
-                  i;
-
-                return (
-                  <NavComponent
-                    key={i + 2}
-                    item={item}
-                    active={currentIndex === trueIndex}
-                    setActive={() => {
-                      setCurrentIndex(trueIndex);
-                      window.location.assign(item.link);
-                    }}
-                  />
-                );
-              })}
-            </div>
-
-            <hr className="border-white-56 border mt-4" />
-          </div>
-        ))}
+      <div className="w-full h-fit flex flex-col">
+        {items.map((item, i) => {
+          return <NavComponent key={i} item={item} active={i === active} />;
+        })}
 
         <div
-          className={`nav-item text-white leading-5 px-10 pt-2 pb-6 flex gap-2 items-center font-bold cursor-pointer`}
+          className={`nav-item hover:scale-105 scale-100 transition-transform ease-out duration-200 text-white h-12 leading-5 px-4 flex gap-2 items-center cursor-pointer`}
           onClick={() => {}}
         >
           <Image
@@ -74,19 +45,14 @@ const SideBar: React.FC<{ sections: iNavSection[] }> = ({ sections }) => {
 const NavComponent: React.FC<{
   item: iNavItem;
   active: boolean;
-  setActive: () => void;
-}> = ({ item, active, setActive }) => {
+}> = ({ item, active }) => {
   return (
-    <div
-      className={`nav-item text-white leading-5 border-white border-x-0 border-y-[1px] px-10 py-2 flex gap-2 items-center cursor-pointer ${
-        active ? " border-opacity-20" : "border-opacity-0"
-      } relative`}
-      style={{
-        background: active
-          ? "linear-gradient(128.61deg, rgba(1,14,29,0.24) -10.42%, rgba(255,255,255,0.24) 140.66%) "
-          : "none",
-      }}
-      onClick={setActive}
+    <Link
+      href={item.link}
+      className={`nav-item hover:scale-105 scale-100 transition-transform ease-out duration-200 text-white h-12 leading-5 px-4 flex gap-2 items-center cursor-pointer ${
+        active &&
+        "bg-primary-4 border-[3px] border-y-0 border-r-0 border-secondary-3 rounded"
+      }`}
     >
       <Image
         src={item.icon}
@@ -96,12 +62,7 @@ const NavComponent: React.FC<{
         height={32}
       />
       <p>{item.name}</p>
-      {active && (
-        <div className="absolute z-10 -right-[10px] size-5 flex justify-center items-center bg-primary-2 rounded-full">
-          <div className="size-[10px] bg-secondary rounded-full" />
-        </div>
-      )}
-    </div>
+    </Link>
   );
 };
 
