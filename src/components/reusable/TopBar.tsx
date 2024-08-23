@@ -16,7 +16,7 @@ const TopBar: React.FC = () => {
 
   return (
     <div className="flex justify-between items-center w-full bg-white shadow-custom h-16 px-6">
-      <div className="relative w-[20%]">
+      <div className="relative w-[30%]">
         <input
           className="h-10 rounded-full w-full border pl-11 bg-[#F5F6FA] pr-4 text-14-16 border-border-gray placeholder:text-placeholder font-lato text-dark"
           placeholder="Search"
