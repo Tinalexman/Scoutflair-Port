@@ -9,7 +9,7 @@ import { IoIosArrowDown } from "react-icons/io";
 import Image, { StaticImageData } from "next/image";
 import VideoImage from "@/public/dashboard/player/Group 1000001954.png";
 import { title } from "process";
-import { convertDateWithJustSlashes } from "@/src/functions/dateFunctions";
+import { convertDateWithSlashes } from "@/src/functions/dateFunctions";
 
 const resultsOptions: number[] = [4, 8, 12];
 const categoryOptions: string[] = [
@@ -75,7 +75,7 @@ const Performance = () => {
             <p className="text-black font-semibold text-[14px]">{rs.title}</p>
             <div className="flex w-full justify-between items-center text-black text-[11px]">
               <p>Category: {rs.category}</p>
-              <p>{convertDateWithJustSlashes(rs.date)}</p>
+              <p>{convertDateWithSlashes(rs.date)}</p>
             </div>
           </div>
         ))}

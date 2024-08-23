@@ -11,6 +11,7 @@ const config: Config = {
       colors: {
         black: "#000000",
         error: "#FF0000",
+        dark: "#222222",
         primary: "#192B4D",
         "primary-2": "#041931",
         "primary-3": "#4BBAC1",
@@ -21,7 +22,7 @@ const config: Config = {
         "bright-green": "#08F108",
         "green-80": "rgba(183, 234, 237, 0.8)",
         "secondary-2": "#946108",
-        "background-gray": "#EBE9EB",
+        "background-gray": "#F7F7F7",
         "border-gray": "#D5D5D5",
         placeholder: "#555555",
         "black-56": "rgba(0, 0, 0, 0.56)",
@@ -43,8 +44,8 @@ const config: Config = {
         xl: "1440px",
       },
       boxShadow: {
-        custom: "0 0 10px rgba(0, 0, 0, 0.07)",
-        "custom-1": "0 0 20px rgba(0, 0, 0, 0.15)",
+        custom: "0 0 10px rgba(0, 0, 0, 0.1)",
+        "custom-1": "0 0 20px rgba(0, 0, 0, 0.2)",
         "custom-2": "0px 8px 10px 0 rgba(209,209,209,0.12)",
       },
     },

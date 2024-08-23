@@ -1,7 +1,7 @@
 import { StaticImageData } from "next/image";
 import { create } from "zustand";
 
-import Pic from "@/public/dashboard/scout/ellipse-2374.png";
+import Pic from "@/public/dashboard/scout/ellipse-2386.png";
 
 export type tUser = {
   image: string | StaticImageData;

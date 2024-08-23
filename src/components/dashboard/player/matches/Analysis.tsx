@@ -4,7 +4,7 @@ import Image, { StaticImageData } from "next/image";
 import React, { useState } from "react";
 
 import AnalysisImage from "@/public/dashboard/player/match analysis.jpeg";
-import { convertDateWithSlashes } from "@/src/functions/dateFunctions";
+import { convertDateWithSlashesAndTime } from "@/src/functions/dateFunctions";
 
 interface iAnalysis {
   image: string | StaticImageData;
@@ -44,7 +44,7 @@ const Analysis = () => {
                 {n.title}
               </h2>
               <p className="text-[10px] text-black">
-                {convertDateWithSlashes(n.date)}
+                {convertDateWithSlashesAndTime(n.date)}
               </p>
             </div>
           </div>

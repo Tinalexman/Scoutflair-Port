@@ -23,7 +23,7 @@ const dayNames = [
   "Saturday",
 ];
 
-export function convertDate(date: string | Date) {
+export function convertDateFull(date: string | Date) {
   let dateObject = new Date(date);
 
   let day = dateObject.getDate();
@@ -37,7 +37,7 @@ export function convertDate(date: string | Date) {
   return `${monthName} ${dayWithSuffix}, ${year}`;
 }
 
-export function convertDateWithDay(date: string | Date) {
+export function convertDateWithDayName(date: string | Date) {
   let dateObject = new Date(date);
 
   let day = dateObject.getDate();
@@ -77,7 +77,7 @@ export function getCurrentMonthWithYear() {
   return `${monthName}, ${year}`;
 }
 
-export function convertDateWithSlashes(date: Date) {
+export function convertDateWithSlashesAndTime(date: Date) {
   let isPM = date.getHours() > 11;
   let hours = date.getHours();
   let minutes = date.getMinutes();
@@ -97,7 +97,7 @@ export function convertTime(date: Date) {
   }:${minutes < 10 ? "0" : ""}${minutes} ${isPM ? "PM" : "AM"}`;
 }
 
-export function convertDateWithJustSlashes(date: Date) {
+export function convertDateWithSlashes(date: Date) {
   return `${date.getDate() < 10 ? "0" : ""}${date.getDate()}/${
     date.getMonth() < 10 ? "0" : ""
   }${date.getMonth()}/${date.getFullYear()}`;

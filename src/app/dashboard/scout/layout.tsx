@@ -85,13 +85,13 @@ const PlayerLayout: FC<iAuthLayout> = ({ children }) => {
   const page = determineIndex();
 
   return (
-    <div className="w-[100vw] h-[100vh] font-lato bg-gradient-to-b from-white to-background-gray flex justify-between relative">
+    <div className="w-[100vw] h-[100vh] font-lato bg-background-gray flex justify-between relative">
       <SideBar items={items} active={page} />
-      <div className="w-[calc(100vw-340px)] h-[100vh] flex flex-col justify-between">
-        <div className="fixed top-0 left-[340px] right-0">
+      <div className="w-[80%] h-[100vh] flex flex-col justify-between">
+        <div className="fixed top-0 left-[20%] right-0">
           <TopBar />
         </div>
-        <div className="mt-16">{children}</div>
+        <div className="mt-16 overflow-y-scroll">{children}</div>
       </div>
     </div>
   );

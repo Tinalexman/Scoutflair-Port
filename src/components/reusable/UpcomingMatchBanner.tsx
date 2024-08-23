@@ -2,7 +2,10 @@
 
 import React, { useState } from "react";
 
-import { convertDateWithDay, convertTime } from "@/src/functions/dateFunctions";
+import {
+  convertDateWithDayName,
+  convertTime,
+} from "@/src/functions/dateFunctions";
 import Image, { StaticImageData } from "next/image";
 
 import Logo1 from "@/public/dashboard/player/dinamo-zagreb-1.png";
@@ -30,17 +33,13 @@ const UpcomingMatchBanner: React.FC = () => {
   ]);
 
   return (
-    <div
-      className="w-full h-[240px] relative overflow-hidden font-lato rounded-2xl shadow-custom-2 bg-[url('../../public/dashboard/player/upcoming-matches-banner.jpeg')] bg-cover bg-no-repeat bg-center"
-    >
+    <div className="w-full h-[240px] relative overflow-hidden font-lato rounded-2xl shadow-custom-2 bg-[url('../../public/dashboard/player/upcoming-matches-banner.jpeg')] bg-cover bg-no-repeat bg-center">
       <div className="w-full h-full absolute left-0 top-0 overflow-hidden rounded-lg bg-[#041931]/90">
         <div className="flex flex-col justify-start items-start absolute left-4 md:left-7 top-14 gap-6">
           <div className="flex flex-col justify-start items-start relative gap-2">
-            <p className="nav-item text-left text-white">
-              UPCOMING MATCH
-            </p>
+            <p className="nav-item text-left text-white">UPCOMING MATCH</p>
             <p className="text-md text-left text-white">
-              <span className="font-light">{convertDateWithDay(date)}</span>
+              <span className="font-light">{convertDateWithDayName(date)}</span>
               <span className="mx-2">|</span>
               <span className="font-medium">{league}</span>
             </p>
