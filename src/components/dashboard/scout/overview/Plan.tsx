@@ -77,7 +77,7 @@ const Plan = () => {
         </div>
         <div
           onClick={open}
-          className="text-primary-2 border-2 border-primary-2 px-3 py-1 rounded-md text-10-12 cursor-pointer font-bold"
+          className="text-primary-2 border border-primary-2 px-3 py-1 rounded-md text-10-12 cursor-pointer font-bold"
         >
           Add Task
         </div>
@@ -95,7 +95,7 @@ const Plan = () => {
           {firstName} {lastName}
         </h3>
       </div>
-      <div className="mt-3 w-full h-[14rem] grid grid-cols-4 gap-6 ">
+      <div className="mt-3 w-full h-[13rem] grid grid-cols-4 gap-6 ">
         {players.map((player, index) => (
           <div
             key={index}
@@ -138,7 +138,7 @@ const Plan = () => {
                         />
                       ))}
                   </div>
-                  <h2 className="text-semibold text-dark text-12-14">
+                  <h2 className="text-semibold text-dark text-10-12">
                     {player.firstName} {player.lastName}
                   </h2>
                 </div>
@@ -146,19 +146,19 @@ const Plan = () => {
               <hr className="bg-placeholder my-1.5 w-full" />
               <div className="w-full flex flex-col items-center gap-2">
                 <div className="w-full flex flex-col gap-1 items-center">
-                  <h3 className="text-10-12 font-bold text-primary-2">
+                  <h3 className="text-8-9 font-bold text-primary-2">
                     {player.role}
                   </h3>
-                  <div className="w-fit flex gap-3 items-center text-8-9 font-medium text-dark">
+                  <div className="w-fit flex gap-3 items-center text-6-7 font-medium text-dark">
                     <p>Height {player.height}</p>
                     <p>Weight {player.weight}</p>
                   </div>
                 </div>
                 <div className="flex flex-col w-full items-center gap-1.5">
-                  <h2 className="text-10-12 font-medium text-dark">
+                  <h2 className="text-8-9 font-medium text-dark">
                     Academy Stats
                   </h2>
-                  <div className="flex w-full justify-between items-center text-8-9 font-medium text-dark">
+                  <div className="flex w-full justify-between items-center text-6-7 font-medium text-dark">
                     <div className="flex flex-col items-center">
                       <p>{player.games}</p>
                       <p>Games</p>

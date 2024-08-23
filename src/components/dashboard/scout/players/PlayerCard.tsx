@@ -29,8 +29,8 @@ const PlayerCard: FC<{ player: iPlayer }> = ({ player }) => {
             <h2 className="text-dark font-semibold text-14-16">
               {player.firstName} {player.lastName}
             </h2>
-            <h3 className="text-placeholder text-10-12">
-              {player.role}, No{player.jersey}
+            <h3 className="text-placeholder text-8-11">
+              {player.role}, No {player.jersey}
             </h3>
           </div>
           <Image
@@ -42,10 +42,10 @@ const PlayerCard: FC<{ player: iPlayer }> = ({ player }) => {
           />
         </div>
         <div className="flex flex-col">
-          <h2 className="text-dark font-semibold text-12-14 text-opacity-[0.88]">
+          <h2 className="text-dark font-semibold text-10-12 text-opacity-[0.88]">
             AGE: {player.age} yrs
           </h2>
-          <h3 className="text-placeholder text-10-12">
+          <h3 className="text-placeholder text-8-11">
             {player.height}cm {player.weight}kg
           </h3>
         </div>
