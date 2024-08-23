@@ -77,8 +77,7 @@ select {
 }
 
 .custom-checkbox input[type="checkbox"] {
-  outline: none;
-  border: 1px solid black;
+  @apply outline-none border border-black bg-white;
 }
 
 .custom-checkbox input[type="checkbox"]:focus {

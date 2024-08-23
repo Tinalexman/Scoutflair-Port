@@ -29,7 +29,7 @@ const Notifications = () => {
       </div>
       <div className="w-full grid grid-cols-2 gap-8 mt-5 px-5">
         {notifications.map((notification, i) => (
-          <div key={i} className="w-full flex items-center ">
+          <div key={i} className="w-full flex items-center gap-5">
             <div className="flex flex-col font-semibold w-[55%]">
               <h2 className="text-dark text-opacity-[0.88] text-14-16 ">
                 {notification.title}
@@ -38,7 +38,34 @@ const Notifications = () => {
                 {notification.description}
               </p>
             </div>
-            <div className="flex flex-col justify-between"></div>
+            <div className="flex flex-col w-fit gap-3 justify-between text-12-14 text-dark font-medium">
+              <div className="flex w-fit gap-1 items-center ">
+                <input
+                  type="checkbox"
+                  className="custom-checkbox"
+                  checked={notification.push}
+                  onChange={(e) => {}}
+                />
+                <p>Push</p>
+              </div>
+              <div className="flex w-fit gap-1 items-center ">
+                <input
+                  type="checkbox"
+                  checked={notification.email}
+                  onChange={(e) => {}}
+                />
+                <p>Email</p>
+              </div>
+              <div className="flex w-fit gap-1 items-center ">
+                <input
+                  type="checkbox"
+                  className="custom-checkbox"
+                  checked={notification.sms}
+                  onChange={(e) => {}}
+                />
+                <p>SMS</p>
+              </div>
+            </div>
           </div>
         ))}
       </div>
