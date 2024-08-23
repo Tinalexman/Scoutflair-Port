@@ -64,6 +64,10 @@ select {
   @apply text-[0.25rem] leading-[0.3rem];
 }
 
+.text-8-11 {
+  @apply text-[0.5rem] leading-[0.7rem];
+}
+
 .custom-checkbox input[type="checkbox"] {
   outline: none;
   border: 1px solid black;
