@@ -15,10 +15,10 @@ const TopBar: React.FC = () => {
   const lastName = useCurrentUserStore((state) => state.lastName);
 
   return (
-    <div className="flex justify-between items-center w-full bg-white shadow-custom-2 h-16 px-6">
-      <div className="relative w-[20rem]">
+    <div className="flex justify-between items-center w-full bg-white shadow-custom h-16 px-6">
+      <div className="relative w-[20%]">
         <input
-          className="h-10 rounded-full w-full border pl-11 bg-[#F5F6FA] pr-4  text-sm border-border-gray placeholder:text-placeholder font-lato text-black"
+          className="h-10 rounded-full w-full border pl-11 bg-[#F5F6FA] pr-4 text-14-16 border-border-gray placeholder:text-placeholder font-lato text-dark"
           placeholder="Search"
         />
         <IoSearchOutline className="absolute inset-y-1/2 -translate-y-1/2 left-4 text-xl text-placeholder" />
@@ -36,12 +36,10 @@ const TopBar: React.FC = () => {
             className="size-11 object-cover rounded-full"
           />
           <div className="flex flex-col gap-1">
-            <h3 className="text-[#222222] font-lato font-bold text-[0.875rem] leading-[1.05rem]">
+            <h3 className="text-dark font-lato font-bold text-14-16">
               {firstName} {lastName}
             </h3>
-            <p className="text-placeholder text-[0.75rem] font-semibold leading-[0.9rem]">
-              {role}
-            </p>
+            <p className="text-placeholder text-12-14 font-semibold">{role}</p>
           </div>
           <IoChevronDownCircleOutline className="text-2xl text-[#5C5C5C]" />
         </div>

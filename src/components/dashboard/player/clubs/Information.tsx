@@ -6,7 +6,7 @@ import Image, { StaticImageData } from "next/image";
 
 import ClubLogo from "@/public/dashboard/player/Group 1000001981.png";
 import ClubHeader from "@/public/dashboard/player/Frame 1000002575.png";
-import { convertDate } from "@/src/functions/dateFunctions";
+import { convertDateFull } from "@/src/functions/dateFunctions";
 
 interface iInfo {
   logo: string | StaticImageData;
@@ -73,7 +73,7 @@ const Information = () => {
           <div className="flex flex-col">
             <h2 className="font-bold text-[16px] leading-6">Founded:</h2>
             <p className="text-[12px] leading-[14.4px]">
-              {convertDate(info.founded)}
+              {convertDateFull(info.founded)}
             </p>
           </div>
         </div>
@@ -120,7 +120,13 @@ const Information = () => {
             </div>
           </div>
         </div>
-        <Image src={info.logo} alt="Logo" className="w-1/4 h-full object-cover" width={100} height={100}/>
+        <Image
+          src={info.logo}
+          alt="Logo"
+          className="w-1/4 h-full object-cover"
+          width={100}
+          height={100}
+        />
       </div>
     </div>
   );

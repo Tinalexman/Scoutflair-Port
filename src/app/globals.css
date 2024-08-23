@@ -24,70 +24,6 @@ body {
   background-color: transparent;
 }
 
-.text-16-16 {
-  @apply text-[16px] leading-[16px];
-}
-
-.nav-item {
-  @apply font-lato text-[1rem] leading-[1.2rem] font-medium;
-}
-
-.body-text-1-bold {
-  @apply text-[28px] leading-[42px] font-bold;
-}
-
-.body-text-2-bold {
-  @apply text-[24px] leading-[36px] font-bold;
-}
-
-.body-text-3-bold {
-  @apply text-[18px] leading-[27px] font-bold;
-}
-
-.body-text-4-bold {
-  @apply text-[16px] leading-[24px] font-bold;
-}
-
-.body-text-1-regular {
-  @apply text-[28px] leading-[42px] font-normal;
-}
-
-.body-text-2-regular {
-  @apply text-[24px] leading-[36px] font-normal;
-}
-
-.body-text-3-regular {
-  @apply text-[18px] leading-[27px] font-normal;
-}
-
-.body-text-4-regular {
-  @apply text-[16px] leading-[24px] font-normal;
-}
-
-/* h1 {
-  @apply text-[64px] leading-[96px];
-}
-
-h2 {
-  @apply text-[52px] leading-[78px];
-}
-
-h3 {
-  @apply text-[48px] leading-[72px];
-}
-
-h4 {
-  @apply text-[40px] leading-[60px];
-}
-
-h5 {
-  @apply text-[32px] leading-[48px];
-}
-
-h6 {
-  @apply text-[24px] leading-[36px];
-} */
-
 input {
   @apply focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent;
 }
@@ -96,20 +32,36 @@ select {
   @apply focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent;
 }
 
-.body-text-regular-20 {
-  @apply text-[20px] leading-[27px];
+.text-12-14 {
+  @apply text-[0.75rem] leading-[0.9rem];
 }
 
-.body-text-14 {
-  @apply text-[14px] leading-[24px];
+.text-10-12 {
+  @apply text-[0.625rem] leading-[0.75rem];
 }
 
-.general-body-text {
-  @apply text-[20px] leading-[32px];
+.text-8-9 {
+  @apply text-[0.5rem] leading-[0.6rem];
 }
 
-.body-text-small {
-  @apply text-[10px] leading-[15px];
+.text-48-57 {
+  @apply text-[3rem] leading-[3.6rem];
+}
+
+.text-16-19 {
+  @apply text-[1rem] leading-[1.2rem];
+}
+
+.text-14-16 {
+  @apply text-[0.875rem] leading-[1.05rem];
+}
+
+.text-32-38 {
+  @apply text-[2rem] leading-[2.4rem];
+}
+
+.text-4-4 {
+  @apply text-[0.25rem] leading-[0.3rem];
 }
 
 .custom-checkbox input[type="checkbox"] {

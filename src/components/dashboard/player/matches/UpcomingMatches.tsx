@@ -7,7 +7,7 @@ import Image, { StaticImageData } from "next/image";
 import Player from "@/public/dashboard/player/player.png";
 import Logo1 from "@/public/dashboard/player/club-américa-1.png";
 import Logo2 from "@/public/dashboard/player/dinamarca-1.png";
-import { convertDateWithJustSlashes } from "@/src/functions/dateFunctions";
+import { convertDateWithSlashes } from "@/src/functions/dateFunctions";
 
 interface iMatch {
   homeLogo: StaticImageData | string;
@@ -49,9 +49,7 @@ const UpcomingMatches = () => {
       <div className="flex flex-col w-full gap-5 px-8 py-5 text-black">
         {matches.map((match, i) => (
           <div key={i} className="flex flex-col gap-2 w-full">
-            <p className="text-[12px]">
-              {convertDateWithJustSlashes(match.date)}
-            </p>
+            <p className="text-[12px]">{convertDateWithSlashes(match.date)}</p>
             <div className="flex w-full items-center justify-between">
               <div className="flex flex-col gap-1 items-center">
                 <Image
