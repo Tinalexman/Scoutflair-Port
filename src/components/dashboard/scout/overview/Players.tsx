@@ -48,6 +48,7 @@ const Players = () => {
               .fill(0)
               .map((num, index) => (
                 <FaStar
+                  key={index}
                   size={20}
                   className={`${
                     index + 1 <= ratings ? "text-[#FFD700]" : "text-border-gray"

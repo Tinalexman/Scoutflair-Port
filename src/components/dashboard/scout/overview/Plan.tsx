@@ -128,6 +128,7 @@ const Plan = () => {
                       .fill(0)
                       .map((num, index) => (
                         <FaStar
+                          key={index}
                           size={10}
                           className={`${
                             index + 1 <= player.rating
