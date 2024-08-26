@@ -37,6 +37,20 @@ export function convertDateFull(date: string | Date) {
   return `${monthName} ${dayWithSuffix}, ${year}`;
 }
 
+export function convertDateFullAndTime(date: string | Date) {
+  let dateObject = new Date(date);
+
+  let day = dateObject.getDate();
+  let month = dateObject.getMonth();
+  let year = dateObject.getFullYear();
+
+  let monthName = monthNames[month];
+
+  let dayWithSuffix = day + getOrdinalSuffix(day);
+
+  return `${monthName} ${dayWithSuffix}, ${year} ${convertTime(dateObject)}`;
+}
+
 export function convertDateWithDayName(date: string | Date) {
   let dateObject = new Date(date);
 
