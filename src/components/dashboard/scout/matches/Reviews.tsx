@@ -65,8 +65,35 @@ const Reviews = () => {
                 </div>
               </div>
             </div>
-            <div className="flex w-fit gap-2">
-              <div className="flex flex-col"></div>
+            <div className="flex w-fit items-center gap-2">
+              <div className="flex flex-col gap-1 items-start">
+                <h3 className="font-medium text-8-9 text-dark">Fitness</h3>
+                <h2 className="w-full text-14-15 font-bold text-dark">
+                  {review.fitness.toString().padStart(2, "0")}%
+                </h2>
+                <h3 className="font-medium text-8-9 text-dark">Improved</h3>
+              </div>
+              <div className="flex flex-col gap-1 items-start">
+                <h3 className="font-medium text-8-9 text-dark">Dribble</h3>
+                <h2 className="w-full text-14-15 font-bold text-dark">
+                  {review.dribble.toString().padStart(2, "0")}%
+                </h2>
+                <h3 className="font-medium text-8-9 text-dark">Good</h3>
+              </div>
+              <div className="flex flex-col gap-1 items-start">
+                <h3 className="font-medium text-8-9 text-dark">Pace</h3>
+                <h2 className="w-full text-14-15 font-bold text-dark">
+                  {review.pace.toString().padStart(2, "0")}%
+                </h2>
+                <h3 className="font-medium text-8-9 text-dark">Excellent</h3>
+              </div>
+              <div className="flex flex-col gap-1 items-start">
+                <h3 className="font-medium text-8-9 text-dark">Composure</h3>
+                <h2 className="w-full text-14-15 font-bold text-dark">
+                  {review.composure.toString().padStart(2, "0")}%
+                </h2>
+                <h3 className="font-medium text-8-9 text-dark">Improved</h3>
+              </div>
             </div>
           </div>
         ))}
