@@ -1,9 +1,9 @@
 import React from "react";
-import Badges from "./Badges";
-import Feed from "./Feed";
+import Badges from "../common/Badges";
+import Feed from "../common/Feed";
 import Plan from "./Plan";
-import Players from "./Players";
-import Prospects from "./Prospects";
+import Players from "../common/Players";
+import Prospects from "../common/Prospects";
 import Updates from "./Updates";
 
 const Overview = () => {
