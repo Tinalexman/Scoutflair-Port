@@ -37,7 +37,11 @@ const Info = () => {
   });
 
   return (
-    <div className="w-full shadow-custom rounded-[1rem] py-4 px-5 gap-6 bg-white grid grid-cols-[1.5fr_3.5fr]">
+    <div className="w-full shadow-custom rounded-[1rem] py-4 px-5 gap-6 bg-white grid grid-cols-[1.5fr_3.5fr] relative">
+      <p className="absolute top-2 right-3 text-12-14 font-medium text-dark">
+        Edit
+      </p>
+
       <div className="flex items-center gap-4">
         <Image
           className="size-[7rem]"
@@ -100,7 +104,7 @@ const Info = () => {
             WEIGHT
           </p>
           <div className="border border-border-gray w-full py-1 flex items-center justify-center rounded-md text-14-16 font-medium text-dark">
-            {info.weight}
+            {info.weight}lb
           </div>
         </div>
         <div className="flex flex-col gap-2">

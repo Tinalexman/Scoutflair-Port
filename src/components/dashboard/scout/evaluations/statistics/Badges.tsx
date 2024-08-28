@@ -10,29 +10,29 @@ interface iBadge {
 const Badges = () => {
   const badges: iBadge[] = [
     {
-      label: "Experience",
+      label: "Trophies",
       value: 0,
       sub: "Professional",
-      color: "#FF0000",
+      color: "#222222",
     },
     {
-      label: "Transfers",
+      label: "Top Scorer",
       value: 0,
       sub: "Successful",
-      color: "#008000",
+      color: "#222222",
     },
     {
-      label: "Accuracy",
+      label: "Awards",
       value: 0,
       sub: "Scouting",
-      color: "#04377C",
+      color: "#222222",
     },
   ];
 
   return (
-    <div className="w-full h-[8.5rem] shadow-custom rounded-[1rem] py-4 px-5 bg-white flex flex-col justify-between">
-      <h2 className="text-dark font-bold text-16-19">Scout&apos;s Badges</h2>
-      <div className="h-[4.2rem] w-full grid grid-cols-3 gap-6">
+    <div className="w-full h-[9rem] shadow-custom rounded-[1rem] py-4 px-5 bg-white flex flex-col justify-between">
+      <h2 className="text-dark font-bold text-16-19">Perfomance Badges</h2>
+      <div className="h-[4.5rem] w-full grid grid-cols-3 gap-6">
         {badges.map((badge, index) => (
           <div
             key={index}
