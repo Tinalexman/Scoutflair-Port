@@ -66,7 +66,7 @@ const PlayerCard: FC<{ player: iPlayer }> = ({ player }) => {
 
         <div className="w-full flex items-center justify-between gap-4">
           <Link
-            href={`/dashboard/scout/evaluations/report?id=${player.id}`}
+            href={`/dashboard/scout/evaluations/reports?id=${player.id}`}
             className="w-full py-2 border rounded-full border-secondary-3 grid place-content-center font-medium text-10-12 text-dark text-opacity-[0.8]"
           >
             Reports

@@ -55,9 +55,12 @@ const Traits = () => {
                 .fill(0)
                 .map((index, id) =>
                   trait.value >= id + 1 ? (
-                    <FaStar className="text-14-16 text-secondary-3" />
+                    <FaStar key={id} className="text-14-16 text-secondary-3" />
                   ) : (
-                    <FaRegStar className="text-14-16 text-placeholder" />
+                    <FaRegStar
+                      key={id}
+                      className="text-14-16 text-placeholder"
+                    />
                   )
                 )}
             </div>
