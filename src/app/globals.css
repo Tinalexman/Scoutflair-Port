@@ -76,6 +76,10 @@ select {
   @apply text-[2rem] leading-[2.4rem];
 }
 
+.text-28-33 {
+  @apply text-[1.75rem] leading-[2.1rem];
+}
+
 .text-4-4 {
   @apply text-[0.25rem] leading-[0.3rem];
 }
