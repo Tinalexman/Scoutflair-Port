@@ -25,7 +25,7 @@ const SideBar: React.FC<{ items: iNavItem[]; active: number }> = ({
         })}
 
         <div
-          className={`nav-item hover:scale-105 scale-100 transition-transform ease-out duration-200 text-white h-12 leading-5 px-4 flex gap-2 items-center cursor-pointer`}
+          className={`nav-item hover:scale-105 scale-100 transition-transform ease-out duration-200 text-white h-12 leading-5 px-4 flex gap-2 items-center cursor-pointer mt-20`}
           onClick={() => {}}
         >
           <Image

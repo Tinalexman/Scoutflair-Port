@@ -11,6 +11,8 @@ import {
 } from "@mantine/core";
 import AuthProvider from "../providers/AuthContext";
 
+import { Toaster } from "react-hot-toast";
+
 const merriweather = Merriweather({
   subsets: ["latin"],
   weight: ["300", "400", "700", "900"],
@@ -24,10 +26,10 @@ const lato = Lato({
 });
 
 const inter = Inter({
-  subsets: ['latin'],
-  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
+  subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
   variable: "--font-inter",
-})
+});
 
 export const metadata: Metadata = {
   title: {
@@ -47,7 +49,7 @@ const primary: MantineColorsTuple = [
   "#4e71bb",
   "#4060a4",
   "#365593",
-  "#2b4983"
+  "#2b4983",
 ];
 
 const white: MantineColorsTuple = [
@@ -80,7 +82,11 @@ export default function RootLayout({
       <head>
         <ColorSchemeScript defaultColorScheme="light" />
       </head>
-      <body className={`${merriweather.variable} ${lato.variable} ${inter.variable} font-sans-serif`}>
+      <body
+        className={`${merriweather.variable} ${lato.variable} ${inter.variable} font-sans-serif`}
+      >
+        <Toaster />
+
         <AuthProvider>
           <MantineProvider theme={theme}>{children}</MantineProvider>
         </AuthProvider>
