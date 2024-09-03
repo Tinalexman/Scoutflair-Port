@@ -20,6 +20,7 @@ export type tPlayer = {
   foot: "Right" | "Left" | "Both" | "";
   height: number;
   weight: number;
+  status: string;
 
   recommendedName: string;
   recommendedEmail: string;
@@ -50,6 +51,7 @@ export const usePlayerDataStore = create<tPlayer>((set) => ({
   foot: "",
   height: 0,
   weight: 0,
+  status: "",
 
   recommendedName: "",
   recommendedEmail: "",

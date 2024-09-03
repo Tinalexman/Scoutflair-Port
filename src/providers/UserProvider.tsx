@@ -43,6 +43,7 @@ export default function AuthProvider({
         recommendedEmail: "johnfayomi@mail.com",
         recommendedPhone: "+234901234567",
         jersey: 8,
+        status: "Independent",
         fbLink: "https://www.facebook.com/peteAbass",
         igLink: "https://www.instagram.com/peteabass",
         xLink: "https://twitter.com/peteabass",
