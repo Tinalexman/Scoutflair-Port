@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 
 import { useCurrentUserStore, usePlayerDataStore } from "../stores/userStore";
 import Scout from "@/public/dashboard/scout/ellipse-2386.png";
-import Player from "@/public/images/passport.png";
+import Player from "@/public/dashboard/player/player portrait.png";
 
 export default function AuthProvider({
   children,
@@ -42,6 +42,11 @@ export default function AuthProvider({
         recommendedName: "Joshua Fayomi",
         recommendedEmail: "johnfayomi@mail.com",
         recommendedPhone: "+234901234567",
+        jersey: 8,
+        fbLink: "https://www.facebook.com/peteAbass",
+        igLink: "https://www.instagram.com/peteabass",
+        xLink: "https://twitter.com/peteabass",
+        ttLink: "https://www.tiktok.com/peteabass",
       });
     } else if (current === "scout") {
       useCurrentUserStore.setState({
