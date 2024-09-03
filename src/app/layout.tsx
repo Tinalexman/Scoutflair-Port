@@ -12,6 +12,7 @@ import {
 import AuthProvider from "../providers/AuthContext";
 
 import { Toaster } from "react-hot-toast";
+import UserProvider from "../providers/UserProvider";
 
 const merriweather = Merriweather({
   subsets: ["latin"],
@@ -88,7 +89,9 @@ export default function RootLayout({
         <Toaster />
 
         <AuthProvider>
-          <MantineProvider theme={theme}>{children}</MantineProvider>
+          <UserProvider>
+            <MantineProvider theme={theme}>{children}</MantineProvider>
+          </UserProvider>
         </AuthProvider>
       </body>
     </html>
