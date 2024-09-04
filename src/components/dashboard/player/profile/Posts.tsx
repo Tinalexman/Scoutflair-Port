@@ -24,7 +24,7 @@ interface iPost {
 }
 
 const Posts = () => {
-  const [posts, setPostss] = useState<iPost[]>(
+  const [posts, setPosts] = useState<iPost[]>(
     Array(5).fill({
       posterImage: Poster,
       posterName: "Peters Samuel",
