@@ -39,7 +39,7 @@ const Feeds = () => {
   return (
     <div className="w-full shadow-custom rounded-[1rem] py-4 px-5 gap-6 bg-white flex flex-col">
       <div className="w-full justify-between items-center flex">
-        <h2 className=" font-bold text-16-19 text-dark">Scouting Plan</h2>
+        <h2 className=" font-bold text-16-19 text-dark">News Feed</h2>
         <p className="text-primary-2 text-10-12">View All</p>
       </div>
       <div className="w-full h-36 overflow-hidden rounded-xl shadow-custom-2 bg-[url('../../public/dashboard/player/grass.jpeg')] bg-cover bg-no-repeat bg-center">

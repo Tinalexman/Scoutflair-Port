@@ -16,6 +16,15 @@ import FootIcon from "@/public/icons/Player Bio Foot.svg";
 import HeightIcon from "@/public/icons/Player Bio Height.svg";
 import WeightIcon from "@/public/icons/Player Bio Weight.svg";
 import StatusIcon from "@/public/icons/Player Bio Status.svg";
+import MailIcon from "@/public/icons/Player Bio Mail.svg";
+import PhoneIcon from "@/public/icons/Player Bio Phone.svg";
+
+import FBIcon from "@/public/icons/Facebook Icon.svg";
+import TTIcon from "@/public/icons/Tiktok Icon.svg";
+import IGIcon from "@/public/icons/IG Icon.svg";
+
+import Link from "next/link";
+
 import { convertDateFull } from "@/src/functions/dateFunctions";
 
 interface iBio {
@@ -61,8 +70,23 @@ const Bio = () => {
     },
   ];
 
+  const recommendation: iBio[] = [
+    {
+      image: ProfileIcon,
+      text: usePlayerDataStore((state) => state.recommendedName),
+    },
+    {
+      image: MailIcon,
+      text: usePlayerDataStore((state) => state.recommendedEmail),
+    },
+    {
+      image: PhoneIcon,
+      text: usePlayerDataStore((state) => state.recommendedPhone),
+    },
+  ];
+
   return (
-    <div className="w-full shadow-custom rounded-[1rem] py-4 bg-white flex flex-col">
+    <div className="w-full h-fit shadow-custom rounded-[1rem] pt-4 pb-8 bg-white flex flex-col">
       <h2 className="text-16-19 text-dark font-bold ml-5">Player Details</h2>
       <div className="flex flex-col w-full mt-6 gap-4 px-5 ">
         <h2 className="text-dark text-14-16 font-medium">Biography</h2>
@@ -83,6 +107,68 @@ const Bio = () => {
             <p className="text-12-18 text-dark font-medium">{data.text}</p>
           </div>
         ))}
+      </div>
+      <hr className="bg-[#E0E0E0] w-full my-3" />
+      <h2 className="text-dark text-14-16 font-medium pl-5">Recommendations</h2>
+      <div className="flex flex-col w-full mt-4 gap-1 px-5 ">
+        {recommendation.map((data, index) => (
+          <div key={index} className="w-full flex items-center py-1 gap-2">
+            <Image
+              src={data.image}
+              alt="data icon"
+              width={32}
+              height={32}
+              className="size-10"
+            />
+            <p className="text-12-18 text-dark font-medium">{data.text}</p>
+          </div>
+        ))}
+      </div>
+      <hr className="bg-[#E0E0E0] w-full my-3" />
+      <h2 className="text-dark text-14-16 font-medium pl-5">Social Media</h2>
+      <div className="w-full flex items-center gap-2 px-5 mt-4">
+        <Link
+          href={usePlayerDataStore((state) => state.igLink)}
+          target="__blank"
+          className="border border-border-gray rounded-full w-[5.5rem] cursor-pointer h-7 flex justify-center items-center gap-1"
+        >
+          <Image
+            src={IGIcon}
+            alt="instagram icon"
+            className="size-5"
+            width={20}
+            height={20}
+          />
+          <p className="font-medium text-dark text-10-12">Instagram</p>
+        </Link>
+        <Link
+          href={usePlayerDataStore((state) => state.ttLink)}
+          target="__blank"
+          className="border border-border-gray rounded-full w-[5.5rem] cursor-pointer h-7 flex justify-center items-center gap-1"
+        >
+          <Image
+            src={TTIcon}
+            alt="tiktok icon"
+            className="size-5"
+            width={20}
+            height={20}
+          />
+          <p className="font-medium text-dark text-10-12">Tiktok</p>
+        </Link>
+        <Link
+          href={usePlayerDataStore((state) => state.fbLink)}
+          target="__blank"
+          className="border border-border-gray rounded-full w-[5.5rem] cursor-pointer h-7 flex justify-center items-center gap-1"
+        >
+          <Image
+            src={FBIcon}
+            alt="facebook icon"
+            className="size-5"
+            width={20}
+            height={20}
+          />
+          <p className="font-medium text-dark text-10-12">Facebook</p>
+        </Link>
       </div>
     </div>
   );

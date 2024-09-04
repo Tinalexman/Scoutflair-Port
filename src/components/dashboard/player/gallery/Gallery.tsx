@@ -1,6 +1,6 @@
 import React from "react";
-import Ads from "./Ads";
-import Feeds from "./Feeds";
+import Ads from "../common/Ads";
+import Feeds from "../common/Feeds";
 import Slides from "./Slides";
 
 const Gallery = () => {
