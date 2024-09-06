@@ -1,53 +1,58 @@
-import React from "react";
-import PersonalInfo from "./PersonalInfo";
-import FileUpload from "./FileUpload";
-import PasswordManagement from "./PasswordManagement";
-import SocialLinks from "./SocialLinks";
-import ActivityLog from "./ActivityLog";
+"use client";
 
-const SettingsPage = () => {
+import React, { useState, ReactNode } from "react";
+import BasicSettings from "./basic/BasicSettings";
+
+import { IoSettingsOutline, IoSearchOutline } from "react-icons/io5";
+import { IconType } from "react-icons/lib";
+
+interface iSetting {
+  name: string;
+  icon: IconType;
+  content: ReactNode;
+}
+
+const Settings = () => {
+  const settings: iSetting[] = Array(3).fill({
+    name: "Basic Settings",
+    icon: IoSettingsOutline,
+    content: <BasicSettings />,
+  });
+
+  const [active, setActive] = useState<number>(0);
+
   return (
-    <div className="p-5">
-      <div className="bg-white rounded-md pt-2 pb-5">
-        <div className="flex justify-between items-center pl-[24px] pr-[80px] pb-2">
-          <p className="font-lato text-black text-[14px] leading-[24px] font-bold">
-            Edit Profile
-          </p>
-          <p className="font-lato text-[#FF0000] text-[12px] leading-[24px] font-bold">
-            Delete Profile
-          </p>
-        </div>
-
-        <div>
-          <hr className="w-full border-2 text-background-gray" />
-        </div>
-
-        <div className="flex flex-row justify-between px-[30px] pt-[20px] mb-16">
-          <div className="flex flex-col gap-4 items-center">
-            <PersonalInfo />
-          </div>
-
-          <div className="flex flex-col gap-4 items-center">
-            <FileUpload />
-            <PasswordManagement />
-          </div>
-
-          <div className="flex flex-col gap-4 items-center">
-            <SocialLinks />
-            <ActivityLog />
+    <div className="w-full grid grid-cols-[1.5fr_3fr] p-6 gap-4">
+      <div className="w-full h-full shadow-custom rounded py-4 bg-white flex flex-col gap-4">
+        <div className="w-full justify-between items-center flex px-5">
+          <h2 className="text-dark font-bold text-16-19">Settings</h2>
+          <div className="p-2 rounded bg-[#F1F1F1]">
+            <IoSearchOutline className="text-dark text-lg" />
           </div>
         </div>
-
-        <div className="flex justify-center">
-          <button className="flex items-center justify-center w-[400px] h-[40px] bg-[#041931] text-white rounded-lg border border-black">
-            <p className="font-lato font-semibold text-[14px] leading-[24px]">
-              Save All Changes
-            </p>
-          </button>
+        <div className="w-full flex flex-col ">
+          {settings.map((setting, index) => {
+            const Icon = setting.icon;
+            return (
+              <div
+                key={index}
+                onClick={() => setActive(index)}
+                className={`${
+                  index === active ? "bg-primary text-white" : "text-dark"
+                }
+              text-14-16 font-medium h-14 px-6 gap-2 flex items-center cursor-pointer`}
+              >
+                <Icon size={20} />
+                <p className="text-14-16 font-medium">{setting.name}</p>
+              </div>
+            );
+          })}
         </div>
       </div>
+
+      {settings[active].content}
     </div>
   );
 };
 
-export default SettingsPage;
+export default Settings;
