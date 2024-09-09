@@ -6,20 +6,16 @@ import Image from "next/image";
 import { useCurrentUserStore } from "@/src/stores/userStore";
 
 const Basic = () => {
-  const [firstName, setFirstName] = useState<string>(
-    useCurrentUserStore((state) => state.firstName)
-  );
-  const [lastName, setLastName] = useState<string>(
-    useCurrentUserStore((state) => state.lastName)
-  );
-  const [email, setEmail] = useState<string>(
-    useCurrentUserStore((state) => state.email)
-  );
-  const [phone, setPhone] = useState<string>(
-    useCurrentUserStore((state) => state.phone)
-  );
+  const names = useCurrentUserStore((state) => state.name).split(" ");
 
-  const image = useCurrentUserStore((state) => state.image);
+  const [firstName, setFirstName] = useState<string>(names[0]);
+  const [lastName, setLastName] = useState<string>(names[1]);
+
+  const [email, setEmail] = useState<string>("");
+  const [phone, setPhone] = useState<string>("");
+
+  const image =
+    "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.freepik.com%2Ffree-photos-vectors%2Fman&psig=AOvVaw2Jei2ZqKLfVA1qzm5RCXz5&ust=1725966780899000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCMj-hrrdtYgDFQAAAAAdAAAAABAE";
 
   return (
     <div className="flex flex-col gap-3 w-full ">

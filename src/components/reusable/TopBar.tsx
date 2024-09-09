@@ -9,10 +9,15 @@ import Image from "next/image";
 import { useCurrentUserStore } from "@/src/stores/userStore";
 
 const TopBar: React.FC = () => {
-  const image = useCurrentUserStore((state) => state.image);
+  const image =
+    "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.freepik.com%2Ffree-photos-vectors%2Fman&psig=AOvVaw2Jei2ZqKLfVA1qzm5RCXz5&ust=1725966780899000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCMj-hrrdtYgDFQAAAAAdAAAAABAE";
+
   const role = useCurrentUserStore((state) => state.role);
-  const firstName = useCurrentUserStore((state) => state.firstName);
-  const lastName = useCurrentUserStore((state) => state.lastName);
+
+  const names = useCurrentUserStore((state) => state.name).split(" ");
+
+  const firstName = names[0];
+  const lastName = names[1];
 
   return (
     <div className="flex justify-between items-center w-full bg-white shadow-custom h-16 px-6">

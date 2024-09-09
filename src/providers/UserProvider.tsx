@@ -22,12 +22,8 @@ export default function AuthProvider({
 
     if (current === "player") {
       useCurrentUserStore.setState({
-        role: "Player",
-        image: Player,
-        firstName: "Pete",
-        lastName: "Abass",
-        email: "peteAbass@mail.com",
-        phone: "090 123 4567",
+        role: "PLAYER",
+        name: "Pete Abass",
       });
 
       usePlayerDataStore.setState({
@@ -51,12 +47,8 @@ export default function AuthProvider({
       });
     } else if (current === "scout") {
       useCurrentUserStore.setState({
-        role: "Scout",
-        image: Scout,
-        firstName: "Josh",
-        lastName: "Fayomi",
-        email: "johnfayomi@mail.com",
-        phone: "0901234567",
+        role: "SCOUT",
+        name: "Josh Fayomi",
       });
     } else if (current === "coach") {
     }

@@ -35,9 +35,7 @@ interface iBio {
 const Bio = () => {
   const bio = usePlayerDataStore((state) => state.bio);
 
-  const fullName = `${useCurrentUserStore(
-    (state) => state.firstName
-  )} ${useCurrentUserStore((state) => state.lastName)}`;
+  const fullName = useCurrentUserStore((state) => state.name);
 
   const bioData: iBio[] = [
     {

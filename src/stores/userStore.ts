@@ -1,16 +1,17 @@
 import { StaticImageData } from "next/image";
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
 export type tUser = {
-  image: string | StaticImageData;
-  role: "Scout" | "Coach" | "Player" | "";
-  firstName: string;
-  lastName: string;
-  email: string;
-  phone: string;
+  role: "SCOUT" | "COACH" | "PLAYER" | "";
+  type: string;
+  name: string;
 };
 
 export type tPlayer = {
+  email: string;
+  image: string;
+
   role: string;
   jersey: number;
   age: number;
@@ -33,15 +34,13 @@ export type tPlayer = {
 };
 
 export const useCurrentUserStore = create<tUser>((set) => ({
-  image: "",
+  type: "",
   role: "",
-  firstName: "",
-  lastName: "",
-  email: "",
-  phone: "",
+  name: "",
 }));
 
 export const usePlayerDataStore = create<tPlayer>((set) => ({
+  image: "",
   role: "",
   jersey: 0,
   age: 0,
@@ -52,6 +51,7 @@ export const usePlayerDataStore = create<tPlayer>((set) => ({
   height: 0,
   weight: 0,
   status: "",
+  email: "",
 
   recommendedName: "",
   recommendedEmail: "",

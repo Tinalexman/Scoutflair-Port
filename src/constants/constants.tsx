@@ -1,20 +1,20 @@
 export const Urls = {
-    ABOUT: "/about",
-    HOME: "/",
-    BLOGS: "/blogs",
-    CONTACT: "/contact",
-    SERVICES: "/services",
-    PASSWORDRESET: "/auth/password-reset",
-    PASSWORDRESETTOKEN: "/auth/password-reset/token",
-    PASSWORDRESETFORM: "/auth/password-reset/form",
-    PASSWORDRESETSUCCESS: "auth/password-reset/success",
-    LOGIN: "/auth/login",
-    SIGNUP: "/auth/sign-up",
-    PLAYERSIGNUP: "/auth/player/sign-up",
-    SCOUTSIGNUP: "/auth/scout/sign-up",
-    COACHSIGNUP: "/auth/coach/sign-up",
-    DASHBOARD: "/dashboard/player/overview"
-}
+  ABOUT: "/about",
+  HOME: "/",
+  BLOGS: "/blogs",
+  CONTACT: "/contact",
+  SERVICES: "/services",
+  PASSWORDRESET: "/auth/password-reset",
+  PASSWORDRESETTOKEN: "/auth/password-reset/token",
+  PASSWORDRESETFORM: "/auth/password-reset/form",
+  PASSWORDRESETSUCCESS: "auth/password-reset/success",
+  LOGIN: "/auth/login",
+  SIGNUP: "/auth/sign-up",
+  PLAYERSIGNUP: "/auth/player/sign-up",
+  SCOUTSIGNUP: "/auth/scout/sign-up",
+  COACHSIGNUP: "/auth/coach/sign-up",
+  PLAYER_DASHBOARD: "/dashboard/player/spotlight",
+};
 
 export const positions = [
   "Goalkeeper",

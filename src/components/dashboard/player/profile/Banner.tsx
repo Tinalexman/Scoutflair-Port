@@ -12,9 +12,9 @@ import {
 } from "@/src/stores/userStore";
 
 const Banner = () => {
-  const image = useCurrentUserStore((state) => state.image);
-  const firstName = useCurrentUserStore((state) => state.firstName);
-  const lastName = useCurrentUserStore((state) => state.lastName);
+  const image =
+    "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.freepik.com%2Ffree-photos-vectors%2Fman&psig=AOvVaw2Jei2ZqKLfVA1qzm5RCXz5&ust=1725966780899000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCMj-hrrdtYgDFQAAAAAdAAAAABAE";
+  const name = useCurrentUserStore((state) => state.name);
 
   const role = usePlayerDataStore((state) => state.role);
   const jersey = usePlayerDataStore((state) => state.jersey);
@@ -37,9 +37,7 @@ const Banner = () => {
         />
 
         <div className="w-full flex flex-col gap-2 pl-4">
-          <h2 className="text-20-24 font-bold text-dark">
-            {firstName} {lastName}
-          </h2>
+          <h2 className="text-20-24 font-bold text-dark">{name}</h2>
           <div className="text-placeholder text-14-16 font-medium">
             <p>
               {role}, No. {jersey}

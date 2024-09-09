@@ -9,7 +9,7 @@ import {
   MantineProvider,
   createTheme,
 } from "@mantine/core";
-import AuthProvider from "../providers/AuthContext";
+import AuthProvider from "../providers/AuthProvider";
 
 import { Toaster } from "react-hot-toast";
 import UserProvider from "../providers/UserProvider";
@@ -86,10 +86,9 @@ export default function RootLayout({
       <body
         className={`${merriweather.variable} ${lato.variable} ${inter.variable} font-sans-serif`}
       >
-        <Toaster />
-
         <AuthProvider>
           <UserProvider>
+            <Toaster />
             <MantineProvider theme={theme}>{children}</MantineProvider>
           </UserProvider>
         </AuthProvider>

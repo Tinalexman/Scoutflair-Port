@@ -9,7 +9,7 @@ import { Field, Form, Formik } from "formik";
 import { PasswordResetValidationSchema } from "../../schemas/Schema";
 import bgImage from "@/public/images/frame-3404.png";
 import { useAxios } from "../../api/base";
-import { useAuthContext } from "../../providers/AuthContext";
+import { useToken } from "../../providers/AuthProvider";
 import Swal from "sweetalert2";
 import { IResetPasswordPayload } from "@/src/types/types";
 import Image from "next/image";
@@ -17,7 +17,7 @@ import Image from "next/image";
 const PasswordResetForm: React.FC = () => {
   const { requestApi } = useAxios();
   const router = useRouter();
-  const { getUsername } = useAuthContext();
+
   const [token, setToken] = useState<string | null>(null);
 
   useEffect(() => {
@@ -35,11 +35,15 @@ const PasswordResetForm: React.FC = () => {
     const newValues = {
       password: values.newpassword,
       token: token,
-      username: getUsername(),
+      username: "",
     };
 
     try {
-      const response = await requestApi("/scoutflair/v1/signup/recover/second", "POST", newValues);
+      const response = await requestApi(
+        "/scoutflair/v1/signup/recover/second",
+        "POST",
+        newValues
+      );
       if (response.status) {
         router.push(Urls.PASSWORDRESETSUCCESS);
       } else {
@@ -76,10 +80,15 @@ const PasswordResetForm: React.FC = () => {
             <div className="flex flex-col justify-start items-center gap-6">
               <div className="flex flex-col justify-start items-center relative gap-4">
                 <div className="flex justify-start items-center relative gap-6">
-                  <Image className="w-14 h-14" src={Scoutflairlogo} alt="logo" />
+                  <Image
+                    className="w-14 h-14"
+                    src={Scoutflairlogo}
+                    alt="logo"
+                  />
                 </div>
                 <p className="w-full text-lg text-center text-black/80">
-                  We have received your reset password. Please enter your new password below
+                  We have received your reset password. Please enter your new
+                  password below
                 </p>
               </div>
               <Formik
@@ -108,7 +117,9 @@ const PasswordResetForm: React.FC = () => {
                         name="confirmpassword"
                       />
                       {errors.confirmpassword && touched.confirmpassword && (
-                        <div className="text-red-500">{errors.confirmpassword}</div>
+                        <div className="text-red-500">
+                          {errors.confirmpassword}
+                        </div>
                       )}
                     </div>
                     <div className="flex flex-col justify-center items-center w-full gap-6">

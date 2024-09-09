@@ -1,22 +1,22 @@
-"use client"
+"use client";
 
-import React from 'react';
-import { useRouter } from 'next/navigation';
+import React from "react";
+import { useRouter } from "next/navigation";
 import Scoutflairlogo from "@/public/icons/Scoutflairlogo.svg";
-import bgImage from "@/public/images/scout-sign-in.png"
-import Link from 'next/link';
-import { Urls } from '@/src/constants/constants';
-import { useAxios } from '@/src/api/base';
-import { Form, Formik, Field, FormikHelpers } from 'formik';
-import { LoginValidationSchema } from '@/src/schemas/Schema';
-import Swal from 'sweetalert2';
-import { useAuthContext } from '@/src/providers/AuthContext';
-import Image from 'next/image';
+import bgImage from "@/public/images/scout-sign-in.png";
+import Link from "next/link";
+import { Urls } from "@/src/constants/constants";
+import { useAxios } from "@/src/api/base";
+import { Form, Formik, Field, FormikHelpers } from "formik";
+import { LoginValidationSchema } from "@/src/schemas/Schema";
+import Swal from "sweetalert2";
+import Image from "next/image";
+import { useToken } from "@/src/providers/AuthProvider";
 
 const LoginPage: React.FC = () => {
-  const router = useRouter()
-  const { login } = useAuthContext()
-  const { requestApi } = useAxios()
+  const router = useRouter();
+  const { requestApi } = useAxios();
+  const { setToken } = useToken();
 
   interface ILoginPayload {
     username: string;
@@ -28,58 +28,76 @@ const LoginPage: React.FC = () => {
     username: "",
   };
 
-  const onSubmit = async (values: ILoginPayload, { resetForm }: FormikHelpers<ILoginPayload>) => {
-    console.log("Submission Block", values);
-
+  const onSubmit = async (
+    values: ILoginPayload,
+    { resetForm }: FormikHelpers<ILoginPayload>
+  ) => {
     try {
-      const response = await requestApi('/scoutflair/v1/signin', 'POST', values);      
+      const response = await requestApi(
+        "/scoutflair/v1/signin",
+        "POST",
+        values
+      );
       console.log(response);
 
       if (response.status) {
-        const token = response.data.jwtToken
-        login(token)
+        const token = response.data.jwtToken;
+        setToken(token);
         Swal.fire({
           title: "Logged In successfully!",
           text: "Redirecting to dashboard",
-          icon: "success"
-        });     
-        router.push(Urls.DASHBOARD) 
-        resetForm()
+          icon: "success",
+        });
+        // router.push(Urls.PLAYER_DASHBOARD);
+        // resetForm();
       } else {
         Swal.fire({
           title: "Oops...",
           text: `${response.data.response.data}`,
-          icon: "error"
+          icon: "error",
         });
       }
     } catch (error: any) {
       console.error("Submission error:", error.response.data);
       alert("An error occurred during submission. Please try again.");
-    };
-  }
-  
+    }
+  };
+
   return (
-    <div className="w-full h-screen flex items-center justify-center bg-cover bg-no-repeat bg-center" style={{ backgroundImage: `url(${bgImage.src})` }}>
+    <div
+      className="w-full h-screen flex items-center justify-center bg-cover bg-no-repeat bg-center"
+      style={{ backgroundImage: `url(${bgImage.src})` }}
+    >
       <div className="flex flex-col absolute right-0 items-center justify-center w-full md:w-3/5 p-4 h-screen bg-[#f4f4f6] md:rounded-tl-2xl md:rounded-bl-2xl">
         <div className="flex flex-row xs:gap-5 md:gap-40 pt-4">
           <Link href={Urls.HOME}>
             <span className="flex flex-row gap-3">
               <Image className="w-4 h-4" src={Scoutflairlogo} alt="" />
-              <p className=''>Scoutflair</p>
+              <p className="">Scoutflair</p>
             </span>
           </Link>
           <p className="w-56 opacity-80 text-base text-left">
             <span className="w-56 opacity-80 text-base font-light text-left text-black">
-              Don’t have an account?
+              Don&apos;t have an account?
             </span>
-            <span className="w-56 opacity-80 text-base font-semibold text-left text-black"> </span>
-            <Link href={Urls.SIGNUP} ><span className="w-56 opacity-80 text-base font-bold text-left text-[#010e1d]">Sign Up</span></Link>
+            <span className="w-56 opacity-80 text-base font-semibold text-left text-black">
+              {" "}
+            </span>
+            <Link href={Urls.SIGNUP}>
+              <span className="w-56 opacity-80 text-base font-bold text-left text-[#010e1d]">
+                Sign Up
+              </span>
+            </Link>
           </p>
         </div>
         <div className="md:w-1/2 max-w-md h-fit p-6 bg-white rounded-2xl shadow-lg my-10 md:mx-32">
           <div className="mt-6 mb-6">
-            <p className="text-2xl font-bold text-left text-black">Sign in to your account</p>
-            <p className="text-xs font-bold text-left text-black/[0.72] opacity-88">Please enter your details</p>
+            <p className="text-2xl font-bold text-left text-black">
+              Sign in to your account
+            </p>
+            <p className="text-xs font-bold text-left text-black/[0.72] opacity-88">
+              Please enter your details
+            </p>
           </div>
           <Formik
             initialValues={initialValues}
@@ -99,7 +117,9 @@ const LoginPage: React.FC = () => {
                     required
                   />
                   {errors.username && touched.username ? (
-                    <div><p style={{ color: "red" }}>{errors.username}</p></div>
+                    <div>
+                      <p style={{ color: "red" }}>{errors.username}</p>
+                    </div>
                   ) : null}
                 </div>
                 <div className="w-full">
@@ -113,17 +133,22 @@ const LoginPage: React.FC = () => {
                     required
                   />
                   {errors.password && touched.password ? (
-                    <div><p style={{ color: "red" }}>{errors.password}</p></div>
+                    <div>
+                      <p style={{ color: "red" }}>{errors.password}</p>
+                    </div>
                   ) : null}
                 </div>
                 <div className="flex justify-between items-center w-full gap-4">
                   <div className="flex items-center gap-2">
-                    <Field type="checkbox" className="w-4 h-4 border border-black" />
+                    <Field
+                      type="checkbox"
+                      className="w-4 h-4 border border-black"
+                    />
                     <label className="text-black opacity-72">Remember me</label>
                   </div>
                   <div className="flex items-center gap-2">
                     <Link href={Urls.PASSWORDRESET}>
-                      <p className='text-bold opacity-72'>Forgot Password</p>
+                      <p className="text-bold opacity-72">Forgot Password</p>
                     </Link>
                   </div>
                 </div>
@@ -135,8 +160,13 @@ const LoginPage: React.FC = () => {
                     Sign In
                   </button>
                   <p className="opacity-80 text-base text-left">
-                    <span className="text-black">Don’t have an account?</span>
-                    <Link href={Urls.HOME} className="font-bold text-[#010e1d]"> Sign Up</Link>
+                    <span className="text-black">
+                      Don&apos;t have an account?
+                    </span>
+                    <Link href={Urls.HOME} className="font-bold text-[#010e1d]">
+                      {" "}
+                      Sign Up
+                    </Link>
                   </p>
                 </div>
               </Form>
@@ -144,19 +174,39 @@ const LoginPage: React.FC = () => {
           </Formik>
           <div className="flex flex-col gap-4 mt-6">
             <Link href={""}>
-              <button type="button" className="w-full h-10 flex items-center justify-center border border-black/[0.56] rounded-xl space-x-4">
-                <svg className="w-6 h-6" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <button
+                type="button"
+                className="w-full h-10 flex items-center justify-center border border-black/[0.56] rounded-xl space-x-4"
+              >
+                <svg
+                  className="w-6 h-6"
+                  viewBox="0 0 25 25"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
                   {/* <!-- SVG path for Google Icon --> */}
                 </svg>
-                <span className="text-xl font-medium text-black">Sign in with Google</span>
+                <span className="text-xl font-medium text-black">
+                  Sign in with Google
+                </span>
               </button>
             </Link>
             <Link href={""}>
-              <button type="button" className="w-full h-10 flex items-center justify-center border border-black/[0.56] rounded-xl space-x-4">
-                <svg className="w-6 h-6" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <button
+                type="button"
+                className="w-full h-10 flex items-center justify-center border border-black/[0.56] rounded-xl space-x-4"
+              >
+                <svg
+                  className="w-6 h-6"
+                  viewBox="0 0 25 25"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
                   {/* <!-- SVG path for Apple Icon --> */}
                 </svg>
-                <span className="text-xl font-medium text-black">Sign in with Apple</span>
+                <span className="text-xl font-medium text-black">
+                  Sign in with Apple
+                </span>
               </button>
             </Link>
           </div>
