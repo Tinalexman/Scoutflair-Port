@@ -7,6 +7,7 @@ import {
   useCurrentUserStore,
   usePlayerDataStore,
 } from "@/src/stores/userStore";
+import { usePlayerBasicSettingsHook } from "@/src/stores/settings";
 
 export interface iEditProfile {
   firstName: string;
@@ -20,10 +21,12 @@ const Basic: FC<{ onValidate: (val: iEditProfile) => void }> = ({
   onValidate,
 }) => {
   const name = useCurrentUserStore((state) => state.name);
-  const image = usePlayerDataStore((state) => state.image);
+  const email = usePlayerDataStore((state) => state.email);
+  const phone = usePlayerDataStore((state) => state.phone);
+  const image = useCurrentUserStore((state) => state.image);
   const names = name ? name.split(" ") : ["", ""];
   const fileRef = useRef<HTMLInputElement | null>(null);
-
+  const shouldSubmit = usePlayerBasicSettingsHook((state) => state.submit);
   const [fileImageData, setFileImageData] = useState<string>("");
 
   return (
@@ -35,36 +38,65 @@ const Basic: FC<{ onValidate: (val: iEditProfile) => void }> = ({
         initialValues={{
           firstName: names[0],
           lastName: names[1],
-          email: "",
-          phone: "",
+          email: email,
+          phone: phone,
           image: "",
         }}
         validate={(values) => {
           const errors: Partial<iEditProfile> = {};
-          if (!values.email) {
-            errors.email = "Required";
-          } else if (
-            !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-          ) {
-            errors.email = "Invalid email address";
+          if (!values.firstName) {
+            errors.firstName = "Required";
+          } else if (values.firstName.length < 3) {
+            errors.firstName = "Must be 3 characters or more";
           }
 
+          if (!values.lastName) {
+            errors.lastName = "Required";
+          } else if (values.lastName.length < 3) {
+            errors.lastName = "Must be 3 characters or more";
+          }
+
+          const isEmpty = Object.keys(errors).length === 0;
+          if (!isEmpty) {
+            usePlayerBasicSettingsHook.setState({
+              submit: false,
+              basic: false,
+            });
+          }
+
+          console.log("Invoked in validation", shouldSubmit);
           return errors;
         }}
         onSubmit={(values, { setSubmitting }) => {
+          console.log("Invoked in form", shouldSubmit);
+          usePlayerBasicSettingsHook.setState({ basic: true });
           onValidate(values);
         }}
         validateOnMount={true}
       >
-        {({ values, handleChange, handleSubmit, setFieldValue }) => {
+        {({
+          values,
+          handleChange,
+          handleSubmit,
+          setFieldValue,
+          submitForm,
+        }) => {
           useEffect(() => {
             if (name) {
               const newNames = name.split(" ");
               setFieldValue("firstName", newNames[0] || "");
               setFieldValue("lastName", newNames[1] || "");
               setFieldValue("image", image || "");
+              setFieldValue("email", email || "");
+              setFieldValue("phone", phone || "");
             }
-          }, [name, image, setFieldValue]);
+          }, [name, image, phone, email, setFieldValue]);
+
+          useEffect(() => {
+            if (shouldSubmit) {
+              submitForm();
+            }
+          }, [shouldSubmit]);
 
           return (
             <Form onSubmit={handleSubmit} className="w-full" method="POST">
@@ -80,7 +112,7 @@ const Basic: FC<{ onValidate: (val: iEditProfile) => void }> = ({
                   placeholder="Enter First Name"
                   value={values.firstName}
                   onChange={handleChange}
-                  className="w-full rounded-lg border bg-white placeholder:text-placeholder text-dark text-14-16 font-semibold placeholder:text-opacity-[0.88] border-border-gray h-10 pl-4"
+                  className="w-full rounded-lg border bg-white placeholder:text-placeholder text-dark text-14-16 font-semibold placeholder:text-opacity-[0.88] border-border-gray h-10 px-2"
                 />
                 <input
                   type="text"
@@ -88,7 +120,7 @@ const Basic: FC<{ onValidate: (val: iEditProfile) => void }> = ({
                   placeholder="Enter Last Name"
                   value={values.lastName}
                   onChange={handleChange}
-                  className="w-full rounded-lg border bg-white placeholder:text-placeholder text-dark text-14-16 font-semibold placeholder:text-opacity-[0.88] border-border-gray h-10 pl-4"
+                  className="w-full rounded-lg border bg-white placeholder:text-placeholder text-dark text-14-16 font-semibold placeholder:text-opacity-[0.88] border-border-gray h-10 px-2"
                 />
                 <div className="h-10 flex items-center">
                   <h2 className="text-14-16 font-semibold text-placeholder">
@@ -102,7 +134,7 @@ const Basic: FC<{ onValidate: (val: iEditProfile) => void }> = ({
                   value={values.email}
                   readOnly={true}
                   onChange={handleChange}
-                  className="w-full rounded-lg border bg-white placeholder:text-placeholder text-dark text-14-16 font-semibold placeholder:text-opacity-[0.88] border-border-gray h-10 pl-4"
+                  className="w-full rounded-lg border bg-white placeholder:text-placeholder text-dark text-14-16 font-semibold placeholder:text-opacity-[0.88] border-border-gray h-10 px-2"
                 />
                 <input
                   type="tel"
@@ -110,7 +142,7 @@ const Basic: FC<{ onValidate: (val: iEditProfile) => void }> = ({
                   placeholder="Enter Phone Number"
                   value={values.phone}
                   onChange={handleChange}
-                  className="w-full rounded-lg border bg-white placeholder:text-placeholder text-dark text-14-16 font-semibold placeholder:text-opacity-[0.88] border-border-gray h-10 pl-4"
+                  className="w-full rounded-lg border bg-white placeholder:text-placeholder text-dark text-14-16 font-semibold placeholder:text-opacity-[0.88] border-border-gray h-10 px-2"
                 />
                 <div className="h-10 flex items-center">
                   <h2 className="text-14-16 font-semibold text-placeholder">
@@ -135,8 +167,8 @@ const Basic: FC<{ onValidate: (val: iEditProfile) => void }> = ({
                       height={44}
                     />
                   ) : (
-                    <div className="rounded-full size-11 bg-primary-2 grid place-content-center">
-                      {}
+                    <div className="rounded-full size-11 text-white text-16-19 font-bold bg-primary-2 grid place-content-center">
+                      {name.substring(0, 1)}
                     </div>
                   )}
                   <div

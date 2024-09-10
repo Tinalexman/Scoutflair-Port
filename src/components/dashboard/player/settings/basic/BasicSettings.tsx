@@ -1,17 +1,56 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Basic, { iEditProfile } from "./Basic";
 import Notifications from "./Notifications";
 import Languages from "./Languages";
 import Accounts from "./Accounts";
 import DeleteAccount from "./DeleteAccount";
 
-import { useUpdatePlayer } from "@/src/hooks/player";
+import { Loader } from "@mantine/core";
+
+import { useUpdatePlayer, iUpdatePlayerPayload } from "@/src/hooks/player";
+import { usePlayerBasicSettingsHook } from "@/src/stores/settings";
 
 const BasicSettings = () => {
   const { update, loading, success } = useUpdatePlayer();
   const [editData, setEditData] = useState<iEditProfile>();
+
+  const shouldSubmit = usePlayerBasicSettingsHook((state) => state.submit);
+  const basicValid = usePlayerBasicSettingsHook((state) => state.basic);
+
+  const verify = () => {
+    console.log("Invoked in verify", shouldSubmit);
+    if (shouldSubmit) {
+      if (!basicValid) {
+        usePlayerBasicSettingsHook.getState().clear();
+        return;
+      }
+
+      console.log("About to assemble");
+      assemble();
+    }
+  };
+
+  const assemble = () => {
+    let payload: Partial<iUpdatePlayerPayload> = {};
+    if (editData) {
+      payload.fullName = `${editData.firstName} ${editData.lastName}`;
+      if (editData.phone) payload.phone = editData.phone;
+      if (editData.image) payload.imageUrl = editData.image;
+    }
+
+    update(payload);
+  };
+
+  useEffect(() => {
+    verify();
+  }, [shouldSubmit]);
+
+  useEffect(() => {
+    console.log("In clearing")
+    usePlayerBasicSettingsHook.getState().clear();
+  }, [success]);
 
   return (
     <div className="w-full shadow-custom rounded bg-white flex flex-col justify-between items-center">
@@ -40,8 +79,11 @@ const BasicSettings = () => {
           <hr className="w-full bg-[#E0E0E0] mt-1.5 mb-2" />
         </div>
       </div>
-      <button className="bg-primary-2 text-white text-14-16 font-bold rounded-lg py-2 px-16 mt-12 mb-14">
-        Save Changes
+      <button
+        onClick={() => usePlayerBasicSettingsHook.setState({ submit: true })}
+        className="bg-primary-2 text-white text-14-16 font-bold rounded-lg py-2 px-16 mt-12 mb-14"
+      >
+        {loading ? <Loader color="white.6" /> : "Save Changes"}
       </button>
     </div>
   );

@@ -9,13 +9,9 @@ import Image from "next/image";
 import { useCurrentUserStore } from "@/src/stores/userStore";
 
 const TopBar: React.FC = () => {
-  const image =
-    "https://cdn.pixabay.com/photo/2019/03/21/09/21/dummy-4070603_1280.jpg";
-
   const role = useCurrentUserStore((state) => state.role);
-  const names = useCurrentUserStore((state) => state.name).split(" ");
-  const firstName = names[0];
-  const lastName = names[1];
+  const image = useCurrentUserStore((state) => state.image);
+  const names = useCurrentUserStore((state) => state.name);
 
   return (
     <div className="flex justify-between items-center w-full bg-white shadow-custom h-16 px-6">
@@ -31,16 +27,23 @@ const TopBar: React.FC = () => {
           <IoMdNotificationsOutline className="text-2xl text-black" />
         </div>
         <div className="flex gap-3 items-center w-fit">
-          <Image
-            src={image}
-            alt="user-image"
-            width={44}
-            height={44}
-            className="size-11 object-cover rounded-full"
-          />
+          {image ? (
+            <Image
+              src={image}
+              alt="user image"
+              className="rounded-full size-11 object-cover"
+              width={44}
+              height={44}
+            />
+          ) : (
+            <div className="rounded-full size-11 text-white text-16-19 font-bold bg-primary-2 grid place-content-center">
+              {names.substring(0, 1)}
+            </div>
+          )}
+
           <div className="flex flex-col gap-1">
             <h3 className="text-dark font-lato font-bold text-14-16">
-              {firstName} {lastName}
+              {names}
             </h3>
             <p className="text-placeholder text-12-14 font-semibold">{role}</p>
           </div>

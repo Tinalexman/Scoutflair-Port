@@ -7,6 +7,7 @@ import Scout from "@/public/dashboard/scout/ellipse-2386.png";
 import Player from "@/public/dashboard/player/player portrait.png";
 
 import { useGetPlayer } from "@/src/hooks/player";
+import { getYearDifference } from "../functions/dateFunctions";
 
 export default function AuthProvider({
   children,
@@ -24,19 +25,20 @@ export default function AuthProvider({
   useEffect(() => {
     if (success) {
       const date: string = data?.dob!;
-
-      console.log(data);
-
       useCurrentUserStore.setState({
         role: "PLAYER",
         name: data?.fullName,
+        image: data?.imageUrl,
       });
+
+      const dob = new Date(date);
+      const years = getYearDifference(dob, new Date());
 
       usePlayerDataStore.setState({
         role: data?.position,
-        age: 22,
+        age: years,
         bio: data?.biography,
-        dob: new Date(date),
+        dob: dob,
         email: data?.email,
         nationality: data?.nationality,
         foot: data?.preferredFoot,
@@ -65,23 +67,23 @@ export default function AuthProvider({
       });
 
       usePlayerDataStore.setState({
-        role: "Midfielder",
-        age: 22,
-        bio: "Lorem ipsum dolor sit amet consectetur. Nunc malesuada ultricies amet metus viverra posuere a elit id. Ut vitae in diam risus urna. Mattis tempor convallis in eget suspendisse est eu. Odio fermentum at laoreet feugiat. Odio fermentum at .",
+        role: "",
+        age: 0,
+        bio: "",
         dob: new Date(),
-        nationality: "Nigerian",
-        foot: "Right",
-        height: 167,
-        weight: 60,
-        recommendedName: "Joshua Fayomi",
-        recommendedEmail: "johnfayomi@mail.com",
-        recommendedPhone: "+234901234567",
-        jersey: 8,
-        status: "Independent",
-        fbLink: "https://www.facebook.com/peteAbass",
-        igLink: "https://www.instagram.com/peteabass",
-        xLink: "https://twitter.com/peteabass",
-        ttLink: "https://www.tiktok.com/peteabass",
+        nationality: "",
+        foot: "",
+        height: 0,
+        weight: 0,
+        recommendedName: "",
+        recommendedEmail: "",
+        recommendedPhone: "",
+        jersey: 0,
+        status: "",
+        fbLink: "",
+        igLink: "",
+        xLink: "",
+        ttLink: "",
       });
     } else if (current === "scout") {
       useCurrentUserStore.setState({

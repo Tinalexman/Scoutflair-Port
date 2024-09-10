@@ -3,27 +3,28 @@
 import { useAxios } from "@/src/api/base";
 import { useState } from "react";
 import { useUploadImage } from "./common";
+import Swal from "sweetalert2";
 
 export interface iUpdatePlayerPayload {
-  address?: string;
-  biography?: string;
-  currentTeam?: string;
-  dob?: string;
-  facebookUrl?: string;
-  fullName?: string;
-  height?: string;
-  igUrl?: string;
+  address: string;
+  biography: string;
+  currentTeam: string;
+  dob: string;
+  facebookUrl: string;
+  fullName: string;
+  height: string;
+  igUrl: string;
   imageUrl: string | File;
-  jerseyNumber?: string;
-  location?: string;
-  nationality?: string;
-  nin?: string;
-  phone?: string;
-  position?: string;
-  preferredFoot?: string;
-  ticTokUrl?: string;
-  weight?: string;
-  xurl?: string;
+  jerseyNumber: string;
+  location: string;
+  nationality: string;
+  nin: string;
+  phone: string;
+  position: string;
+  preferredFoot: string;
+  ticTokUrl: string;
+  weight: string;
+  xurl: string;
 }
 
 export interface iPlayerResponse {
@@ -88,11 +89,13 @@ export const useUpdatePlayer = () => {
 
   const { requestApi } = useAxios();
 
-  const update = async (payload: iUpdatePlayerPayload) => {
+  const update = async (payload: Partial<iUpdatePlayerPayload>) => {
     if (loading) return;
     setLoading(true);
 
-    if (typeof payload.imageUrl !== "string") {
+    console.log(payload);
+
+    if (payload.imageUrl && typeof payload.imageUrl !== "string") {
       await upload(payload.imageUrl as File);
       if (uploadSuccess) {
         payload.imageUrl = uploadedImage;
@@ -110,6 +113,14 @@ export const useUpdatePlayer = () => {
     );
     setLoading(false);
     setSuccess(status);
+
+    if (!status) {
+      Swal.fire({
+        title: "Oops...",
+        text: `Error updating your profile`,
+        icon: "error",
+      });
+    }
   };
 
   return {

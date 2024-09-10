@@ -2,6 +2,7 @@
 
 import { useAxios } from "@/src/api/base";
 import { useState } from "react";
+import Swal from "sweetalert2";
 
 export const useUploadImage = () => {
   const [data, setData] = useState<any>(null);
@@ -23,6 +24,14 @@ export const useUploadImage = () => {
     setLoading(false);
     setSuccess(status);
     setData(data);
+
+    if (!status) {
+      Swal.fire({
+        title: "Oops...",
+        text: `Error uploading your picture`,
+        icon: "error",
+      });
+    }
   };
 
   return {

@@ -139,3 +139,11 @@ export function getDaysOfCurrentMonth() {
   }
   return 31;
 }
+
+export function getYearDifference(firstDate: Date, secondDate: Date): number {
+  const date1 = firstDate.getMilliseconds();
+  const date2 = secondDate.getMilliseconds();
+  const diffInMilliseconds = Math.abs(date2 - date1);
+  const millisecondsInYear = 1000 * 60 * 60 * 24 * 365.25;
+  return Math.floor(diffInMilliseconds / millisecondsInYear);
+}

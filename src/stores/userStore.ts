@@ -6,11 +6,12 @@ export type tUser = {
   role: "SCOUT" | "COACH" | "PLAYER" | "";
   type: string;
   name: string;
+  image: string;
 };
 
 export type tPlayer = {
   email: string;
-  image: string;
+  phone: string;
 
   role: string;
   jersey: number;
@@ -37,10 +38,11 @@ export const useCurrentUserStore = create<tUser>((set) => ({
   type: "",
   role: "",
   name: "",
+  image: "",
 }));
 
 export const usePlayerDataStore = create<tPlayer>((set) => ({
-  image: "",
+  phone: "",
   role: "",
   jersey: 0,
   age: 0,

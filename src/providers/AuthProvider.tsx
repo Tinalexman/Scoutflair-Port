@@ -5,6 +5,8 @@ import Cookies from "js-cookie";
 import { jwtDecode } from "jwt-decode";
 import { usePathname, useRouter } from "next/navigation";
 
+import Swal from "sweetalert2";
+
 export default function AuthProvider({
   children,
 }: {
@@ -34,7 +36,12 @@ export default function AuthProvider({
   useEffect(() => {
     const token = getToken();
     if (page !== -1 && token === undefined) {
-      router.back();
+      Swal.fire({
+        title: "Oops...",
+        text: `Please login to continue`,
+        icon: "error",
+      });
+      router.replace("/auth/login");
     }
   }, [router]);
 
