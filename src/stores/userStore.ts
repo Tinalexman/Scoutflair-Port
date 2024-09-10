@@ -18,7 +18,7 @@ export type tPlayer = {
   bio: string;
   dob: Date;
   nationality: string;
-  foot: "Right" | "Left" | "Both" | "";
+  foot: string;
   height: number;
   weight: number;
   status: string;

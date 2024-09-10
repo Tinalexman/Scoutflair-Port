@@ -1,5 +1,5 @@
-"use client"; // Only if using App Router
-import { createContext, useState, useEffect, useContext } from "react";
+"use client";
+import { useEffect } from "react";
 
 import Cookies from "js-cookie";
 import { jwtDecode } from "jwt-decode";
@@ -36,12 +36,12 @@ export default function AuthProvider({
     if (page !== -1 && token === undefined) {
       router.back();
     }
-  }, []);
+  }, [router]);
 
   return <>{children}</>;
 }
 
-export function useToken() {
+export const useToken = () => {
   const getToken = () => Cookies.get("scoutflair-token");
   const setToken = (token: string) => {
     const decoded = jwtDecode(token);
@@ -52,7 +52,6 @@ export function useToken() {
 
     Cookies.set("scoutflair-token", token, {
       expires: expiryDate,
-      httpOnly: true,
       secure: true,
       sameSite: "strict",
     });
@@ -62,4 +61,4 @@ export function useToken() {
   };
 
   return { getToken, setToken, removeToken };
-}
+};

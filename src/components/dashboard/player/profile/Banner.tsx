@@ -13,7 +13,7 @@ import {
 
 const Banner = () => {
   const image =
-    "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.freepik.com%2Ffree-photos-vectors%2Fman&psig=AOvVaw2Jei2ZqKLfVA1qzm5RCXz5&ust=1725966780899000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCMj-hrrdtYgDFQAAAAAdAAAAABAE";
+    "https://pixabay.com/photos/dummy-face-human-men-black-human-4070603/";
   const name = useCurrentUserStore((state) => state.name);
 
   const role = usePlayerDataStore((state) => state.role);

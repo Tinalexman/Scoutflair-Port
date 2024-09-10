@@ -1,11 +1,18 @@
-import React from "react";
-import Basic from "./Basic";
+"use client";
+
+import React, { useState } from "react";
+import Basic, { iEditProfile } from "./Basic";
 import Notifications from "./Notifications";
 import Languages from "./Languages";
 import Accounts from "./Accounts";
 import DeleteAccount from "./DeleteAccount";
 
+import { useUpdatePlayer } from "@/src/hooks/player";
+
 const BasicSettings = () => {
+  const { update, loading, success } = useUpdatePlayer();
+  const [editData, setEditData] = useState<iEditProfile>();
+
   return (
     <div className="w-full shadow-custom rounded bg-white flex flex-col justify-between items-center">
       <div className="w-full flex flex-col shadow-custom-1 h-16 px-5 justify-center">
@@ -15,7 +22,11 @@ const BasicSettings = () => {
         </h2>
       </div>
       <div className="flex flex-col w-full mt-10 gap-5">
-        <Basic />
+        <Basic
+          onValidate={(val: iEditProfile) => {
+            setEditData(val);
+          }}
+        />
         <Notifications />
         <div className="w-full flex flex-col">
           <div className="w-full grid grid-cols-2 px-5">

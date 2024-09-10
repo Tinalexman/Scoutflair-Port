@@ -48,8 +48,8 @@ const LoginPage: React.FC = () => {
           text: "Redirecting to dashboard",
           icon: "success",
         });
-        // router.push(Urls.PLAYER_DASHBOARD);
-        // resetForm();
+        router.push(Urls.PLAYER_SPOTLIGHT);
+        resetForm();
       } else {
         Swal.fire({
           title: "Oops...",
