@@ -1,8 +1,8 @@
 "use client";
 
 import { useAxios } from "@/src/api/base";
-import { useState } from "react";
-import { useUploadImage } from "./common";
+import { useState, useEffect } from "react";
+import { useUploadImage, useUploadSpotlightImage } from "./common";
 import Swal from "sweetalert2";
 
 export interface iUpdatePlayerPayload {
@@ -51,6 +51,24 @@ export interface iPlayerResponse {
   xurl: string | null;
 }
 
+export interface iCreatePlayerSpotlightPayload {
+  mediaUrls: (string | File)[];
+  text: string;
+}
+
+export interface iPlayerSpotlightResponse {}
+
+export interface iAddCommentPayload {
+  mediaUrl: string;
+  spotLightId: number;
+  text: string;
+}
+
+export interface iPostActionPayload {
+  like: boolean;
+  spotLightPostId: number;
+}
+
 export const useGetPlayer = () => {
   const [data, setData] = useState<iPlayerResponse | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
@@ -80,10 +98,13 @@ export const useGetPlayer = () => {
 export const useUpdatePlayer = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [success, setSuccess] = useState<boolean>(false);
-
+  const [payload, setPayload] = useState<Partial<iUpdatePlayerPayload> | null>(
+    null
+  );
   const {
     data: uploadedImage,
-    upload,
+    upload: uploadImage,
+    loading: uploadProgress,
     success: uploadSuccess,
   } = useUploadImage();
 
@@ -93,23 +114,21 @@ export const useUpdatePlayer = () => {
     if (loading) return;
     setLoading(true);
 
-    console.log(payload);
-
     if (payload.imageUrl && typeof payload.imageUrl !== "string") {
-      await upload(payload.imageUrl as File);
-      if (uploadSuccess) {
-        payload.imageUrl = uploadedImage;
-      } else {
-        setLoading(false);
-        setSuccess(false);
-        return;
-      }
+      setPayload(payload);
+      await uploadImage(payload.imageUrl as File);
+    } else {
+      updatePlayer(payload);
     }
+  };
 
-    const { data, status } = await requestApi(
+  const updatePlayer = async (
+    payloadToBePosted: Partial<iUpdatePlayerPayload>
+  ) => {
+    const { status } = await requestApi(
       "/api/v1/profile/player/editProfile",
       "POST",
-      payload
+      payloadToBePosted
     );
     setLoading(false);
     setSuccess(status);
@@ -123,9 +142,218 @@ export const useUpdatePlayer = () => {
     }
   };
 
+  useEffect(() => {
+    if (uploadSuccess && uploadedImage && payload) {
+      const newPayload: Partial<iUpdatePlayerPayload> = {
+        ...payload,
+        imageUrl: uploadedImage,
+      };
+      setPayload(newPayload);
+      updatePlayer(newPayload);
+    } else {
+      setLoading(false);
+      setSuccess(false);
+    }
+  }, [uploadProgress, uploadSuccess, uploadImage, payload]);
+
   return {
     loading,
     success,
     update,
+  };
+};
+
+export const useGetPlayerSpotlights = () => {
+  const [data, setData] = useState<iPlayerSpotlightResponse[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [success, setSuccess] = useState<boolean>(false);
+  const { requestApi } = useAxios();
+
+  const get = async () => {
+    if (loading) return;
+    setLoading(true);
+    const { data, status } = await requestApi(
+      "/api/v1/spotLights/getPosts",
+      "GET"
+    );
+    setLoading(false);
+    setSuccess(status);
+    setData(status ? data : []);
+  };
+
+  useEffect(() => {
+    get();
+  }, []);
+
+  return {
+    data,
+    loading,
+    success,
+  };
+};
+
+export const useGetCurrentPlayerSpotlights = () => {
+  const [data, setData] = useState<iPlayerSpotlightResponse[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [success, setSuccess] = useState<boolean>(false);
+  const { requestApi } = useAxios();
+
+  const get = async () => {
+    if (loading) return;
+    setLoading(true);
+    const { data, status } = await requestApi(
+      "/api/v1/spotLights/getUserPosts",
+      "GET"
+    );
+    setLoading(false);
+    setSuccess(status);
+    setData(status ? data : []);
+  };
+
+  useEffect(() => {
+    get();
+  }, []);
+
+  return {
+    data,
+    loading,
+    success,
+  };
+};
+
+export const usePostPlayerSpotlight = () => {
+  const [loading, setLoading] = useState<boolean>(false);
+  const [success, setSuccess] = useState<boolean>(false);
+  const { requestApi } = useAxios();
+
+  const [payload, setPayload] = useState<iCreatePlayerSpotlightPayload | null>(
+    null
+  );
+
+  const {
+    loading: uploadProgress,
+    success: uploadSuccess,
+    upload: uploadSpotlightImage,
+    data: uploadedImage,
+  } = useUploadSpotlightImage();
+
+  const upload = async (payload: iCreatePlayerSpotlightPayload) => {
+    if (loading) return;
+    setLoading(true);
+
+    if (payload.mediaUrls.length !== 0) {
+      setPayload(payload);
+      await uploadSpotlightImage(payload.mediaUrls[0] as File);
+    } else {
+      await uploadSpotlight(payload);
+    }
+  };
+
+  const uploadSpotlight = async (
+    payloadToBePosted: iCreatePlayerSpotlightPayload
+  ) => {
+    const { status } = await requestApi(
+      "/api/v1/spotLights/addPost",
+      "POST",
+      payloadToBePosted
+    );
+    setLoading(false);
+    setSuccess(status);
+  };
+
+  useEffect(() => {
+    if (uploadSuccess && uploadedImage && payload) {
+      const newPayload: iCreatePlayerSpotlightPayload = {
+        ...payload!,
+        mediaUrls: [uploadedImage],
+      };
+      setPayload(newPayload);
+      uploadSpotlight(newPayload);
+    } else {
+      setLoading(false);
+      setSuccess(false);
+    }
+  }, [uploadProgress, uploadSuccess, uploadedImage, payload]);
+
+  return {
+    upload,
+    loading,
+    success,
+  };
+};
+
+export const useAddPlayerSpotlightComment = () => {
+  const [loading, setLoading] = useState<boolean>(false);
+  const [success, setSuccess] = useState<boolean>(false);
+  const { requestApi } = useAxios();
+
+  const add = async (payload: iAddCommentPayload) => {
+    if (loading) return;
+    setLoading(true);
+
+    const { status } = await requestApi(
+      "/api/v1/spotLights/addComment",
+      "POST",
+      payload
+    );
+    setLoading(false);
+    setSuccess(status);
+  };
+
+  return {
+    add,
+    loading,
+    success,
+  };
+};
+
+export const useGetPlayerSpotlightComments = () => {
+  const [data, setData] = useState<any[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [success, setSuccess] = useState<boolean>(false);
+  const { requestApi } = useAxios();
+
+  const get = async (postId: number) => {
+    if (loading) return;
+    setLoading(true);
+    const { data, status } = await requestApi(
+      `/api/v1/spotLights/getPostComments?limit=10&offset=0&postId=${postId}`,
+      "GET"
+    );
+    setLoading(false);
+    setSuccess(status);
+    setData(status ? data : []);
+  };
+
+  return {
+    data,
+    loading,
+    success,
+    get,
+  };
+};
+
+export const useLikeOrUnlikePlayerSpotlightComments = () => {
+  const [loading, setLoading] = useState<boolean>(false);
+  const [success, setSuccess] = useState<boolean>(false);
+  const { requestApi } = useAxios();
+
+  const action = async (payload: iPostActionPayload) => {
+    if (loading) return;
+    setLoading(true);
+
+    const { status } = await requestApi(
+      "/api/v1/spotLights/like/increaseOrDecreaseCount",
+      "PUT",
+      payload
+    );
+    setLoading(false);
+    setSuccess(status);
+  };
+
+  return {
+    action,
+    loading,
+    success,
   };
 };

@@ -41,3 +41,41 @@ export const useUploadImage = () => {
     upload,
   };
 };
+
+export const useUploadSpotlightImage = () => {
+  const [data, setData] = useState<any>(null);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [success, setSuccess] = useState<boolean>(false);
+  const { requestApi } = useAxios();
+
+  const upload = async (payload: File) => {
+    if (loading) return;
+    setLoading(true);
+    const { data, status } = await requestApi(
+      "/scoutflair/v1/spotLights/media/upload",
+      "POST",
+      payload,
+      {
+        "Content-Type": "multipart-formdata",
+      }
+    );
+    setLoading(false);
+    setSuccess(status);
+    setData(data);
+
+    if (!status) {
+      Swal.fire({
+        title: "Oops...",
+        text: `Error uploading your spotlight picture`,
+        icon: "error",
+      });
+    }
+  };
+
+  return {
+    loading,
+    success,
+    data,
+    upload,
+  };
+};
