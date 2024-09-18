@@ -1,7 +1,7 @@
 "use client";
 
 import Image, { StaticImageData } from "next/image";
-import React, { useState } from "react";
+import React, { FC, useEffect } from "react";
 
 import Poster from "@/public/dashboard/player/poster.png";
 import Game from "@/public/dashboard/player/game.jpeg";
@@ -10,31 +10,41 @@ import { convertDateFullAndTime } from "@/src/functions/dateFunctions";
 import { FaHeart, FaRegHeart, FaRegComment } from "react-icons/fa";
 
 import { PiShareFatFill, PiShareFatLight } from "react-icons/pi";
-import { useGetPlayerSpotlights } from "@/src/hooks/player";
+import {
+  useGetCurrentPlayerSpotlights,
+  useGetPlayerSpotlights,
+} from "@/src/hooks/player";
 import { Loader } from "@mantine/core";
 
-interface iPost {
-  posterImage: string | StaticImageData;
-  posterName: string;
-  timestamp: Date;
+const Posts: FC<{ currentPlayer?: boolean }> = ({ currentPlayer }) => {
+  const {
+    loading: loadingAllSpotlights,
+    data: allPosts,
+    get: getAllPosts,
+  } = useGetPlayerSpotlights();
+  const {
+    loading: loadingPlayerSpotlights,
+    data: playerPosts,
+    get: getPlayerPosts,
+  } = useGetCurrentPlayerSpotlights();
 
-  images: (string | StaticImageData)[];
+  useEffect(() => {
+    if (currentPlayer) {
+      getPlayerPosts();
+    } else {
+      getAllPosts();
+    }
+  }, []);
 
-  content: string;
-  comments: number;
-  shares: number;
-}
-
-const Posts = () => {
-  const { loading, success, data: posts } = useGetPlayerSpotlights();
-
-  if (loading) {
+  if (loadingAllSpotlights || loadingPlayerSpotlights) {
     return (
       <div className="w-full grid place-content-center h-80">
         <Loader color="primary.6" />
       </div>
     );
   }
+
+  const posts = currentPlayer ? playerPosts : allPosts;
 
   return (
     <div className="w-full flex flex-col gap-6">
@@ -44,7 +54,7 @@ const Posts = () => {
           key={i}
         >
           <div className="flex gap-4 h-9">
-            {post.userProfilePicUrl ? (
+            {!post.userProfilePicUrl ? (
               <Image
                 src={post.userProfilePicUrl}
                 alt="poster image"

@@ -203,14 +203,11 @@ export const useGetPlayerSpotlights = () => {
     }
   };
 
-  useEffect(() => {
-    get();
-  }, []);
-
   return {
     data,
     loading,
     success,
+    get,
   };
 };
 
@@ -232,14 +229,11 @@ export const useGetCurrentPlayerSpotlights = () => {
     setData(status ? data : []);
   };
 
-  useEffect(() => {
-    get();
-  }, []);
-
   return {
     data,
     loading,
     success,
+    get,
   };
 };
 

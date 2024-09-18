@@ -7,6 +7,11 @@ const nextConfig = {
         hostname: "cdn.pixabay.com",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "scoutflair.s3.eu-north-1.amazonaws.com",
+        pathname: "/*/**",
+      },
     ],
   },
   staticPageGenerationTimeout: 300,

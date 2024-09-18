@@ -12,8 +12,7 @@ import {
 } from "@/src/stores/userStore";
 
 const Banner = () => {
-  const image =
-    "https://pixabay.com/photos/dummy-face-human-men-black-human-4070603/";
+  const image = useCurrentUserStore((state) => state.image);
   const name = useCurrentUserStore((state) => state.name);
 
   const role = usePlayerDataStore((state) => state.role);
@@ -30,11 +29,21 @@ const Banner = () => {
         height={120}
       />
       <div className="w-full flex flex-col relative pt-12 pb-6">
-        <Image
-          src={image}
-          alt="player-picture"
-          className="size-28 rounded-full border-4 border-primary-4 object-cover absolute -top-6 left-4 -translate-y-1/2"
-        />
+        {image ? (
+          <Image
+            src={image}
+            alt="user image"
+            className="rounded-full size-11 object-cover"
+            width={44}
+            height={44}
+          />
+        ) : (
+          <div className="w-11 h-11 rounded-full bg-primary-2 flex items-center justify-center">
+            <h2 className="text-16-19 font-bold text-white">
+              {name.substring(0, 1)}
+            </h2>
+          </div>
+        )}
 
         <div className="w-full flex flex-col gap-2 pl-4">
           <h2 className="text-20-24 font-bold text-dark">{name}</h2>

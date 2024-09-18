@@ -1,7 +1,7 @@
 import React from "react";
 import Ads from "../common/Ads";
 import Feeds from "../common/Feeds";
-import Posts from "../profile/Posts";
+import Posts from "../common/Posts";
 
 const Spotlight = () => {
   return (
