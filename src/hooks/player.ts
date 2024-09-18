@@ -56,7 +56,21 @@ export interface iCreatePlayerSpotlightPayload {
   text: string;
 }
 
-export interface iPlayerSpotlightResponse {}
+export interface iPlayerSpotlightResponse {
+  id: number;
+  text: string;
+  likeCount: number;
+  commentCount: number;
+  shareCount: number;
+  userFullName: string;
+  userProfilePicUrl: string;
+  dateCreated: string;
+  mediaUrls: {
+    id: number;
+    mediaUrl: string;
+    createdDate: string;
+  }[];
+}
 
 export interface iAddCommentPayload {
   mediaUrl: string;
@@ -173,12 +187,20 @@ export const useGetPlayerSpotlights = () => {
     if (loading) return;
     setLoading(true);
     const { data, status } = await requestApi(
-      "/api/v1/spotLights/getPosts",
+      "/api/v1/spotLights/getPosts?limit=10&offset=0",
       "GET"
     );
     setLoading(false);
     setSuccess(status);
-    setData(status ? data : []);
+    setData(status ? (data.data.obj as iPlayerSpotlightResponse[]) : []);
+
+    if (!status) {
+      Swal.fire({
+        title: "Oops...",
+        text: `Error getting the latest posts`,
+        icon: "error",
+      });
+    }
   };
 
   useEffect(() => {
