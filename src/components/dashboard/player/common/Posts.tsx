@@ -15,8 +15,11 @@ import {
   useGetPlayerSpotlights,
 } from "@/src/hooks/player";
 import { Loader } from "@mantine/core";
+import { useGlobalData } from "@/src/stores/globalStore";
 
 const Posts: FC<{ currentPlayer?: boolean }> = ({ currentPlayer }) => {
+  const refreshPosts = useGlobalData((state) => state.shouldRefreshPosts);
+
   const {
     loading: loadingAllSpotlights,
     data: allPosts,
@@ -34,7 +37,7 @@ const Posts: FC<{ currentPlayer?: boolean }> = ({ currentPlayer }) => {
     } else {
       getAllPosts();
     }
-  }, []);
+  }, [refreshPosts]);
 
   if (loadingAllSpotlights || loadingPlayerSpotlights) {
     return (

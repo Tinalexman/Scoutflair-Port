@@ -28,6 +28,10 @@ input {
   @apply focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent;
 }
 
+textarea {
+  @apply focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent;
+}
+
 select {
   @apply focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent;
 }

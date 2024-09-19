@@ -4,6 +4,23 @@ import { useAxios } from "@/src/api/base";
 import { useState } from "react";
 import Swal from "sweetalert2";
 
+interface iUploadImageResponse {
+  code: string;
+  message: string;
+  data: {
+    obj: {
+      headers: {};
+      body: {
+        success: boolean;
+        message: string;
+      };
+      statusCode: string;
+      statusCodeValue: number;
+    };
+    totalCount: any;
+  };
+}
+
 export const useUploadImage = () => {
   const [data, setData] = useState<any>(null);
   const [loading, setLoading] = useState<boolean>(false);
@@ -43,7 +60,7 @@ export const useUploadImage = () => {
 };
 
 export const useUploadSpotlightImage = () => {
-  const [data, setData] = useState<any>(null);
+  const [data, setData] = useState<iUploadImageResponse | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [success, setSuccess] = useState<boolean>(false);
   const { requestApi } = useAxios();
@@ -51,10 +68,13 @@ export const useUploadSpotlightImage = () => {
   const upload = async (payload: File) => {
     if (loading) return;
     setLoading(true);
+    let formData = new FormData();
+    formData.append("file", payload);
+
     const { data, status } = await requestApi(
-      "/scoutflair/v1/spotLights/media/upload",
+      "/api/v1/spotLights/media/upload",
       "POST",
-      payload,
+      formData,
       {
         "Content-Type": "multipart-formdata",
       }

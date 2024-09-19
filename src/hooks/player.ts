@@ -242,54 +242,18 @@ export const usePostPlayerSpotlight = () => {
   const [success, setSuccess] = useState<boolean>(false);
   const { requestApi } = useAxios();
 
-  const [payload, setPayload] = useState<iCreatePlayerSpotlightPayload | null>(
-    null
-  );
-
-  const {
-    loading: uploadProgress,
-    success: uploadSuccess,
-    upload: uploadSpotlightImage,
-    data: uploadedImage,
-  } = useUploadSpotlightImage();
-
   const upload = async (payload: iCreatePlayerSpotlightPayload) => {
     if (loading) return;
     setLoading(true);
 
-    if (payload.mediaUrls.length !== 0) {
-      setPayload(payload);
-      await uploadSpotlightImage(payload.mediaUrls[0] as File);
-    } else {
-      await uploadSpotlight(payload);
-    }
-  };
-
-  const uploadSpotlight = async (
-    payloadToBePosted: iCreatePlayerSpotlightPayload
-  ) => {
     const { status } = await requestApi(
       "/api/v1/spotLights/addPost",
       "POST",
-      payloadToBePosted
+      payload
     );
     setLoading(false);
     setSuccess(status);
   };
-
-  useEffect(() => {
-    if (uploadSuccess && uploadedImage && payload) {
-      const newPayload: iCreatePlayerSpotlightPayload = {
-        ...payload!,
-        mediaUrls: [uploadedImage],
-      };
-      setPayload(newPayload);
-      uploadSpotlight(newPayload);
-    } else {
-      setLoading(false);
-      setSuccess(false);
-    }
-  }, [uploadProgress, uploadSuccess, uploadedImage, payload]);
 
   return {
     upload,
