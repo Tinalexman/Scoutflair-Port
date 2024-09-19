@@ -12,8 +12,9 @@ import { FaImage } from "react-icons/fa";
 import Image from "next/image";
 import { useUploadSpotlightImage } from "@/src/hooks/common";
 import Swal from "sweetalert2";
+import { useCurrentUserStore } from "@/src/stores/userStore";
 
-const CreateNewPost: FC<{ close: () => void }> = ({ close }) => {
+const CreateNewPost = () => {
   const [post, setPost] = useState<string>("");
   const { upload, loading, success } = usePostPlayerSpotlight();
   const {
@@ -29,10 +30,15 @@ const CreateNewPost: FC<{ close: () => void }> = ({ close }) => {
   const [files, setFiles] = useState<File[]>([]);
   const [fileImages, setFileImages] = useState<string[]>([]);
 
+  const userImage = useCurrentUserStore((state) => state.image);
+  const username = useCurrentUserStore((state) => state.name);
+
   useEffect(() => {
     if (!loading && success) {
+      setPost("");
+      setFiles([]);
+      setFileImages([]);
       refreshPosts();
-      close();
     }
   }, [loading, success]);
 
@@ -51,94 +57,93 @@ const CreateNewPost: FC<{ close: () => void }> = ({ close }) => {
     }
   }, [loadingUploadImage, uploadedImage]);
 
-  //https://scoutflair.s3.eu-north-1.amazonaws.com/profilePics/3c85fc8fd-308c-4a98-933e-1559c7eddd7e
-
   return (
-    <div className="w-full h-fit gap-5 bg-white flex flex-col p-6 items-center">
+    <div className="w-full h-fit gap-5 bg-white rounded-xl shadow-custom flex flex-col px-6 py-4">
       <div className="w-full flex items-center justify-between">
-        <h2 className="text-24-28 text-dark font-semibold">Create Post</h2>
-        <IoMdClose
-          size={26}
-          className="cursor-pointer text-dark"
-          onClick={close}
-        />
-      </div>
-      {loading || loadingUploadImage ? (
-        <div className="w-full h-40 grid place-content-center">
-          <Loader color="primary.6" />
-        </div>
-      ) : (
-        <>
-          <textarea
+        {userImage ? (
+          <Image
+            src={userImage}
+            alt="poster image"
+            className="size-9 rounded"
+            width={36}
+            height={36}
+          />
+        ) : (
+          <div className="rounded size-9 text-white text-16-19 font-bold bg-primary-2 grid place-content-center">
+            {username.substring(0, 1)}
+          </div>
+        )}
+        <div className="relative w-[calc(100%-7.5rem)]">
+          <input
+            className="h-8 rounded w-full pr-11 pl-4 bg-[#F5F6FA] text-14-16  placeholder:text-placeholder font-lato text-dark"
+            placeholder="What's happening?"
             value={post}
             onChange={(e) => setPost(e.target.value)}
-            placeholder="How are you feeling today?"
-            className="w-full h-32 resize-none bg-white border border-border-gray rounded-lg p-2 text-14-16 placeholder:text-placeholder text-black"
           />
-          <div className="w-full flex flex-col gap-2">
-            {files.length === 0 && (
-              <div
-                onClick={() => fileRef.current?.click()}
-                className="cursor-pointer w-fit flex gap-1 text-primary-2 items-center"
-              >
-                <FaImage size={16} />
-                <h2 className="underline font-medium text-12-16">Add Image</h2>
-              </div>
-            )}
-            <div className="w-full ">
-              {fileImages.length > 0 && (
-                <div className="overflow-hidden relative w-full">
-                  <Image
-                    src={fileImages[0]}
-                    width={100}
-                    height={100}
-                    className="w-full h-36 rounded object-cover brightness-50"
-                    alt="post image"
-                  />
-                  <IoMdClose
-                    size={16}
-                    className="cursor-pointer text-white absolute right-2 top-1"
-                    onClick={() => {
-                      setFileImages([]);
-                      setFiles([]);
-                    }}
-                  />
-                </div>
-              )}
-            </div>
-            <input
-              type="file"
-              accept="image/jpg, image/jpeg, image/png"
-              style={{ display: "none" }}
-              ref={fileRef}
-              onChange={(e) => {
-                if (!e.target.files) return;
-                setFiles([...files, ...Array.from(e.target.files)]);
+          <FaImage
+            onClick={() => fileRef.current?.click()}
+            className="absolute inset-y-1/2 -translate-y-1/2 right-4 text-lg cursor-pointer text-placeholder"
+          />
+        </div>
 
-                for (let i = 0; i < e.target.files.length; i++) {
-                  const reader = new FileReader();
-                  reader.readAsDataURL(e.target.files[i]);
-                  reader.onload = () => {
-                    if (typeof reader.result === "string") {
-                      setFileImages([...fileImages, reader.result]);
-                    }
-                  };
-                }
-              }}
-            />
-          </div>
-          <button
-            disabled={loading}
-            onClick={() => {
-              if (post.length === 0) return;
+        <button
+          disabled={loading}
+          onClick={() => {
+            if (post.length === 0) return;
+            if (files.length !== 0) {
               uploadImage(files[0]);
+            } else {
+              upload({ text: post, mediaUrls: [] });
+            }
+          }}
+          className="w-16 px-4 h-10 rounded bg-primary-2 text-white font-medium text-16-19 grid place-content-center"
+        >
+          {loading || loadingUploadImage ? (
+            <Loader color="white.6" size={24} />
+          ) : (
+            "Post"
+          )}
+        </button>
+      </div>
+      {fileImages.length > 0 && (
+        <div className="overflow-hidden relative w-full">
+          <Image
+            src={fileImages[0]}
+            width={100}
+            height={100}
+            className="w-full h-36 rounded object-cover brightness-50"
+            alt="post image"
+          />
+          <IoMdClose
+            size={16}
+            className="cursor-pointer text-white absolute right-2 top-1"
+            onClick={() => {
+              setFileImages([]);
+              setFiles([]);
             }}
-            className="w-full h-10 rounded bg-primary-2 text-white font-medium text-16-19"
-          >
-            Post
-          </button>
-        </>
+          />
+        </div>
       )}
+      <input
+        type="file"
+        accept="image/jpg, image/jpeg, image/png"
+        style={{ display: "none" }}
+        ref={fileRef}
+        onChange={(e) => {
+          if (!e.target.files) return;
+          setFiles(Array.from(e.target.files));
+
+          for (let i = 0; i < e.target.files.length; i++) {
+            const reader = new FileReader();
+            reader.readAsDataURL(e.target.files[i]);
+            reader.onload = () => {
+              if (typeof reader.result === "string") {
+                setFileImages([reader.result]);
+              }
+            };
+          }
+        }}
+      />
     </div>
   );
 };

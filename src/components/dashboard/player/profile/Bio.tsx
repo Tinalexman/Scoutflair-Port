@@ -93,20 +93,24 @@ const Bio = () => {
       <hr className="bg-[#E0E0E0] w-full my-3" />
       <h2 className="text-dark text-14-16 font-medium pl-5">About</h2>
       <div className="flex flex-col w-full mt-4 gap-1 px-5 ">
-        {bioData.map((data, index) => (
-          <div key={index} className="w-full flex items-center py-1 gap-2">
-            <Image
-              src={data.image}
-              alt="data icon"
-              width={32}
-              height={32}
-              className="size-10"
-            />
-            <p className="text-12-18 text-dark font-medium">{data.text}</p>
-          </div>
-        ))}
+        {bioData.map((data, index) =>
+          data.text ? (
+            <div key={index} className="w-full flex items-center py-1 gap-2">
+              <Image
+                src={data.image}
+                alt="data icon"
+                width={32}
+                height={32}
+                className="size-10"
+              />
+              <p className="text-12-18 text-dark font-medium">{data.text}</p>
+            </div>
+          ) : (
+            <div key={index} />
+          )
+        )}
       </div>
-      <hr className="bg-[#E0E0E0] w-full my-3" />
+      {/* <hr className="bg-[#E0E0E0] w-full my-3" />
       <h2 className="text-dark text-14-16 font-medium pl-5">Recommendations</h2>
       <div className="flex flex-col w-full mt-4 gap-1 px-5 ">
         {recommendation.map((data, index) => (
@@ -121,7 +125,7 @@ const Bio = () => {
             <p className="text-12-18 text-dark font-medium">{data.text}</p>
           </div>
         ))}
-      </div>
+      </div> */}
       <hr className="bg-[#E0E0E0] w-full my-3" />
       <h2 className="text-dark text-14-16 font-medium pl-5">Social Media</h2>
       <div className="w-full flex items-center gap-2 px-5 mt-4">

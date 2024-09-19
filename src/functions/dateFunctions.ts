@@ -141,9 +141,19 @@ export function getDaysOfCurrentMonth() {
 }
 
 export function getYearDifference(firstDate: Date, secondDate: Date): number {
-  const date1 = firstDate.getMilliseconds();
-  const date2 = secondDate.getMilliseconds();
-  const diffInMilliseconds = Math.abs(date2 - date1);
-  const millisecondsInYear = 1000 * 60 * 60 * 24 * 365.25;
-  return Math.floor(diffInMilliseconds / millisecondsInYear);
+  const currentYear = firstDate.getFullYear();
+  const dobYear = secondDate.getFullYear();
+
+  let yearDifference = currentYear - dobYear;
+
+  const isBeforeBirthday =
+    firstDate.getMonth() < secondDate.getMonth() ||
+    (firstDate.getMonth() === secondDate.getMonth() &&
+      firstDate.getDate() < secondDate.getDate());
+
+  if (isBeforeBirthday) {
+    yearDifference--;
+  }
+
+  return yearDifference;
 }

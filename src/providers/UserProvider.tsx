@@ -32,7 +32,7 @@ export default function AuthProvider({
       });
 
       const dob = new Date(date);
-      const years = getYearDifference(dob, new Date());
+      const years = getYearDifference(new Date(), dob);
 
       usePlayerDataStore.setState({
         role: data?.position,

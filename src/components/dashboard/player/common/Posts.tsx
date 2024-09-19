@@ -1,10 +1,8 @@
 "use client";
 
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import React, { FC, useEffect } from "react";
 
-import Poster from "@/public/dashboard/player/poster.png";
-import Game from "@/public/dashboard/player/game.jpeg";
 import { convertDateFullAndTime } from "@/src/functions/dateFunctions";
 
 import { FaHeart, FaRegHeart, FaRegComment } from "react-icons/fa";
@@ -16,6 +14,8 @@ import {
 } from "@/src/hooks/player";
 import { Loader } from "@mantine/core";
 import { useGlobalData } from "@/src/stores/globalStore";
+
+import Void from "@/public/images/Void.png";
 
 const Posts: FC<{ currentPlayer?: boolean }> = ({ currentPlayer }) => {
   const refreshPosts = useGlobalData((state) => state.shouldRefreshPosts);
@@ -49,6 +49,24 @@ const Posts: FC<{ currentPlayer?: boolean }> = ({ currentPlayer }) => {
 
   const posts = currentPlayer ? playerPosts : allPosts;
 
+  if (!loadingAllSpotlights && !loadingPlayerSpotlights && posts.length === 0) {
+    return (
+      <div className="w-full h-[30rem] flex flex-col shadow-custom justify-center items-center gap-5 sticky top-6 bg-white rounded-xl">
+        <Image
+          src={Void}
+          alt="no posts"
+          width={100}
+          height={100}
+          className="w-40 h-auto object-cover"
+        />
+
+        <h2 className="text-dark text-16-19 font-medium">
+          There are no posts yet
+        </h2>
+      </div>
+    );
+  }
+
   return (
     <div className="w-full flex flex-col gap-6">
       {posts.map((post, i) => (
@@ -66,7 +84,7 @@ const Posts: FC<{ currentPlayer?: boolean }> = ({ currentPlayer }) => {
                 height={36}
               />
             ) : (
-              <div className="rounded-full size-11 text-white text-16-19 font-bold bg-primary-2 grid place-content-center">
+              <div className="rounded size-9 text-white text-16-19 font-bold bg-primary-2 grid place-content-center">
                 {post.userFullName.substring(0, 1)}
               </div>
             )}

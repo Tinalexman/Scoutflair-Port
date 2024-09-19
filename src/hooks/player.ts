@@ -78,6 +78,13 @@ export interface iAddCommentPayload {
   text: string;
 }
 
+export interface iPostComment {
+  id: number;
+  text: string;
+  userFullName: string;
+  userImageUrl: string;
+}
+
 export interface iPostActionPayload {
   like: boolean;
   spotLightPostId: number;
@@ -187,7 +194,7 @@ export const useGetPlayerSpotlights = () => {
     if (loading) return;
     setLoading(true);
     const { data, status } = await requestApi(
-      "/api/v1/spotLights/getPosts?limit=10&offset=0",
+      "/api/v1/spotLights/getPosts?limit=100&offset=0",
       "GET"
     );
     setLoading(false);
@@ -221,12 +228,20 @@ export const useGetCurrentPlayerSpotlights = () => {
     if (loading) return;
     setLoading(true);
     const { data, status } = await requestApi(
-      "/api/v1/spotLights/getUserPosts",
+      "/api/v1/spotLights/getUserPosts?limit=100&offset=0",
       "GET"
     );
     setLoading(false);
     setSuccess(status);
-    setData(status ? data : []);
+    setData(status ? (data.data.obj as iPlayerSpotlightResponse[]) : []);
+
+    if (!status) {
+      Swal.fire({
+        title: "Oops...",
+        text: `Error getting your posts`,
+        icon: "error",
+      });
+    }
   };
 
   return {
@@ -297,7 +312,7 @@ export const useGetPlayerSpotlightComments = () => {
     if (loading) return;
     setLoading(true);
     const { data, status } = await requestApi(
-      `/api/v1/spotLights/getPostComments?limit=10&offset=0&postId=${postId}`,
+      `/api/v1/spotLights/getPostComments?limit=100&offset=0&postId=${postId}`,
       "GET"
     );
     setLoading(false);

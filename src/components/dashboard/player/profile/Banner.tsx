@@ -19,6 +19,8 @@ const Banner = () => {
   const jersey = usePlayerDataStore((state) => state.jersey);
   const age = usePlayerDataStore((state) => state.age);
 
+  const dob = usePlayerDataStore((state) => state.dob);
+
   return (
     <div className="w-full shadow-custom rounded-[1rem] gap-6 bg-white flex flex-col overflow-hidden">
       <Image
@@ -32,14 +34,12 @@ const Banner = () => {
         {image ? (
           <Image
             src={image}
-            alt="user image"
-            className="rounded-full size-11 object-cover"
-            width={44}
-            height={44}
+            alt="player-picture"
+            className="size-28 rounded-full border-4 border-primary-4 object-cover absolute -top-6 left-4 -translate-y-1/2"
           />
         ) : (
-          <div className="w-11 h-11 rounded-full bg-primary-2 flex items-center justify-center">
-            <h2 className="text-16-19 font-bold text-white">
+          <div className="size-28 rounded-full bg-primary-2 flex items-center justify-center absolute -top-6 left-4 -translate-y-1/2">
+            <h2 className="text-48-57 font-bold text-white">
               {name.substring(0, 1)}
             </h2>
           </div>
