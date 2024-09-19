@@ -15,9 +15,11 @@ import { useToken } from "@/src/providers/AuthProvider";
 import { Loader } from "@mantine/core";
 
 const LoginPage = () => {
-  <Suspense fallback={<Loader />}>
-    <Content />
-  </Suspense>;
+  return (
+    <Suspense fallback={<Loader />}>
+      <Content />
+    </Suspense>
+  );
 };
 
 const Content: React.FC = () => {
@@ -238,4 +240,4 @@ const Content: React.FC = () => {
   );
 };
 
-export default Content;
+export default LoginPage;
