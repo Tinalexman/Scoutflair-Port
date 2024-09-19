@@ -1,7 +1,7 @@
 import React from "react";
 import Banner from "./Banner";
 import Bio from "./Bio";
-import Posts from "../common/Posts";
+import Posts from "../common/post/Posts";
 
 const Profile = () => {
   return (

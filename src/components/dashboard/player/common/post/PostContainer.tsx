@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 import React, { FC, useEffect, useState } from "react";
 
@@ -11,83 +9,13 @@ import { PiShareFatFill, PiShareFatLight } from "react-icons/pi";
 import {
   iPlayerSpotlightResponse,
   useAddPlayerSpotlightComment,
-  useGetCurrentPlayerSpotlights,
-  useGetPlayerSpotlights,
   useGetPlayerSpotlightComments,
-  iPostComment,
+  useLikeOrUnlikePlayerSpotlightComments,
 } from "@/src/hooks/player";
 import { Loader } from "@mantine/core";
-import { useGlobalData } from "@/src/stores/globalStore";
 import { IoMdClose } from "react-icons/io";
-import Void from "@/public/images/Void.png";
-import { useCurrentUserStore } from "@/src/stores/userStore";
 
-const Posts: FC<{ currentPlayer: boolean }> = ({ currentPlayer }) => {
-  const refreshPosts = useGlobalData((state) => state.shouldRefreshPosts);
-  const userImage = useCurrentUserStore((state) => state.image);
-  const username = useCurrentUserStore((state) => state.name);
-
-  const {
-    loading: loadingAllSpotlights,
-    data: allPosts,
-    get: getAllPosts,
-  } = useGetPlayerSpotlights();
-  const {
-    loading: loadingPlayerSpotlights,
-    data: playerPosts,
-    get: getPlayerPosts,
-  } = useGetCurrentPlayerSpotlights();
-
-  useEffect(() => {
-    if (currentPlayer) {
-      getPlayerPosts();
-    } else {
-      getAllPosts();
-    }
-  }, [refreshPosts]);
-
-  if (loadingAllSpotlights || loadingPlayerSpotlights) {
-    return (
-      <div className="w-full grid place-content-center h-80">
-        <Loader color="primary.6" />
-      </div>
-    );
-  }
-
-  const posts = currentPlayer ? playerPosts : allPosts;
-
-  if (!loadingAllSpotlights && !loadingPlayerSpotlights && posts.length === 0) {
-    return (
-      <div className="w-full h-[30rem] flex flex-col shadow-custom justify-center items-center gap-5 sticky top-6 bg-white rounded-xl">
-        <Image
-          src={Void}
-          alt="no posts"
-          width={100}
-          height={100}
-          className="w-40 h-auto object-cover"
-        />
-
-        <h2 className="text-dark text-16-19 font-medium">
-          There are no posts yet
-        </h2>
-      </div>
-    );
-  }
-
-  return (
-    <div className="w-full flex flex-col gap-6">
-      {posts.map((post, i) => (
-        <PostContainer
-          key={i}
-          post={post}
-          username={username}
-          userImage={userImage}
-          currentPlayer={currentPlayer}
-        />
-      ))}
-    </div>
-  );
-};
+import CommentContainer from "./CommentContainer";
 
 const PostContainer: FC<{
   post: iPlayerSpotlightResponse;
@@ -98,6 +26,7 @@ const PostContainer: FC<{
   const [comment, setComment] = useState<string>("");
   const [showComments, setShowComments] = useState<boolean>(false);
   const [totalComments, setTotalComments] = useState<number>(post.commentCount);
+  const [totalLikes, setTotalLikes] = useState<number>(post.likeCount);
 
   const {
     loading: loadingGetComments,
@@ -105,11 +34,18 @@ const PostContainer: FC<{
     data: postComments,
     get: getComments,
   } = useGetPlayerSpotlightComments(post.id);
+
   const {
     loading: loadingAddComment,
     success: addCommentSuccess,
     add: addComment,
   } = useAddPlayerSpotlightComment();
+
+  const {
+    loading: loadingPostAction,
+    success: postActionSuccess,
+    action: postAction,
+  } = useLikeOrUnlikePlayerSpotlightComments(post.id);
 
   useEffect(() => {
     if (!loadingAddComment && addCommentSuccess) {
@@ -124,6 +60,12 @@ const PostContainer: FC<{
       setShowComments(true);
     }
   }, [getCommentSuccess, loadingGetComments]);
+
+  useEffect(() => {
+    if (!loadingPostAction && postActionSuccess) {
+      setTotalLikes((prev) => prev + 1);
+    }
+  }, [loadingPostAction, postActionSuccess]);
 
   return (
     <div className="w-full shadow-custom rounded-[1rem] py-4 px-5 gap-4 bg-white flex flex-col">
@@ -162,20 +104,15 @@ const PostContainer: FC<{
         />
       )}
       <div className="w-full text-12-14 text-placeholder justify-end items-center flex gap-3">
-        <p
-          onClick={() => {
-            setShowComments(false);
-            getComments();
-          }}
-          className="cursor-pointer hover:text-primary-2 hover:font-semibold transition-all duration-300 ease-out"
-        >
-          {totalComments} comments
-        </p>
-        <p>{post.shareCount} shares</p>
+        <p>{totalLikes} likes</p>
+        <p>{totalComments} comments</p>
       </div>
       <hr className="w-full bg-border-gray" />
       <div className="w-full flex items-center justify-between text-12-14 font-medium text-dark">
-        <div className="w-fit items-center gap-1 flex">
+        <div
+          onClick={() => postAction(true)}
+          className="w-fit items-center gap-1 flex cursor-pointer"
+        >
           <FaRegHeart className="text-16-19" />
           <p>Like</p>
         </div>
@@ -260,30 +197,4 @@ const PostContainer: FC<{
   );
 };
 
-const CommentContainer: FC<{ comment: iPostComment }> = ({ comment }) => {
-  return (
-    <div className="w-full flex gap-2">
-      {comment.userImageUrl ? (
-        <Image
-          src={comment.userImageUrl}
-          alt="poster image"
-          className="size-6 rounded"
-          width={24}
-          height={24}
-        />
-      ) : (
-        <div className="rounded size-6 text-white text-10-12 font-bold bg-primary-2 grid place-content-center">
-          {comment.userFullName.substring(0, 1)}
-        </div>
-      )}
-      <div className="flex flex-col gap-1">
-        <h2 className="text-dark text-12-14 font-bold">
-          {comment.userFullName}
-        </h2>
-        <p className="text-dark text-10-15">{comment.text}</p>
-      </div>
-    </div>
-  );
-};
-
-export default Posts;
+export default PostContainer;

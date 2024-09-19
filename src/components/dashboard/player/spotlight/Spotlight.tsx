@@ -1,7 +1,7 @@
 import React from "react";
 import Ads from "../common/Ads";
 import Feeds from "../common/Feeds";
-import Posts from "../common/Posts";
+import Posts from "../common/post/Posts";
 
 import CreateNewPost from "./CreateNewPost";
 

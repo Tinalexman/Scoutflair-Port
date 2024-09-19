@@ -328,19 +328,21 @@ export const useGetPlayerSpotlightComments = (postId: number) => {
   };
 };
 
-export const useLikeOrUnlikePlayerSpotlightComments = () => {
+export const useLikeOrUnlikePlayerSpotlightComments = (
+  spotLightPostId: number
+) => {
   const [loading, setLoading] = useState<boolean>(false);
   const [success, setSuccess] = useState<boolean>(false);
   const { requestApi } = useAxios();
 
-  const action = async (payload: iPostActionPayload) => {
+  const action = async (like: boolean) => {
     if (loading) return;
     setLoading(true);
 
     const { status } = await requestApi(
       "/api/v1/spotLights/like/increaseOrDecreaseCount",
       "PUT",
-      payload
+      { like, spotLightPostId }
     );
     setLoading(false);
     setSuccess(status);
