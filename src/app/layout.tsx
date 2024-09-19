@@ -66,10 +66,24 @@ const white: MantineColorsTuple = [
   "#FFFFFF",
 ];
 
+const black: MantineColorsTuple = [
+  "#000000",
+  "#000000",
+  "#000000",
+  "#000000",
+  "#000000",
+  "#000000",
+  "#000000",
+  "#000000",
+  "#000000",
+  "#000000",
+];
+
 const theme = createTheme({
   colors: {
     primary,
     white,
+    black,
   },
 });
 

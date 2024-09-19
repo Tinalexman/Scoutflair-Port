@@ -1,14 +1,15 @@
 "use client";
 
 import Image from "next/image";
-import React, { FC, useEffect } from "react";
+import React, { FC, useEffect, useState } from "react";
 
 import { convertDateFullAndTime } from "@/src/functions/dateFunctions";
 
 import { FaHeart, FaRegHeart, FaRegComment } from "react-icons/fa";
-
+import { BsFillSendFill } from "react-icons/bs";
 import { PiShareFatFill, PiShareFatLight } from "react-icons/pi";
 import {
+  useAddPlayerSpotlightComment,
   useGetCurrentPlayerSpotlights,
   useGetPlayerSpotlights,
 } from "@/src/hooks/player";
@@ -16,9 +17,12 @@ import { Loader } from "@mantine/core";
 import { useGlobalData } from "@/src/stores/globalStore";
 
 import Void from "@/public/images/Void.png";
+import { useCurrentUserStore } from "@/src/stores/userStore";
 
-const Posts: FC<{ currentPlayer?: boolean }> = ({ currentPlayer }) => {
+const Posts: FC<{ currentPlayer: boolean }> = ({ currentPlayer }) => {
   const refreshPosts = useGlobalData((state) => state.shouldRefreshPosts);
+  const userImage = useCurrentUserStore((state) => state.image);
+  const username = useCurrentUserStore((state) => state.name);
 
   const {
     loading: loadingAllSpotlights,
@@ -30,6 +34,12 @@ const Posts: FC<{ currentPlayer?: boolean }> = ({ currentPlayer }) => {
     data: playerPosts,
     get: getPlayerPosts,
   } = useGetCurrentPlayerSpotlights();
+
+  const {
+    loading: loadingAddingComment,
+    success: addedComment,
+    add: addComment,
+  } = useAddPlayerSpotlightComment();
 
   useEffect(() => {
     if (currentPlayer) {
@@ -128,6 +138,40 @@ const Posts: FC<{ currentPlayer?: boolean }> = ({ currentPlayer }) => {
             </div>
           </div>
           <hr className="w-full bg-border-gray" />
+          {!currentPlayer && (
+            <div className="w-full flex items-center justify-between">
+              {userImage ? (
+                <Image
+                  src={userImage}
+                  alt="poster image"
+                  className="size-9 rounded"
+                  width={36}
+                  height={36}
+                />
+              ) : (
+                <div className="rounded size-9 text-white text-16-19 font-bold bg-primary-2 grid place-content-center">
+                  {username.substring(0, 1)}
+                </div>
+              )}
+              <input
+                className="h-8 rounded w-[calc(100%-6rem)] px-4 bg-[#F5F6FA] text-14-16  placeholder:text-placeholder font-lato text-dark"
+                placeholder="What's happening?"
+                id={`post-id-${post.id}`}
+              />
+
+              <button
+                disabled={loadingAddingComment}
+                onClick={() => {}}
+                className="rounded size-9 bg-primary-2 text-white font-medium text-16-19 grid place-content-center"
+              >
+                {loadingAddingComment ? (
+                  <Loader color="white.6" size={24} />
+                ) : (
+                  <BsFillSendFill fill="#FFFFFF" size={16} />
+                )}
+              </button>
+            </div>
+          )}
         </div>
       ))}
     </div>

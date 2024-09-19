@@ -10,7 +10,7 @@ const Spotlight = () => {
     <div className="w-full p-6 gap-6 grid grid-cols-[2fr_1fr]">
       <div className="w-full flex flex-col gap-6">
         <CreateNewPost />
-        <Posts />
+        <Posts currentPlayer={false} />
       </div>
 
       <div className="flex flex-col gap-6 w-full">

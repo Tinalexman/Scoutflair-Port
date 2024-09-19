@@ -1,7 +1,7 @@
 "use client";
 
-import React from "react";
-import { useRouter } from "next/navigation";
+import React, { Suspense, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import Scoutflairlogo from "@/public/icons/Scoutflairlogo.svg";
 import bgImage from "@/public/images/scout-sign-in.png";
 import Link from "next/link";
@@ -12,11 +12,23 @@ import { LoginValidationSchema } from "@/src/schemas/Schema";
 import Swal from "sweetalert2";
 import Image from "next/image";
 import { useToken } from "@/src/providers/AuthProvider";
+import { Loader } from "@mantine/core";
 
-const LoginPage: React.FC = () => {
+const LoginPage = () => {
+  <Suspense fallback={<Loader />}>
+    <Content />
+  </Suspense>;
+};
+
+const Content: React.FC = () => {
+  const searchParams = useSearchParams();
+  const redirect = searchParams.get("redirect");
+
   const router = useRouter();
   const { requestApi } = useAxios();
   const { setToken } = useToken();
+
+  const [loading, setLoading] = useState<boolean>(false);
 
   interface ILoginPayload {
     username: string;
@@ -32,12 +44,17 @@ const LoginPage: React.FC = () => {
     values: ILoginPayload,
     { resetForm }: FormikHelpers<ILoginPayload>
   ) => {
+    if (loading) return;
+    setLoading(true);
+
     try {
       const response = await requestApi(
         "/scoutflair/v1/signin",
         "POST",
         values
       );
+
+      setLoading(false);
 
       if (response.status) {
         const token = response.data.jwtToken;
@@ -47,7 +64,12 @@ const LoginPage: React.FC = () => {
           text: "Redirecting to dashboard",
           icon: "success",
         });
-        router.push(Urls.PLAYER_SPOTLIGHT);
+        if (redirect === "true") {
+          router.back();
+        } else {
+          router.push(Urls.PLAYER_SPOTLIGHT);
+        }
+
         resetForm();
       } else {
         Swal.fire({
@@ -154,9 +176,10 @@ const LoginPage: React.FC = () => {
                 <div className="flex flex-col justify-center items-center w-full gap-4">
                   <button
                     type="submit"
+                    disabled={loading}
                     className="w-full h-10 flex justify-center items-center gap-2.5 px-6 py-2.5 rounded-lg bg-[#f2a725] text-2xl font-semibold text-black shadow-lg"
                   >
-                    Sign In
+                    {loading ? <Loader color="blank.6" size={26} /> : "Sign In"}
                   </button>
                   <p className="opacity-80 text-base text-left">
                     <span className="text-black">
@@ -215,4 +238,4 @@ const LoginPage: React.FC = () => {
   );
 };
 
-export default LoginPage;
+export default Content;

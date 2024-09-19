@@ -73,7 +73,7 @@ const CreateNewPost = () => {
             {username.substring(0, 1)}
           </div>
         )}
-        <div className="relative w-[calc(100%-7.5rem)]">
+        <div className="relative w-[calc(100%-8rem)]">
           <input
             className="h-8 rounded w-full pr-11 pl-4 bg-[#F5F6FA] text-14-16  placeholder:text-placeholder font-lato text-dark"
             placeholder="What's happening?"

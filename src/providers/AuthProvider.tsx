@@ -41,7 +41,7 @@ export default function AuthProvider({
         text: `Please login to continue`,
         icon: "error",
       });
-      router.replace("/auth/login");
+      router.push("/auth/login?redirect=true");
     }
   }, [router]);
 
