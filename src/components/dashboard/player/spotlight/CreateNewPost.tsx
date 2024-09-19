@@ -89,7 +89,7 @@ const CreateNewPost = () => {
         <button
           disabled={loading}
           onClick={() => {
-            if (post.length === 0) return;
+            if (post.trim().length === 0) return;
             if (files.length !== 0) {
               uploadImage(files[0]);
             } else {

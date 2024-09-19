@@ -74,7 +74,7 @@ export interface iPlayerSpotlightResponse {
 
 export interface iAddCommentPayload {
   mediaUrl: string;
-  spotLightId: number;
+  spotLightPostId: number;
   text: string;
 }
 
@@ -302,13 +302,13 @@ export const useAddPlayerSpotlightComment = () => {
   };
 };
 
-export const useGetPlayerSpotlightComments = () => {
-  const [data, setData] = useState<any[]>([]);
+export const useGetPlayerSpotlightComments = (postId: number) => {
+  const [data, setData] = useState<iPostComment[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [success, setSuccess] = useState<boolean>(false);
   const { requestApi } = useAxios();
 
-  const get = async (postId: number) => {
+  const get = async () => {
     if (loading) return;
     setLoading(true);
     const { data, status } = await requestApi(
@@ -317,7 +317,7 @@ export const useGetPlayerSpotlightComments = () => {
     );
     setLoading(false);
     setSuccess(status);
-    setData(status ? data : []);
+    setData(status ? (data.data.obj as iPostComment[]) : []);
   };
 
   return {
