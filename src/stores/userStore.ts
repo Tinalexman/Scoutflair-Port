@@ -64,3 +64,36 @@ export const usePlayerDataStore = create<tPlayer>((set) => ({
   xLink: "",
   ttLink: "",
 }));
+
+export function clearUserData() {
+  useCurrentUserStore.setState({
+    type: "",
+    role: "",
+    name: "",
+    image: "",
+  });
+
+  usePlayerDataStore.setState({
+    phone: "",
+    role: "",
+    jersey: 0,
+    age: 0,
+    bio: "",
+    dob: new Date(),
+    nationality: "",
+    foot: "",
+    height: 0,
+    weight: 0,
+    status: "",
+    email: "",
+
+    recommendedName: "",
+    recommendedEmail: "",
+    recommendedPhone: "",
+
+    fbLink: "",
+    igLink: "",
+    xLink: "",
+    ttLink: "",
+  });
+}

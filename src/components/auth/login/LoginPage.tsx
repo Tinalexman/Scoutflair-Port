@@ -38,7 +38,6 @@ const LoginPage: React.FC = () => {
         "POST",
         values
       );
-      console.log(response);
 
       if (response.status) {
         const token = response.data.jwtToken;
@@ -111,7 +110,7 @@ const LoginPage: React.FC = () => {
                     type="text"
                     placeholder="Email address or Username"
                     name="username"
-                    className="w-full h-10 p-4 rounded-lg border border-black/80 text-black"
+                    className="w-full h-10 p-4 rounded-lg border border-black/80 text-black bg-white"
                     // value={username}
                     // onChange={(e: any) => setUsername(e.target.value)}
                     required
@@ -127,7 +126,7 @@ const LoginPage: React.FC = () => {
                     type="password"
                     placeholder="Password"
                     name="password"
-                    className="w-full h-10 p-4 rounded-lg border border-black/80 text-black"
+                    className="w-full h-10 p-4 rounded-lg border border-black/80 text-black bg-white"
                     // value={password}
                     // onChange={(e: any) => setPassword(e.target.value)}
                     required

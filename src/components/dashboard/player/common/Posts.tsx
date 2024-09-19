@@ -54,7 +54,7 @@ const Posts: FC<{ currentPlayer?: boolean }> = ({ currentPlayer }) => {
           key={i}
         >
           <div className="flex gap-4 h-9">
-            {!post.userProfilePicUrl ? (
+            {post.userProfilePicUrl ? (
               <Image
                 src={post.userProfilePicUrl}
                 alt="poster image"

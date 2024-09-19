@@ -1,10 +1,11 @@
 import React from "react";
 import Logo from "./Logo";
 import Image, { StaticImageData } from "next/image";
-
+import { useRouter } from "next/navigation";
 import Link from "next/link";
-
+import { useToken } from "@/src/providers/AuthProvider";
 import SignOutIcon from "@/public/icons/Sign Out Icon.svg";
+import { clearUserData } from "@/src/stores/userStore";
 
 export interface iNavItem {
   name: string;
@@ -16,6 +17,9 @@ const SideBar: React.FC<{ items: iNavItem[]; active: number }> = ({
   items,
   active,
 }) => {
+  const { removeToken } = useToken();
+  const router = useRouter();
+
   return (
     <div className="w-[20%] h-[100vh] flex flex-col gap-12 bg-primary-2 pl-10 py-5">
       <Logo />
@@ -26,7 +30,11 @@ const SideBar: React.FC<{ items: iNavItem[]; active: number }> = ({
 
         <div
           className={`nav-item hover:scale-105 scale-100 transition-transform ease-out duration-200 text-white h-12 leading-5 px-4 flex gap-2 items-center cursor-pointer mt-20`}
-          onClick={() => {}}
+          onClick={() => {
+            removeToken();
+            clearUserData();
+            router.replace("/auth/login");
+          }}
         >
           <Image
             src={SignOutIcon}
