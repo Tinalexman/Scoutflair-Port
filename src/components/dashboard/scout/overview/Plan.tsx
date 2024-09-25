@@ -42,12 +42,10 @@ const Plan = () => {
   const [opened, { open, close }] = useDisclosure(false);
 
   const names = useCurrentUserStore((state) => state.name).split(" ");
+  const image = useCurrentUserStore((state) => state.image);
 
   const firstName = names[0];
   const lastName = names[1];
-
-  const image =
-    "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.freepik.com%2Ffree-photos-vectors%2Fman&psig=AOvVaw2Jei2ZqKLfVA1qzm5RCXz5&ust=1725966780899000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCMj-hrrdtYgDFQAAAAAdAAAAABAE";
 
   const players: iPlayer[] = Array(4).fill({
     firstName: "Abubakar",

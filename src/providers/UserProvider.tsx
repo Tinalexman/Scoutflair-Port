@@ -2,11 +2,15 @@
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 
-import { useCurrentUserStore, usePlayerDataStore } from "../stores/userStore";
-import Scout from "@/public/dashboard/scout/ellipse-2386.png";
-import Player from "@/public/dashboard/player/player portrait.png";
+import {
+  useCurrentUserStore,
+  usePlayerDataStore,
+  useScoutDataStore,
+} from "../stores/userStore";
 
 import { useGetPlayer } from "@/src/hooks/player";
+import { useGetScout } from "@/src/hooks/scout";
+
 import { getYearDifference } from "../functions/dateFunctions";
 
 export default function AuthProvider({
@@ -15,84 +19,101 @@ export default function AuthProvider({
   children: React.ReactNode;
 }) {
   const pathName = usePathname();
-  const { data, get, success } = useGetPlayer();
+  const {
+    data: playerResponse,
+    get: getPlayer,
+    success: getPlayerSuccess,
+  } = useGetPlayer();
+
+  const {
+    data: scoutResponse,
+    get: getScout,
+    success: getScoutSuccess,
+  } = useGetScout();
 
   useEffect(() => {
-    get();
-    determineUser();
+    const type = determineUser(); // 0 for player, 1 for scout
+    if (type === 0) {
+      getPlayer();
+    } else if (type === 1) {
+      getScout();
+    }
   }, []);
 
+  const determineUser = () => {
+    const current = pathName.split("/")[2];
+
+    if (current === "player") {
+      return 0;
+    } else if (current === "scout") {
+      return 1;
+    } else if (current === "coach") {
+    }
+    return -1;
+  };
+
   useEffect(() => {
-    if (success) {
-      const date: string = data?.dob!;
+    if (getPlayerSuccess) {
+      const date: string = playerResponse?.dob!;
       useCurrentUserStore.setState({
         role: "PLAYER",
-        name: data?.fullName,
-        image: data?.imageUrl,
+        name: playerResponse?.fullName,
+        image: playerResponse?.imageUrl,
       });
 
       const dob = new Date(date);
       const years = getYearDifference(new Date(), dob);
 
       usePlayerDataStore.setState({
-        role: data?.position,
+        role: playerResponse?.position,
         age: years,
-        bio: data?.biography,
+        bio: playerResponse?.biography,
         dob: dob,
-        email: data?.email,
-        nationality: data?.nationality,
-        foot: data?.preferredFoot,
-        height: Number(data?.height),
-        weight: Number(data?.weight),
+        email: playerResponse?.email,
+        nationality: playerResponse?.nationality,
+        foot: playerResponse?.preferredFoot,
+        height: Number(playerResponse?.height),
+        weight: Number(playerResponse?.weight),
         recommendedName: "",
         recommendedEmail: "",
         recommendedPhone: "",
-        jersey: Number(data?.jerseyNumber),
+        jersey: Number(playerResponse?.jerseyNumber),
         status: "",
-        fbLink: data?.facebookUrl ?? "",
-        igLink: data?.igUrl ?? "",
-        xLink: data?.xurl ?? "",
-        ttLink: data?.ticTokUrl ?? "",
+        fbLink: playerResponse?.facebookUrl ?? "",
+        igLink: playerResponse?.igUrl ?? "",
+        xLink: playerResponse?.xurl ?? "",
+        ttLink: playerResponse?.ticTokUrl ?? "",
       });
     }
-  }, [data, success]);
+  }, [playerResponse, getPlayerSuccess]);
 
-  const determineUser = () => {
-    const current = pathName.split("/")[2];
-
-    if (current === "player") {
-      useCurrentUserStore.setState({
-        role: "PLAYER",
-        name: "",
-      });
-
-      usePlayerDataStore.setState({
-        role: "",
-        age: 0,
-        bio: "",
-        dob: new Date(),
-        nationality: "",
-        foot: "",
-        height: 0,
-        weight: 0,
-        recommendedName: "",
-        recommendedEmail: "",
-        recommendedPhone: "",
-        jersey: 0,
-        status: "",
-        fbLink: "",
-        igLink: "",
-        xLink: "",
-        ttLink: "",
-      });
-    } else if (current === "scout") {
+  useEffect(() => {
+    if (getScoutSuccess) {
       useCurrentUserStore.setState({
         role: "SCOUT",
-        name: "Josh Fayomi",
+        name: scoutResponse?.fullName,
+        image: scoutResponse?.imageUrl,
       });
-    } else if (current === "coach") {
+
+      useScoutDataStore.setState({
+        quote: scoutResponse?.quote,
+        career: scoutResponse?.career,
+        coachingEducation: scoutResponse?.coachingEducation,
+        coachingStyle: scoutResponse?.coachingStyle,
+        currentTeam: scoutResponse?.currentTeam,
+        email: scoutResponse?.email,
+        placeOfBirth: scoutResponse?.placeOfBirth,
+        phone: scoutResponse?.phone,
+        nin: scoutResponse?.nin,
+        address: scoutResponse?.address,
+        nationality: scoutResponse?.nationality,
+        matchNotification: scoutResponse?.matchNotification,
+        promotion: scoutResponse?.promotion,
+        playerAbsence: scoutResponse?.playerAbsence,
+        emailNotifications: scoutResponse?.emailNotifications,
+      });
     }
-  };
+  }, [scoutResponse, getScoutSuccess]);
 
   return <>{children}</>;
 }

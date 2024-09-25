@@ -7,6 +7,7 @@ import { IoSearchOutline, IoChevronDownCircleOutline } from "react-icons/io5";
 import Image from "next/image";
 
 import { useCurrentUserStore } from "@/src/stores/userStore";
+import ProfileImageOrTextAvatar from "./ProfileImageOrTextAvatar";
 
 const TopBar: React.FC = () => {
   const role = useCurrentUserStore((state) => state.role);
@@ -27,19 +28,12 @@ const TopBar: React.FC = () => {
           <IoMdNotificationsOutline className="text-2xl text-black" />
         </div>
         <div className="flex gap-3 items-center w-fit">
-          {image ? (
-            <Image
-              src={image}
-              alt="user image"
-              className="rounded-full size-11 object-cover"
-              width={44}
-              height={44}
-            />
-          ) : (
-            <div className="rounded-full size-11 text-white text-16-19 font-bold bg-primary-2 grid place-content-center">
-              {names.substring(0, 1)}
-            </div>
-          )}
+          <ProfileImageOrTextAvatar
+            image={image}
+            name={names}
+            radius="rounded-full"
+            size="size-11"
+          />
 
           <div className="flex flex-col gap-1">
             <h3 className="text-dark font-lato font-bold text-14-16">

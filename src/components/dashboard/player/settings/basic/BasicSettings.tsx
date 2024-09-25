@@ -20,14 +20,12 @@ const BasicSettings = () => {
   const basicValid = usePlayerBasicSettingsHook((state) => state.basic);
 
   const verify = () => {
-    console.log("Invoked in verify", shouldSubmit);
     if (shouldSubmit) {
       if (!basicValid) {
         usePlayerBasicSettingsHook.getState().clear();
         return;
       }
 
-      console.log("About to assemble");
       assemble();
     }
   };
@@ -48,7 +46,6 @@ const BasicSettings = () => {
   }, [shouldSubmit]);
 
   useEffect(() => {
-    console.log("In clearing")
     usePlayerBasicSettingsHook.getState().clear();
   }, [success]);
 
@@ -62,8 +59,9 @@ const BasicSettings = () => {
       </div>
       <div className="flex flex-col w-full mt-10 gap-5">
         <Basic
-          onValidate={(val: iEditProfile) => {
+          onSubmit={(val: iEditProfile) => {
             setEditData(val);
+            console.log("Called from root");
           }}
         />
         <Notifications />

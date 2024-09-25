@@ -34,6 +34,24 @@ export type tPlayer = {
   ttLink: string;
 };
 
+export type tScout = {
+  quote: string;
+  career: any;
+  coachingEducation: string;
+  coachingStyle: string;
+  currentTeam: string;
+  email: string;
+  placeOfBirth: string;
+  phone: string;
+  nin: string;
+  address: string;
+  nationality: string;
+  matchNotification: boolean;
+  promotion: boolean;
+  playerAbsence: boolean;
+  emailNotifications: boolean;
+};
+
 export const useCurrentUserStore = create<tUser>((set) => ({
   type: "",
   role: "",
@@ -63,6 +81,24 @@ export const usePlayerDataStore = create<tPlayer>((set) => ({
   igLink: "",
   xLink: "",
   ttLink: "",
+}));
+
+export const useScoutDataStore = create<tScout>((set) => ({
+  quote: "",
+  career: null,
+  coachingEducation: "",
+  coachingStyle: "",
+  currentTeam: "",
+  email: "",
+  placeOfBirth: "",
+  phone: "",
+  nin: "",
+  address: "",
+  nationality: "",
+  matchNotification: false,
+  promotion: false,
+  playerAbsence: false,
+  emailNotifications: false,
 }));
 
 export function clearUserData() {
@@ -95,5 +131,23 @@ export function clearUserData() {
     igLink: "",
     xLink: "",
     ttLink: "",
+  });
+
+  useScoutDataStore.setState({
+    quote: "",
+    career: null,
+    coachingEducation: "",
+    coachingStyle: "",
+    currentTeam: "",
+    email: "",
+    placeOfBirth: "",
+    phone: "",
+    nin: "",
+    address: "",
+    nationality: "",
+    matchNotification: false,
+    promotion: false,
+    playerAbsence: false,
+    emailNotifications: false,
   });
 }

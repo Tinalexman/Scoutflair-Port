@@ -13,6 +13,7 @@ import Image from "next/image";
 import { useUploadSpotlightImage } from "@/src/hooks/common";
 import Swal from "sweetalert2";
 import { useCurrentUserStore } from "@/src/stores/userStore";
+import ProfileImageOrTextAvatar from "@/src/components/reusable/ProfileImageOrTextAvatar";
 
 const CreateNewPost = () => {
   const [post, setPost] = useState<string>("");
@@ -60,19 +61,12 @@ const CreateNewPost = () => {
   return (
     <div className="w-full h-fit gap-5 bg-white rounded-xl shadow-custom flex flex-col px-6 py-4">
       <div className="w-full flex items-center justify-between">
-        {userImage ? (
-          <Image
-            src={userImage}
-            alt="poster image"
-            className="size-9 rounded"
-            width={36}
-            height={36}
-          />
-        ) : (
-          <div className="rounded size-9 text-white text-16-19 font-bold bg-primary-2 grid place-content-center">
-            {username.substring(0, 1)}
-          </div>
-        )}
+        <ProfileImageOrTextAvatar
+          image={userImage}
+          name={username}
+          radius="rounded"
+          size="size-9"
+        />
         <div className="relative w-[calc(100%-8rem)]">
           <input
             className="h-8 rounded w-full pr-11 pl-4 bg-[#F5F6FA] text-14-16  placeholder:text-placeholder font-lato text-dark"

@@ -17,6 +17,7 @@ export const Urls = {
   PLAYER_SETTINGS: "/dashboard/player/settings",
   PLAYER_GALLERY: "/dashboard/player/gallery",
   PLAYER_PROFILE: "/dashboard/player/profile",
+  SCOUT_OVERVIEW: "/dashboard/scout/overview",
 };
 
 export const positions = [

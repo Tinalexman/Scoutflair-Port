@@ -16,6 +16,7 @@ import { Loader } from "@mantine/core";
 import { IoMdClose } from "react-icons/io";
 
 import CommentContainer from "./CommentContainer";
+import ProfileImageOrTextAvatar from "@/src/components/reusable/ProfileImageOrTextAvatar";
 
 const PostContainer: FC<{
   post: iPlayerSpotlightResponse;
@@ -70,19 +71,12 @@ const PostContainer: FC<{
   return (
     <div className="w-full shadow-custom rounded-[1rem] py-4 px-5 gap-4 bg-white flex flex-col">
       <div className="flex gap-4 h-9">
-        {post.userProfilePicUrl ? (
-          <Image
-            src={post.userProfilePicUrl}
-            alt="poster image"
-            className="size-9 rounded"
-            width={36}
-            height={36}
-          />
-        ) : (
-          <div className="rounded size-9 text-white text-16-19 font-bold bg-primary-2 grid place-content-center">
-            {post.userFullName.substring(0, 1)}
-          </div>
-        )}
+        <ProfileImageOrTextAvatar
+          image={post.userProfilePicUrl}
+          name={post.userFullName}
+          radius="rounded"
+          size="size-9"
+        />
 
         <div className="flex flex-col">
           <h2 className="text-dark text-16-19 font-bold">

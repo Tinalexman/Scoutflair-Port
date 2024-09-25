@@ -69,7 +69,11 @@ const Content: React.FC = () => {
         if (redirect === "true") {
           router.back();
         } else {
-          router.push(Urls.PLAYER_SPOTLIGHT);
+          if (response.data.userType === "PLAYER") {
+            router.push(Urls.PLAYER_SPOTLIGHT);
+          } else if (response.data.userType === "SCOUT") {
+            router.push(Urls.SCOUT_OVERVIEW);
+          }
         }
 
         resetForm();

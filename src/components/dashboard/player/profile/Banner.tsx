@@ -10,6 +10,7 @@ import {
   useCurrentUserStore,
   usePlayerDataStore,
 } from "@/src/stores/userStore";
+import ProfileImageOrTextAvatar from "@/src/components/reusable/ProfileImageOrTextAvatar";
 
 const Banner = () => {
   const image = useCurrentUserStore((state) => state.image);
@@ -31,20 +32,15 @@ const Banner = () => {
         height={120}
       />
       <div className="w-full flex flex-col relative pt-12 pb-6">
-        {image ? (
-          <Image
-            src={image}
-            alt="player-picture"
-            className="size-28 rounded-full border-4 border-primary-4 object-cover absolute -top-6 left-4 -translate-y-1/2"
+        <div className="absolute -top-6 left-4 -translate-y-1/2">
+          <ProfileImageOrTextAvatar
+            image={image}
+            name={name}
+            radius="rounded-full"
+            size="size-28"
+            text="text-48-57"
           />
-        ) : (
-          <div className="size-28 rounded-full bg-primary-2 flex items-center justify-center absolute -top-6 left-4 -translate-y-1/2">
-            <h2 className="text-48-57 font-bold text-white">
-              {name.substring(0, 1)}
-            </h2>
-          </div>
-        )}
-
+        </div>
         <div className="w-full flex flex-col gap-2 pl-4">
           <h2 className="text-20-24 font-bold text-dark">{name}</h2>
           <div className="text-placeholder text-14-16 font-medium">

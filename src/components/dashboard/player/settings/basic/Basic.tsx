@@ -8,6 +8,7 @@ import {
   usePlayerDataStore,
 } from "@/src/stores/userStore";
 import { usePlayerBasicSettingsHook } from "@/src/stores/settings";
+import ProfileImageOrTextAvatar from "@/src/components/reusable/ProfileImageOrTextAvatar";
 
 export interface iEditProfile {
   firstName: string;
@@ -17,9 +18,7 @@ export interface iEditProfile {
   image?: File | string;
 }
 
-const Basic: FC<{ onValidate: (val: iEditProfile) => void }> = ({
-  onValidate,
-}) => {
+const Basic: FC<{ onSubmit: (val: iEditProfile) => void }> = ({ onSubmit }) => {
   const name = useCurrentUserStore((state) => state.name);
   const email = usePlayerDataStore((state) => state.email);
   const phone = usePlayerDataStore((state) => state.phone);
@@ -66,14 +65,12 @@ const Basic: FC<{ onValidate: (val: iEditProfile) => void }> = ({
         });
       }
 
-      console.log("Invoked in validation", shouldSubmit);
       return errors;
     },
 
     onSubmit: (values) => {
-      console.log("Invoked in form", shouldSubmit);
       usePlayerBasicSettingsHook.setState({ basic: true });
-      onValidate(values);
+      onSubmit(values);
     },
   });
 
@@ -88,10 +85,11 @@ const Basic: FC<{ onValidate: (val: iEditProfile) => void }> = ({
       setFieldValue("email", email || "");
       setFieldValue("phone", phone || "");
     }
-  }, [name, image, phone, email, setFieldValue]);
+  }, [name, image, phone, email]);
 
   useEffect(() => {
     if (shouldSubmit) {
+      console.log("In effect");
       submitForm();
     }
   }, [shouldSubmit]);
@@ -160,18 +158,13 @@ const Basic: FC<{ onValidate: (val: iEditProfile) => void }> = ({
                 width={44}
                 height={44}
               />
-            ) : values.image ? (
-              <Image
-                src={values.image}
-                alt="user image"
-                className="rounded-full size-11 object-cover"
-                width={44}
-                height={44}
-              />
             ) : (
-              <div className="rounded-full size-11 text-white text-16-19 font-bold bg-primary-2 grid place-content-center">
-                {name.substring(0, 1)}
-              </div>
+              <ProfileImageOrTextAvatar
+                image={image}
+                name={name}
+                radius="rounded-full"
+                size="size-11"
+              />
             )}
             <div
               onClick={() => fileRef.current?.click()}
