@@ -15,6 +15,8 @@ import { FaStar } from "react-icons/fa";
 import { useCurrentUserStore } from "@/src/stores/userStore";
 import AddTask from "./AddTask";
 import ProfileImageOrTextAvatar from "@/src/components/reusable/ProfileImageOrTextAvatar";
+import { useGetScoutsPlayers } from "@/src/hooks/scout";
+import { Loader } from "@mantine/core";
 
 interface iPlayer {
   firstName: string;
@@ -45,20 +47,7 @@ const Plan = () => {
   const names = useCurrentUserStore((state) => state.name);
   const image = useCurrentUserStore((state) => state.image);
 
-  const players: iPlayer[] = Array(4).fill({
-    firstName: "Abubakar",
-    lastName: "Kabir",
-    team: "Scoutflair FC",
-    country: Nigeria,
-    image: Pic,
-    rating: 5,
-    role: "MidFielder",
-    height: 178,
-    weight: 69,
-    games: 50,
-    assists: 15,
-    goals: 5,
-  });
+  const { data: players, loading } = useGetScoutsPlayers();
 
   return (
     <>
@@ -86,89 +75,96 @@ const Plan = () => {
           />
           <h3 className="text-dark font-lato text-12-14">{names}</h3>
         </div>
-        <div className="mt-3 w-full h-[13rem] grid grid-cols-4 gap-6 ">
-          {players.map((player, index) => (
-            <div
-              key={index}
-              className="bg-[#FFFAFA] border-[0.5px] rounded-[1rem] w-full h-full gap-3 flex flex-col items-center p-3"
-            >
-              <div className="w-full flex justify-between items-center">
-                <h3 className="text-12-14 font-medium text-dark">
-                  {player.team}
-                </h3>
-                <Image
+        {!loading && (
+          <div className="mt-3 w-full h-[13rem] grid grid-cols-4 gap-6">
+            {players.slice(0, 4).map((player, index) => (
+              <div
+                key={index}
+                className="bg-[#FFFAFA] border-[0.5px] rounded-[1rem] w-full h-full gap-3 flex flex-col items-center p-3"
+              >
+                <div className="w-full flex justify-between items-center">
+                  <h3 className="text-12-14 font-medium text-dark">
+                    {player.currentTeam}
+                  </h3>
+                  {/* <Image
                   src={player.country}
                   alt="country"
                   width={16}
                   height={16}
                   className="size-4 object-cover rounded-full"
-                />
-              </div>
-              <div className="w-full h-full items-center flex flex-col">
-                <div className="flex flex-col items-center gap-1 w-full">
-                  <Image
-                    src={player.image}
-                    alt="player-image"
-                    width={60}
-                    height={60}
-                    className="size-14 object-cover rounded-full"
-                  />
-                  <div className="flex flex-col gap-0.5 w-full items-center">
-                    <div className="flex w-fit gap-1">
-                      {Array(5)
-                        .fill(0)
-                        .map((num, index) => (
-                          <FaStar
-                            key={index}
-                            size={10}
-                            className={`${
-                              index + 1 <= player.rating
-                                ? "text-[#FFD700]"
-                                : "text-border-gray"
-                            }`}
-                          />
-                        ))}
+                /> */}
+                </div>
+                <div className="w-full h-full items-center flex flex-col">
+                  <div className="flex flex-col items-center gap-1 w-full">
+                    <ProfileImageOrTextAvatar
+                      image={""}
+                      name={player.fullName}
+                      radius={"rounded-full"}
+                      size={"size-14"}
+                    />
+
+                    <div className="flex flex-col gap-0.5 w-full items-center">
+                      <div className="flex w-fit gap-1">
+                        {Array(5)
+                          .fill(0)
+                          .map((num, index) => (
+                            <FaStar
+                              key={index}
+                              size={10}
+                              className={`${
+                                index + 1 <= 4
+                                  ? "text-[#FFD700]"
+                                  : "text-border-gray"
+                              }`}
+                            />
+                          ))}
+                      </div>
+                      <h2 className="text-semibold text-dark text-10-12">
+                        {player.fullName}
+                      </h2>
                     </div>
-                    <h2 className="text-semibold text-dark text-10-12">
-                      {player.firstName} {player.lastName}
-                    </h2>
+                  </div>
+                  <hr className="bg-placeholder my-1.5 w-full" />
+                  <div className="w-full flex flex-col items-center gap-2">
+                    <div className="w-full flex flex-col gap-1 items-center">
+                      <h3 className="text-8-9 font-bold text-primary-2">
+                        {player.position}
+                      </h3>
+                      <div className="w-fit flex gap-3 items-center text-6-7 font-medium text-dark">
+                        <p>Height {player.height}</p>
+                        <p>Weight {player.weight}</p>
+                      </div>
+                    </div>
+                    <div className="flex flex-col w-full items-center gap-1.5">
+                      <h2 className="text-8-9 font-medium text-dark">
+                        Academy Stats
+                      </h2>
+                      <div className="flex w-full justify-between items-center text-6-7 font-medium text-dark">
+                        <div className="flex flex-col items-center">
+                          <p>{player.appearances}</p>
+                          <p>Games</p>
+                        </div>
+                        <div className="flex flex-col items-center">
+                          <p>{player.assists}</p>
+                          <p>Assists</p>
+                        </div>
+                        <div className="flex flex-col items-center">
+                          <p>{player.goals}</p>
+                          <p>Goals</p>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
-                <hr className="bg-placeholder my-1.5 w-full" />
-                <div className="w-full flex flex-col items-center gap-2">
-                  <div className="w-full flex flex-col gap-1 items-center">
-                    <h3 className="text-8-9 font-bold text-primary-2">
-                      {player.role}
-                    </h3>
-                    <div className="w-fit flex gap-3 items-center text-6-7 font-medium text-dark">
-                      <p>Height {player.height}</p>
-                      <p>Weight {player.weight}</p>
-                    </div>
-                  </div>
-                  <div className="flex flex-col w-full items-center gap-1.5">
-                    <h2 className="text-8-9 font-medium text-dark">
-                      Academy Stats
-                    </h2>
-                    <div className="flex w-full justify-between items-center text-6-7 font-medium text-dark">
-                      <div className="flex flex-col items-center">
-                        <p>{player.games}</p>
-                        <p>Games</p>
-                      </div>
-                      <div className="flex flex-col items-center">
-                        <p>{player.assists}</p>
-                        <p>Assists</p>
-                      </div>
-                      <div className="flex flex-col items-center">
-                        <p>{player.goals}</p>
-                        <p>Goals</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
+        {loading && (
+          <div className="w-full h-[13rem] grid place-content-center">
+            <Loader color="primary.6" />{" "}
+          </div>
+        )}
       </div>
       {opened && <AddTask close={close} />}
     </>

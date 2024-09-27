@@ -80,6 +80,24 @@ export interface iCreateScoutReportPayload {
   weakness: string;
 }
 
+export interface iScoutPlayersResponse {
+  age: number;
+  appearances: number;
+  assists: number;
+  currentTeam: string;
+  dob: string;
+  email: string;
+  fullName: string;
+  goals: number;
+  height: string;
+  jerseyNumber: string;
+  nationality: string;
+  playerId: number;
+  position: string;
+  preferredFoot: string;
+  weight: string;
+}
+
 export const useGetScout = () => {
   const [data, setData] = useState<iScoutResponse | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
@@ -107,7 +125,7 @@ export const useGetScout = () => {
 };
 
 export const useGetScoutsPlayers = () => {
-  const [data, setData] = useState<any[]>([]);
+  const [data, setData] = useState<iScoutPlayersResponse[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [success, setSuccess] = useState<boolean>(false);
   const { requestApi } = useAxios();
