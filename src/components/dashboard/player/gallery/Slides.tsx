@@ -6,6 +6,7 @@ import Image, { StaticImageData } from "next/image";
 
 import Pic from "@/public/images/frame-36303.png";
 import { convertDateWithDayName } from "@/src/functions/dateFunctions";
+import { useGetUserGallery } from "@/src/hooks/player";
 
 interface iSlide {
   images: (StaticImageData | string)[];
@@ -19,6 +20,8 @@ const Slides = () => {
       date: new Date(),
     })
   );
+
+  const { loading, data, success } = useGetUserGallery();
 
   return (
     <div className="w-full shadow-custom rounded-[1rem] py-4 px-5 gap-6 bg-white flex flex-col">

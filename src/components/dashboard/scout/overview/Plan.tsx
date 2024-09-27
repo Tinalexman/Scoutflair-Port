@@ -60,14 +60,6 @@ const Plan = () => {
     goals: 5,
   });
 
-  const topPlayers: iTopPlayer[] = Array(3).fill({
-    firstName: "Abubakar",
-    lastName: "Kabir",
-    image: Pic,
-    country: Nigeria,
-    role: "MidFielder",
-  });
-
   return (
     <>
       <div className="w-full shadow-custom rounded-[1rem] py-4 px-5 bg-white flex flex-col ">
@@ -173,37 +165,6 @@ const Plan = () => {
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-          ))}
-        </div>
-        <hr className="bg-placeholder my-3.5" />
-        <h2 className="text-dark font-bold text-16-19">Top 3 Players</h2>
-        <div className="mt-2 w-full grid grid-cols-3 gap-6">
-          {topPlayers.map((tp, i) => (
-            <div
-              key={i}
-              className="bg-white border-[0.5px] shadow-custom rounded-[1rem] w-full h-[3.5rem] gap-3 flex justify-between items-center p-2"
-            >
-              <Image
-                src={tp.image}
-                alt="player-image"
-                width={40}
-                height={40}
-                className="size-10 object-cover rounded-full"
-              />
-              <Image
-                src={tp.country}
-                alt="country"
-                width={16}
-                height={16}
-                className="size-4 object-cover rounded-full"
-              />
-              <div className="flex flex-col items-end">
-                <h2 className="text-bold text-dark text-12-14">
-                  {tp.firstName} {tp.lastName}
-                </h2>
-                <p className="text-8-9 font-bold text-primary-2">{tp.role}</p>
               </div>
             </div>
           ))}

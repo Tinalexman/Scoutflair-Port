@@ -188,7 +188,7 @@ const Content: React.FC = () => {
                     disabled={loading}
                     className="w-full h-10 flex justify-center items-center gap-2.5 px-6 py-2.5 rounded-lg bg-[#f2a725] text-2xl font-semibold text-black shadow-lg"
                   >
-                    {loading ? <Loader color="blank.6" size={26} /> : "Sign In"}
+                    {loading ? <Loader color="black.6" size={26} /> : "Sign In"}
                   </button>
                   <p className="opacity-80 text-base text-left">
                     <span className="text-black">

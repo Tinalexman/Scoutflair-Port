@@ -4,18 +4,16 @@ import React, { useState } from "react";
 import Image from "next/image";
 
 import { useCurrentUserStore } from "@/src/stores/userStore";
+import ProfileImageOrTextAvatar from "@/src/components/reusable/ProfileImageOrTextAvatar";
 
 const Basic = () => {
-  const names = useCurrentUserStore((state) => state.name).split(" ");
-
-  const [firstName, setFirstName] = useState<string>(names[0]);
-  const [lastName, setLastName] = useState<string>(names[1]);
+  const names = useCurrentUserStore((state) => state.name);
+  const image = useCurrentUserStore((state) => state.image);
+  // const [firstName, setFirstName] = useState<string>(names[0]);
+  // const [lastName, setLastName] = useState<string>(names[1]);
 
   const [email, setEmail] = useState<string>("");
   const [phone, setPhone] = useState<string>("");
-
-  const image =
-    "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.freepik.com%2Ffree-photos-vectors%2Fman&psig=AOvVaw2Jei2ZqKLfVA1qzm5RCXz5&ust=1725966780899000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCMj-hrrdtYgDFQAAAAAdAAAAABAE";
 
   return (
     <div className="flex flex-col gap-3 w-full ">
@@ -31,15 +29,15 @@ const Basic = () => {
         <input
           type="text"
           placeholder="Enter First Name"
-          value={firstName}
-          onChange={(e) => setFirstName(e.target.value)}
+          // value={firstName}
+          // onChange={(e) => setFirstName(e.target.value)}
           className="w-full rounded-lg border bg-white placeholder:text-placeholder text-dark text-14-16 font-semibold placeholder:text-opacity-[0.88] border-border-gray h-10 pl-4"
         />
         <input
           type="text"
           placeholder="Enter Last Name"
-          value={lastName}
-          onChange={(e) => setLastName(e.target.value)}
+          // value={lastName}
+          // onChange={(e) => setLastName(e.target.value)}
           className="w-full rounded-lg border bg-white placeholder:text-placeholder text-dark text-14-16 font-semibold placeholder:text-opacity-[0.88] border-border-gray h-10 pl-4"
         />
         <div className="h-10 flex items-center">
@@ -63,13 +61,14 @@ const Basic = () => {
           <h2 className="text-14-16 font-semibold text-placeholder">Avatar</h2>
         </div>
         <div className="w-full flex gap-3 items-center">
-          <Image
-            src={image}
-            alt="user image"
-            className="rounded-full size-11 object-cover"
-            width={44}
-            height={44}
+          <ProfileImageOrTextAvatar
+            image={image}
+            name={names}
+            radius="rounded-full"
+            size="size-11"
+            text="text-12-14"
           />
+
           <div className="text-primary-2 border border-primary-2 px-3 py-1 rounded-md text-10-12 cursor-pointer font-bold">
             Upload
           </div>

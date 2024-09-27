@@ -2,7 +2,6 @@
 
 import { useAxios } from "@/src/api/base";
 import { useState, useEffect } from "react";
-import { useUploadImage, useUploadSpotlightImage } from "./common";
 import Swal from "sweetalert2";
 
 export interface iUpdatePlayerPayload {
@@ -119,33 +118,10 @@ export const useGetPlayer = () => {
 export const useUpdatePlayer = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [success, setSuccess] = useState<boolean>(false);
-  const [payload, setPayload] = useState<Partial<iUpdatePlayerPayload> | null>(
-    null
-  );
-  const {
-    data: uploadedImage,
-    upload: uploadImage,
-    loading: uploadProgress,
-    success: uploadSuccess,
-  } = useUploadImage();
 
   const { requestApi } = useAxios();
 
-  const update = async (payload: Partial<iUpdatePlayerPayload>) => {
-    if (loading) return;
-    setLoading(true);
-
-    if (payload.imageUrl && typeof payload.imageUrl !== "string") {
-      setPayload(payload);
-      await uploadImage(payload.imageUrl as File);
-    } else {
-      updatePlayer(payload);
-    }
-  };
-
-  const updatePlayer = async (
-    payloadToBePosted: Partial<iUpdatePlayerPayload>
-  ) => {
+  const update = async (payloadToBePosted: Partial<iUpdatePlayerPayload>) => {
     const { status } = await requestApi(
       "/api/v1/profile/player/editProfile",
       "POST",
@@ -154,28 +130,14 @@ export const useUpdatePlayer = () => {
     setLoading(false);
     setSuccess(status);
 
-    if (!status) {
-      Swal.fire({
-        title: "Oops...",
-        text: `Error updating your profile`,
-        icon: "error",
-      });
-    }
+    Swal.fire({
+      title: status ? "Congratulations" : "Oops...",
+      text: status
+        ? "Your profile has been updated"
+        : `Error updating your profile`,
+      icon: status ? "success" : "error",
+    });
   };
-
-  useEffect(() => {
-    if (uploadSuccess && uploadedImage && payload) {
-      const newPayload: Partial<iUpdatePlayerPayload> = {
-        ...payload,
-        imageUrl: uploadedImage,
-      };
-      setPayload(newPayload);
-      updatePlayer(newPayload);
-    } else {
-      setLoading(false);
-      setSuccess(false);
-    }
-  }, [uploadProgress, uploadSuccess, uploadImage, payload]);
 
   return {
     loading,
@@ -350,6 +312,78 @@ export const useLikeOrUnlikePlayerSpotlightComments = (
 
   return {
     action,
+    loading,
+    success,
+  };
+};
+
+export const useGetUserGallery = () => {
+  const [data, setData] = useState<any[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [success, setSuccess] = useState<boolean>(false);
+  const { requestApi } = useAxios();
+
+  const get = async () => {
+    if (loading) return;
+    setLoading(true);
+    const { data, status } = await requestApi(
+      "/api/v1/gallery/getUserGallery?limit=100&offset=0",
+      "GET"
+    );
+    setLoading(false);
+    setSuccess(status);
+    setData(status ? data.data.obj : []);
+
+    if (!status) {
+      Swal.fire({
+        title: "Oops...",
+        text: `Error getting the latest images`,
+        icon: "error",
+      });
+    }
+  };
+
+  useEffect(() => {
+    get();
+  }, []);
+
+  return {
+    data,
+    loading,
+    success,
+    get,
+  };
+};
+
+export const useGetPlayerNamesList = () => {
+  const [data, setData] = useState<
+    {
+      fullName: string;
+      playerUserId: number;
+    }[]
+  >([]);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [success, setSuccess] = useState<boolean>(false);
+  const { requestApi } = useAxios();
+
+  const get = async () => {
+    if (loading) return;
+    setLoading(true);
+    const { data, status } = await requestApi(
+      "/api/v1/profile/player/namesList",
+      "GET"
+    );
+    setLoading(false);
+    setSuccess(status);
+    setData(status ? data : []);
+  };
+
+  useEffect(() => {
+    get();
+  }, []);
+
+  return {
+    data,
     loading,
     success,
   };

@@ -4,25 +4,8 @@ import { useAxios } from "@/src/api/base";
 import { useState } from "react";
 import Swal from "sweetalert2";
 
-interface iUploadImageResponse {
-  code: string;
-  message: string;
-  data: {
-    obj: {
-      headers: {};
-      body: {
-        success: boolean;
-        message: string;
-      };
-      statusCode: string;
-      statusCodeValue: number;
-    };
-    totalCount: any;
-  };
-}
-
-export const useUploadImage = () => {
-  const [data, setData] = useState<any>(null);
+export const useUploadProfilePicture = () => {
+  const [data, setData] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [success, setSuccess] = useState<boolean>(false);
   const { requestApi } = useAxios();
@@ -30,17 +13,20 @@ export const useUploadImage = () => {
   const upload = async (payload: File) => {
     if (loading) return;
     setLoading(true);
+    let formData = new FormData();
+    formData.append("file", payload);
+
     const { data, status } = await requestApi(
       "/scoutflair/v1/file/picture/upload",
       "POST",
-      payload,
+      formData,
       {
         "Content-Type": "multipart-formdata",
       }
     );
     setLoading(false);
     setSuccess(status);
-    setData(data);
+    setData(data.message);
 
     if (!status) {
       Swal.fire({
@@ -60,7 +46,7 @@ export const useUploadImage = () => {
 };
 
 export const useUploadSpotlightImage = () => {
-  const [data, setData] = useState<iUploadImageResponse | null>(null);
+  const [data, setData] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [success, setSuccess] = useState<boolean>(false);
   const { requestApi } = useAxios();
@@ -81,7 +67,7 @@ export const useUploadSpotlightImage = () => {
     );
     setLoading(false);
     setSuccess(status);
-    setData(data);
+    setData(status ? data.data.obj.body.message : null);
 
     if (!status) {
       Swal.fire({

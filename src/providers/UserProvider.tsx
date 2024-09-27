@@ -69,6 +69,7 @@ export default function AuthProvider({
         age: years,
         bio: playerResponse?.biography,
         dob: dob,
+        phone: playerResponse?.phone,
         email: playerResponse?.email,
         nationality: playerResponse?.nationality,
         foot: playerResponse?.preferredFoot,

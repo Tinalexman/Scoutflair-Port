@@ -20,7 +20,7 @@ const CreateNewPost = () => {
   const { upload, loading, success } = usePostPlayerSpotlight();
   const {
     loading: loadingUploadImage,
-    data,
+    data: uploadedUrl,
     upload: uploadImage,
     success: uploadedImage,
   } = useUploadSpotlightImage();
@@ -45,9 +45,8 @@ const CreateNewPost = () => {
 
   useEffect(() => {
     if (!loadingUploadImage && uploadedImage) {
-      const url = data?.data.obj.body.message;
-      if (url) {
-        upload({ text: post, mediaUrls: [url] });
+      if (uploadedUrl) {
+        upload({ text: post, mediaUrls: [uploadedUrl] });
       } else {
         Swal.fire({
           title: "Oops...",

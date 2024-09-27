@@ -15,7 +15,7 @@ const Overview = () => {
           <Prospects />
         </div>
         <Plan />
-        <Updates />
+        {/* <Updates /> */}
       </div>
       <div className="w-full flex flex-col gap-6">
         <Badges />
