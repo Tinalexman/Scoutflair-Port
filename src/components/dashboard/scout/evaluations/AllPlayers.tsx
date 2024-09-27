@@ -1,23 +1,17 @@
+"use client";
+
 import React from "react";
 
-import Pic from "@/public/dashboard/scout/Rectangle 14.png";
-import Country from "@/public/images/twemoji_flag-nigeria.png";
-
-import PlayerCard, { iPlayer } from "./PlayerCard";
+import PlayerCard from "./PlayerCard";
 import { IoPeopleOutline } from "react-icons/io5";
+import { useGetScoutsPlayers } from "@/src/hooks/scout";
+import { Loader } from "@mantine/core";
+
+import Image from "next/image";
+import Void from "@/public/images/Void.png";
 
 const AllPlayers = () => {
-  const players: iPlayer[] = Array(10).fill({
-    image: Pic,
-    country: Country,
-    firstName: "John",
-    lastName: "Doe",
-    role: "Midfielder",
-    nationality: "Nigerian",
-    jersey: 23,
-    age: 18,
-    id: "id",
-  });
+  const { data, loading } = useGetScoutsPlayers();
 
   return (
     <div className="w-full shadow-custom rounded-[1rem] py-4 px-5 gap-5 bg-white flex flex-col ">
@@ -30,11 +24,33 @@ const AllPlayers = () => {
           Filter
         </div>
       </div>
-      <div className="w-full grid grid-cols-2 gap-6">
-        {players.map((player, i) => (
-          <PlayerCard key={i} player={player} />
-        ))}
-      </div>
+      {loading && (
+        <div className="w-full grid place-content-center h-80">
+          <Loader color="primary.6" />
+        </div>
+      )}
+      {!loading && (
+        <div className="w-full grid grid-cols-2 gap-6">
+          {data.map((player, i) => (
+            <PlayerCard key={i} player={player} />
+          ))}
+        </div>
+      )}
+      {!loading && data.length === 0 && (
+        <div className="w-full h-[30rem] flex flex-col shadow-custom justify-center items-center gap-5 sticky top-6 bg-white rounded-xl">
+          <Image
+            src={Void}
+            alt="no posts"
+            width={100}
+            height={100}
+            className="w-40 h-auto object-cover"
+          />
+
+          <h2 className="text-dark text-16-19 font-medium">
+            There are no players available
+          </h2>
+        </div>
+      )}
     </div>
   );
 };

@@ -52,7 +52,7 @@ const Plan = () => {
           <h3 className="text-dark font-lato text-12-14">{names}</h3>
         </div>
         {!loading && (
-          <div className="mt-3 w-full h-[13rem] grid grid-cols-4 gap-6">
+          <div className="mt-3 mb-4 w-full h-[13rem] grid grid-cols-4 gap-6">
             {players.slice(0, 4).map((player, index) => (
               <div
                 key={index}

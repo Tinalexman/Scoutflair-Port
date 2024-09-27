@@ -1,25 +1,19 @@
+"use client";
+
 import React from "react";
 
-import PlayerCard, { iPlayer } from "./PlayerCard";
+import PlayerCard from "./PlayerCard";
 import { IoSearchOutline } from "react-icons/io5";
 
 import { TbColorFilter } from "react-icons/tb";
+import { useGetPlayers } from "@/src/hooks/scout";
+import { Loader } from "@mantine/core";
 
-import Pic from "@/public/dashboard/scout/ellipse-2374.png";
-import Country from "@/public/images/twemoji_flag-nigeria.png";
+import Image from "next/image";
+import Void from "@/public/images/Void.png";
 
 const Players = () => {
-  const players: iPlayer[] = Array(30).fill({
-    image: Pic,
-    country: Country,
-    firstName: "John",
-    lastName: "Doe",
-    role: "Midfielder",
-    jersey: 23,
-    age: 18,
-    height: 164,
-    weight: 55,
-  });
+  const { data, loading } = useGetPlayers();
 
   return (
     <div className="w-full flex flex-col gap-4 p-6">
@@ -39,11 +33,31 @@ const Players = () => {
           </div>
         </div>
       </div>
+      {loading && (
+        <div className="w-full grid place-content-center h-80">
+          <Loader color="primary.6" />
+        </div>
+      )}
       <div className="w-full grid grid-cols-4 gap-3">
-        {players.map((player, i) => (
+        {data.map((player, i) => (
           <PlayerCard key={i} player={player} />
         ))}
       </div>
+      {!loading && data.length === 0 && (
+        <div className="w-full h-[30rem] flex flex-col shadow-custom justify-center items-center gap-5 sticky top-6 bg-white rounded-xl">
+          <Image
+            src={Void}
+            alt="no posts"
+            width={100}
+            height={100}
+            className="w-40 h-auto object-cover"
+          />
+
+          <h2 className="text-dark text-16-19 font-medium">
+            There are no players available
+          </h2>
+        </div>
+      )}
     </div>
   );
 };

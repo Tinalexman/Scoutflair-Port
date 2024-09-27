@@ -17,7 +17,9 @@ const Evaluations = () => {
       </div>
       <div className="w-full flex flex-col gap-6">
         <Badges />
-        <Feed />
+        <div className="sticky top-6 self-start">
+          <Feed />
+        </div>
       </div>
     </div>
   );

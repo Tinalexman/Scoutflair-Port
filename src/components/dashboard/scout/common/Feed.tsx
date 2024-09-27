@@ -11,13 +11,13 @@ const Feed = () => {
   const { loading, data: activities } = useGetScoutActivityFeed();
 
   return (
-    <div className="w-full h-[60vh] overflow-y-scroll scrollbar-custom shadow-custom rounded-[1rem] py-4 px-5 gap-5 bg-white flex flex-col ">
+    <div className="w-full h-[70vh] rounded-[1rem] py-4 px-5 gap-5 shadow-custom bg-white flex flex-col ">
       <div className="w-full justify-between items-center flex">
         <h2 className="text-dark font-bold text-16-19">Activity Feed</h2>
         <h4 className="text-dark text-10-12">View All</h4>
       </div>
       {!loading && (
-        <div className="w-full flex flex-col gap-4">
+        <div className="w-full flex flex-col gap-4 overflow-y-scroll scrollbar-custom">
           {activities.map((activity, index) => (
             <div key={index} className="flex flex-col gap-2 w-full">
               <div className="flex gap-2 items-center w-full">
