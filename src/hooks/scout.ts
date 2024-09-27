@@ -139,7 +139,7 @@ export const useGetScoutsPlayers = () => {
     );
     setLoading(false);
     setSuccess(status);
-    setData(status ? data : []);
+    setData(status ? data.data.obj : []);
   };
 
   useEffect(() => {
