@@ -2,19 +2,16 @@
 
 import React, { useState } from "react";
 
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 
 import { FaStar } from "react-icons/fa";
 import { RiMedalLine } from "react-icons/ri";
 
-import PlayerOne from "@/public/dashboard/scout/ellipse-2373.png";
-import PlayerTwo from "@/public/dashboard/scout/ellipse-2374.png";
 import { useGetScoutPlayerMetrics } from "@/src/hooks/scout";
 import { Loader } from "@mantine/core";
 
 const Players = () => {
   const { loading, data, success } = useGetScoutPlayerMetrics();
-  const [total, setTotal] = useState<number>(150);
   const [ratings, setRatings] = useState<number>(4);
 
   return (
@@ -32,7 +29,10 @@ const Players = () => {
               <div className="flex w-fit ">
                 {data.imageUrls.map((player, index) =>
                   player ? (
-                    <div className="size-8 rounded-full bg-primary-2" />
+                    <div
+                      key={index}
+                      className="size-8 rounded-full bg-primary-2"
+                    />
                   ) : (
                     <Image
                       src={player}

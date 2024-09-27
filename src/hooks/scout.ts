@@ -98,6 +98,13 @@ export interface iScoutPlayersResponse {
   weight: string;
 }
 
+export interface iPlayerProspect {
+  playerId: number;
+  playerFullName: string;
+  playerImageUrl: string;
+  playerGA: number;
+}
+
 export const useGetScout = () => {
   const [data, setData] = useState<iScoutResponse | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
@@ -241,7 +248,7 @@ export const useGetScoutActivityFeed = () => {
 };
 
 export const useGetScoutPlayerProspects = () => {
-  const [data, setData] = useState<any[]>([]);
+  const [data, setData] = useState<iPlayerProspect[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [success, setSuccess] = useState<boolean>(false);
   const { requestApi } = useAxios();
