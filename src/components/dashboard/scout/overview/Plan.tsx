@@ -14,6 +14,7 @@ import { FaStar } from "react-icons/fa";
 
 import { useCurrentUserStore } from "@/src/stores/userStore";
 import AddTask from "./AddTask";
+import ProfileImageOrTextAvatar from "@/src/components/reusable/ProfileImageOrTextAvatar";
 
 interface iPlayer {
   firstName: string;
@@ -41,11 +42,8 @@ interface iTopPlayer {
 const Plan = () => {
   const [opened, { open, close }] = useDisclosure(false);
 
-  const names = useCurrentUserStore((state) => state.name).split(" ");
+  const names = useCurrentUserStore((state) => state.name);
   const image = useCurrentUserStore((state) => state.image);
-
-  const firstName = names[0];
-  const lastName = names[1];
 
   const players: iPlayer[] = Array(4).fill({
     firstName: "Abubakar",
@@ -87,16 +85,14 @@ const Plan = () => {
         </div>
         <hr className="bg-placeholder my-3" />
         <div className="flex gap-2 items-center">
-          <Image
-            src={image}
-            alt="scout"
-            width={32}
-            height={32}
-            className="size-8 object-cover rounded-full"
+          <ProfileImageOrTextAvatar
+            image={image}
+            name={names}
+            size="size-8"
+            radius="rounded-full"
+            text="text-12-14"
           />
-          <h3 className="text-dark font-lato text-12-14">
-            {firstName} {lastName}
-          </h3>
+          <h3 className="text-dark font-lato text-12-14">{names}</h3>
         </div>
         <div className="mt-3 w-full h-[13rem] grid grid-cols-4 gap-6 ">
           {players.map((player, index) => (

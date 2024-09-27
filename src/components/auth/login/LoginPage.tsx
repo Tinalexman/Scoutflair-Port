@@ -132,7 +132,10 @@ const Content: React.FC = () => {
             onSubmit={onSubmit}
           >
             {({ errors, touched }) => (
-              <Form className="flex flex-col justify-start items-start w-full gap-4">
+              <Form
+                className="flex flex-col justify-start items-start w-full gap-4"
+                method="POST"
+              >
                 <div className="w-full">
                   <Field
                     type="text"
