@@ -50,7 +50,7 @@ const Prospects = () => {
                   height={40}
                   className="w-11 h-10 object-cover rounded-full absolute -top-1.5 left-3.75"
                 />
-                <p className="text-10-12 line-clamp-1">
+                <p className="text-10-12 line-clamp-1 text-center">
                   {prospect.playerFullName}
                 </p>
                 <p className="text-8-9">{prospect.playerGA} GA</p>
