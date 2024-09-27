@@ -5,10 +5,9 @@ import React from "react";
 import { useDisclosure } from "@mantine/hooks";
 
 import { HiOutlineClipboardDocumentCheck } from "react-icons/hi2";
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 
 import Nigeria from "@/public/dashboard/scout/twemoji_flag-nigeria.png";
-import Pic from "@/public/dashboard/scout/ellipse-2374.png";
 
 import { FaStar } from "react-icons/fa";
 
@@ -17,29 +16,6 @@ import AddTask from "./AddTask";
 import ProfileImageOrTextAvatar from "@/src/components/reusable/ProfileImageOrTextAvatar";
 import { useGetScoutsPlayers } from "@/src/hooks/scout";
 import { Loader } from "@mantine/core";
-
-interface iPlayer {
-  firstName: string;
-  lastName: string;
-  image: string | StaticImageData;
-  country: string | StaticImageData;
-  role: string;
-  team: string;
-  rating: number;
-  weight: number;
-  height: number;
-  games: number;
-  assists: number;
-  goals: number;
-}
-
-interface iTopPlayer {
-  firstName: string;
-  lastName: string;
-  image: string | StaticImageData;
-  country: string | StaticImageData;
-  role: string;
-}
 
 const Plan = () => {
   const [opened, { open, close }] = useDisclosure(false);
@@ -86,13 +62,13 @@ const Plan = () => {
                   <h3 className="text-12-14 font-medium text-dark">
                     {player.currentTeam}
                   </h3>
-                  {/* <Image
-                  src={player.country}
-                  alt="country"
-                  width={16}
-                  height={16}
-                  className="size-4 object-cover rounded-full"
-                /> */}
+                  <Image
+                    src={Nigeria}
+                    alt="country"
+                    width={16}
+                    height={16}
+                    className="size-4 object-cover rounded-full"
+                  />
                 </div>
                 <div className="w-full h-full items-center flex flex-col">
                   <div className="flex flex-col items-center gap-1 w-full">

@@ -270,7 +270,13 @@ export const useGetScoutPlayerProspects = () => {
 };
 
 export const useGetScoutPlayerMetrics = () => {
-  const [data, setData] = useState<any[]>([]);
+  const [data, setData] = useState<{
+    imageUrls: string[];
+    playerScoutedNumber: number;
+  }>({
+    imageUrls: [],
+    playerScoutedNumber: 0,
+  });
   const [loading, setLoading] = useState<boolean>(false);
   const [success, setSuccess] = useState<boolean>(false);
   const { requestApi } = useAxios();
