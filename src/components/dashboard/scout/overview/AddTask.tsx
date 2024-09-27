@@ -18,12 +18,16 @@ const AddTask: FC<{ close: () => void }> = ({ close }) => {
       <Modal.Content>
         <Modal.Body>
           <div className="w-full bg-white px-8 py-6">
-            {
-              loading && <div className="w-full h-40 grid place-content-center">
-                <Loader color="primary.8"/>
-                 </div>
-            }
-
+            {loading && (
+              <div className="w-full h-40 grid place-content-center">
+                <Loader color="primary.8" />
+              </div>
+            )}
+            {success && !loading && (
+              <div className="w-full flex flex-col gap-4">
+                <h2 className="text-dark font-bold text-16-19">Add New Task</h2>
+              </div>
+            )}
           </div>
         </Modal.Body>
       </Modal.Content>

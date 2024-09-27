@@ -61,7 +61,36 @@ export const useGetScoutsPlayers = () => {
     if (loading) return;
     setLoading(true);
     const { data, status } = await requestApi(
-      "/api/v1/profile/scout/getScoutPlayers",
+      "/api/v1/profile/scout/getPlayers?limit=1000&offset=0",
+      "GET"
+    );
+    setLoading(false);
+    setSuccess(status);
+    setData(status ? data : null);
+  };
+
+  useEffect(() => {
+    get();
+  }, []);
+
+  return {
+    data,
+    loading,
+    success,
+  };
+};
+
+export const useGetScoutActivityFeed = () => {
+  const [data, setData] = useState<any>(null);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [success, setSuccess] = useState<boolean>(false);
+  const { requestApi } = useAxios();
+
+  const get = async () => {
+    if (loading) return;
+    setLoading(true);
+    const { data, status } = await requestApi(
+      "/api/v1/profile/scout/getActivityFeed?limit=1000&offset=0",
       "GET"
     );
     setLoading(false);

@@ -1,8 +1,11 @@
+"use client";
+
 import Image, { StaticImageData } from "next/image";
 import React from "react";
 
 import Pic from "@/public/dashboard/scout/ellipse-2386.png";
 import { convertTime } from "@/src/functions/dateFunctions";
+import { useGetScoutActivityFeed } from "@/src/hooks/scout";
 
 interface iActivity {
   image: StaticImageData | string;
@@ -18,6 +21,8 @@ const Feed = () => {
     title: "John Boyega",
     description: "Submitted a report on Henry Isah",
   });
+
+  const { loading, success, data } = useGetScoutActivityFeed();
 
   return (
     <div className="w-full shadow-custom rounded-[1rem] py-4 px-5 gap-5 bg-white flex flex-col ">
