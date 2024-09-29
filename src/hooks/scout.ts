@@ -2,7 +2,6 @@
 
 import { useAxios } from "@/src/api/base";
 import { useState, useEffect } from "react";
-import Swal from "sweetalert2";
 
 import { iPlayerResponse } from "./player";
 

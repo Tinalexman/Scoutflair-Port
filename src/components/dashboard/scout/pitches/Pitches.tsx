@@ -1,22 +1,17 @@
+"use client";
+
 import React from "react";
 
 import Map from "./MapImage";
-import img from "@/public/dashboard/scout/Stadium.png";
-import { TbColorFilter } from "react-icons/tb";
-
-import PitchCard, { iPitch } from "./PitchCard";
+import Image from "next/image";
+import { MdOutlineFilterAlt } from "react-icons/md";
+import Void from "@/public/images/Void.png";
+import PitchCard from "./PitchCard";
+import { useGetLocalPitches } from "@/src/hooks/pitch";
+import { Loader } from "@mantine/core";
 
 const Pitches = () => {
-  const pitches: iPitch[] = Array(20).fill({
-    img,
-    name: "Js. Fayomi Stadium",
-    location: "Lagos, Nigeria",
-    year: 2023,
-    capacity: 500,
-    facilities: "Good",
-    rating: 4.5,
-    liked: true,
-  });
+  const { data, loading } = useGetLocalPitches();
 
   return (
     <div className="w-full grid grid-cols-2 gap-6 p-6">
@@ -50,17 +45,38 @@ const Pitches = () => {
             </select>
           </div>
           <div className="size-6 mt-3 grid place-content-center bg-primary-2 rounded ">
-            <TbColorFilter className="text-sm text-white cursor-pointer" />
+            <MdOutlineFilterAlt className="text-sm text-white cursor-pointer" />
           </div>
         </div>
         <hr className="w-full bg-[#E0E0E0] my-2" />
-        <div className="flex flex-col w-full px-5 gap-6">
+        <div className="flex flex-col w-full px-5 gap-6 h-full">
           <h2 className="text-16-19 text-dark font-bold">Available Pitches</h2>
-          <div className="w-full grid grid-cols-2 gap-4">
-            {pitches.map((pitch, i) => (
-              <PitchCard key={i} pitch={pitch} />
-            ))}
-          </div>
+          {!loading && data.length > 0 && (
+            <div className="w-full grid grid-cols-2 gap-4">
+              {data.map((pitch, i) => (
+                <PitchCard key={i} pitch={pitch} />
+              ))}
+            </div>
+          )}
+          {loading && (
+            <div className="w-full h-[80vh] grid place-content-center">
+              <Loader color="primary.6" />
+            </div>
+          )}
+          {!loading && data.length === 0 && (
+            <div className="w-full h-full flex flex-col justify-center items-center gap-5 my-16">
+              <Image
+                src={Void}
+                alt="no matches"
+                width={100}
+                height={100}
+                className="w-32 h-auto object-cover"
+              />
+              <h2 className="text-dark text-10-12 font-medium">
+                There are no local pitches available yet
+              </h2>
+            </div>
+          )}
         </div>
       </div>
       <Map />

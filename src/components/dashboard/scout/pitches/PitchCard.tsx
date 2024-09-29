@@ -1,26 +1,16 @@
 import React, { FC } from "react";
 
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 
 import { FaStar } from "react-icons/fa";
 import { TiHeart } from "react-icons/ti";
 import { IoLocationOutline } from "react-icons/io5";
+import { iLocalPitchResponse } from "@/src/hooks/pitch";
 
-export interface iPitch {
-  img: string | StaticImageData;
-  name: string;
-  location: string;
-  liked: boolean;
-  rating: number;
-  year: number;
-  capacity: number;
-  facilities: string;
-}
-
-const PitchCard: FC<{ pitch: iPitch }> = ({ pitch }) => {
+const PitchCard: FC<{ pitch: iLocalPitchResponse }> = ({ pitch }) => {
   return (
     <div className="bg-white shadow-custom rounded-xl flex gap-5 px-3 py-2">
-      <div className="w-10 flex flex-col items-center gap-1">
+      {/* <div className="w-10 flex flex-col items-center gap-1">
         <Image
           src={pitch.img}
           alt="pitch image"
@@ -61,7 +51,7 @@ const PitchCard: FC<{ pitch: iPitch }> = ({ pitch }) => {
             <p className="text-6-7">{pitch.facilities}</p>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
