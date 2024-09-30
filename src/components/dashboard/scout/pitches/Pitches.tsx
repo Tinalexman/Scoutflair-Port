@@ -11,7 +11,7 @@ import { useGetLocalPitches } from "@/src/hooks/pitch";
 import { Loader } from "@mantine/core";
 
 const Pitches = () => {
-  const { data, loading } = useGetLocalPitches();
+  const { data, loading, success } = useGetLocalPitches();
 
   return (
     <div className="w-full grid grid-cols-2 gap-6 p-6">
@@ -52,7 +52,7 @@ const Pitches = () => {
         <div className="flex flex-col w-full px-5 gap-6 h-full">
           <h2 className="text-16-19 text-dark font-bold">Available Pitches</h2>
           {!loading && data.length > 0 && (
-            <div className="w-full grid grid-cols-2 gap-4">
+            <div className="w-full grid grid-cols-2 gap-4 ">
               {data.map((pitch, i) => (
                 <PitchCard key={i} pitch={pitch} />
               ))}
