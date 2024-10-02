@@ -104,6 +104,56 @@ export interface iPlayerProspect {
   playerGA: number;
 }
 
+export interface iPlayerFullDetails {
+  id: number;
+  player: number;
+  scout: number;
+  injuryHistory: string;
+  email: string;
+  nationality: string;
+  goals: number;
+  assist: number;
+  yellowCards: number;
+  redCards: number;
+  fowlsWon: number;
+  aerialDuels: number;
+  crosses: number;
+  dribbles: number;
+  interceptions: number;
+  minutes: number;
+  appearances: number;
+  longShots: number;
+  freeKicks: number;
+  skillAerialDuels: number;
+  skillDribbling: number;
+  oneToOne: number;
+  header: number;
+  fitness: number;
+  accuracy: number;
+  shotPower: number;
+  speed: number;
+  stamina: number;
+  leader: number;
+  workRate: number;
+  composure: number;
+  agility: number;
+  tacticalAwareness: number;
+  strength: string;
+  weakness: string;
+  scoutComments: string;
+  fullName: string;
+  currentTeam: string;
+  imageUrl: string;
+  jerseyNumber: string;
+  dob: string;
+  position: string;
+  preferredFoot: string;
+  height: string;
+  weight: string;
+  age: number;
+  datecreated: string;
+}
+
 export const useGetScout = () => {
   const [data, setData] = useState<iScoutResponse | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
@@ -159,8 +209,8 @@ export const useGetScoutsPlayers = () => {
   };
 };
 
-export const useGetScoutsPlayerDetails = (playerId: number) => {
-  const [data, setData] = useState<any>(null);
+export const useGetScoutsPlayerDetails = (playerId: string | number) => {
+  const [data, setData] = useState<iPlayerFullDetails | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [success, setSuccess] = useState<boolean>(false);
   const { requestApi } = useAxios();
