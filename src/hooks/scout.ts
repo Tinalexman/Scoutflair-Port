@@ -209,13 +209,13 @@ export const useGetScoutsPlayers = () => {
   };
 };
 
-export const useGetScoutsPlayerDetails = (playerId: string | number) => {
+export const useGetScoutsPlayerDetails = () => {
   const [data, setData] = useState<iPlayerFullDetails | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [success, setSuccess] = useState<boolean>(false);
   const { requestApi } = useAxios();
 
-  const get = async () => {
+  const get = async (playerId: string | number) => {
     if (loading) return;
     setLoading(true);
     const { data, status } = await requestApi(
@@ -227,14 +227,11 @@ export const useGetScoutsPlayerDetails = (playerId: string | number) => {
     setData(status ? data : null);
   };
 
-  useEffect(() => {
-    get();
-  }, []);
-
   return {
     data,
     loading,
     success,
+    get,
   };
 };
 
