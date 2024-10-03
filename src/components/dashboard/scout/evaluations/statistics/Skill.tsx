@@ -1,51 +1,56 @@
 "use client";
 
-import React, { useState } from "react";
+import { iPlayerFullDetails } from "@/src/hooks/scout";
+import React, { FC } from "react";
 
 interface iMetric {
   name: string;
   value: number;
 }
 
-const SkillMetrics = () => {
-  const [metrics, setMetrics] = useState<iMetric[]>([
+const SkillMetrics: FC<{ data: iPlayerFullDetails | null }> = ({ data }) => {
+  if (data === null) {
+    return <> </>;
+  }
+
+  const metrics: iMetric[] = [
     {
       name: "LONG SHOTS",
-      value: 80,
+      value: data.longShots,
     },
     {
       name: "DIRECT FREE KICKS",
-      value: 70,
+      value: data.freeKicks,
     },
     {
       name: "AERIAL DUELS",
-      value: 94,
+      value: data.skillAerialDuels,
     },
     {
       name: "DRIBBLING",
-      value: 70,
+      value: data.skillDribbling,
     },
     {
       name: "ONE-ON-ONE",
-      value: 80,
+      value: data.oneToOne,
     },
     {
       name: "HEADER",
-      value: 60,
+      value: data.header,
     },
     {
       name: "FITNESS",
-      value: 96,
+      value: data.fitness,
     },
     {
       name: "ACCURACY",
-      value: 74,
+      value: data.accuracy,
     },
     {
       name: "SHOT POWER",
-      value: 78,
+      value: data.shotPower,
     },
-  ]);
+  ];
 
   return (
     <div className="w-full shadow-custom rounded-[1rem] py-4 px-5 gap-5 bg-white flex flex-col justify-between">
@@ -57,13 +62,10 @@ const SkillMetrics = () => {
         {metrics.map((metric, i) => (
           <div
             key={i}
-            className="border border-primary-2 text-dark px-1 flex items-center justify-between rounded py-1.5"
-            style={{
-              width: `${metric.value}%`,
-            }}
+            className="w-full text-dark px-1 flex items-center justify-between rounded py-1.5"
           >
             <p className="text-12-14 font-semibold">{metric.name}</p>
-            <p className="text-10-12 font-medium">{metric.value}%</p>
+            <p className="text-10-12 font-medium">{metric.value}</p>
           </div>
         ))}
       </div>

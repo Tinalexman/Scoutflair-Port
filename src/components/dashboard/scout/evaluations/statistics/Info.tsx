@@ -59,7 +59,7 @@ const Info: FC<{ data: iPlayerFullDetails | null }> = ({ data }) => {
             HEIGHT
           </p>
           <div className="border border-border-gray w-full py-1 flex items-center justify-center rounded-md text-14-16 font-medium text-dark">
-            {data.height ?? "0"}cm
+            {data.height !== "" ? data.height : "0"}cm
           </div>
         </div>
         <div className="flex flex-col gap-2">
@@ -83,7 +83,7 @@ const Info: FC<{ data: iPlayerFullDetails | null }> = ({ data }) => {
             WEIGHT
           </p>
           <div className="border border-border-gray w-full py-1 flex items-center justify-center rounded-md text-14-16 font-medium text-dark">
-            {data.weight ?? "0"}lb
+            {data.weight !== "" ? data.weight : "0"}kg
           </div>
         </div>
         <div className="flex flex-col gap-2">

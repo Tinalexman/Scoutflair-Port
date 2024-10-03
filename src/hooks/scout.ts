@@ -224,7 +224,7 @@ export const useGetScoutsPlayerDetails = () => {
     );
     setLoading(false);
     setSuccess(status);
-    setData(status ? data : null);
+    setData(status ? data.data.obj : null);
   };
 
   return {

@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
+import { iPlayerFullDetails } from "@/src/hooks/scout";
+import React, { useState, FC } from "react";
 
 import { GoArrowUpRight, GoArrowDownRight } from "react-icons/go";
 
@@ -11,69 +12,73 @@ interface iMetric {
   color: string;
 }
 
-const KeyMetrics = () => {
-  const [metrics, setMetrics] = useState<iMetric[]>([
+const KeyMetrics: FC<{ data: iPlayerFullDetails | null }> = ({ data }) => {
+  if (data === null) {
+    return <></>;
+  }
+
+  const metrics: iMetric[] = [
     {
       name: "Goals",
-      value: 5,
-      increase: 2,
+      value: data.goals,
+      increase: 0,
       color: "#008000",
     },
     {
       name: "Assists",
-      value: 9,
-      increase: 3,
+      value: data.assist,
+      increase: 0,
       color: "#008000",
     },
     {
       name: "Yellow Cards",
-      value: 4,
+      value: data.yellowCards,
       increase: 0,
       color: "#F2A725",
     },
     {
       name: "Red Cards",
-      value: 6,
+      value: data.redCards,
       increase: 0,
       color: "#FF0000",
     },
     {
       name: "Foul Wons",
-      value: 2,
-      increase: -5,
+      value: data.fowlsWon,
+      increase: 0,
       color: "#041931",
     },
     {
       name: "Aeriel Duels",
-      value: 10,
-      increase: 5,
+      value: data.aerialDuels,
+      increase: 0,
       color: "#0A2A56",
     },
     {
       name: "Crosses",
-      value: 8,
-      increase: 1,
+      value: data.crosses,
+      increase: 0,
       color: "#041931",
     },
     {
       name: "Dribbles",
-      value: 8,
-      increase: 2,
+      value: data.dribbles,
+      increase: 0,
       color: "#008000",
     },
     {
       name: "Interceptions",
-      value: 0,
+      value: data.interceptions,
       increase: 0,
       color: "#101B8C",
     },
     {
       name: "Minutes P.",
-      value: 50,
-      increase: 20,
+      value: data.minutes,
+      increase: 0,
       color: "#12B9D7",
     },
-  ]);
+  ];
 
   return (
     <div className="w-full shadow-custom rounded-[1rem] py-4 px-5 gap-5 bg-white flex flex-col justify-between">

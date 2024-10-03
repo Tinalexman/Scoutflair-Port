@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
+import { iPlayerFullDetails } from "@/src/hooks/scout";
+import React, { FC, useState } from "react";
 import { FaStar, FaRegStar } from "react-icons/fa6";
 
 interface iTrait {
@@ -8,37 +9,41 @@ interface iTrait {
   value: number;
 }
 
-const Traits = () => {
-  const [traits, setTraits] = useState<iTrait[]>([
+const Traits: FC<{ data: iPlayerFullDetails | null }> = ({ data }) => {
+  if (data === null) {
+    return <></>;
+  }
+
+  const traits: iTrait[] = [
     {
       name: "Speed",
-      value: 3,
+      value: data.speed,
     },
     {
       name: "Stamina",
-      value: 4,
+      value: data.stamina,
     },
     {
       name: "Leadership",
-      value: 5,
+      value: data.leader,
     },
     {
       name: "Work Rate",
-      value: 5,
+      value: data.workRate,
     },
     {
       name: "Composure",
-      value: 4,
+      value: data.composure,
     },
     {
       name: "Agility",
-      value: 3,
+      value: data.agility,
     },
     {
       name: "Tactical Awareness",
-      value: 4,
+      value: data.tacticalAwareness,
     },
-  ]);
+  ];
 
   return (
     <div className="w-full shadow-custom rounded-[1rem] py-4 px-5 gap-5 bg-white flex flex-col justify-between">

@@ -1,3 +1,5 @@
+"use client";
+
 import React, { Suspense, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Loader } from "@mantine/core";
@@ -13,7 +15,7 @@ import Swal from "sweetalert2";
 const Statistics = () => {
   return (
     <Suspense fallback={<Loader />}>
-      <Content />{" "}
+      <Content />
     </Suspense>
   );
 };
@@ -23,12 +25,7 @@ const Content = () => {
   const router = useRouter();
   const id = searchParams.get("id");
 
-  const {
-    data,
-    loading,
-    success,
-    get: getPlayer,
-  } = useGetScoutsPlayerDetails();
+  const { data, loading, get: getPlayer } = useGetScoutsPlayerDetails();
 
   const navigateBack = () => {
     Swal.fire({
@@ -59,13 +56,13 @@ const Content = () => {
     <div className="w-full grid grid-cols-[2fr_1fr] gap-6 p-6">
       <div className="flex flex-col gap-6 w-full">
         <Info data={data} />
-        <KeyMetrics />
+        <KeyMetrics data={data} />
         <Clips />
       </div>
       <div className="flex flex-col gap-6 w-full">
         <Badges />
-        <SkillMetrics />
-        <Traits />
+        <SkillMetrics data={data} />
+        <Traits data={data} />
       </div>
     </div>
   );

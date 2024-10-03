@@ -39,14 +39,7 @@ const PlayerCard: FC<{ player: iScoutPlayersResponse }> = ({ player }) => {
               {getYearDifference(new Date(), new Date(player.dob))}
             </p>
           </div>
-          <div className="flex flex-col items-center w-fit">
-            <h2 className="text-10-12 text-opacity-[0.92] font-semibold text-dark">
-              NATIONALITY
-            </h2>
-            <div className="flex items-center gap-1">
-              <p className="text-8-9 text-dark">{player.nationality}</p>
-            </div>
-          </div>
+
           <div className="flex flex-col items-center w-fit gap-0.5">
             <h2 className="text-10-12 text-opacity-[0.92] font-semibold text-dark">
               POSITION

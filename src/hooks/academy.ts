@@ -3,25 +3,48 @@
 import { useAxios } from "@/src/api/base";
 import { useState, useEffect } from "react";
 
-export interface iLocalPitchResponse {
+export interface iAcademyResponse {
   address: string;
-  createdDate: string;
+  completedCount: number;
+  country: string;
+  dateCreated: string;
+  description: string;
+  email: string;
+  establishmentsType: string;
+  founded: string;
+  graduatedCount: number;
   id: number;
+  imageUrl: string;
   latitude: string;
-  length: string;
   lga: string;
+  logoUrl: string;
   longitude: string;
+  lostCount: number;
   name: string;
+  phone: string;
+  playersCount: number;
+  principalOrCoach: string;
   state: string;
-  surface: string;
-  width: string;
+  totalMatches: number;
+  website: string;
+  winCount: number;
 }
 
-export interface iModifyLocalPitchPayload
-  extends Omit<iLocalPitchResponse, "id" | "createdDate"> {}
+export interface iModifyAcademyPayload
+  extends Omit<
+    iAcademyResponse,
+    | "dateCreated"
+    | "establishmentsType"
+    | "playersCount"
+    | "totalMatches"
+    | "id"
+    | "principalOrCoach"
+  > {
+  principal: string;
+}
 
-export const useGetLocalPitches = () => {
-  const [data, setData] = useState<iLocalPitchResponse[]>([]);
+export const useGetAcademies = () => {
+  const [data, setData] = useState<iAcademyResponse[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [success, setSuccess] = useState<boolean>(false);
   const { requestApi } = useAxios();
@@ -30,12 +53,12 @@ export const useGetLocalPitches = () => {
     if (loading) return;
     setLoading(true);
     const { data, status } = await requestApi(
-      "/api/v1/pitches/getLocalPitches?limit=1000&offset=0",
+      "/api/v1/est/academy/getAcademies?limit=1000&offset=0",
       "GET"
     );
     setLoading(false);
     setSuccess(status);
-    setData(status ? data.content : []);
+    setData(status ? (data.content as iAcademyResponse[]) : []);
   };
 
   useEffect(() => {
@@ -49,7 +72,7 @@ export const useGetLocalPitches = () => {
   };
 };
 
-export const useLocalPitchesCount = () => {
+export const useAcademiesCount = () => {
   const [data, setData] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(false);
   const [success, setSuccess] = useState<boolean>(false);
@@ -59,7 +82,7 @@ export const useLocalPitchesCount = () => {
     if (loading) return;
     setLoading(true);
     const { data, status } = await requestApi(
-      "/api/v1/pitches/getLocalPitchesCount",
+      "/api/v1/est/academy/getAcademiesCount",
       "GET"
     );
     setLoading(false);
@@ -78,16 +101,16 @@ export const useLocalPitchesCount = () => {
   };
 };
 
-export const useCreateLocalPitch = () => {
+export const useCreateAcademy = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [success, setSuccess] = useState<boolean>(false);
   const { requestApi } = useAxios();
 
-  const create = async (payload: iModifyLocalPitchPayload) => {
+  const create = async (payload: iModifyAcademyPayload) => {
     if (loading) return;
     setLoading(true);
     const { status } = await requestApi(
-      "/api/v1/pitches/addLocalPitches",
+      "/api/v1/est/academy/addAcademy",
       "POST",
       payload
     );
@@ -102,17 +125,17 @@ export const useCreateLocalPitch = () => {
   };
 };
 
-export const useUpdateLocalPitch = () => {
+export const useUpdateAcademy = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [success, setSuccess] = useState<boolean>(false);
   const { requestApi } = useAxios();
 
-  const update = async (payload: iModifyLocalPitchPayload) => {
+  const update = async (payload: iModifyAcademyPayload) => {
     if (loading) return;
     setLoading(true);
     const { status } = await requestApi(
-      "/api/v1/pitches/editLocalPitches",
-      "POST",
+      "/api/v1/est/academy/editAcademy",
+      "PUT",
       payload
     );
     setLoading(false);

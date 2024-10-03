@@ -3,25 +3,50 @@
 import { useAxios } from "@/src/api/base";
 import { useState, useEffect } from "react";
 
-export interface iLocalPitchResponse {
-  address: string;
-  createdDate: string;
-  id: number;
-  latitude: string;
-  length: string;
-  lga: string;
-  longitude: string;
-  name: string;
-  state: string;
-  surface: string;
-  width: string;
+export interface iClubResponse {
+  address: "string";
+  completedCount: 0;
+  country: "string";
+  dateCreated: "2024-10-03T13:21:08.709Z";
+  description: "string";
+  email: "string";
+  establishmentsType: "string";
+  founded: "2024-10-03T13:21:08.709Z";
+  graduatedCount: 0;
+  id: 0;
+  imageUrl: "string";
+  latitude: "string";
+  lga: "string";
+  logoUrl: "string";
+  longitude: "string";
+  lostCount: 0;
+  name: "string";
+  phone: "string";
+  playersCount: 0;
+  principalOrCoach: "string";
+  state: "string";
+  totalMatches: 0;
+  website: "string";
+  winCount: 0;
 }
 
-export interface iModifyLocalPitchPayload
-  extends Omit<iLocalPitchResponse, "id" | "createdDate"> {}
+export interface iModifyClubPayload
+  extends Omit<
+    iClubResponse,
+    | "id"
+    | "imageUrl"
+    | "logoUrl"
+    | "dateCreated"
+    | "establishmentsType"
+    | "graduatedCount"
+    | "totalMatches"
+    | "principalOrCoach"
+  > {
+  coach: string;
+}
 
-export const useGetLocalPitches = () => {
-  const [data, setData] = useState<iLocalPitchResponse[]>([]);
+export const useGetClubs = () => {
+  const [data, setData] = useState<iClubResponse[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [success, setSuccess] = useState<boolean>(false);
   const { requestApi } = useAxios();
@@ -30,12 +55,12 @@ export const useGetLocalPitches = () => {
     if (loading) return;
     setLoading(true);
     const { data, status } = await requestApi(
-      "/api/v1/pitches/getLocalPitches?limit=1000&offset=0",
+      "/api/v1/est/fc/getFootballClubs?limit=1000&offset=0",
       "GET"
     );
     setLoading(false);
     setSuccess(status);
-    setData(status ? data.content : []);
+    setData(status ? (data.content as iClubResponse[]) : []);
   };
 
   useEffect(() => {
@@ -49,7 +74,7 @@ export const useGetLocalPitches = () => {
   };
 };
 
-export const useLocalPitchesCount = () => {
+export const useClubsCount = () => {
   const [data, setData] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(false);
   const [success, setSuccess] = useState<boolean>(false);
@@ -59,7 +84,7 @@ export const useLocalPitchesCount = () => {
     if (loading) return;
     setLoading(true);
     const { data, status } = await requestApi(
-      "/api/v1/pitches/getLocalPitchesCount",
+      "/api/v1/est/fc/getFootballClubsCount",
       "GET"
     );
     setLoading(false);
@@ -78,16 +103,16 @@ export const useLocalPitchesCount = () => {
   };
 };
 
-export const useCreateLocalPitch = () => {
+export const useCreateClub = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [success, setSuccess] = useState<boolean>(false);
   const { requestApi } = useAxios();
 
-  const create = async (payload: iModifyLocalPitchPayload) => {
+  const create = async (payload: iModifyClubPayload) => {
     if (loading) return;
     setLoading(true);
     const { status } = await requestApi(
-      "/api/v1/pitches/addLocalPitches",
+      "/api/v1/est/fc/addFootballClub",
       "POST",
       payload
     );
@@ -102,17 +127,17 @@ export const useCreateLocalPitch = () => {
   };
 };
 
-export const useUpdateLocalPitch = () => {
+export const useUpdateClub = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [success, setSuccess] = useState<boolean>(false);
   const { requestApi } = useAxios();
 
-  const update = async (payload: iModifyLocalPitchPayload) => {
+  const update = async (payload: iModifyClubPayload) => {
     if (loading) return;
     setLoading(true);
     const { status } = await requestApi(
-      "/api/v1/pitches/editLocalPitches",
-      "POST",
+      "/api/v1/est/fc/editFootballClub",
+      "PUT",
       payload
     );
     setLoading(false);
