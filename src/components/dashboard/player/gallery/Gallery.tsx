@@ -9,7 +9,9 @@ const Gallery = () => {
       <Slides />
       <div className="flex flex-col gap-6 w-full">
         <Feeds />
-        <Ads />
+        <div className="sticky top-20 self-start">
+          <Ads />
+        </div>
       </div>
     </div>
   );

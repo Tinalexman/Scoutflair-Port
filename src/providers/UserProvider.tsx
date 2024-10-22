@@ -12,6 +12,7 @@ import { useGetPlayer } from "@/src/hooks/player";
 import { useGetScout } from "@/src/hooks/scout";
 
 import { getYearDifference } from "../functions/dateFunctions";
+import { Loader } from "@mantine/core";
 
 export default function AuthProvider({
   children,
@@ -23,16 +24,18 @@ export default function AuthProvider({
     data: playerResponse,
     get: getPlayer,
     success: getPlayerSuccess,
+    loading: loadingPlayer,
   } = useGetPlayer();
 
   const {
     data: scoutResponse,
     get: getScout,
     success: getScoutSuccess,
+    loading: loadingScout,
   } = useGetScout();
 
   useEffect(() => {
-    const type = determineUser(); // 0 for player, 1 for scout
+    const type = determineUser();
     if (type === 0) {
       getPlayer();
     } else if (type === 1) {
@@ -47,13 +50,12 @@ export default function AuthProvider({
       return 0;
     } else if (current === "scout") {
       return 1;
-    } else if (current === "coach") {
     }
     return -1;
   };
 
   useEffect(() => {
-    if (getPlayerSuccess) {
+    if (!loadingPlayer && getPlayerSuccess) {
       const date: string = playerResponse?.dob!;
       useCurrentUserStore.setState({
         role: "PLAYER",
@@ -86,10 +88,10 @@ export default function AuthProvider({
         ttLink: playerResponse?.ticTokUrl ?? "",
       });
     }
-  }, [playerResponse, getPlayerSuccess]);
+  }, [loadingPlayer, playerResponse, getPlayerSuccess]);
 
   useEffect(() => {
-    if (getScoutSuccess) {
+    if (!loadingScout && getScoutSuccess) {
       useCurrentUserStore.setState({
         role: "SCOUT",
         name: scoutResponse?.fullName,
@@ -114,7 +116,13 @@ export default function AuthProvider({
         emailNotifications: scoutResponse?.emailNotifications,
       });
     }
-  }, [scoutResponse, getScoutSuccess]);
+  }, [loadingScout, scoutResponse, getScoutSuccess]);
+
+  if (loadingPlayer || loadingScout) {
+    return <div className="w-full h-full grid place-content-center">
+      <Loader color="primary.6" />
+    </div>
+  }
 
   return <>{children}</>;
 }

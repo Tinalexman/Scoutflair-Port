@@ -13,6 +13,7 @@ import AuthProvider from "../providers/AuthProvider";
 
 import { Toaster } from "react-hot-toast";
 import UserProvider from "../providers/UserProvider";
+import NavigationProvider from "../providers/NavigationProvider";
 
 const merriweather = Merriweather({
   subsets: ["latin"],
@@ -102,11 +103,20 @@ export default function RootLayout({
       >
         <AuthProvider>
           <UserProvider>
-            <Toaster />
-            <MantineProvider theme={theme}>{children}</MantineProvider>
+            <NavigationProvider>
+              <Toaster />
+              <MantineProvider theme={theme}>
+                {children}
+              </MantineProvider>
+            </NavigationProvider>
           </UserProvider>
         </AuthProvider>
       </body>
     </html>
   );
 }
+
+// Comments count not updating in post container but updating in viewing mode
+// Remove list of communities in drawer and replace it with the normal flow
+// Voting is not working properly as viewing mode polls and outside may not tally
+// Communities Homepage: Make A Post text is too big and align left member images

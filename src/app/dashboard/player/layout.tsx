@@ -63,7 +63,7 @@ const PlayerLayout: FC<iAuthLayout> = ({ children }) => {
     <div className="w-[100vw] h-[100vh] font-lato bg-background-gray flex justify-between relative">
       <SideBar items={items} active={page} />
       <div className="w-[80%] h-[100vh] flex flex-col justify-between overflow-y-scroll">
-        <div className="sticky top-0">
+        <div className="sticky top-0 z-10">
           <TopBar />
         </div>
         <div>{children}</div>
