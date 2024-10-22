@@ -119,7 +119,7 @@ export default function AuthProvider({
   }, [loadingScout, scoutResponse, getScoutSuccess]);
 
   if (loadingPlayer || loadingScout) {
-    return <div className="w-full h-full grid place-content-center">
+    return <div className="w-full h-[100vh] bg-white grid place-content-center">
       <Loader color="primary.6" />
     </div>
   }

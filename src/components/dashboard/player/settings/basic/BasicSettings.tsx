@@ -11,7 +11,7 @@ import { Loader } from "@mantine/core";
 import { useFormik } from "formik";
 import { useUpdatePlayer, iUpdatePlayerPayload } from "@/src/hooks/player";
 
-import { useUploadProfilePicture } from "@/src/hooks/common";
+import { useUploadPicture } from "@/src/hooks/common";
 import {
   useCurrentUserStore,
   usePlayerDataStore,
@@ -40,7 +40,7 @@ const BasicSettings = () => {
     data: uploadedUrl,
     loading: uploadingPicture,
     success: uploadedPicture,
-  } = useUploadProfilePicture();
+  } = useUploadPicture();
 
   const {
     handleSubmit,

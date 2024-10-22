@@ -4,6 +4,29 @@ import { useAxios } from "@/src/api/base";
 import { useState, useEffect } from "react";
 
 import { iPlayerResponse } from "./player";
+import Swal from "sweetalert2";
+
+export interface iUpdateScoutPayload {
+  address: string;
+  biography: string;
+  currentTeam: string;
+  dob: string;
+  facebookUrl: string;
+  fullName: string;
+  height: string;
+  igUrl: string;
+  imageUrl: string | File;
+  jerseyNumber: string;
+  location: string;
+  nationality: string;
+  nin: string;
+  phone: string;
+  position: string;
+  preferredFoot: string;
+  ticTokUrl: string;
+  weight: string;
+  xurl: string;
+}
 
 export interface iActivityFeedResponse {
   playerUserId: number;
@@ -518,5 +541,36 @@ export const useCreateScoutTask = () => {
     success,
     create,
     data,
+  };
+};
+
+export const useUpdateScout = () => {
+  const [loading, setLoading] = useState<boolean>(false);
+  const [success, setSuccess] = useState<boolean>(false);
+
+  const { requestApi } = useAxios();
+
+  const update = async (payloadToBePosted: Partial<iUpdateScoutPayload>) => {
+    const { status } = await requestApi(
+      "/api/v1/profile/scout/editProfile",
+      "POST",
+      payloadToBePosted
+    );
+    setLoading(false);
+    setSuccess(status);
+
+    Swal.fire({
+      title: status ? "Congratulations" : "Oops...",
+      text: status
+        ? "Your profile has been updated"
+        : `Error updating your profile`,
+      icon: status ? "success" : "error",
+    });
+  };
+
+  return {
+    loading,
+    success,
+    update,
   };
 };
