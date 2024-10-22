@@ -21,28 +21,33 @@ export default function NavigationProvider({
   const router = useRouter();
   const userRole = useCurrentUserStore((state) => state.role);
 
-  const [showChildren, shouldShowChildren] = useState<boolean>(false);
+  const [showChildren, shouldShowChildren] = useState<boolean>(true);
 
 
   useEffect(() => {
+    if (userRole === "") return;
+
     const type = determineUser();
-    if (type === 0 && userRole !== "PLAYER") {
+    const canViewPage: boolean = isOtherPage() || ((type === 0 && userRole === "PLAYER") || (type === 1 && userRole === "SCOUT"));
+    if (!canViewPage) {
+      shouldShowChildren(false);
       Swal.fire({
         icon: "error",
         title: "Oops!",
         text: "You do not have permissions to view this page"
-      })
+      });
       router.back();
-    } else if (type === 1 && userRole !== "SCOUT") {
-      router.back();
-    } else {
-      shouldShowChildren(true);
     }
   }, [userRole, router]);
 
+
+  const isOtherPage = () => {
+    const current = pathName.split("/")[1];
+    return current !== "dashboard";
+  }
+
   const determineUser = () => {
     const current = pathName.split("/")[2];
-
     if (current === "player") {
       return 0;
     } else if (current === "scout") {

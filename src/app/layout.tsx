@@ -101,16 +101,16 @@ export default function RootLayout({
       <body
         className={`${merriweather.variable} ${lato.variable} ${inter.variable} font-sans-serif`}
       >
-        <AuthProvider>
-          <UserProvider>
-            <NavigationProvider>
-              <Toaster />
-              <MantineProvider theme={theme}>
+        <MantineProvider theme={theme}>
+          <AuthProvider>
+            <UserProvider>
+              <NavigationProvider>
+                <Toaster />
                 {children}
-              </MantineProvider>
-            </NavigationProvider>
-          </UserProvider>
-        </AuthProvider>
+              </NavigationProvider>
+            </UserProvider>
+          </AuthProvider>
+        </MantineProvider>
       </body>
     </html>
   );
