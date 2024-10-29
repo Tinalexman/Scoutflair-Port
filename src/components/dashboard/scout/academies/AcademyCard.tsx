@@ -1,7 +1,5 @@
 import React, { FC } from "react";
 
-import Image from "next/image";
-
 import { FaStar, FaMedal } from "react-icons/fa";
 import { IoLocationOutline } from "react-icons/io5";
 import { iAcademyResponse } from "@/src/hooks/academy";
@@ -9,12 +7,15 @@ import ProfileImageOrTextAvatar from "@/src/components/reusable/ProfileImageOrTe
 
 const AcademyCard: FC<{
   academy: iAcademyResponse;
+  active: boolean;
   onSelected: () => void;
-}> = ({ academy, onSelected }) => {
+}> = ({ academy, onSelected, active }) => {
   return (
     <div
       onClick={onSelected}
-      className="bg-white shadow-custom rounded-xl flex gap-5 px-3 py-2 cursor-pointer"
+      className={`${
+        active ? "bg-secondary bg-opacity-20" : "bg-white"
+      }  shadow-custom rounded-xl flex gap-5 px-3 py-2 cursor-pointer`}
     >
       <div className="w-10 flex flex-col items-center gap-1">
         <ProfileImageOrTextAvatar
@@ -24,9 +25,8 @@ const AcademyCard: FC<{
           size="size-10"
         />
         <div className="items-center justify-center flex w-fit gap-0.5">
-          <FaStar size={8} className={`text-secondary-3`} />
           <p className="text-8-9 text-dark font-medium">4</p>
-          {/* <p className="text-8-9 text-dark font-medium">{academy.rating}</p> */}
+          <FaStar size={8} className={`text-secondary-3`} />
         </div>
       </div>
       <div className="w-[calc(100%-3.75rem)] flex flex-col justify-between">

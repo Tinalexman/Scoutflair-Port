@@ -1,8 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-
-import Map from "./MapImage";
+import Map from "@/src/components/reusable/MapImage";
 import Void from "@/public/images/Void.png";
 import Image from "next/image";
 import { MdOutlineFilterAlt } from "react-icons/md";
@@ -19,8 +18,8 @@ const Academies = () => {
 
   return (
     <>
-      <div className="w-full grid grid-cols-2 gap-6 p-6">
-        <div className="flex flex-col h-full w-full shadow-custom rounded-[1rem] py-4  bg-white ">
+      <div className="w-full h-[100vh] grid grid-cols-2 gap-6 p-6">
+        <div className="flex flex-col h-full w-full shadow-custom rounded-[1rem] py-4 bg-white ">
           <div className="w-full grid grid-cols-[1fr_1fr_1fr_0.4fr] gap-6 px-5">
             <div className="text-8-9 text-dark flex flex-col gap-0.5">
               <p>Academy Location</p>
@@ -63,6 +62,7 @@ const Academies = () => {
                 {data.map((academy, i) => (
                   <AcademyCard
                     key={i}
+                    active={currentAcademy !== null && currentAcademy === academy}
                     academy={academy}
                     onSelected={() => {
                       setCurrentAcademy(academy);
@@ -92,14 +92,19 @@ const Academies = () => {
             )}
           </div>
         </div>
-        <Map />
+        {currentAcademy !== null && (
+          <Map
+            latitude={currentAcademy.latitude}
+            longitude={currentAcademy.longitude}
+          />
+        )}
       </div>
-      {currentAcademy !== null && (
+      {/* {currentAcademy !== null && (
         <ViewAcademy
           academy={currentAcademy}
           onClose={() => setCurrentAcademy(null)}
         />
-      )}
+      )} */}
     </>
   );
 };

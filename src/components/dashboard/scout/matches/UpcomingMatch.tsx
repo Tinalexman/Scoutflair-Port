@@ -4,6 +4,7 @@ import React, { useState } from "react";
 
 import {
   convertDateFull,
+  convertDateFullAndTime,
   convertDateWithDayName,
   convertTime,
 } from "@/src/functions/dateFunctions";
@@ -39,7 +40,7 @@ const UpcomingMatchBanner: React.FC<{
             <div className="flex flex-col gap-1">
               <div className="flex gap-2 items-center text-12-14">
                 <IoCalendarNumberOutline className="text-14-16" />
-                <p>{convertDateFull(new Date(data[0].dateTime))}</p>
+                <p>{convertDateFullAndTime(new Date(`${data[0].date}${data[0].dateTime}`))}</p>
               </div>
               <div className="flex gap-2 items-center text-12-14">
                 <TbSoccerField className="text-14-16" />
