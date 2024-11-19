@@ -62,7 +62,9 @@ const Academies = () => {
                 {data.map((academy, i) => (
                   <AcademyCard
                     key={i}
-                    active={currentAcademy !== null && currentAcademy === academy}
+                    active={
+                      currentAcademy !== null && currentAcademy === academy
+                    }
                     academy={academy}
                     onSelected={() => {
                       setCurrentAcademy(academy);
@@ -94,8 +96,8 @@ const Academies = () => {
         </div>
         {currentAcademy !== null && (
           <Map
-            latitude={currentAcademy.latitude}
-            longitude={currentAcademy.longitude}
+            latitude={Number.parseFloat(currentAcademy.latitude)}
+            longitude={Number.parseFloat(currentAcademy.longitude)}
           />
         )}
       </div>

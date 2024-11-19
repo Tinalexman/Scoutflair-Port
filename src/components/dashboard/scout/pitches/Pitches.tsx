@@ -98,8 +98,8 @@ const Pitches = () => {
         </div>
         {currentPitch !== null && (
           <Map
-            latitude={currentPitch.latitude}
-            longitude={currentPitch.longitude}
+            latitude={Number.parseFloat(currentPitch.latitude)}
+            longitude={Number.parseFloat(currentPitch.longitude)}
           />
         )}
       </div>

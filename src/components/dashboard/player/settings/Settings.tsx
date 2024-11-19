@@ -13,11 +13,13 @@ interface iSetting {
 }
 
 const Settings = () => {
-  const settings: iSetting[] = Array(3).fill({
-    name: "Basic Settings",
-    icon: IoSettingsOutline,
-    content: <BasicSettings />,
-  });
+  const settings: iSetting[] = [
+    {
+      name: "Basic Settings",
+      icon: IoSettingsOutline,
+      content: <BasicSettings />,
+    },
+  ];
 
   const [active, setActive] = useState<number>(0);
 
