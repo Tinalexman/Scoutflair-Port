@@ -34,7 +34,14 @@ const PlayerCard: FC<{ player: iPlayerResponse }> = ({ player }) => {
           </h3>
         </div>
 
-        <div className="px-3 py-2 border rounded-full border-secondary-3 font-medium text-10-12 cursor-pointer grid place-content-center text-dark text-opacity-[0.88]">
+        <div
+          onClick={() => {
+            window.location.assign(
+              `/dashboard/scout/players/view-player?email=${player.email}`
+            );
+          }}
+          className="px-3 py-2 border rounded-full border-secondary-3 font-medium text-10-12 cursor-pointer grid place-content-center text-dark text-opacity-[0.88]"
+        >
           View Profile
         </div>
       </div>

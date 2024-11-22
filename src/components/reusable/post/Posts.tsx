@@ -6,6 +6,7 @@ import React, { FC, useEffect } from "react";
 import {
   useGetCurrentPlayerSpotlights,
   useGetPlayerSpotlights,
+  useGetSpecificPlayerSpotlights,
 } from "@/src/hooks/player";
 import { Loader } from "@mantine/core";
 import { useGlobalData } from "@/src/stores/globalStore";
@@ -14,7 +15,10 @@ import { useCurrentUserStore } from "@/src/stores/userStore";
 
 import PostContainer from "./PostContainer";
 
-const Posts: FC<{ currentPlayer: boolean }> = ({ currentPlayer }) => {
+const Posts: FC<{ currentPlayer?: boolean; playerEmail?: string }> = ({
+  currentPlayer,
+  playerEmail,
+}) => {
   const refreshPosts = useGlobalData((state) => state.shouldRefreshPosts);
   const userImage = useCurrentUserStore((state) => state.image);
   const username = useCurrentUserStore((state) => state.name);
@@ -30,15 +34,27 @@ const Posts: FC<{ currentPlayer: boolean }> = ({ currentPlayer }) => {
     get: getPlayerPosts,
   } = useGetCurrentPlayerSpotlights();
 
+  const {
+    loading: loadingSpecificSpotlight,
+    data: specificPosts,
+    get: getSpecificPosts,
+  } = useGetSpecificPlayerSpotlights();
+
   useEffect(() => {
-    if (currentPlayer) {
+    if (currentPlayer !== undefined && currentPlayer) {
       getPlayerPosts();
-    } else {
+    } else if (currentPlayer !== undefined && !currentPlayer) {
       getAllPosts();
+    } else if (currentPlayer === undefined && playerEmail !== undefined) {
+      getSpecificPosts(playerEmail);
     }
   }, [refreshPosts]);
 
-  if (loadingAllSpotlights || loadingPlayerSpotlights) {
+  if (
+    loadingAllSpotlights ||
+    loadingPlayerSpotlights ||
+    loadingSpecificSpotlight
+  ) {
     return (
       <div className="w-full grid place-content-center h-80">
         <Loader color="primary.6" />
@@ -46,9 +62,18 @@ const Posts: FC<{ currentPlayer: boolean }> = ({ currentPlayer }) => {
     );
   }
 
-  const posts = currentPlayer ? playerPosts : allPosts;
+  const posts = currentPlayer
+    ? playerPosts
+    : playerEmail
+    ? specificPosts
+    : allPosts;
 
-  if (!loadingAllSpotlights && !loadingPlayerSpotlights && posts.length === 0) {
+  if (
+    !loadingAllSpotlights &&
+    !loadingPlayerSpotlights &&
+    !loadingSpecificSpotlight &&
+    posts.length === 0
+  ) {
     return (
       <div className="w-full h-[30rem] flex flex-col shadow-custom justify-center items-center gap-5 sticky top-6 bg-white rounded-xl">
         <Image
@@ -58,9 +83,8 @@ const Posts: FC<{ currentPlayer: boolean }> = ({ currentPlayer }) => {
           height={100}
           className="w-40 h-auto object-cover"
         />
-
         <h2 className="text-dark text-16-19 font-medium">
-          There are no posts yet
+          There are no posts here yet
         </h2>
       </div>
     );
@@ -74,7 +98,7 @@ const Posts: FC<{ currentPlayer: boolean }> = ({ currentPlayer }) => {
           post={post}
           username={username}
           userImage={userImage}
-          currentPlayer={currentPlayer}
+          currentPlayer={currentPlayer ?? false}
         />
       ))}
     </div>

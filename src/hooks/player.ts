@@ -214,6 +214,40 @@ export const useGetCurrentPlayerSpotlights = () => {
   };
 };
 
+export const useGetSpecificPlayerSpotlights = () => {
+  const [data, setData] = useState<iPlayerSpotlightResponse[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [success, setSuccess] = useState<boolean>(false);
+  const { requestApi } = useAxios();
+
+  const get = async (email: string) => {
+    if (loading) return;
+    setLoading(true);
+    const { data, status } = await requestApi(
+      `/api/v1/spotLights/getUserPostsByScout?limit=100&offset=0&playerMail=${email}`,
+      "GET"
+    );
+    setLoading(false);
+    setSuccess(status);
+    setData(status ? (data.data.obj as iPlayerSpotlightResponse[]) : []);
+
+    if (!status) {
+      Swal.fire({
+        title: "Oops...",
+        text: `Error getting your posts`,
+        icon: "error",
+      });
+    }
+  };
+
+  return {
+    data,
+    loading,
+    success,
+    get,
+  };
+};
+
 export const usePostPlayerSpotlight = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [success, setSuccess] = useState<boolean>(false);
