@@ -115,6 +115,56 @@ export const useGetPlayer = () => {
   };
 };
 
+export const useGetPlayerByEmail = () => {
+  const [data, setData] = useState<iPlayerResponse>({
+    address: "",
+    biography: "",
+    currentTeam: "",
+    dob: "",
+    email: "",
+    facebookUrl: "",
+    fullName: "",
+    height: "",
+    igUrl: "",
+    imageUrl: "",
+    jerseyNumber: "",
+    licenceNumber: "",
+    location: "",
+    nationality: "",
+    nin: "",
+    phone: "",
+    position: "",
+    preferredFoot: "",
+    ticTokUrl: "",
+    weight: "",
+    xurl: "",
+  });
+  const [loading, setLoading] = useState<boolean>(false);
+  const [success, setSuccess] = useState<boolean>(false);
+  const { requestApi } = useAxios();
+
+  const get = async (email: string) => {
+    if (loading) return;
+    setLoading(true);
+    const { data, status } = await requestApi(
+      `/api/v1/profile/player/getProfile?playerEmail=${email}`,
+      "GET"
+    );
+    setLoading(false);
+    setSuccess(status);
+    if (status) {
+      setData(data);
+    }
+  };
+
+  return {
+    data,
+    loading,
+    success,
+    get,
+  };
+};
+
 export const useUpdatePlayer = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [success, setSuccess] = useState<boolean>(false);

@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { FC } from "react";
 
 import {
   useCurrentUserStore,
@@ -26,60 +26,38 @@ import IGIcon from "@/public/icons/IG Icon.svg";
 import Link from "next/link";
 
 import { convertDateFull } from "@/src/functions/dateFunctions";
+import { iPlayerResponse, useGetPlayerByEmail } from "@/src/hooks/player";
 
 interface iBio {
   image: StaticImageData;
   text: string;
 }
 
-const Bio = () => {
-  const bio = usePlayerDataStore((state) => state.bio);
-
-  const fullName = useCurrentUserStore((state) => state.name);
-
+const Bio: FC<{ data: iPlayerResponse }> = ({ data }) => {
   const bioData: iBio[] = [
     {
       image: ProfileIcon,
-      text: fullName,
+      text: data.fullName,
     },
     {
       image: DobIcon,
-      text: convertDateFull(usePlayerDataStore((state) => state.dob)),
+      text: convertDateFull(usePlayerDataStore((state) => data.dob)),
     },
     {
       image: CountryIcon,
-      text: usePlayerDataStore((state) => state.nationality),
+      text: usePlayerDataStore((state) => data.nationality),
     },
     {
       image: FootIcon,
-      text: usePlayerDataStore((state) => state.foot),
+      text: usePlayerDataStore((state) => data.preferredFoot),
     },
     {
       image: HeightIcon,
-      text: `${usePlayerDataStore((state) => state.height)}cm`,
+      text: `${usePlayerDataStore((state) => data.height)}cm`,
     },
     {
       image: WeightIcon,
-      text: `${usePlayerDataStore((state) => state.weight)}kg`,
-    },
-    {
-      image: StatusIcon,
-      text: usePlayerDataStore((state) => state.status),
-    },
-  ];
-
-  const recommendation: iBio[] = [
-    {
-      image: ProfileIcon,
-      text: usePlayerDataStore((state) => state.recommendedName),
-    },
-    {
-      image: MailIcon,
-      text: usePlayerDataStore((state) => state.recommendedEmail),
-    },
-    {
-      image: PhoneIcon,
-      text: usePlayerDataStore((state) => state.recommendedPhone),
+      text: `${usePlayerDataStore((state) => data.weight)}kg`,
     },
   ];
 
@@ -88,7 +66,7 @@ const Bio = () => {
       <h2 className="text-16-19 text-dark font-bold ml-5">Player Details</h2>
       <div className="flex flex-col w-full mt-6 gap-4 px-5 ">
         <h2 className="text-dark text-14-16 font-medium">Biography</h2>
-        <p className="text-12-18 text-dark">{bio}</p>
+        <p className="text-12-18 text-dark">{data.biography}</p>
       </div>
       <hr className="bg-[#E0E0E0] w-full my-3" />
       <h2 className="text-dark text-14-16 font-medium pl-5">About</h2>
@@ -110,27 +88,11 @@ const Bio = () => {
           )
         )}
       </div>
-      {/* <hr className="bg-[#E0E0E0] w-full my-3" />
-      <h2 className="text-dark text-14-16 font-medium pl-5">Recommendations</h2>
-      <div className="flex flex-col w-full mt-4 gap-1 px-5 ">
-        {recommendation.map((data, index) => (
-          <div key={index} className="w-full flex items-center py-1 gap-2">
-            <Image
-              src={data.image}
-              alt="data icon"
-              width={32}
-              height={32}
-              className="size-10"
-            />
-            <p className="text-12-18 text-dark font-medium">{data.text}</p>
-          </div>
-        ))}
-      </div> */}
       <hr className="bg-[#E0E0E0] w-full my-3" />
       <h2 className="text-dark text-14-16 font-medium pl-5">Social Media</h2>
       <div className="w-full flex items-center gap-2 px-5 mt-4">
         <Link
-          href={usePlayerDataStore((state) => state.igLink)}
+          href={data.igUrl ?? "#"}
           target="__blank"
           className="border border-border-gray rounded-full w-[5.5rem] cursor-pointer h-7 flex justify-center items-center gap-1"
         >
@@ -144,7 +106,7 @@ const Bio = () => {
           <p className="font-medium text-dark text-10-12">Instagram</p>
         </Link>
         <Link
-          href={usePlayerDataStore((state) => state.ttLink)}
+          href={data.ticTokUrl ?? "#"}
           target="__blank"
           className="border border-border-gray rounded-full w-[5.5rem] cursor-pointer h-7 flex justify-center items-center gap-1"
         >
@@ -158,7 +120,7 @@ const Bio = () => {
           <p className="font-medium text-dark text-10-12">Tiktok</p>
         </Link>
         <Link
-          href={usePlayerDataStore((state) => state.fbLink)}
+          href={data.facebookUrl ?? "#"}
           target="__blank"
           className="border border-border-gray rounded-full w-[5.5rem] cursor-pointer h-7 flex justify-center items-center gap-1"
         >
