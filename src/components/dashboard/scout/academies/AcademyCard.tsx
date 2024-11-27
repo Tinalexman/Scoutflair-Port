@@ -7,15 +7,12 @@ import ProfileImageOrTextAvatar from "@/src/components/reusable/ProfileImageOrTe
 
 const AcademyCard: FC<{
   academy: iAcademyResponse;
-  active: boolean;
   onSelected: () => void;
-}> = ({ academy, onSelected, active }) => {
+}> = ({ academy, onSelected }) => {
   return (
     <div
       onClick={onSelected}
-      className={`${
-        active ? "bg-secondary bg-opacity-20" : "bg-white"
-      }  shadow-custom rounded-xl flex gap-5 px-3 py-2 cursor-pointer`}
+      className={`hover:bg-secondary hover:bg-opacity-20 bg-white shadow-custom rounded-xl flex gap-5 px-3 py-2 cursor-pointer`}
     >
       <div className="w-10 flex flex-col items-center gap-1">
         <ProfileImageOrTextAvatar

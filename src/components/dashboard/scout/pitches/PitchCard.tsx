@@ -6,14 +6,13 @@ import { FaStar } from "react-icons/fa";
 import { IoLocationOutline } from "react-icons/io5";
 import { iLocalPitchResponse } from "@/src/hooks/pitch";
 
-const PitchCard: FC<{ pitch: iLocalPitchResponse; active: boolean; onSelected: () => void }> = ({
-  pitch,
-  active,
-  onSelected,
-}) => {
+const PitchCard: FC<{
+  pitch: iLocalPitchResponse;
+  onSelected: () => void;
+}> = ({ pitch, onSelected }) => {
   return (
     <div
-      className={`${active ? "bg-secondary bg-opacity-20" : "bg-white"} shadow-custom rounded-xl flex gap-5 px-3 py-2 cursor-pointer`}
+      className={`bg-white hover:bg-secondary hover:bg-opacity-20 shadow-custom rounded-xl flex gap-5 px-3 py-2 cursor-pointer`}
       onClick={onSelected}
     >
       <div className="w-10 flex flex-col items-center gap-1">
@@ -28,7 +27,7 @@ const PitchCard: FC<{ pitch: iLocalPitchResponse; active: boolean; onSelected: (
           <p className="text-12-14 text-dark font-medium">4</p>
           <FaStar size={8} className={`text-secondary-3`} />
         </div>
-      </div>  
+      </div>
       <div className="w-[calc(100%-3.75rem)] flex flex-col justify-between">
         <div className="flex flex-col gap-1 w-full">
           <div className="flex justify-between items-center w-full">
@@ -36,7 +35,9 @@ const PitchCard: FC<{ pitch: iLocalPitchResponse; active: boolean; onSelected: (
           </div>
           <div className="flex items-center w-fit gap-0.5">
             <IoLocationOutline className={`text-dark`} size={10} />
-            <h2 className="text-10-12 text-dark line-clamp-1">{pitch.address}</h2>
+            <h2 className="text-10-12 text-dark line-clamp-1">
+              {pitch.address}
+            </h2>
           </div>
         </div>
         <div className="w-full grid grid-cols-3 text-8-9 text-dark">
