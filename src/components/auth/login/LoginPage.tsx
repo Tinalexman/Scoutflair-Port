@@ -223,24 +223,6 @@ const Content: React.FC = () => {
                 </span>
               </button>
             </Link>
-            <Link href={""}>
-              <button
-                type="button"
-                className="w-full h-10 flex items-center justify-center border border-black/[0.56] rounded-xl space-x-4"
-              >
-                <svg
-                  className="w-6 h-6"
-                  viewBox="0 0 25 25"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  {/* <!-- SVG path for Apple Icon --> */}
-                </svg>
-                <span className="text-xl font-medium text-black">
-                  Sign in with Apple
-                </span>
-              </button>
-            </Link>
           </div>
         </div>
       </div>

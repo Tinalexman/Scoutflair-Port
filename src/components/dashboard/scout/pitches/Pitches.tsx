@@ -19,7 +19,11 @@ const Pitches = () => {
 
   return (
     <>
-      <div className="w-full h-[100vh] grid grid-cols-2 gap-6 p-6">
+      <div
+        className={`w-full h-[100vh] grid ${
+          currentPitch === null ? "grid-cols-1" : "grid-cols-2"
+        } gap-6 p-6 transition-all duration-300 ease-out`}
+      >
         <div className="flex flex-col h-full w-full shadow-custom rounded-[1rem] py-4 bg-white ">
           <div className="w-full grid grid-cols-[1fr_1fr_1fr_0.4fr] gap-6 px-5">
             <div className="text-8-9 text-dark flex flex-col gap-0.5">
@@ -62,7 +66,11 @@ const Pitches = () => {
               Available Pitches
             </h2>
             {!loading && data.length > 0 && (
-              <div className="w-full grid grid-cols-2 gap-4 ">
+              <div
+                className={`w-full grid ${
+                  currentPitch === null ? "grid-cols-4" : "grid-cols-2"
+                } gap-4 transition-all duration-300 ease-out`}
+              >
                 {data.map((pitch, i) => (
                   <PitchCard
                     key={i}
@@ -103,9 +111,6 @@ const Pitches = () => {
           />
         )}
       </div>
-      {/* {currentPitch !== null && (
-        <ViewPitch pitch={currentPitch} onClose={() => setCurrentPitch(null)} />
-      )} */}
     </>
   );
 };
