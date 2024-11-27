@@ -8,13 +8,73 @@ import {
   useScoutDataStore,
 } from "../stores/userStore";
 
-import { useGetPlayer } from "@/src/hooks/player";
-import { useGetScout } from "@/src/hooks/scout";
+import { iPlayerResponse, useGetPlayer } from "@/src/hooks/player";
+import { iScoutResponse, useGetScout } from "@/src/hooks/scout";
 
 import { getYearDifference } from "../functions/dateFunctions";
 import { Loader } from "@mantine/core";
 
-export default function AuthProvider({
+export const setPlayerData = (player: iPlayerResponse | null) => {
+  const date: string = player?.dob!;
+  useCurrentUserStore.setState({
+    role: "PLAYER",
+    name: player?.fullName,
+    image: player?.imageUrl,
+  });
+
+  const dob = new Date(date);
+  const years = getYearDifference(new Date(), dob);
+
+  usePlayerDataStore.setState({
+    role: player?.position,
+    age: years,
+    bio: player?.biography,
+    dob: dob,
+    phone: player?.phone,
+    email: player?.email,
+    nationality: player?.nationality,
+    foot: player?.preferredFoot,
+    height: Number(player?.height),
+    weight: Number(player?.weight),
+    recommendedName: "",
+    recommendedEmail: "",
+    recommendedPhone: "",
+    jersey: Number(player?.jerseyNumber),
+    status: "",
+    fbLink: player?.facebookUrl ?? "",
+    igLink: player?.igUrl ?? "",
+    xLink: player?.xurl ?? "",
+    ttLink: player?.ticTokUrl ?? "",
+  });
+};
+
+export const setScoutData = (scout: iScoutResponse | null) => {
+  useCurrentUserStore.setState({
+    role: "SCOUT",
+    name: scout?.fullName,
+    image: scout?.imageUrl,
+  });
+
+  useScoutDataStore.setState({
+    quote: scout?.quote,
+    career: scout?.career,
+    coachingEducation: scout?.coachingEducation,
+    coachingStyle: scout?.coachingStyle,
+    currentTeam: scout?.currentTeam,
+    email: scout?.email,
+    placeOfBirth: scout?.placeOfBirth,
+    phone: scout?.phone,
+    nin: scout?.nin,
+    address: scout?.address,
+    nationality: scout?.nationality,
+    matchNotification: scout?.matchNotification,
+    promotion: scout?.promotion,
+    playerAbsence: scout?.playerAbsence,
+    emailNotifications: scout?.emailNotifications,
+  });
+};
+
+export default function UserProvider({
   children,
 }: {
   children: React.ReactNode;
@@ -56,72 +116,22 @@ export default function AuthProvider({
 
   useEffect(() => {
     if (!loadingPlayer && getPlayerSuccess) {
-      const date: string = playerResponse?.dob!;
-      useCurrentUserStore.setState({
-        role: "PLAYER",
-        name: playerResponse?.fullName,
-        image: playerResponse?.imageUrl,
-      });
-
-      const dob = new Date(date);
-      const years = getYearDifference(new Date(), dob);
-
-      usePlayerDataStore.setState({
-        role: playerResponse?.position,
-        age: years,
-        bio: playerResponse?.biography,
-        dob: dob,
-        phone: playerResponse?.phone,
-        email: playerResponse?.email,
-        nationality: playerResponse?.nationality,
-        foot: playerResponse?.preferredFoot,
-        height: Number(playerResponse?.height),
-        weight: Number(playerResponse?.weight),
-        recommendedName: "",
-        recommendedEmail: "",
-        recommendedPhone: "",
-        jersey: Number(playerResponse?.jerseyNumber),
-        status: "",
-        fbLink: playerResponse?.facebookUrl ?? "",
-        igLink: playerResponse?.igUrl ?? "",
-        xLink: playerResponse?.xurl ?? "",
-        ttLink: playerResponse?.ticTokUrl ?? "",
-      });
+      setPlayerData(playerResponse);
     }
   }, [loadingPlayer, playerResponse, getPlayerSuccess]);
 
   useEffect(() => {
     if (!loadingScout && getScoutSuccess) {
-      useCurrentUserStore.setState({
-        role: "SCOUT",
-        name: scoutResponse?.fullName,
-        image: scoutResponse?.imageUrl,
-      });
-
-      useScoutDataStore.setState({
-        quote: scoutResponse?.quote,
-        career: scoutResponse?.career,
-        coachingEducation: scoutResponse?.coachingEducation,
-        coachingStyle: scoutResponse?.coachingStyle,
-        currentTeam: scoutResponse?.currentTeam,
-        email: scoutResponse?.email,
-        placeOfBirth: scoutResponse?.placeOfBirth,
-        phone: scoutResponse?.phone,
-        nin: scoutResponse?.nin,
-        address: scoutResponse?.address,
-        nationality: scoutResponse?.nationality,
-        matchNotification: scoutResponse?.matchNotification,
-        promotion: scoutResponse?.promotion,
-        playerAbsence: scoutResponse?.playerAbsence,
-        emailNotifications: scoutResponse?.emailNotifications,
-      });
+      setScoutData(scoutResponse);
     }
   }, [loadingScout, scoutResponse, getScoutSuccess]);
 
   if (loadingPlayer || loadingScout) {
-    return <div className="w-full h-[100vh] bg-white grid place-content-center">
-      <Loader color="primary.6" />
-    </div>
+    return (
+      <div className="w-full h-[100vh] bg-white grid place-content-center">
+        <Loader color="primary.6" />
+      </div>
+    );
   }
 
   return <>{children}</>;

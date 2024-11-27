@@ -6,10 +6,6 @@ import Image from "next/image";
 
 import Field from "@/public/dashboard/player/field.jpeg";
 
-import {
-  useCurrentUserStore,
-  usePlayerDataStore,
-} from "@/src/stores/userStore";
 import ProfileImageOrTextAvatar from "@/src/components/reusable/ProfileImageOrTextAvatar";
 import { iPlayerResponse } from "@/src/hooks/player";
 import { getYearDifference } from "@/src/functions/dateFunctions";

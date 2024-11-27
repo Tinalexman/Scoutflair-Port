@@ -2,11 +2,6 @@
 
 import React, { FC } from "react";
 
-import {
-  useCurrentUserStore,
-  usePlayerDataStore,
-} from "@/src/stores/userStore";
-
 import Image, { StaticImageData } from "next/image";
 
 import ProfileIcon from "@/public/icons/Player Bio Profile.svg";
@@ -15,9 +10,6 @@ import CountryIcon from "@/public/icons/Player Bio Country.svg";
 import FootIcon from "@/public/icons/Player Bio Foot.svg";
 import HeightIcon from "@/public/icons/Player Bio Height.svg";
 import WeightIcon from "@/public/icons/Player Bio Weight.svg";
-import StatusIcon from "@/public/icons/Player Bio Status.svg";
-import MailIcon from "@/public/icons/Player Bio Mail.svg";
-import PhoneIcon from "@/public/icons/Player Bio Phone.svg";
 
 import FBIcon from "@/public/icons/Facebook Icon.svg";
 import TTIcon from "@/public/icons/Tiktok Icon.svg";
@@ -26,7 +18,7 @@ import IGIcon from "@/public/icons/IG Icon.svg";
 import Link from "next/link";
 
 import { convertDateFull } from "@/src/functions/dateFunctions";
-import { iPlayerResponse, useGetPlayerByEmail } from "@/src/hooks/player";
+import { iPlayerResponse } from "@/src/hooks/player";
 
 interface iBio {
   image: StaticImageData;
@@ -41,23 +33,23 @@ const Bio: FC<{ data: iPlayerResponse }> = ({ data }) => {
     },
     {
       image: DobIcon,
-      text: convertDateFull(usePlayerDataStore((state) => data.dob)),
+      text: convertDateFull(data.dob),
     },
     {
       image: CountryIcon,
-      text: usePlayerDataStore((state) => data.nationality),
+      text: data.nationality,
     },
     {
       image: FootIcon,
-      text: usePlayerDataStore((state) => data.preferredFoot),
+      text: data.preferredFoot,
     },
     {
       image: HeightIcon,
-      text: `${usePlayerDataStore((state) => data.height)}cm`,
+      text: `${data.height}cm`,
     },
     {
       image: WeightIcon,
-      text: `${usePlayerDataStore((state) => data.weight)}kg`,
+      text: `${data.weight}kg`,
     },
   ];
 

@@ -13,6 +13,7 @@ import Swal from "sweetalert2";
 import Image from "next/image";
 import { useToken } from "@/src/providers/AuthProvider";
 import { Loader } from "@mantine/core";
+import { setPlayerData, setScoutData } from "@/src/providers/UserProvider";
 
 const LoginPage = () => {
   return (
@@ -70,9 +71,9 @@ const Content: React.FC = () => {
           router.back();
         } else {
           if (response.data.userType === "PLAYER") {
-            router.push(Urls.PLAYER_SPOTLIGHT);
+            window.location.assign(Urls.PLAYER_SPOTLIGHT);
           } else if (response.data.userType === "SCOUT") {
-            router.push(Urls.SCOUT_OVERVIEW);
+            window.location.assign(Urls.SCOUT_OVERVIEW);
           }
         }
 
