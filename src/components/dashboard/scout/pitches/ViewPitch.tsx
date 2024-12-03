@@ -16,6 +16,10 @@ const ViewPitch: FC<{ pitch: iLocalPitchResponse; onClose: () => void }> = ({
       value: pitch.name,
     },
     {
+      key: "Address",
+      value: pitch.address,
+    },
+    {
       key: "State",
       value: pitch.state,
     },
@@ -36,8 +40,20 @@ const ViewPitch: FC<{ pitch: iLocalPitchResponse; onClose: () => void }> = ({
       value: pitch.width,
     },
     {
-      key: "Surface Area",
+      key: "Surface",
       value: pitch.surface,
+    },
+    {
+      key: "Facilities",
+      value: pitch.facilities,
+    },
+    {
+      key: "Year of Establishment",
+      value: pitch.year,
+    },
+    {
+      key: "Rating",
+      value: pitch.rating,
     },
   ];
 
@@ -56,7 +72,15 @@ const ViewPitch: FC<{ pitch: iLocalPitchResponse; onClose: () => void }> = ({
         </div>
         <MdEdit
           className="cursor-pointer text-dark"
-          onClick={onClose}
+          onClick={() => {
+            const payload = Buffer.from(JSON.stringify(pitch)).toString(
+              "base64"
+            );
+
+            window.location.assign(
+              `/dashboard/scout/pitches/edit?data=${payload}`
+            );
+          }}
           size={22}
         />
       </div>

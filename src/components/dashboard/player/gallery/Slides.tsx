@@ -1,53 +1,82 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image, { StaticImageData } from "next/image";
 
 import Pic from "@/public/images/frame-36303.png";
 import { convertDateWithDayName } from "@/src/functions/dateFunctions";
-import { useGetUserGallery } from "@/src/hooks/player";
+import { useGetUserGallery, ImageData } from "@/src/hooks/player";
 import UploadMedia from "./UploadMedia";
+import { group } from "console";
+import { Loader } from "@mantine/core";
 
-interface iSlide {
-  images: (StaticImageData | string)[];
-  date: Date;
+function groupImagesByDay(images: ImageData[]): Map<string, ImageData[]> {
+  const groups: Map<string, ImageData[]> = new Map();
+
+  images.forEach((image) => {
+    const imageDate = new Date(image.createdDate);
+    const dateString = imageDate.toISOString().split("T")[0];
+
+    if (!groups.has(dateString)) {
+      groups.set(dateString, []);
+    }
+    groups.get(dateString)!.push(image);
+  });
+
+  console.log(groups);
+
+  return groups;
 }
 
 const Slides = () => {
-  const [slides, setSlides] = useState<iSlide[]>(
-    Array(4).fill({
-      images: Array(6).fill(Pic),
-      date: new Date(),
-    })
-  );
-
+  const [slides, setSlides] = useState<Map<string, ImageData[]>>(new Map());
+  const [keys, setKeys] = useState<string[]>([]);
   const {
     loading: loadingGallery,
     data: gallery,
     success: loadedGalleries,
   } = useGetUserGallery();
 
+  useEffect(() => {
+    if (!loadingGallery && loadedGalleries) {
+      const groupedImages = groupImagesByDay(gallery!);
+      setSlides(groupedImages);
+      setKeys(groupedImages.keys().toArray());
+    }
+  }, [loadingGallery, loadedGalleries]);
+
   return (
-    <div className="w-full shadow-custom rounded-[1rem] py-4 px-5 gap-6 bg-white flex flex-col">
-      {slides.map((slide, i) => (
-        <div className="w-full flex flex-col gap-5" key={i}>
-          <h2 className="text-14-16 text-dark text-medium">
-            {convertDateWithDayName(slide.date).toUpperCase()}
-          </h2>
-          <div className="w-full grid grid-cols-3 gap-4">
-            {slide.images.map((image, index) => (
-              <Image
-                key={index}
-                src={image}
-                alt="image"
-                width={100}
-                height={100}
-                className="object-cover rounded-md w-full h-[5rem]"
-              />
-            ))}
-          </div>
+    <div className="w-full h-full shadow-custom rounded-[1rem] py-4 px-5 gap-6 bg-white flex flex-col">
+      {!loadingGallery &&
+        keys.map((slide, i) => {
+          const dateHeader = slides.get(slide)![0]!.createdDate;
+          const images = slides.get(slide)!;
+
+          return (
+            <div className="w-full flex flex-col gap-5" key={i}>
+              <h2 className="text-14-16 text-dark text-medium">
+                {convertDateWithDayName(dateHeader).toUpperCase()}
+              </h2>
+              <div className="w-full grid grid-cols-3 gap-4">
+                {images.map((image, index) => (
+                  <Image
+                    key={index}
+                    src={image.mediaUrl}
+                    alt="image"
+                    width={100}
+                    height={100}
+                    className="object-cover rounded-md w-full h-[5rem]"
+                  />
+                ))}
+              </div>
+            </div>
+          );
+        })}
+      {loadingGallery && (
+        <div className="w-full h-full grid place-content-center">
+          <Loader color="primary.6" />
         </div>
-      ))}
+      )}
     </div>
   );
 };

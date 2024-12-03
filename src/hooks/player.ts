@@ -89,6 +89,12 @@ export interface iPostActionPayload {
   spotLightPostId: number;
 }
 
+export interface ImageData {
+  id: number;
+  mediaUrl: string;
+  createdDate: string;
+}
+
 export const useGetPlayer = () => {
   const [data, setData] = useState<iPlayerResponse | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
@@ -402,7 +408,7 @@ export const useLikeOrUnlikePlayerSpotlightComments = (
 };
 
 export const useGetUserGallery = () => {
-  const [data, setData] = useState<any[]>([]);
+  const [data, setData] = useState<ImageData[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [success, setSuccess] = useState<boolean>(false);
   const { requestApi } = useAxios();
@@ -421,7 +427,7 @@ export const useGetUserGallery = () => {
     if (!status) {
       Swal.fire({
         title: "Oops...",
-        text: `Error getting the latest images`,
+        text: `Error getting the latest media`,
         icon: "error",
       });
     }

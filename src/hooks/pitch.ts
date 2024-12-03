@@ -6,19 +6,24 @@ import { useState, useEffect } from "react";
 export interface iLocalPitchResponse {
   address: string;
   createdDate: string;
-  id: number;
+  id?: number;
   latitude: string;
   length: string;
   lga: string;
+  facilities: string;
+  year: string;
   longitude: string;
   name: string;
   state: string;
   surface: string;
   width: string;
+  rating: string;
 }
 
 export interface iModifyLocalPitchPayload
-  extends Omit<iLocalPitchResponse, "id" | "createdDate"> {}
+  extends Omit<iLocalPitchResponse, "createdDate"> {
+  rating: string;
+}
 
 export const useGetLocalPitches = () => {
   const [data, setData] = useState<iLocalPitchResponse[]>([]);

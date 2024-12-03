@@ -24,11 +24,11 @@ const PitchCard: FC<{
           className="object-cover size-10 rounded"
         />
         <div className="items-center justify-center flex w-fit gap-0.5">
-          <p className="text-12-14 text-dark font-medium">4</p>
+          <p className="text-12-14 text-dark font-medium">{pitch.rating}</p>
           <FaStar size={8} className={`text-secondary-3`} />
         </div>
       </div>
-      <div className="w-[calc(100%-3.75rem)] flex flex-col justify-between">
+      <div className="w-[calc(100%-3.75rem)] flex flex-col gap-1 justify-between">
         <div className="flex flex-col gap-1 w-full">
           <div className="flex justify-between items-center w-full">
             <h2 className="text-12-14 font-semibold text-dark">{pitch.name}</h2>
@@ -43,9 +43,7 @@ const PitchCard: FC<{
         <div className="w-full grid grid-cols-3 text-8-9 text-dark">
           <div className="flex flex-col w-full">
             <h3 className="text-8-9">Year Built:</h3>
-            <p className="text-10-12">
-              {new Date(pitch.createdDate).getFullYear()}
-            </p>
+            <p className="text-10-12">{new Date(pitch.year).getFullYear()}</p>
           </div>
           <div className="flex flex-col w-full">
             <h3 className="text-8-9">Length:</h3>
