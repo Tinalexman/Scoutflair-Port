@@ -43,7 +43,9 @@ const PitchCard: FC<{
         <div className="w-full grid grid-cols-3 text-8-9 text-dark">
           <div className="flex flex-col w-full">
             <h3 className="text-8-9">Year Built:</h3>
-            <p className="text-10-12">{new Date(pitch.year).getFullYear()}</p>
+            <p className="text-10-12">
+              {new Date(pitch.estYear).getFullYear()}
+            </p>
           </div>
           <div className="flex flex-col w-full">
             <h3 className="text-8-9">Length:</h3>
