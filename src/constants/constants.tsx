@@ -56,3 +56,13 @@ export const positions = [
   "Stopper",
   "Shadow Striker",
 ];
+
+export const facilitiesRatings = [
+  "Poor",
+  "Average",
+  "Good",
+  "Very Good",
+  "Excellent",
+];
+
+export const surfaceAreas = ["Grass", "Dirt", "Turf", "Sand"];

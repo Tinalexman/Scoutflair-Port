@@ -1,11 +1,13 @@
 "use client";
 
-import React, { useEffect, useState, Suspense } from "react";
+import React, { useEffect, useState, Suspense, useRef } from "react";
 
 import { useFormik } from "formik";
 import { iLocalPitchResponse, useUpdateLocalPitch } from "@/src/hooks/pitch";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Loader } from "@mantine/core";
+import { useUploadLogo } from "@/src/hooks/common";
+import { facilitiesRatings, surfaceAreas } from "@/src/constants/constants";
 
 const EditPitch = () => {
   return (
@@ -23,6 +25,16 @@ const EditPitch = () => {
 
 const EditPitchContent = () => {
   const { loading, update, success } = useUpdateLocalPitch();
+  const fileRef = useRef<HTMLInputElement | null>(null);
+  const [file, setFile] = useState<File | null>(null);
+  const [fileImageData, setFileImageData] = useState<string>("");
+
+  const {
+    upload,
+    data: uploadedLogoData,
+    loading: uploadingLogo,
+    success: uploadedLogo,
+  } = useUploadLogo();
 
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -105,21 +117,25 @@ const EditPitchContent = () => {
       return errors;
     },
     onSubmit: (values, object) => {
-      update({
-        address: values.address,
-        facilities: values.facilities,
-        latitude: values.latitude,
-        length: values.pitchLength,
-        lga: values.lga,
-        longitude: values.longitude,
-        name: values.name,
-        state: values.state,
-        surface: values.surface,
-        width: values.width,
-        estYear: values.year,
-        rating: values.rating,
-        imageUrl: "",
-      });
+      if (file !== null) {
+        upload(file!);
+      } else {
+        update({
+          address: values.address,
+          facilities: values.facilities,
+          latitude: values.latitude,
+          length: values.pitchLength,
+          lga: values.lga,
+          longitude: values.longitude,
+          name: values.name,
+          state: values.state,
+          surface: values.surface,
+          width: values.width,
+          estYear: values.year,
+          rating: values.rating,
+          imageUrl: fileImageData,
+        });
+      }
     },
   });
 
@@ -142,6 +158,7 @@ const EditPitchContent = () => {
       setFieldValue("rating", payload.rating);
       setFieldValue("state", payload.state);
       setFieldValue("lga", payload.lga);
+      setFileImageData(payload.imageUrl);
     }
   }, [router]);
 
@@ -158,6 +175,39 @@ const EditPitchContent = () => {
           <h2 className="text-16-19 text-primary-2 font-semibold">
             Update Local Pitch
           </h2>
+          <div>
+            <div
+              onClick={() => fileRef.current?.click()}
+              className={`w-full h-40 ${
+                file !== null
+                  ? "bg-cover bg-center"
+                  : "border-2 border-primary-2 border-dashed"
+              } rounded-lg overflow-hidden cursor-pointer flex flex-col justify-center items-center gap-2`}
+            >
+              <img
+                src={fileImageData}
+                alt=""
+                className="object-cover w-full h-full"
+              />
+              <input
+                type="file"
+                accept="image/*"
+                ref={fileRef}
+                style={{ display: "none" }}
+                onChange={(e) => {
+                  const file = e.target.files?.[0];
+                  if (file) {
+                    const reader = new FileReader();
+                    reader.readAsDataURL(file);
+                    reader.onload = () => {
+                      setFile(file);
+                      setFileImageData(reader.result as string);
+                    };
+                  }
+                }}
+              />
+            </div>
+          </div>
           <div className="w-full grid-cols-2 grid gap-6">
             <div className="w-full flex flex-col gap-1">
               <h2 className="text-12-14 font-semibold text-[#333333]">
@@ -311,15 +361,20 @@ const EditPitchContent = () => {
               <h2 className="text-12-14 font-semibold text-[#333333]">
                 Facilities
               </h2>
-              <input
-                type="text"
+              <select
                 name="facilities"
-                placeholder=""
-                value={values.facilities}
+                defaultValue={""}
                 onChange={handleChange}
-                onBlur={handleBlur}
+                value={values.facilities}
                 className="w-full rounded-lg border bg-white placeholder:text-placeholder text-dark text-14-16 font-semibold placeholder:text-opacity-[0.88] border-border-gray h-10 px-2"
-              />
+              >
+                <option value="">Select</option>
+                {facilitiesRatings.map((facility) => (
+                  <option key={facility} value={facility}>
+                    {facility}
+                  </option>
+                ))}
+              </select>
               {errors.facilities && touched.facilities && (
                 <p className="text-8-9 text-red-600">{errors.facilities}</p>
               )}
@@ -349,15 +404,20 @@ const EditPitchContent = () => {
               <h2 className="text-12-14 font-semibold text-[#333333]">
                 Surface
               </h2>
-              <input
-                type="text"
+              <select
                 name="surface"
-                placeholder=""
-                value={values.surface}
+                defaultValue={""}
                 onChange={handleChange}
-                onBlur={handleBlur}
+                value={values.surface}
                 className="w-full rounded-lg border bg-white placeholder:text-placeholder text-dark text-14-16 font-semibold placeholder:text-opacity-[0.88] border-border-gray h-10 px-2"
-              />
+              >
+                <option value="">Select</option>
+                {surfaceAreas.map((srf) => (
+                  <option key={srf} value={srf}>
+                    {srf}
+                  </option>
+                ))}
+              </select>
               {errors.surface && touched.surface && (
                 <p className="text-8-9 text-red-600">{errors.surface}</p>
               )}

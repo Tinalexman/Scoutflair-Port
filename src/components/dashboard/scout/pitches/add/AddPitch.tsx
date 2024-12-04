@@ -6,6 +6,7 @@ import { useFormik } from "formik";
 import { useCreateLocalPitch } from "@/src/hooks/pitch";
 import { useUploadLogo } from "@/src/hooks/common";
 import { Loader } from "@mantine/core";
+import { facilitiesRatings, surfaceAreas } from "@/src/constants/constants";
 
 const AddPitch = () => {
   const { loading, create, success } = useCreateLocalPitch();
@@ -338,15 +339,20 @@ const AddPitch = () => {
               <h2 className="text-12-14 font-semibold text-[#333333]">
                 Facilities
               </h2>
-              <input
-                type="text"
+              <select
                 name="facilities"
-                placeholder=""
-                value={values.facilities}
+                defaultValue={""}
                 onChange={handleChange}
-                onBlur={handleBlur}
+                value={values.facilities}
                 className="w-full rounded-lg border bg-white placeholder:text-placeholder text-dark text-14-16 font-semibold placeholder:text-opacity-[0.88] border-border-gray h-10 px-2"
-              />
+              >
+                <option value="">Select</option>
+                {facilitiesRatings.map((facility) => (
+                  <option key={facility} value={facility}>
+                    {facility}
+                  </option>
+                ))}
+              </select>
               {errors.facilities && touched.facilities && (
                 <p className="text-8-9 text-red-600">{errors.facilities}</p>
               )}
@@ -376,15 +382,20 @@ const AddPitch = () => {
               <h2 className="text-12-14 font-semibold text-[#333333]">
                 Surface
               </h2>
-              <input
-                type="text"
+              <select
                 name="surface"
-                placeholder=""
-                value={values.surface}
+                defaultValue={""}
                 onChange={handleChange}
-                onBlur={handleBlur}
+                value={values.surface}
                 className="w-full rounded-lg border bg-white placeholder:text-placeholder text-dark text-14-16 font-semibold placeholder:text-opacity-[0.88] border-border-gray h-10 px-2"
-              />
+              >
+                <option value="">Select</option>
+                {surfaceAreas.map((srf) => (
+                  <option key={srf} value={srf}>
+                    {srf}
+                  </option>
+                ))}
+              </select>
               {errors.surface && touched.surface && (
                 <p className="text-8-9 text-red-600">{errors.surface}</p>
               )}
