@@ -49,7 +49,7 @@ const ViewPitch: FC<{ pitch: iLocalPitchResponse; onClose: () => void }> = ({
     },
     {
       key: "Year of Establishment",
-      value: pitch.year,
+      value: pitch.estYear,
     },
     {
       key: "Rating",

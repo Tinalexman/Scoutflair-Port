@@ -116,8 +116,9 @@ const EditPitchContent = () => {
         state: values.state,
         surface: values.surface,
         width: values.width,
-        year: values.year,
+        estYear: values.year,
         rating: values.rating,
+        imageUrl: "",
       });
     },
   });
@@ -136,7 +137,7 @@ const EditPitchContent = () => {
       setFieldValue("facilities", payload.facilities);
       setFieldValue("pitchLength", payload.length);
       setFieldValue("width", payload.width);
-      setFieldValue("year", payload.year);
+      setFieldValue("year", payload.estYear);
       setFieldValue("surface", payload.surface);
       setFieldValue("rating", payload.rating);
       setFieldValue("state", payload.state);

@@ -5,6 +5,7 @@ import { FaImage } from "react-icons/fa6";
 import { useFormik } from "formik";
 import { useCreateLocalPitch } from "@/src/hooks/pitch";
 import { useUploadLogo } from "@/src/hooks/common";
+import { Loader } from "@mantine/core";
 
 const AddPitch = () => {
   const { loading, create, success } = useCreateLocalPitch();
@@ -41,6 +42,7 @@ const AddPitch = () => {
       rating: "",
       state: "",
       lga: "",
+      file: "",
     },
     validate: (values) => {
       const errors: any = {};
@@ -93,9 +95,19 @@ const AddPitch = () => {
         errors.lga = "Required";
       }
 
+      if (file === null) {
+        errors.file = "Required";
+      }
+
       return errors;
     },
     onSubmit: (values, object) => {
+      upload(file!);
+    },
+  });
+
+  useEffect(() => {
+    if (!uploadingLogo && uploadedLogo) {
       create({
         address: values.address,
         facilities: values.facilities,
@@ -107,11 +119,12 @@ const AddPitch = () => {
         state: values.state,
         surface: values.surface,
         width: values.width,
-        year: values.year,
+        estYear: values.year,
         rating: values.rating,
+        imageUrl: data,
       });
-    },
-  });
+    }
+  }, [uploadingLogo, uploadedLogo]);
 
   useEffect(() => {
     if (!loading && success) {
@@ -127,45 +140,50 @@ const AddPitch = () => {
             Add Local Pitch
           </h2>
 
-          <div
-            onClick={() => fileRef.current?.click()}
-            className={`w-full h-40 ${
-              file !== null
-                ? "bg-cover bg-center"
-                : "border-2 border-primary-2 border-dashed"
-            } rounded-lg overflow-hidden cursor-pointer flex flex-col justify-center items-center gap-2`}
-          >
-            {file !== null ? (
-              <img
-                src={fileImageData}
-                alt=""
-                className="object-cover w-full h-full"
+          <div>
+            <div
+              onClick={() => fileRef.current?.click()}
+              className={`w-full h-40 ${
+                file !== null
+                  ? "bg-cover bg-center"
+                  : "border-2 border-primary-2 border-dashed"
+              } rounded-lg overflow-hidden cursor-pointer flex flex-col justify-center items-center gap-2`}
+            >
+              {file !== null ? (
+                <img
+                  src={fileImageData}
+                  alt=""
+                  className="object-cover w-full h-full"
+                />
+              ) : (
+                <>
+                  <FaImage className="text-primary-2 text-2xl" />
+                  <p className="text-14-16 font-medium text-primary-2">
+                    Upload pitch image
+                  </p>
+                </>
+              )}
+              <input
+                type="file"
+                accept="image/*"
+                ref={fileRef}
+                style={{ display: "none" }}
+                onChange={(e) => {
+                  const file = e.target.files?.[0];
+                  if (file) {
+                    const reader = new FileReader();
+                    reader.readAsDataURL(file);
+                    reader.onload = () => {
+                      setFile(file);
+                      setFileImageData(reader.result as string);
+                    };
+                  }
+                }}
               />
-            ) : (
-              <>
-                <FaImage className="text-primary-2 text-2xl" />
-                <p className="text-14-16 font-medium text-primary-2">
-                  Upload pitch image
-                </p>
-              </>
+            </div>
+            {errors.file && touched.name && (
+              <p className="text-8-9 text-red-600">{errors.file}</p>
             )}
-            <input
-              type="file"
-              accept="image/*"
-              ref={fileRef}
-              style={{ display: "none" }}
-              onChange={(e) => {
-                const file = e.target.files?.[0];
-                if (file) {
-                  const reader = new FileReader();
-                  reader.readAsDataURL(file);
-                  reader.onload = () => {
-                    setFile(file);
-                    setFileImageData(reader.result as string);
-                  };
-                }
-              }}
-            />
           </div>
           <div className="w-full grid-cols-2 grid gap-6">
             <div className="w-full flex flex-col gap-1">
@@ -398,7 +416,11 @@ const AddPitch = () => {
               type="submit"
               className="w-[160px] rounded-md h-10 text-white bg-primary-2"
             >
-              Add Pitch
+              {loading || uploadingLogo ? (
+                <Loader color="white.6" />
+              ) : (
+                "Add Pitch"
+              )}
             </button>
           </div>
         </div>

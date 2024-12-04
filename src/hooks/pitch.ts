@@ -11,19 +11,18 @@ export interface iLocalPitchResponse {
   length: string;
   lga: string;
   facilities: string;
-  year: string;
+  estYear: string;
   longitude: string;
   name: string;
   state: string;
   surface: string;
   width: string;
+  imageUrl: string;
   rating: string;
 }
 
 export interface iModifyLocalPitchPayload
-  extends Omit<iLocalPitchResponse, "createdDate"> {
-  rating: string;
-}
+  extends Omit<iLocalPitchResponse, "createdDate" | "id"> {}
 
 export const useGetLocalPitches = () => {
   const [data, setData] = useState<iLocalPitchResponse[]>([]);

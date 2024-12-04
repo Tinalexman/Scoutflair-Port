@@ -47,11 +47,11 @@ const PitchCard: FC<{
           </div>
           <div className="flex flex-col w-full">
             <h3 className="text-8-9">Length:</h3>
-            <p className="text-10-12">{pitch.length}</p>
+            <p className="text-10-12">{pitch.length}m</p>
           </div>
           <div className="flex flex-col w-full">
             <h3 className="text-8-9">Width:</h3>
-            <p className="text-10-12">{pitch.width}</p>
+            <p className="text-10-12">{pitch.width}m</p>
           </div>
         </div>
       </div>
