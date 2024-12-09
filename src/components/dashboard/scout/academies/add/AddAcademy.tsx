@@ -4,7 +4,8 @@ import React, { useEffect, useRef, useState } from "react";
 
 import { useFormik } from "formik";
 import { useCreateAcademy } from "@/src/hooks/academy";
-import { useUploadLogo, useUploadPicture } from "@/src/hooks/common";
+import { useUploadLogo } from "@/src/hooks/common";
+import { FaImage } from "react-icons/fa6";
 
 const AddAcademy = () => {
   const { loading, create, success } = useCreateAcademy();
@@ -29,51 +30,120 @@ const AddAcademy = () => {
   } = useFormik({
     initialValues: {
       address: "",
-      completedCount: "",
       description: "",
       email: "",
-      establishmentsType: "",
       founded: "",
-      imageUrl: "",
       latitude: "",
       lga: "",
-      logoUrl: "",
       longitude: "",
-      lostCount: "",
       name: "",
       phone: "",
       playersCount: "",
       principal: "",
       state: "",
-      website: "",
+      totalMatches: "",
       winCount: "",
+      lostCount: "",
+      graduatedCount: "",
+      file: "",
     },
     validate: (values) => {
       const errors: any = {};
 
+      if (file === null) {
+        errors.file = "Required";
+      }
+
+      if (!values.name) {
+        errors.name = "Required";
+      }
+
+      if (!values.address) {
+        errors.address = "Required";
+      }
+
+      if (!values.description) {
+        errors.description = "Required";
+      }
+
+      if (!values.email) {
+        errors.email = "Required";
+      }
+
+      if (!values.founded) {
+        errors.founded = "Required";
+      }
+
+      if (!values.latitude) {
+        errors.latitude = "Required";
+      }
+
+      if (!values.lga) {
+        errors.lga = "Required";
+      }
+
+      if (!values.longitude) {
+        errors.longitude = "Required";
+      }
+
+      if (!values.state) {
+        errors.state = "Required";
+      }
+
+      if (!values.phone) {
+        errors.phone = "Required";
+      }
+
+      if (!values.playersCount) {
+        errors.playersCount = "Required";
+      }
+
+      if (!values.principal) {
+        errors.principal = "Required";
+      }
+
+      if (!values.totalMatches) {
+        errors.totalMatches = "Required";
+      }
+
+      if (!values.winCount) {
+        errors.winCount = "Required";
+      }
+
       return errors;
     },
     onSubmit: (values, object) => {
-      // create({
-      //   address: values.address,
-      //   facilities: values.facilities,
-      //   latitude: values.latitude,
-      //   length: values.pitchLength,
-      //   lga: values.lga,
-      //   longitude: values.longitude,
-      //   name: values.name,
-      //   state: values.state,
-      //   surface: values.surface,
-      //   width: values.width,
-      //   year: values.year,
-      //   rating: values.rating,
-      // });
+      upload(file!);
     },
   });
 
   useEffect(() => {
+    if (!uploadingLogo && uploadedLogo) {
+      create({
+        address: values.address,
+        imageUrl: data,
+        description: values.description,
+        email: values.email,
+        founded: values.founded,
+        latitude: values.latitude,
+        lga: values.lga,
+        longitude: values.longitude,
+        name: values.name,
+        phone: values.phone,
+        playersCount: Number.parseInt(values.playersCount),
+        principal: values.principal,
+        state: values.state,
+        totalMatches: Number.parseInt(values.totalMatches),
+        winCount: Number.parseInt(values.winCount),
+        lostCount: Number.parseInt(values.lostCount),
+        graduatedCount: Number.parseInt(values.graduatedCount),
+      });
+    }
+  }, [uploadingLogo, uploadedLogo]);
+
+  useEffect(() => {
     if (!loading && success) {
-      window.location.replace("/dashboard/scout/pitches");
+      window.location.replace("/dashboard/scout/academies");
     }
   }, [loading, success]);
 
@@ -84,6 +154,51 @@ const AddAcademy = () => {
           <h2 className="text-16-19 text-primary-2 font-semibold">
             Add Academy
           </h2>
+          <div>
+            <div
+              onClick={() => fileRef.current?.click()}
+              className={`w-full h-40 ${
+                file !== null
+                  ? "bg-cover bg-center"
+                  : "border-2 border-primary-2 border-dashed"
+              } rounded-lg overflow-hidden cursor-pointer flex flex-col justify-center items-center gap-2`}
+            >
+              {file !== null ? (
+                <img
+                  src={fileImageData}
+                  alt=""
+                  className="object-cover w-full h-full"
+                />
+              ) : (
+                <>
+                  <FaImage className="text-primary-2 text-2xl" />
+                  <p className="text-14-16 font-medium text-primary-2">
+                    Upload academy image
+                  </p>
+                </>
+              )}
+              <input
+                type="file"
+                accept="image/*"
+                ref={fileRef}
+                style={{ display: "none" }}
+                onChange={(e) => {
+                  const file = e.target.files?.[0];
+                  if (file) {
+                    const reader = new FileReader();
+                    reader.readAsDataURL(file);
+                    reader.onload = () => {
+                      setFile(file);
+                      setFileImageData(reader.result as string);
+                    };
+                  }
+                }}
+              />
+            </div>
+            {errors.file && touched.name && (
+              <p className="text-8-9 text-red-600">{errors.file}</p>
+            )}
+          </div>
           <div className="w-full grid-cols-2 grid gap-6">
             <div className="w-full flex flex-col gap-1">
               <h2 className="text-12-14 font-semibold text-[#333333]">
@@ -227,6 +342,186 @@ const AddAcademy = () => {
                 <p className="text-8-9 text-red-600">{errors.longitude}</p>
               )}
             </div>
+            <div className="w-full flex flex-col gap-1">
+              <h2 className="text-12-14 font-semibold text-[#333333]">
+                Number Of Players
+              </h2>
+              <input
+                type="text"
+                name="playersCount"
+                placeholder=""
+                value={values.playersCount}
+                onChange={(e) => {
+                  const res = e.target.value.trim();
+                  if (isNaN(Number(res))) return;
+                  setFieldValue("playersCount", res);
+                }}
+                onBlur={handleBlur}
+                className="w-full rounded-lg border bg-white placeholder:text-placeholder text-dark text-14-16 font-semibold placeholder:text-opacity-[0.88] border-border-gray h-10 px-2"
+              />
+              {errors.playersCount && touched.playersCount && (
+                <p className="text-8-9 text-red-600">{errors.playersCount}</p>
+              )}
+            </div>
+            <div className="w-full flex flex-col gap-1">
+              <h2 className="text-12-14 font-semibold text-[#333333]">
+                Year Founded
+              </h2>
+              <input
+                type="text"
+                name="founded"
+                placeholder=""
+                value={values.founded}
+                onChange={(e) => {
+                  const res = e.target.value.trim();
+                  if (isNaN(Number(res))) return;
+                  setFieldValue("founded", res);
+                }}
+                onBlur={handleBlur}
+                className="w-full rounded-lg border bg-white placeholder:text-placeholder text-dark text-14-16 font-semibold placeholder:text-opacity-[0.88] border-border-gray h-10 px-2"
+              />
+              {errors.founded && touched.founded && (
+                <p className="text-8-9 text-red-600">{errors.founded}</p>
+              )}
+            </div>
+            <div className="w-full flex flex-col gap-1">
+              <h2 className="text-12-14 font-semibold text-[#333333]">
+                Coach Name
+              </h2>
+              <input
+                type="text"
+                name="principal"
+                placeholder=""
+                value={values.principal}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                className="w-full rounded-lg border bg-white placeholder:text-placeholder text-dark text-14-16 font-semibold placeholder:text-opacity-[0.88] border-border-gray h-10 px-2"
+              />
+              {errors.principal && touched.principal && (
+                <p className="text-8-9 text-red-600">{errors.principal}</p>
+              )}
+            </div>
+            <div className="w-full flex flex-col gap-1">
+              <h2 className="text-12-14 font-semibold text-[#333333]">
+                Player Count
+              </h2>
+              <input
+                type="text"
+                name="playersCount"
+                placeholder=""
+                value={values.playersCount}
+                onChange={(e) => {
+                  const res = e.target.value.trim();
+                  if (isNaN(Number(res))) return;
+                  setFieldValue("playersCount", res);
+                }}
+                onBlur={handleBlur}
+                className="w-full rounded-lg border bg-white placeholder:text-placeholder text-dark text-14-16 font-semibold placeholder:text-opacity-[0.88] border-border-gray h-10 px-2"
+              />
+              {errors.playersCount && touched.playersCount && (
+                <p className="text-8-9 text-red-600">{errors.playersCount}</p>
+              )}
+            </div>
+            <div className="w-full flex flex-col gap-1">
+              <h2 className="text-12-14 font-semibold text-[#333333]">
+                Total Matches Played
+              </h2>
+              <input
+                type="text"
+                name="totalMatches"
+                placeholder=""
+                value={values.totalMatches}
+                onChange={(e) => {
+                  const res = e.target.value.trim();
+                  if (isNaN(Number(res))) return;
+                  setFieldValue("totalMatches", res);
+                }}
+                onBlur={handleBlur}
+                className="w-full rounded-lg border bg-white placeholder:text-placeholder text-dark text-14-16 font-semibold placeholder:text-opacity-[0.88] border-border-gray h-10 px-2"
+              />
+              {errors.totalMatches && touched.totalMatches && (
+                <p className="text-8-9 text-red-600">{errors.totalMatches}</p>
+              )}
+            </div>
+            <div className="w-full flex flex-col gap-1">
+              <h2 className="text-12-14 font-semibold text-[#333333]">
+                Number of Graduated Players
+              </h2>
+              <input
+                type="text"
+                name="graduatedCount"
+                placeholder=""
+                value={values.graduatedCount}
+                onChange={(e) => {
+                  const res = e.target.value.trim();
+                  if (isNaN(Number(res))) return;
+                  setFieldValue("graduatedCount", res);
+                }}
+                onBlur={handleBlur}
+                className="w-full rounded-lg border bg-white placeholder:text-placeholder text-dark text-14-16 font-semibold placeholder:text-opacity-[0.88] border-border-gray h-10 px-2"
+              />
+              {errors.graduatedCount && touched.graduatedCount && (
+                <p className="text-8-9 text-red-600">{errors.graduatedCount}</p>
+              )}
+            </div>
+            <div className="w-full flex flex-col gap-1">
+              <h2 className="text-12-14 font-semibold text-[#333333]">
+                Number of Matches Won
+              </h2>
+              <input
+                type="text"
+                name="winCount"
+                placeholder=""
+                value={values.winCount}
+                onChange={(e) => {
+                  const res = e.target.value.trim();
+                  if (isNaN(Number(res))) return;
+                  setFieldValue("winCount", res);
+                }}
+                onBlur={handleBlur}
+                className="w-full rounded-lg border bg-white placeholder:text-placeholder text-dark text-14-16 font-semibold placeholder:text-opacity-[0.88] border-border-gray h-10 px-2"
+              />
+              {errors.winCount && touched.winCount && (
+                <p className="text-8-9 text-red-600">{errors.winCount}</p>
+              )}
+            </div>
+            <div className="w-full flex flex-col gap-1">
+              <h2 className="text-12-14 font-semibold text-[#333333]">
+                Number of Matches Lost
+              </h2>
+              <input
+                type="text"
+                name="lostCount"
+                placeholder=""
+                value={values.lostCount}
+                onChange={(e) => {
+                  const res = e.target.value.trim();
+                  if (isNaN(Number(res))) return;
+                  setFieldValue("lostCount", res);
+                }}
+                onBlur={handleBlur}
+                className="w-full rounded-lg border bg-white placeholder:text-placeholder text-dark text-14-16 font-semibold placeholder:text-opacity-[0.88] border-border-gray h-10 px-2"
+              />
+              {errors.lostCount && touched.lostCount && (
+                <p className="text-8-9 text-red-600">{errors.lostCount}</p>
+              )}
+            </div>
+          </div>
+          <div className="w-full flex flex-col gap-1">
+            <h2 className="text-12-14 font-semibold text-[#333333]">
+              Description
+            </h2>
+            <textarea
+              name="description"
+              placeholder=""
+              value={values.description}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              className="w-full rounded-lg border bg-white placeholder:text-placeholder text-dark text-14-16 font-semibold placeholder:text-opacity-[0.88] border-border-gray h-20 resize-none px-2"
+            />
+            {errors.description && touched.description && (
+              <p className="text-8-9 text-red-600">{errors.description}</p>
+            )}
           </div>
           <div className="w-full grid place-content-center mt-5">
             <button

@@ -17,7 +17,7 @@ const PitchCard: FC<{
     >
       <div className="w-10 flex flex-col items-center gap-1">
         <Image
-          src={PitchImage}
+          src={pitch.imageUrl ?? ""}
           alt="pitch image"
           width={40}
           height={40}

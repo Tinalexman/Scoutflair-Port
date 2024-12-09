@@ -169,14 +169,7 @@ const Content: React.FC = () => {
                     </div>
                   ) : null}
                 </div>
-                <div className="flex justify-between items-center w-full gap-4">
-                  <div className="flex items-center gap-2">
-                    <Field
-                      type="checkbox"
-                      className="w-4 h-4 border border-black"
-                    />
-                    <label className="text-black opacity-72">Remember me</label>
-                  </div>
+                <div className="flex justify-end items-center w-full gap-4">
                   <div className="flex items-center gap-2">
                     <Link href={Urls.PASSWORDRESET}>
                       <p className="text-bold opacity-72">Forgot Password</p>

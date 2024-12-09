@@ -1,8 +1,7 @@
 import { iAcademyResponse } from "@/src/hooks/academy";
-import { Modal } from "@mantine/core";
 import React, { FC } from "react";
-
-import { IoMdArrowBack, IoMdClose } from "react-icons/io";
+import Image from "next/image";
+import { IoMdArrowBack } from "react-icons/io";
 import { MdEdit } from "react-icons/md";
 
 const ViewAcademy: FC<{ academy: iAcademyResponse; onClose: () => void }> = ({
@@ -18,16 +17,25 @@ const ViewAcademy: FC<{ academy: iAcademyResponse; onClose: () => void }> = ({
       value: academy.name,
     },
     {
+      key: "Coach Name",
+      value: academy.principalOrCoach,
+    },
+    {
+      key: "Address",
+      value: academy.address,
+    },
+    {
+      key: "Description",
+      value: academy.description,
+    },
+
+    {
       key: "State",
       value: academy.state,
     },
     {
       key: "L.G.A",
       value: academy.lga,
-    },
-    {
-      key: "Country",
-      value: academy.country,
     },
     {
       key: "Geo Location",
@@ -38,8 +46,24 @@ const ViewAcademy: FC<{ academy: iAcademyResponse; onClose: () => void }> = ({
       value: academy.playersCount,
     },
     {
-      key: "Facilities",
-      value: "Good",
+      key: "Total Matches",
+      value: academy.totalMatches,
+    },
+    {
+      key: "Win Count",
+      value: academy.winCount,
+    },
+    {
+      key: "Lost Count",
+      value: academy.lostCount,
+    },
+    {
+      key: "Graduated Count",
+      value: academy.graduatedCount,
+    },
+    {
+      key: "Completed Count",
+      value: academy.completedCount,
     },
   ];
 
@@ -58,10 +82,27 @@ const ViewAcademy: FC<{ academy: iAcademyResponse; onClose: () => void }> = ({
         </div>
         <MdEdit
           className="cursor-pointer text-dark"
-          onClick={onClose}
+          onClick={() => {
+            const payload = Buffer.from(JSON.stringify(academy)).toString(
+              "base64"
+            );
+
+            window.location.assign(
+              `/dashboard/scout/academies/edit?data=${payload}`
+            );
+          }}
           size={22}
         />
       </div>
+
+      <Image
+        src={academy.imageUrl ?? ""}
+        alt="pitch image"
+        width={500}
+        height={500}
+        className="rounded-xl w-full h-auto"
+      />
+
       <div className="w-full flex flex-col gap-4">
         {academyData.map((data, i) => (
           <div

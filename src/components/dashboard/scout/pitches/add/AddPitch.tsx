@@ -425,7 +425,7 @@ const AddPitch = () => {
           <div className="w-full grid place-content-center mt-5">
             <button
               type="submit"
-              className="w-[160px] rounded-md h-10 text-white bg-primary-2"
+              className="w-[160px] grid place-content-center rounded-md h-10 text-white bg-primary-2"
             >
               {loading || uploadingLogo ? (
                 <Loader color="white.6" />

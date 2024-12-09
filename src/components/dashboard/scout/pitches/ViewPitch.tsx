@@ -2,6 +2,7 @@ import { iLocalPitchResponse } from "@/src/hooks/pitch";
 import React, { FC } from "react";
 import { MdEdit } from "react-icons/md";
 import { IoMdArrowBack } from "react-icons/io";
+import Image from "next/image";
 
 const ViewPitch: FC<{ pitch: iLocalPitchResponse; onClose: () => void }> = ({
   pitch,
@@ -84,6 +85,15 @@ const ViewPitch: FC<{ pitch: iLocalPitchResponse; onClose: () => void }> = ({
           size={22}
         />
       </div>
+
+      <Image
+        src={pitch.imageUrl ?? ""}
+        alt="pitch image"
+        width={500}
+        height={500}
+        className="rounded-xl w-full h-auto"
+      />
+
       <div className="w-full flex flex-col gap-4">
         {pitchData.map((pit, i) => (
           <div

@@ -35,10 +35,12 @@ export interface iModifyAcademyPayload
     iAcademyResponse,
     | "dateCreated"
     | "establishmentsType"
-    | "playersCount"
-    | "totalMatches"
     | "id"
     | "principalOrCoach"
+    | "completedCount"
+    | "logoUrl"
+    | "country"
+    | "website"
   > {
   principal: string;
 }
