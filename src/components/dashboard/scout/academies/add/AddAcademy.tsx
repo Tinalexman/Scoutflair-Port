@@ -6,6 +6,7 @@ import { useFormik } from "formik";
 import { useCreateAcademy } from "@/src/hooks/academy";
 import { useUploadLogo } from "@/src/hooks/common";
 import { FaImage } from "react-icons/fa6";
+import { Loader } from "@mantine/core";
 
 const AddAcademy = () => {
   const { loading, create, success } = useCreateAcademy();
@@ -45,6 +46,7 @@ const AddAcademy = () => {
       winCount: "",
       lostCount: "",
       graduatedCount: "",
+      rating: "",
       file: "",
     },
     validate: (values) => {
@@ -102,6 +104,10 @@ const AddAcademy = () => {
         errors.principal = "Required";
       }
 
+      if (!values.rating) {
+        errors.rating = "Required";
+      }
+
       if (!values.totalMatches) {
         errors.totalMatches = "Required";
       }
@@ -124,7 +130,7 @@ const AddAcademy = () => {
         imageUrl: data,
         description: values.description,
         email: values.email,
-        founded: values.founded,
+        founded: `${values.founded}-01-01`,
         latitude: values.latitude,
         lga: values.lga,
         longitude: values.longitude,
@@ -137,6 +143,7 @@ const AddAcademy = () => {
         winCount: Number.parseInt(values.winCount),
         lostCount: Number.parseInt(values.lostCount),
         graduatedCount: Number.parseInt(values.graduatedCount),
+        rating: Number.parseFloat(values.rating),
       });
     }
   }, [uploadingLogo, uploadedLogo]);
@@ -403,23 +410,23 @@ const AddAcademy = () => {
             </div>
             <div className="w-full flex flex-col gap-1">
               <h2 className="text-12-14 font-semibold text-[#333333]">
-                Player Count
+                Rating
               </h2>
               <input
                 type="text"
-                name="playersCount"
+                name="rating"
                 placeholder=""
-                value={values.playersCount}
+                value={values.rating}
                 onChange={(e) => {
                   const res = e.target.value.trim();
                   if (isNaN(Number(res))) return;
-                  setFieldValue("playersCount", res);
+                  setFieldValue("rating", res);
                 }}
                 onBlur={handleBlur}
                 className="w-full rounded-lg border bg-white placeholder:text-placeholder text-dark text-14-16 font-semibold placeholder:text-opacity-[0.88] border-border-gray h-10 px-2"
               />
-              {errors.playersCount && touched.playersCount && (
-                <p className="text-8-9 text-red-600">{errors.playersCount}</p>
+              {errors.rating && touched.rating && (
+                <p className="text-8-9 text-red-600">{errors.rating}</p>
               )}
             </div>
             <div className="w-full flex flex-col gap-1">
@@ -517,7 +524,7 @@ const AddAcademy = () => {
               value={values.description}
               onChange={handleChange}
               onBlur={handleBlur}
-              className="w-full rounded-lg border bg-white placeholder:text-placeholder text-dark text-14-16 font-semibold placeholder:text-opacity-[0.88] border-border-gray h-20 resize-none px-2"
+              className="w-full rounded-lg border bg-white placeholder:text-placeholder text-dark text-14-16 font-semibold placeholder:text-opacity-[0.88] border-border-gray h-20 resize-none p-2"
             />
             {errors.description && touched.description && (
               <p className="text-8-9 text-red-600">{errors.description}</p>
@@ -526,9 +533,13 @@ const AddAcademy = () => {
           <div className="w-full grid place-content-center mt-5">
             <button
               type="submit"
-              className="w-[160px] rounded-md h-10 text-white bg-primary-2"
+              className="w-[160px] grid place-content-center rounded-md h-10 text-white bg-primary-2"
             >
-              Add Academy
+              {loading || uploadingLogo ? (
+                <Loader color="white.6" />
+              ) : (
+                "Add Academy"
+              )}
             </button>
           </div>
         </div>

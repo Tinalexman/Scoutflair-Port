@@ -5,7 +5,6 @@ import React, { Suspense, useEffect, useRef, useState } from "react";
 import { useFormik } from "formik";
 import { iAcademyResponse, useUpdateAcademy } from "@/src/hooks/academy";
 import { useUploadLogo } from "@/src/hooks/common";
-import { FaImage } from "react-icons/fa6";
 import { Loader } from "@mantine/core";
 import { useRouter, useSearchParams } from "next/navigation";
 
@@ -65,14 +64,11 @@ const EditAcademyContent = () => {
       winCount: "",
       lostCount: "",
       graduatedCount: "",
+      rating: "",
       file: "",
     },
     validate: (values) => {
       const errors: any = {};
-
-      if (file === null) {
-        errors.file = "Required";
-      }
 
       if (!values.name) {
         errors.name = "Required";
@@ -122,6 +118,9 @@ const EditAcademyContent = () => {
         errors.principal = "Required";
       }
 
+      if (!values.rating) {
+        errors.rating = "Required";
+      }
       if (!values.totalMatches) {
         errors.totalMatches = "Required";
       }
@@ -154,6 +153,7 @@ const EditAcademyContent = () => {
           winCount: Number.parseInt(values.winCount),
           lostCount: Number.parseInt(values.lostCount),
           graduatedCount: Number.parseInt(values.graduatedCount),
+          rating: Number.parseFloat(values.rating),
         });
       }
     },
@@ -179,6 +179,7 @@ const EditAcademyContent = () => {
         winCount: Number.parseInt(values.winCount),
         lostCount: Number.parseInt(values.lostCount),
         graduatedCount: Number.parseInt(values.graduatedCount),
+        rating: Number.parseFloat(values.rating),
       });
     }
   }, [uploadingLogo, uploadedLogo]);
@@ -196,7 +197,11 @@ const EditAcademyContent = () => {
       setFieldValue("latitude", payload.latitude);
       setFieldValue("description", payload.description);
       setFieldValue("email", payload.email);
-      setFieldValue("founded", payload.founded);
+      setFieldValue("rating", payload.rating);
+      setFieldValue(
+        "founded",
+        new Date(payload.founded).getFullYear().toString()
+      );
       setFieldValue("phone", payload.phone);
       setFieldValue("playersCount", payload.playersCount);
       setFieldValue("principal", payload.principalOrCoach);
@@ -232,20 +237,11 @@ const EditAcademyContent = () => {
                   : "border-2 border-primary-2 border-dashed"
               } rounded-lg overflow-hidden cursor-pointer flex flex-col justify-center items-center gap-2`}
             >
-              {file !== null ? (
-                <img
-                  src={fileImageData}
-                  alt=""
-                  className="object-cover w-full h-full"
-                />
-              ) : (
-                <>
-                  <FaImage className="text-primary-2 text-2xl" />
-                  <p className="text-14-16 font-medium text-primary-2">
-                    Upload academy image
-                  </p>
-                </>
-              )}
+              <img
+                src={fileImageData}
+                alt=""
+                className="object-cover w-full h-full"
+              />
               <input
                 type="file"
                 accept="image/*"
@@ -472,23 +468,23 @@ const EditAcademyContent = () => {
             </div>
             <div className="w-full flex flex-col gap-1">
               <h2 className="text-12-14 font-semibold text-[#333333]">
-                Player Count
+                Rating
               </h2>
               <input
                 type="text"
-                name="playersCount"
+                name="rating"
                 placeholder=""
-                value={values.playersCount}
+                value={values.rating}
                 onChange={(e) => {
                   const res = e.target.value.trim();
                   if (isNaN(Number(res))) return;
-                  setFieldValue("playersCount", res);
+                  setFieldValue("rating", res);
                 }}
                 onBlur={handleBlur}
                 className="w-full rounded-lg border bg-white placeholder:text-placeholder text-dark text-14-16 font-semibold placeholder:text-opacity-[0.88] border-border-gray h-10 px-2"
               />
-              {errors.playersCount && touched.playersCount && (
-                <p className="text-8-9 text-red-600">{errors.playersCount}</p>
+              {errors.rating && touched.rating && (
+                <p className="text-8-9 text-red-600">{errors.rating}</p>
               )}
             </div>
             <div className="w-full flex flex-col gap-1">
@@ -586,7 +582,7 @@ const EditAcademyContent = () => {
               value={values.description}
               onChange={handleChange}
               onBlur={handleBlur}
-              className="w-full rounded-lg border bg-white placeholder:text-placeholder text-dark text-14-16 font-semibold placeholder:text-opacity-[0.88] border-border-gray h-20 resize-none px-2"
+              className="w-full rounded-lg border bg-white placeholder:text-placeholder text-dark text-14-16 font-semibold placeholder:text-opacity-[0.88] border-border-gray h-20 resize-none p-2"
             />
             {errors.description && touched.description && (
               <p className="text-8-9 text-red-600">{errors.description}</p>
@@ -595,9 +591,13 @@ const EditAcademyContent = () => {
           <div className="w-full grid place-content-center mt-5">
             <button
               type="submit"
-              className="w-[160px] rounded-md h-10 text-white bg-primary-2"
+              className="w-[160px] grid place-content-center rounded-md h-10 text-white bg-primary-2"
             >
-              Update Academy
+              {loading || uploadingLogo ? (
+                <Loader color="white.6" />
+              ) : (
+                "Update Academy"
+              )}
             </button>
           </div>
         </div>

@@ -22,7 +22,7 @@ const AcademyCard: FC<{
           size="size-10"
         />
         <div className="items-center justify-center flex w-fit gap-0.5">
-          <p className="text-8-9 text-dark font-medium">4</p>
+          <p className="text-8-9 text-dark font-medium">{academy.rating}</p>
           <FaStar size={8} className={`text-secondary-3`} />
         </div>
       </div>

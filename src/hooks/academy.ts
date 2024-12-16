@@ -28,6 +28,7 @@ export interface iAcademyResponse {
   totalMatches: number;
   website: string;
   winCount: number;
+  rating: number;
 }
 
 export interface iModifyAcademyPayload
