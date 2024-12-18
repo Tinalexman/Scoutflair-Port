@@ -25,41 +25,24 @@ const Players = () => {
             <RiMedalLine className="text-dark text-2xl" />
           </div>
           <div className="flex w-full justify-between">
-            <div className="w-full justify-between flex flex-col ">
-              <div className="flex w-fit ">
-                {data.imageUrls.map((player, index) =>
-                  player ? (
-                    <div
-                      key={index}
-                      className="size-8 rounded-full bg-primary-2"
-                    />
-                  ) : (
-                    <Image
-                      src={player}
-                      key={index}
-                      alt="player"
-                      width={32}
-                      height={32}
-                      className={`size-8 rounded-full object-cover`}
-                    />
-                  )
-                )}
-              </div>
-              <div className="flex w-fit gap-1">
-                {Array(5)
-                  .fill(0)
-                  .map((num, index) => (
-                    <FaStar
-                      key={index}
-                      size={20}
-                      className={`${
-                        index + 1 <= ratings
-                          ? "text-[#FFD700]"
-                          : "text-border-gray"
-                      }`}
-                    />
-                  ))}
-              </div>
+            <div className="flex w-fit">
+              {data.imageUrls.map((player, index) =>
+                player ? (
+                  <div
+                    key={index}
+                    className="size-8 rounded-full bg-primary-2"
+                  />
+                ) : (
+                  <Image
+                    src={player}
+                    key={index}
+                    alt="player"
+                    width={32}
+                    height={32}
+                    className={`size-8 rounded-full object-cover`}
+                  />
+                )
+              )}
             </div>
             <div className="w-full items-end flex flex-col justify-between">
               <h1 className="text-primary-2 text-48-57 font-bold">

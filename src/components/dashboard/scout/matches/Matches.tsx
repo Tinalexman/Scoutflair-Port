@@ -12,7 +12,20 @@ const Matches = () => {
   const { loading, data } = useGetUpcomingMatches();
 
   return (
-    <div className="w-full grid grid-cols-2 gap-6 p-6">
+    <div className="w-full flex flex-col gap-6 p-6">
+      <UpcomingMatchBanner loading={loading} data={data} />
+      <div className="grid grid-cols-2 w-full gap-6">
+        <UpcomingMatches loading={loading} data={data} />
+        <RecentMatches />
+      </div>
+    </div>
+  );
+};
+
+export default Matches;
+
+/*
+<div className="w-full grid grid-cols-2 gap-6 p-6">
       <div className="flex flex-col w-full gap-6">
         <UpcomingMatchBanner loading={loading} data={data} />
         <RecentMatches />
@@ -27,7 +40,4 @@ const Matches = () => {
         </div>
       </div>
     </div>
-  );
-};
-
-export default Matches;
+*/

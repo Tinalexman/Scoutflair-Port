@@ -37,7 +37,7 @@ const AllPlayers = () => {
         </div>
       )}
       {!loading && data.length === 0 && (
-        <div className="w-full h-[30rem] flex flex-col shadow-custom justify-center items-center gap-5 sticky top-6 bg-white rounded-xl">
+        <div className="w-full h-[30rem] flex flex-col justify-center items-center gap-5 sticky top-6">
           <Image
             src={Void}
             alt="no posts"
@@ -46,8 +46,8 @@ const AllPlayers = () => {
             className="w-40 h-auto object-cover"
           />
 
-          <h2 className="text-dark text-16-19 font-medium">
-            There are no players available
+          <h2 className="text-dark text-12-14 font-medium">
+            There are no players available at the moment
           </h2>
         </div>
       )}

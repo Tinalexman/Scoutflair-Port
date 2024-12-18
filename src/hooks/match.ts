@@ -2,6 +2,7 @@
 
 import { useAxios } from "@/src/api/base";
 import { useState, useEffect } from "react";
+import Swal from "sweetalert2";
 
 export interface iMatchResponse {
   awayTeam: string;
@@ -148,6 +149,14 @@ export const useCreateMatch = () => {
     );
     setLoading(false);
     setSuccess(status);
+
+    Swal.fire({
+      title: status ? "Success!" : "Oops!",
+      text: status
+        ? "Upcoming match created successfully!"
+        : "An error occurred. Please try again",
+      icon: status ? "success" : "error",
+    });
   };
 
   return {

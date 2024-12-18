@@ -6,7 +6,7 @@ import Image, { StaticImageData } from "next/image";
 import Void from "@/public/images/Void.png";
 import CupImage from "@/public/dashboard/scout/Ellipse 2381.png";
 
-import { FaStar, FaRegStar } from "react-icons/fa";
+import { FaStar } from "react-icons/fa";
 import { useGetPreviousMatches } from "@/src/hooks/match";
 
 import { Loader } from "@mantine/core";

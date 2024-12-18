@@ -10,7 +10,7 @@ import Image from "next/image";
 import Nigeria from "@/public/dashboard/scout/twemoji_flag-nigeria.png";
 
 import { FaStar } from "react-icons/fa";
-
+import Void from "@/public/images/Void.png";
 import { useCurrentUserStore } from "@/src/stores/userStore";
 import AddTask from "./AddTask";
 import ProfileImageOrTextAvatar from "@/src/components/reusable/ProfileImageOrTextAvatar";
@@ -51,8 +51,8 @@ const Plan = () => {
           />
           <h3 className="text-dark font-lato text-12-14">{names}</h3>
         </div>
-        {!loading && (
-          <div className="mt-3 mb-4 w-full h-[13rem] grid grid-cols-4 gap-6">
+        {!loading && players.length !== 0 && (
+          <div className="mt-3 mb-4 w-full h-[16.5rem] grid grid-cols-4 gap-6">
             {players.slice(0, 4).map((player, index) => (
               <div
                 key={index}
@@ -137,8 +137,23 @@ const Plan = () => {
           </div>
         )}
         {loading && (
-          <div className="w-full h-[13rem] grid place-content-center">
-            <Loader color="primary.6" />{" "}
+          <div className="w-full h-[16.5rem] grid place-content-center">
+            <Loader color="primary.6" />
+          </div>
+        )}
+        {!loading && players.length === 0 && (
+          <div className="w-full flex flex-col justify-center items-center gap-5 h-[16.5rem]">
+            <Image
+              src={Void}
+              alt="no task"
+              width={100}
+              height={100}
+              className="w-32 h-auto object-cover"
+            />
+
+            <h2 className="text-dark text-10-12 font-medium text-center">
+              There are no tasks available at the moment
+            </h2>
           </div>
         )}
       </div>

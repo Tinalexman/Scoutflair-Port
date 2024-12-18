@@ -5,7 +5,7 @@ import React, { FC } from "react";
 
 const PlayerCard: FC<{ player: iPlayerResponse }> = ({ player }) => {
   return (
-    <div className="w-full h-[8.5rem] shadow-custom rounded-[1rem] py-4 px-5 gap-4 bg-white flex justify-between items-center">
+    <div className="w-full h-[8.5rem] rounded-[1rem] py-4 px-5 gap-4 border border-border-gray border-opacity-50 flex justify-between items-center">
       <ProfileImageOrTextAvatar
         name={player.fullName}
         image={""}
@@ -40,7 +40,7 @@ const PlayerCard: FC<{ player: iPlayerResponse }> = ({ player }) => {
               `/dashboard/scout/players/view-player?email=${player.email}`
             );
           }}
-          className="px-3 py-2 border rounded-full border-secondary-3 font-medium text-10-12 cursor-pointer grid place-content-center text-dark text-opacity-[0.88]"
+          className="px-3 py-2 border rounded-full border-secondary-3 hover:bg-secondary-3 font-medium text-10-12 cursor-pointer grid place-content-center text-dark hover:text-white text-opacity-[0.88] ease-out duration-300 transition-colors"
         >
           View Profile
         </div>

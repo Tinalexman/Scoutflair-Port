@@ -1,17 +1,10 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 
-import {
-  convertDateFull,
-  convertDateFullAndTime,
-  convertDateWithDayName,
-  convertTime,
-} from "@/src/functions/dateFunctions";
+import { convertDateFullAndTime } from "@/src/functions/dateFunctions";
 import Image from "next/image";
 
-import Logo1 from "@/public/dashboard/player/dinamo-zagreb-1.png";
-import Logo2 from "@/public/dashboard/player/kashima-antlers-1.png";
 import UpcomingMatch from "@/public/dashboard/player/unsplash_t8vre7qpm2m.png";
 
 import { IoCalendarNumberOutline } from "react-icons/io5";
@@ -24,7 +17,7 @@ const UpcomingMatchBanner: React.FC<{
   loading: boolean;
 }> = ({ data, loading }) => {
   return (
-    <div className="w-full h-[140px] relative overflow-hidden font-lato rounded-2xl shadow-custom-2 bg-[url('../../public/dashboard/player/upcoming-matches-banner.jpeg')] bg-cover bg-no-repeat bg-center">
+    <div className="w-full h-[12rem] relative overflow-hidden font-lato rounded-2xl shadow-custom-2 bg-[url('../../public/dashboard/player/upcoming-matches-banner.jpeg')] bg-cover bg-no-repeat bg-center">
       <div className="w-full h-full absolute left-0 top-0 text-white overflow-hidden flex flex-col gap-2 rounded-lg bg-[#041931]/90 p-5">
         {loading && (
           <div className="w-full h-full grid place-content-center">
@@ -40,7 +33,11 @@ const UpcomingMatchBanner: React.FC<{
             <div className="flex flex-col gap-1">
               <div className="flex gap-2 items-center text-12-14">
                 <IoCalendarNumberOutline className="text-14-16" />
-                <p>{convertDateFullAndTime(new Date(`${data[0].date}${data[0].dateTime}`))}</p>
+                <p>
+                  {convertDateFullAndTime(
+                    new Date(`${data[0].date}${data[0].dateTime}`)
+                  )}
+                </p>
               </div>
               <div className="flex gap-2 items-center text-12-14">
                 <TbSoccerField className="text-14-16" />
