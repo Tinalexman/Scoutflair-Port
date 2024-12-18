@@ -33,9 +33,14 @@ export default function AuthProvider({
 
   const { getToken } = useToken();
 
+  const isOtherPage = () => {
+    const current = pathName.split("/")[1];
+    return current !== "dashboard";
+  };
+
   useEffect(() => {
     const token = getToken();
-    if (page !== -1 && token === undefined) {
+    if (!isOtherPage() && page !== -1 && token === undefined) {
       Swal.fire({
         title: "Oops...",
         text: `Please login to continue`,
