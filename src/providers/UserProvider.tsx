@@ -94,8 +94,15 @@ export default function UserProvider({
     loading: loadingScout,
   } = useGetScout();
 
+  const isOtherPage = () => {
+    const current = pathName.split("/")[1];
+    return current !== "dashboard";
+  };
+
   useEffect(() => {
     const type = determineUser();
+    if (isOtherPage()) return;
+
     if (type === 0) {
       getPlayer();
     } else if (type === 1) {
@@ -125,6 +132,10 @@ export default function UserProvider({
       setScoutData(scoutResponse);
     }
   }, [loadingScout, scoutResponse, getScoutSuccess]);
+
+  if (isOtherPage()) {
+    return <>{children}</>;
+  }
 
   if (loadingPlayer || loadingScout) {
     return (
