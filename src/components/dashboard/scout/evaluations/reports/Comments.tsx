@@ -6,7 +6,7 @@ import Void from "@/public/images/Void.png";
 const Comments: FC<{ comment?: string }> = ({ comment }) => {
   return (
     <div className="w-full shadow-custom rounded-[1rem] py-4 px-5 gap-5 bg-white flex flex-col">
-      <h2 className="text-dark font-bold text-16-19">Scout's Comments</h2>
+      <h2 className="text-dark font-bold text-16-19">Scout&apos;s Comments</h2>
       {!comment && (
         <div className="w-full h-[20rem] flex flex-col justify-center items-center gap-5">
           <Image
