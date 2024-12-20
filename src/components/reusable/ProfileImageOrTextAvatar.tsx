@@ -10,7 +10,7 @@ const ProfileImageOrTextAvatar: FC<{
 }> = ({ name, size, image, radius, text }) => {
   return (
     <div>
-      {image !== "string" && image !== "" ? (
+      {image.startsWith("https") ? (
         <Image
           src={image}
           alt="user image"

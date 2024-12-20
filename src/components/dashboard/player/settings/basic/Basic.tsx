@@ -186,7 +186,6 @@ const Basic = () => {
     let payload: Partial<iUpdatePlayerPayload> = {};
     payload.fullName = `${values.firstName} ${values.lastName}`;
     payload.phone = values.phone;
-    payload.imageUrl = file ? uploadedUrl : values.image;
     payload.nationality = "Nigerian";
     payload.dob = values.dob;
 

@@ -151,7 +151,6 @@ const Basic = () => {
     let payload: Partial<iUpdateScoutPayload> = {};
     payload.fullName = `${values.firstName} ${values.lastName}`;
     payload.phone = values.phone;
-    payload.imageUrl = file ? uploadedUrl : values.image;
     payload.nationality = "Nigerian";
 
     payload.coachingEducation = values.coachingEducation;
