@@ -9,6 +9,7 @@ import Trending from "./Trending";
 import History from "./History";
 import { useGetScoutsPlayerDetails } from "@/src/hooks/scout";
 import Swal from "sweetalert2";
+import Comments from "./Comments";
 
 const Reports = () => {
   return (
@@ -51,13 +52,19 @@ const Content = () => {
   }
 
   return (
-    <div className="w-full grid grid-cols-[2fr_1fr] gap-6 p-6">
-      <Info data={data} />
-      <div className="flex flex-col gap-6">
+    <div className="w-full flex gap-6 p-6">
+      <div className="w-2/3">
+        <Info data={data} />
+      </div>
+      <div className="w-1/3">
+        <Comments comment={data?.scoutComments} />
+      </div>
+
+      {/* <div className="flex flex-col gap-6">
         <History />
         <Gallery />
         <Trending />
-      </div>
+      </div> */}
     </div>
   );
 };

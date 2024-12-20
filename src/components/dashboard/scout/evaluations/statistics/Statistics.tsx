@@ -57,10 +57,10 @@ const Content = () => {
       <div className="flex flex-col gap-6 w-full">
         <Info data={data} />
         <KeyMetrics data={data} />
-        <Clips />
+        {/* <Clips /> */}
       </div>
       <div className="flex flex-col gap-6 w-full">
-        <Badges />
+        {/* <Badges /> */}
         <SkillMetrics data={data} />
         <Traits data={data} />
       </div>

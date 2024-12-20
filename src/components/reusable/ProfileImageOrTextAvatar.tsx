@@ -10,7 +10,7 @@ const ProfileImageOrTextAvatar: FC<{
 }> = ({ name, size, image, radius, text }) => {
   return (
     <div>
-      {image ? (
+      {image !== "string" && image !== "" ? (
         <Image
           src={image}
           alt="user image"

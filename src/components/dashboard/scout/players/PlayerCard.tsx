@@ -8,13 +8,13 @@ const PlayerCard: FC<{ player: iPlayerResponse }> = ({ player }) => {
     <div className="w-full h-[8.5rem] rounded-[1rem] py-4 px-5 gap-4 border border-border-gray border-opacity-50 flex justify-between items-center">
       <ProfileImageOrTextAvatar
         name={player.fullName}
-        image={""}
+        image={player.imageUrl}
         size="size-[6rem]"
         radius="rounded-full"
         text="text-28-33"
       />
 
-      <div className="w-full flex flex-col gap-3">
+      <div className="w-[calc(100%-6.5rem)] flex flex-col gap-3">
         <div className="flex w-full items-center justify-between">
           <div className="flex flex-col">
             <h2 className="text-dark font-semibold text-14-16">

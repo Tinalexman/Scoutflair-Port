@@ -31,7 +31,9 @@ export interface iCreateMatchPayload
     | "matchName"
     | "stadiumPitch"
     | "date"
-  > {}
+  > {
+  pitch: string;
+}
 
 export interface iUpdateMatchPayload
   extends Omit<

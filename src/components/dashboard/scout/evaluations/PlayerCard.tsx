@@ -9,10 +9,10 @@ const PlayerCard: FC<{ player: iScoutPlayersResponse }> = ({ player }) => {
   const firstName = names[0];
   const lastName = names[1];
   return (
-    <div className="w-full h-[8.5rem] shadow-custom rounded-[1rem] py-2 px-3 gap-4 bg-white flex justify-between items-center">
+    <div className="w-full h-[8.5rem]  border border-border-gray border-opacity-50 rounded-[1rem] py-2 px-3 gap-4 bg-white flex justify-between items-center">
       <ProfileImageOrTextAvatar
         name={player.fullName}
-        image={""}
+        image={player.imageUrl}
         size="size-[7.25rem]"
         radius="rounded"
         text="text-28-33"
@@ -27,7 +27,7 @@ const PlayerCard: FC<{ player: iScoutPlayersResponse }> = ({ player }) => {
             <p className="text-16-19 text-dark font-bold">{lastName}</p>
           </div>
           <p className="text-24-28 text-dark font-bold">
-            {player.jerseyNumber}
+            #{player.jerseyNumber}
           </p>
         </div>
         <div className="flex w-full justify-between">

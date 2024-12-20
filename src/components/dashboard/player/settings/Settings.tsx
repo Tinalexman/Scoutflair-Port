@@ -24,7 +24,7 @@ const Settings = () => {
   const [active, setActive] = useState<number>(0);
 
   return (
-    <div className="w-full grid grid-cols-[1.5fr_3fr] p-6 gap-4">
+    <div className="w-full h-full grid grid-cols-[1.5fr_3fr] p-6 gap-4">
       <div className="w-full h-full shadow-custom rounded py-4 bg-white flex flex-col gap-4">
         <div className="w-full justify-between items-center flex px-5">
           <h2 className="text-dark font-bold text-16-19">Settings</h2>

@@ -27,7 +27,7 @@ const Players = () => {
           <div className="flex w-full justify-between">
             <div className="flex w-fit">
               {data.imageUrls.map((player, index) =>
-                player ? (
+                player === "" ? (
                   <div
                     key={index}
                     className="size-8 rounded-full bg-primary-2"

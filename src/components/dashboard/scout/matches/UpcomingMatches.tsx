@@ -75,12 +75,7 @@ const UpcomingMatches: React.FC<{
                   i !== data.length - 1 && "border-b"
                 }`}
               >
-                <div className="flex gap-3 w-[10%] items-center">
-                  <FaRegStar className="text-12-14 text-dark" />
-                  <h3 className="text-14-16 text-placeholder">NS</h3>
-                </div>
-
-                <div className="flex gap-1 w-[30%] items-center">
+                <div className="flex gap-1 w-[40%] items-center">
                   <Image
                     src={rc.homeTeamLogoUrl}
                     alt="home logo"
@@ -93,7 +88,7 @@ const UpcomingMatches: React.FC<{
                 <div className="px-3 py-1 text-dark rounded-lg bg-[#B1D4E0] text-10-12">
                   vs
                 </div>
-                <div className="flex gap-1 w-[30%] items-center justify-end">
+                <div className="flex gap-1 w-[40%] items-center justify-end">
                   <h3 className="text-14-16 text-placeholder">{rc.awayTeam}</h3>
                   <Image
                     src={rc.awayTeamLogoUrl}

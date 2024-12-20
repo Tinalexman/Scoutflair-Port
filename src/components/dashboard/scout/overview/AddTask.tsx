@@ -58,9 +58,14 @@ const AddTask: FC<{ close: () => void }> = ({ close }) => {
             {!loadingPlayers && (
               <div className="w-full flex flex-col gap-4">
                 <div className="w-full flex items-center justify-between">
-                  <h2 className="text-dark font-bold text-16-19">
-                    Add New Task
-                  </h2>
+                  <div>
+                    <h2 className="text-dark font-bold text-16-19">
+                      Add New Task
+                    </h2>
+                    <p className="text-placeholder text-12-14">
+                      Add a new player to your scouting plan
+                    </p>
+                  </div>
                   <IoMdCloseCircleOutline
                     onClick={close}
                     className="cursor-pointer text-dark"

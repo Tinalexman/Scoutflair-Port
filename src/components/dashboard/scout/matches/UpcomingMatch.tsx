@@ -26,11 +26,11 @@ const UpcomingMatchBanner: React.FC<{
         )}
 
         {!loading && data.length > 0 && (
-          <>
-            <p className="text-16-19 font-semibold text-left">
-              {data[0].homeTeam} vs {data[1].awayTeam}
+          <div className="flex flex-col justify-center gap-1 h-full">
+            <p className="text-24-28 font-semibold text-left">
+              {data[0].homeTeam} vs {data[0].awayTeam}
             </p>
-            <div className="flex flex-col gap-1">
+            <div className="flex flex-col gap-1 text-opacity-80">
               <div className="flex gap-2 items-center text-12-14">
                 <IoCalendarNumberOutline className="text-14-16" />
                 <p>
@@ -44,10 +44,10 @@ const UpcomingMatchBanner: React.FC<{
                 <p>{data[0].stadiumPitch}</p>
               </div>
             </div>
-            <button className="mt-2 border border-secondary-3 h-6 rounded-full w-24 text-10-12 font-medium">
+            {/* <button className="mt-2 border border-secondary-3 h-6 rounded-full w-24 text-10-12 font-medium">
               PREVIEW
-            </button>
-          </>
+            </button> */}
+          </div>
         )}
         {!loading && data.length === 0 && (
           <div className="w-full h-full grid place-content-center">

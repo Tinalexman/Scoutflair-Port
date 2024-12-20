@@ -7,8 +7,6 @@ import { useDisclosure } from "@mantine/hooks";
 import { HiOutlineClipboardDocumentCheck } from "react-icons/hi2";
 import Image from "next/image";
 
-import Nigeria from "@/public/dashboard/scout/twemoji_flag-nigeria.png";
-
 import { FaStar } from "react-icons/fa";
 import Void from "@/public/images/Void.png";
 import { useCurrentUserStore } from "@/src/stores/userStore";
@@ -52,24 +50,15 @@ const Plan = () => {
           <h3 className="text-dark font-lato text-12-14">{names}</h3>
         </div>
         {!loading && players.length !== 0 && (
-          <div className="mt-3 mb-4 w-full h-[16.5rem] grid grid-cols-4 gap-6">
+          <div className="mt-3 mb-4 w-full h-[13rem] grid grid-cols-4 gap-6">
             {players.slice(0, 4).map((player, index) => (
               <div
                 key={index}
                 className="bg-[#FFFAFA] border-[0.5px] rounded-[1rem] w-full h-full gap-3 flex flex-col items-center p-3"
               >
-                <div className="w-full flex justify-between items-center">
-                  <h3 className="text-12-14 font-medium text-dark">
-                    {player.currentTeam}
-                  </h3>
-                  <Image
-                    src={Nigeria}
-                    alt="country"
-                    width={16}
-                    height={16}
-                    className="size-4 object-cover rounded-full"
-                  />
-                </div>
+                <h3 className="text-12-14 font-semibold text-dark">
+                  {player.currentTeam}
+                </h3>
                 <div className="w-full h-full items-center flex flex-col">
                   <div className="flex flex-col items-center gap-1 w-full">
                     <ProfileImageOrTextAvatar

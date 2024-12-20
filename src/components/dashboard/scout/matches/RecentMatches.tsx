@@ -63,7 +63,7 @@ const RecentMatches = () => {
                 <h3 className="text-14-16 text-placeholder">FT</h3>
               </div>
 
-              <div className="flex gap-1 w-[30%] items-center">
+              <div className="flex gap-1 w-[40%] items-center">
                 <Image
                   src={rc.homeTeamLogoUrl}
                   alt="home logo"
@@ -74,9 +74,9 @@ const RecentMatches = () => {
                 <h3 className="text-14-16 text-placeholder">{rc.homeTeam}</h3>
               </div>
               <div className="px-3 py-1 text-dark rounded-lg bg-[#B1D4E0] text-10-12">
-                {rc.homeTeamScore}:{rc.awayTeamScore}
+                {rc.homeTeamScore ?? 0}:{rc.awayTeamScore ?? 0}
               </div>
-              <div className="flex gap-1 w-[30%] items-center justify-end">
+              <div className="flex gap-1 w-[40%] items-center justify-end">
                 <h3 className="text-14-16 text-placeholder">{rc.awayTeam}</h3>
                 <Image
                   src={rc.awayTeamLogoUrl}

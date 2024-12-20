@@ -1,13 +1,11 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import Image, { StaticImageData } from "next/image";
-
-import Pic from "@/public/images/frame-36303.png";
+import Image from "next/image";
+import Void from "@/public/images/Void.png";
 import { convertDateWithDayName } from "@/src/functions/dateFunctions";
 import { useGetUserGallery, ImageData } from "@/src/hooks/player";
-import UploadMedia from "./UploadMedia";
-import { group } from "console";
+
 import { Loader } from "@mantine/core";
 
 function groupImagesByDay(images: ImageData[]): Map<string, ImageData[]> {
@@ -22,8 +20,6 @@ function groupImagesByDay(images: ImageData[]): Map<string, ImageData[]> {
     }
     groups.get(dateString)!.push(image);
   });
-
-  console.log(groups);
 
   return groups;
 }
@@ -46,8 +42,9 @@ const Slides = () => {
   }, [loadingGallery, loadedGalleries]);
 
   return (
-    <div className="w-full h-full shadow-custom rounded-[1rem] py-4 px-5 gap-6 bg-white flex flex-col">
+    <div className="w-full min-h-[80vh] shadow-custom rounded-[1rem] py-4 px-5 gap-6 bg-white flex flex-col">
       {!loadingGallery &&
+        keys.length > 0 &&
         keys.map((slide, i) => {
           const dateHeader = slides.get(slide)![0]!.createdDate;
           const images = slides.get(slide)!;
@@ -57,7 +54,7 @@ const Slides = () => {
               <h2 className="text-14-16 text-dark text-medium">
                 {convertDateWithDayName(dateHeader).toUpperCase()}
               </h2>
-              <div className="w-full grid grid-cols-3 gap-4">
+              <div className="w-full grid grid-cols-4 gap-4">
                 {images.map((image, index) => (
                   <Image
                     key={index}
@@ -65,7 +62,7 @@ const Slides = () => {
                     alt="image"
                     width={100}
                     height={100}
-                    className="object-cover rounded-md w-full h-[5rem]"
+                    className="object-cover rounded-md w-full h-[9rem]"
                   />
                 ))}
               </div>
@@ -75,6 +72,21 @@ const Slides = () => {
       {loadingGallery && (
         <div className="w-full h-full grid place-content-center">
           <Loader color="primary.6" />
+        </div>
+      )}
+      {!loadingGallery && keys.length === 0 && (
+        <div className="w-full h-[80vh] flex flex-col justify-center items-center gap-5">
+          <Image
+            src={Void}
+            alt="no matches"
+            width={100}
+            height={100}
+            className="w-32 h-auto object-cover"
+          />
+
+          <h2 className="text-dark text-12-14 font-medium">
+            You have not posted any media yet
+          </h2>
         </div>
       )}
     </div>

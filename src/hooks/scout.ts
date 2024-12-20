@@ -110,6 +110,7 @@ export interface iScoutPlayersResponse {
   dob: string;
   email: string;
   fullName: string;
+  imageUrl: string;
   goals: number;
   height: string;
   jerseyNumber: string;

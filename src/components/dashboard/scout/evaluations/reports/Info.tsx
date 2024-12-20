@@ -88,21 +88,23 @@ const Info: FC<{ data: iPlayerFullDetails | null }> = ({ data }) => {
         </div>
       </div>
       <h2 className="text-dark font-bold text-16-19">Psychological Insights</h2>
-      <div className="px-4 w-full flex flex-col gap-2">
+      <div className="px-4 w-full flex flex-col gap-4">
         <div className="flex flex-col gap-1">
           <h2 className="text-dark font-semibold text-14-16">Strengths</h2>
-          {data.strength}
+          {data.strength === "" ? (
+            <p className="text-placeholder text-12-14">No data provided</p>
+          ) : (
+            data.strength
+          )}
         </div>
         <div className="flex flex-col gap-1">
           <h2 className="text-dark font-semibold text-14-16">Weaknesses</h2>
-          {data.weakness}
+          {data.weakness === "" ? (
+            <p className="text-placeholder text-12-14">No data provided</p>
+          ) : (
+            data.weakness
+          )}
         </div>
-      </div>
-      <div className="w-full flex flex-col gap-1">
-        <h2 className="text-dark font-bold text-16-19">
-          Scout&apos;s Comments
-        </h2>
-        <div className="p-4">{data.scoutComments}</div>
       </div>
     </div>
   );

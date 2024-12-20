@@ -5,6 +5,7 @@ import React, { FC, useEffect, useState } from "react";
 import { IoMdCloseCircleOutline } from "react-icons/io";
 
 import { useFormik } from "formik";
+import { useGetLocalPitches } from "@/src/hooks/pitch";
 
 const AddMatch: FC<{ currentAcademy: string; close: () => void }> = ({
   currentAcademy,
@@ -13,8 +14,15 @@ const AddMatch: FC<{ currentAcademy: string; close: () => void }> = ({
   const {
     loading: loadingAcademies,
     success: academiesSuccess,
-    data,
+    data: academies,
   } = useGetAcademies();
+
+  const {
+    loading: loadingPitches,
+    success: pitchesSuccess,
+    data: pitches,
+  } = useGetLocalPitches();
+
   const [home, setHome] = useState<iAcademyResponse | null>(null);
   const {
     loading: loadingCreation,
@@ -25,16 +33,16 @@ const AddMatch: FC<{ currentAcademy: string; close: () => void }> = ({
   useEffect(() => {
     if (!loadingCreation && createdMatch) {
       setTimeout(() => {
-        close();
+        window.location.reload();
       }, 500);
     }
   }, [loadingCreation, createdMatch]);
 
   useEffect(() => {
     if (!loadingAcademies && academiesSuccess) {
-      for (let i = 0; i < data.length; ++i) {
-        if (currentAcademy === data[i].name) {
-          setHome(data[i]);
+      for (let i = 0; i < academies.length; ++i) {
+        if (currentAcademy === academies[i].name) {
+          setHome(academies[i]);
           break;
         }
       }
@@ -48,6 +56,7 @@ const AddMatch: FC<{ currentAcademy: string; close: () => void }> = ({
         competition: "",
         dateTime: "",
         away: "",
+        pitch: "",
       },
       validate: (values) => {
         const errors: any = {};
@@ -68,28 +77,35 @@ const AddMatch: FC<{ currentAcademy: string; close: () => void }> = ({
           errors.away = "Required";
         }
 
+        if (!values.pitch) {
+          errors.pitch = "Required";
+        }
+
         return errors;
       },
       onSubmit: (values) => {
         if (home !== null) {
           let away = undefined;
-          for (let i = 0; i < data.length; ++i) {
-            if (data[i].name === values.away) {
-              away = data[i];
+          for (let i = 0; i < academies.length; ++i) {
+            if (academies[i].name === values.away) {
+              away = academies[i];
               break;
             }
           }
 
           if (away === undefined) return;
 
+          const s = values.dateTime.split("T");
+
           create({
             awayTeam: away.name,
             awayTeamLogoUrl: away.imageUrl,
             competition: values.competition,
-            dateTime: values.dateTime,
+            dateTime: [s[0], `${s[1]}:00`].join(" "),
             homeTeam: home.name,
             homeTeamLogoUrl: home.imageUrl,
             referee: values.refree,
+            pitch: values.pitch,
           });
         }
       },
@@ -140,7 +156,7 @@ const AddMatch: FC<{ currentAcademy: string; close: () => void }> = ({
                 Competition Date
               </h2>
               <input
-                type="date"
+                type="datetime-local"
                 name="dateTime"
                 placeholder=""
                 value={values.dateTime}
@@ -152,6 +168,7 @@ const AddMatch: FC<{ currentAcademy: string; close: () => void }> = ({
                 <p className="text-8-9 text-red-600">{errors.dateTime}</p>
               )}
             </div>
+
             <div className="w-full flex flex-col gap-1">
               <h2 className="text-12-14 font-semibold text-[#333333]">
                 Name of Refree
@@ -181,7 +198,7 @@ const AddMatch: FC<{ currentAcademy: string; close: () => void }> = ({
                 className="w-full rounded-lg border bg-white placeholder:text-placeholder text-dark text-14-16 font-semibold placeholder:text-opacity-[0.88] border-border-gray h-10 px-2"
               >
                 <option value="">Select Team</option>
-                {data
+                {academies
                   .filter((f, _) => f.name !== currentAcademy)
                   .map((d, i) => (
                     <option key={i} value={d.name}>
@@ -191,6 +208,26 @@ const AddMatch: FC<{ currentAcademy: string; close: () => void }> = ({
               </select>
               {errors.away && touched.away && (
                 <p className="text-8-9 text-red-600">{errors.away}</p>
+              )}
+            </div>
+            <div className="w-full flex flex-col gap-1">
+              <h2 className="text-12-14 font-semibold text-[#333333]">Pitch</h2>
+              <select
+                name="pitch"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                defaultValue={""}
+                className="w-full rounded-lg border bg-white placeholder:text-placeholder text-dark text-14-16 font-semibold placeholder:text-opacity-[0.88] border-border-gray h-10 px-2"
+              >
+                <option value="">Select Pitch</option>
+                {pitches.map((d, i) => (
+                  <option key={i} value={d.name}>
+                    {d.name}
+                  </option>
+                ))}
+              </select>
+              {errors.pitch && touched.pitch && (
+                <p className="text-8-9 text-red-600">{errors.pitch}</p>
               )}
             </div>
             <button
