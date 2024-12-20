@@ -1,7 +1,5 @@
-"use client";
-
-import React, { useEffect } from "react";
-import Basic from "./PersonalInformation";
+import React from "react";
+import Basic from "./Basic";
 
 const BasicSettings = () => {
   return (

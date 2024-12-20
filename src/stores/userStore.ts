@@ -37,6 +37,8 @@ export type tPlayer = {
 export type tScout = {
   quote: string;
   career: any;
+  experience: string;
+  license: string;
   coachingEducation: string;
   coachingStyle: string;
   currentTeam: string;
@@ -93,6 +95,8 @@ export const useScoutDataStore = create<tScout>((set) => ({
   placeOfBirth: "",
   phone: "",
   nin: "",
+  license: "",
+  experience: "",
   address: "",
   nationality: "",
   matchNotification: false,
@@ -142,6 +146,8 @@ export function clearUserData() {
     email: "",
     placeOfBirth: "",
     phone: "",
+    experience: "",
+    license: "",
     nin: "",
     address: "",
     nationality: "",

@@ -8,24 +8,21 @@ import Swal from "sweetalert2";
 
 export interface iUpdateScoutPayload {
   address: string;
-  biography: string;
+  career: string;
+  coachingEducation: string;
+  coachingStyle: string;
   currentTeam: string;
   dob: string;
-  facebookUrl: string;
+  email: string;
+  experience: string;
   fullName: string;
-  height: string;
-  igUrl: string;
-  imageUrl: string | File;
-  jerseyNumber: string;
-  location: string;
+  imageUrl: string;
+  licenceNumber: string;
   nationality: string;
   nin: string;
   phone: string;
-  position: string;
-  preferredFoot: string;
-  ticTokUrl: string;
-  weight: string;
-  xurl: string;
+  placeOfBirth: string;
+  quote: string;
 }
 
 export interface iActivityFeedResponse {
@@ -43,6 +40,7 @@ export interface iScoutResponse {
   coachingStyle: string;
   currentTeam: string;
   email: string;
+  experience: string;
   fullName: string;
   placeOfBirth: string;
   phone: string;
