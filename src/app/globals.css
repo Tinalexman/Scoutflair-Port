@@ -124,3 +124,28 @@ select {
   outline: none;
   border-color: transparent !important;
 }
+
+
+/* david */
+.bg-hero {
+  position: relative;
+  background-image: url('../../public/images/Hero_background.png');
+  background-position: center center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.bg-aboutframe {
+  position: relative;
+  background-image: url('../../public/images/About_frame.png');
+  background-position: center center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.groups svg {
+  display: none;
+  /* border: none; */
+}

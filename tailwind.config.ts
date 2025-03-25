@@ -10,6 +10,7 @@ const config: Config = {
     extend: {
       colors: {
         black: "#000000",
+        "black-50": "#1B1B1B",
         error: "#FF0000",
         dark: "#222222",
         primary: "#192B4D",
@@ -27,14 +28,25 @@ const config: Config = {
         placeholder: "#555555",
         "black-56": "rgba(0, 0, 0, 0.56)",
         "black-80": "rgba(0, 0, 0, 0.8)",
+
         "black-92": "rgba(0, 0, 0, 0.92)",
         "border-black": "rgba(0, 0, 0, 0.48)",
         "white-56": "rgba(255, 255, 255, 0.56)",
+        "orange-50": "#E5AA42",
+        "orange-100": "#DB8E08",
+        ghostwhite: "#f8f8ff",
+        "card-1": "#0E6868",
+        "card-2": "#680E58",
+        "card-3": "#53680E",
+        "card-4": "#037D11",
       },
       fontFamily: {
         merriweather: ["var(--font-merriweather)", "sans-serif"],
         lato: ["var(--font-lato)", "sans-serif"],
         inter: ["var(--font-inter)", "sans-serif"],
+        roboto: ["var(--font-roboto)", "sans-serif"],
+        poppins: ["var(--font-poppins)", "sans-serif"],
+        manrope: ["var(--font-manrope)", "sans-serif"],
       },
       screens: {
         xs: "120px",

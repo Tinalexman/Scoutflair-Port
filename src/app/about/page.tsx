@@ -1,10 +1,10 @@
-import AboutPage from "@/src/components/about/AboutPage";
-import { Metadata } from "next";
+import AboutUs from "@/src/components/About/AboutUs";
 
-export const metadata: Metadata = {
+
+export const metadata = {
   title: "About Us",
 };
 
-export default function Onboarding() {
-  return <AboutPage />;
+export default function About() {
+  return <AboutUs />
 }
