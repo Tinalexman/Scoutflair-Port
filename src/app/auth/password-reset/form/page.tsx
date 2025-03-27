@@ -1,4 +1,4 @@
-import PasswordResetForm from "@/src/components/auth/PasswordResetForm";
+import PasswordResetForm from "@/components/auth/PasswordResetForm";
 import { Metadata } from "next";
 import { Suspense } from "react";
 

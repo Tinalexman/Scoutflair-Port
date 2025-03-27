@@ -7,7 +7,7 @@ import {
     DeveloperIcon,
     GameIcon,
     MappingIcon,
-  } from "@/src/icons";
+  } from "@/icons";
 import FeatureCard from "../FeatureCard/FeatureCard";
 import TestimonialCarousel from "../TestimonialCarousel/TestimonialCarousel";
 import HeroSection from "../HeroSection/HeroSection";

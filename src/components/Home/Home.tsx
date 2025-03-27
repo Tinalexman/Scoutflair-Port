@@ -13,7 +13,7 @@ import {
   DeveloperIcon,
   GameIcon,
   MappingIcon,
-} from "@/src/icons";
+} from "@/icons";
 import FeatureCard from "../FeatureCard/FeatureCard";
 import Group1 from "@/public/images/Group_1.png";
 import Group2 from "@/public/images/group_2.png";

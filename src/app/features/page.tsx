@@ -1,4 +1,4 @@
-import FeaturesPage from "@/src/components/Features/Features";
+import FeaturesPage from "@/components/Features/Features";
 
 
 export const metadata = {
