@@ -4,12 +4,10 @@ import React, { Suspense, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Loader } from "@mantine/core";
 import Info from "./Info";
-import Badges from "./Badges";
 import KeyMetrics from "./KeyMetrics";
-import Clips from "./Clips";
 import SkillMetrics from "./Skill";
 import Traits from "./Traits";
-import { useGetScoutsPlayerDetails } from "@/src/hooks/scout";
+import { useGetScoutsPlayerDetails } from "@/hooks/scout";
 import Swal from "sweetalert2";
 
 const Statistics = () => {

@@ -4,15 +4,15 @@ import React, { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 
 import ProfileImageOrTextAvatar from "@/components/reusable/ProfileImageOrTextAvatar";
-import { iUpdatePlayerPayload, useUpdatePlayer } from "@/src/hooks/player";
+import { iUpdatePlayerPayload, useUpdatePlayer } from "@/hooks/player";
 import {
   useCurrentUserStore,
   usePlayerDataStore,
-} from "@/src/stores/userStore";
-import { useUploadPicture } from "@/src/hooks/common";
+} from "@/stores/userStore";
+import { useUploadPicture } from "@/hooks/common";
 import { useFormik } from "formik";
 import { Loader } from "@mantine/core";
-import { positions } from "@/src/constants/constants";
+import { positions } from "@/constants/constants";
 
 const Basic = () => {
   const currentUser = useCurrentUserStore((state) => state);

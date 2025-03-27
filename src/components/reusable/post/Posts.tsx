@@ -7,11 +7,11 @@ import {
   useGetCurrentPlayerSpotlights,
   useGetPlayerSpotlights,
   useGetSpecificPlayerSpotlights,
-} from "@/src/hooks/player";
+} from "@/hooks/player";
 import { Loader } from "@mantine/core";
-import { useGlobalData } from "@/src/stores/globalStore";
+import { useGlobalData } from "@/stores/globalStore";
 import Void from "@/public/images/Void.png";
-import { useCurrentUserStore } from "@/src/stores/userStore";
+import { useCurrentUserStore } from "@/stores/userStore";
 
 import PostContainer from "./PostContainer";
 

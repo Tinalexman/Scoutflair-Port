@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import Scoutflairlogo from "@/public/icons/Scoutflairlogo.svg";
+import Scoutflairlogo from "../../../public/icons/Scoutflairlogo.svg";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Urls } from "../../constants/constants";
@@ -11,7 +11,7 @@ import bgImage from "@/public/images/frame-3404.png";
 import { useAxios } from "../../api/base";
 import { useToken } from "../../providers/AuthProvider";
 import Swal from "sweetalert2";
-import { IResetPasswordPayload } from "@/src/types/types";
+import { IResetPasswordPayload } from "@/types/types";
 import Image from "next/image";
 
 const PasswordResetForm: React.FC = () => {

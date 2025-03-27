@@ -4,7 +4,7 @@ import NotFoundImg from "../assets/404image.svg";
 import bgImage from "@/public/images/frame-3404.png"
 import SocialIcons from "./SocialIcons";
 import Link from "next/link";
-import { Urls } from "@/src/constants/constants";
+import { Urls } from "@/constants/constants";
 
 const NotFound: React.FC = () => {
     return (

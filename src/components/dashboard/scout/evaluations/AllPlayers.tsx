@@ -4,7 +4,7 @@ import React from "react";
 
 import PlayerCard from "./PlayerCard";
 import { IoPeopleOutline } from "react-icons/io5";
-import { useGetScoutsPlayers } from "@/src/hooks/scout";
+import { useGetScoutsPlayers } from "@/hooks/scout";
 import { Loader } from "@mantine/core";
 
 import Image from "next/image";

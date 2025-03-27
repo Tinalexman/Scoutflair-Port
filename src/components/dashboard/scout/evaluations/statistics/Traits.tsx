@@ -1,6 +1,6 @@
 "use client";
 
-import { iPlayerFullDetails } from "@/src/hooks/scout";
+import { iPlayerFullDetails } from "@/hooks/scout";
 import React, { FC, useState } from "react";
 import { FaStar, FaRegStar } from "react-icons/fa6";
 

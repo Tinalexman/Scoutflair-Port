@@ -4,7 +4,7 @@ import Image, { StaticImageData } from "next/image";
 import React, { useState } from "react";
 
 import Analysis from "@/public/dashboard/scout/match analysis.jpeg";
-import { convertDateFullAndTime } from "@/src/functions/dateFunctions";
+import { convertDateFullAndTime } from "@/functions/dateFunctions";
 
 interface iArticle {
   image: StaticImageData | string;

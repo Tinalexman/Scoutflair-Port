@@ -1,11 +1,11 @@
-import { iAcademyResponse, useGetAcademies } from "@/src/hooks/academy";
-import { useCreateMatch } from "@/src/hooks/match";
+import { iAcademyResponse, useGetAcademies } from "@/hooks/academy";
+import { useCreateMatch } from "@/hooks/match";
 import { Loader } from "@mantine/core";
 import React, { FC, useEffect, useState } from "react";
 import { IoMdCloseCircleOutline } from "react-icons/io";
 
 import { useFormik } from "formik";
-import { useGetLocalPitches } from "@/src/hooks/pitch";
+import { useGetLocalPitches } from "@/hooks/pitch";
 
 const AddMatch: FC<{ currentAcademy: string; close: () => void }> = ({
   currentAcademy,

@@ -1,4 +1,4 @@
-import { iAcademyResponse } from "@/src/hooks/academy";
+import { iAcademyResponse } from "@/hooks/academy";
 import React, { FC } from "react";
 import Image from "next/image";
 import { IoMdArrowBack } from "react-icons/io";

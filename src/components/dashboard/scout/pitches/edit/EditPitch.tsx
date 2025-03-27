@@ -3,11 +3,11 @@
 import React, { useEffect, useState, Suspense, useRef } from "react";
 
 import { useFormik } from "formik";
-import { iLocalPitchResponse, useUpdateLocalPitch } from "@/src/hooks/pitch";
+import { iLocalPitchResponse, useUpdateLocalPitch } from "@/hooks/pitch";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Loader } from "@mantine/core";
-import { useUploadLogo } from "@/src/hooks/common";
-import { facilitiesRatings, surfaceAreas } from "@/src/constants/constants";
+import { useUploadLogo } from "@/hooks/common";
+import { facilitiesRatings, surfaceAreas } from "@/constants/constants";
 
 const EditPitch = () => {
   return (

@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useState, useRef } from "react";
-import { iCreateGalleryMedia, useUploadMediaToGallery, useUploadPicture, useUploadVideo } from "@/src/hooks/common";
-import { detectFileType, getBase64, getVideoThumbnail } from "@/src/functions/fileFunctions";
+import { iCreateGalleryMedia, useUploadMediaToGallery, useUploadPicture, useUploadVideo } from "@/hooks/common";
+import { detectFileType, getBase64, getVideoThumbnail } from "@/functions/fileFunctions";
 import Swal from "sweetalert2";
 import { Loader, Modal } from "@mantine/core";
 import Image from "next/image";

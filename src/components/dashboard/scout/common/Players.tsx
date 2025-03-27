@@ -7,7 +7,7 @@ import Image from "next/image";
 import { FaStar } from "react-icons/fa";
 import { RiMedalLine } from "react-icons/ri";
 
-import { useGetScoutPlayerMetrics } from "@/src/hooks/scout";
+import { useGetScoutPlayerMetrics } from "@/hooks/scout";
 import { Loader } from "@mantine/core";
 
 const Players = () => {

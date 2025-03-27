@@ -2,14 +2,14 @@
 
 import React from "react";
 
-import { convertDateFullAndTime } from "@/src/functions/dateFunctions";
+import { convertDateFullAndTime } from "@/functions/dateFunctions";
 import Image from "next/image";
 
 import UpcomingMatch from "@/public/dashboard/player/unsplash_t8vre7qpm2m.png";
 
 import { IoCalendarNumberOutline } from "react-icons/io5";
 import { TbSoccerField } from "react-icons/tb";
-import { iMatchResponse } from "@/src/hooks/match";
+import { iMatchResponse } from "@/hooks/match";
 import { Loader } from "@mantine/core";
 
 const UpcomingMatchBanner: React.FC<{
