@@ -1,4 +1,4 @@
-import AddAcademy from "@/src/components/dashboard/scout/academies/add/AddAcademy";
+import AddAcademy from "@/components/dashboard/scout/academies/add/AddAcademy";
 
 export const metadata = {
   title: "Add Academy",

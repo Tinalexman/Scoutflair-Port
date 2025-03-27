@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React, { FC } from "react";
-import { iPostComment } from "@/src/hooks/player";
-import ProfileImageOrTextAvatar from "@/src/components/reusable/ProfileImageOrTextAvatar";
+import { iPostComment } from "@/hooks/player";
+import ProfileImageOrTextAvatar from "@/components/reusable/ProfileImageOrTextAvatar";
 
 const CommentContainer: FC<{ comment: iPostComment }> = ({ comment }) => {
   return (

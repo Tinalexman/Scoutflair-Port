@@ -1,14 +1,14 @@
 "use client";
 
 import React, { useState } from "react";
-import Map from "@/src/components/reusable/MapImage";
+import Map from "@/components/reusable/MapImage";
 import Void from "@/public/images/Void.png";
 import Image from "next/image";
 import Link from "next/link";
 import { MdOutlineFilterAlt } from "react-icons/md";
 import { Loader } from "@mantine/core";
 import AcademyCard from "./AcademyCard";
-import { iAcademyResponse, useGetAcademies } from "@/src/hooks/academy";
+import { iAcademyResponse, useGetAcademies } from "@/hooks/academy";
 import ViewAcademy from "./ViewAcademy";
 
 const Academies = () => {

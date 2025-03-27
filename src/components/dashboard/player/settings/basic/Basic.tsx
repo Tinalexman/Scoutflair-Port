@@ -3,7 +3,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 
-import ProfileImageOrTextAvatar from "@/src/components/reusable/ProfileImageOrTextAvatar";
+import ProfileImageOrTextAvatar from "@/components/reusable/ProfileImageOrTextAvatar";
 import { iUpdatePlayerPayload, useUpdatePlayer } from "@/src/hooks/player";
 import {
   useCurrentUserStore,

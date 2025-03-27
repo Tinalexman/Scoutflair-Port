@@ -4,8 +4,8 @@ import { ReactNode, FC } from "react";
 
 import { usePathname } from "next/navigation";
 
-import SideBar, { iNavItem } from "@/src/components/reusable/SideBar";
-import TopBar from "@/src/components/reusable/TopBar";
+import SideBar, { iNavItem } from "@/components/reusable/SideBar";
+import TopBar from "@/components/reusable/TopBar";
 
 import OverviewIcon from "@/public/icons/Overview Icon.svg";
 import AnalyticsIcon from "@/public/icons/Analytics Icon.svg";

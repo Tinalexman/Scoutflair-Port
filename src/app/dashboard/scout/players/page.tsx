@@ -1,4 +1,4 @@
-import Players from "@/src/components/dashboard/scout/players/Players";
+import Players from "@/components/dashboard/scout/players/Players";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

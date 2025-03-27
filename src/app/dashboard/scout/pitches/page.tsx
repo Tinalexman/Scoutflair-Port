@@ -1,4 +1,4 @@
-import Pitches from "@/src/components/dashboard/scout/pitches/Pitches";
+import Pitches from "@/components/dashboard/scout/pitches/Pitches";
 
 import { Metadata } from "next";
 

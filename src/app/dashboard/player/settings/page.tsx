@@ -1,4 +1,4 @@
-import SettingsPage from "@/src/components/dashboard/player/settings/Settings";
+import SettingsPage from "@/components/dashboard/player/settings/Settings";
 import { Metadata } from "next";
 
 export const metadata : Metadata = {
