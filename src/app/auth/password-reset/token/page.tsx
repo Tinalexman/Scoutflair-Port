@@ -1,4 +1,4 @@
-import PasswordResetTokenPage from "@/src/components/auth/PasswordResetTokenPage";
+import PasswordResetTokenPage from "@/components/auth/PasswordResetTokenPage";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

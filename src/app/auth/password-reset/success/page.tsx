@@ -1,4 +1,4 @@
-import PasswordResetSuccess from "@/src/components/auth/PasswordResetSuccess";
+import PasswordResetSuccess from "@/components/auth/PasswordResetSuccess";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
