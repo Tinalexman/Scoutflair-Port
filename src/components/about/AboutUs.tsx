@@ -31,7 +31,7 @@ const AboutUs: React.FC = () => {
       </div>
 
       <div className="bg-ghostwhite pt-40 pb-10 px-[106px]">
-        <div className="flex">
+        <div className="flex items-center">
           <div className="flex-1">
             <h2 className="font-merriweather font-bold text-[42px] leading-[58px] text-black-50 w-[600px]">
               Changing How Football Talent is Found & Fostered
