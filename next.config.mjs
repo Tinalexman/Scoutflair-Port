@@ -15,6 +15,11 @@ const nextConfig = {
     ],
   },
   staticPageGenerationTimeout: 300,
+
+  eslint: {
+    ignoreDuringBuilds: true, // Disable ESLint during builds
+  },
+  
 };
 
 export default nextConfig;

@@ -6,8 +6,8 @@ import { IoSearchOutline, IoChevronDownCircleOutline } from "react-icons/io5";
 
 import Image from "next/image";
 
-import { useCurrentUserStore } from "stores/userStore";
 import ProfileImageOrTextAvatar from "./ProfileImageOrTextAvatar";
+import { useCurrentUserStore } from "@/stores/userStore";
 
 const TopBar: React.FC = () => {
   const role = useCurrentUserStore((state) => state.role);
