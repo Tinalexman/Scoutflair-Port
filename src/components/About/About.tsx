@@ -23,7 +23,7 @@ import HeroSection from "../HeroSection/HeroSection";
 import Footer from "../reusable/Footer";
 import { motion } from "framer-motion";
 
-const AboutUs: React.FC = () => {
+const AboutPage: React.FC = () => {
   return (
     <>
       <div>
@@ -198,4 +198,4 @@ const AboutUs: React.FC = () => {
   );
 };
 
-export default AboutUs;
+export default AboutPage;
