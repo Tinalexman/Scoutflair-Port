@@ -8,8 +8,8 @@ import {
   useScoutDataStore,
 } from "../stores/userStore";
 
-import { iPlayerResponse, useGetPlayer } from "@/src/hooks/player";
-import { iScoutResponse, useGetScout } from "@/src/hooks/scout";
+import { iPlayerResponse, useGetPlayer } from "@/hooks/player";
+import { iScoutResponse, useGetScout } from "@/hooks/scout";
 
 import { getYearDifference } from "../functions/dateFunctions";
 import { Loader } from "@mantine/core";

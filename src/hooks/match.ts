@@ -1,6 +1,6 @@
 "use client";
 
-import { useAxios } from "@/src/api/base";
+import { useAxios } from "@/api/base";
 import { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 

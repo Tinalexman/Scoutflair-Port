@@ -5,7 +5,7 @@ import React from "react";
 import {
   useCurrentUserStore,
   usePlayerDataStore,
-} from "@/src/stores/userStore";
+} from "@/stores/userStore";
 
 import Image, { StaticImageData } from "next/image";
 
@@ -25,7 +25,7 @@ import IGIcon from "@/public/icons/IG Icon.svg";
 
 import Link from "next/link";
 
-import { convertDateFull } from "@/src/functions/dateFunctions";
+import { convertDateFull } from "@/functions/dateFunctions";
 
 interface iBio {
   image: StaticImageData;

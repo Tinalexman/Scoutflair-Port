@@ -1,10 +1,9 @@
 import React, { FC } from "react";
 
 import Image from "next/image";
-import PitchImage from "@/public/dashboard/scout/Stadium.png";
 import { FaStar } from "react-icons/fa";
 import { IoLocationOutline } from "react-icons/io5";
-import { iLocalPitchResponse } from "@/src/hooks/pitch";
+import { iLocalPitchResponse } from "@/hooks/pitch";
 
 const PitchCard: FC<{
   pitch: iLocalPitchResponse;

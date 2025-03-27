@@ -3,8 +3,8 @@
 import React, { Suspense, useEffect, useRef, useState } from "react";
 
 import { useFormik } from "formik";
-import { iAcademyResponse, useUpdateAcademy } from "@/src/hooks/academy";
-import { useUploadLogo } from "@/src/hooks/common";
+import { iAcademyResponse, useUpdateAcademy } from "@/hooks/academy";
+import { useUploadLogo } from "@/hooks/common";
 import { Loader } from "@mantine/core";
 import { useRouter, useSearchParams } from "next/navigation";
 

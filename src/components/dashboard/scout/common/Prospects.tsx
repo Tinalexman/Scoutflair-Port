@@ -5,7 +5,7 @@ import React from "react";
 import { GiSwordsEmblem } from "react-icons/gi";
 
 import Image from "next/image";
-import { useGetScoutPlayerProspects } from "@/src/hooks/scout";
+import { useGetScoutPlayerProspects } from "@/hooks/scout";
 import { Loader } from "@mantine/core";
 
 const Prospects = () => {

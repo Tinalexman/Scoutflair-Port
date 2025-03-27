@@ -3,10 +3,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import { FaImage } from "react-icons/fa6";
 import { useFormik } from "formik";
-import { useCreateLocalPitch } from "@/src/hooks/pitch";
-import { useUploadLogo } from "@/src/hooks/common";
+import { useCreateLocalPitch } from "@/hooks/pitch";
+import { useUploadLogo } from "@/hooks/common";
 import { Loader } from "@mantine/core";
-import { facilitiesRatings, surfaceAreas } from "@/src/constants/constants";
+import { facilitiesRatings, surfaceAreas } from "@/constants/constants";
 
 const AddPitch = () => {
   const { loading, create, success } = useCreateLocalPitch();

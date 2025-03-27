@@ -17,8 +17,8 @@ import IGIcon from "@/public/icons/IG Icon.svg";
 
 import Link from "next/link";
 
-import { convertDateFull } from "@/src/functions/dateFunctions";
-import { iPlayerResponse } from "@/src/hooks/player";
+import { convertDateFull } from "@/functions/dateFunctions";
+import { iPlayerResponse } from "@/hooks/player";
 
 interface iBio {
   image: StaticImageData;

@@ -1,6 +1,6 @@
 "use client";
 
-import { iPlayerFullDetails } from "@/src/hooks/scout";
+import { iPlayerFullDetails } from "@/hooks/scout";
 import React, { useState, FC } from "react";
 
 import { GoArrowUpRight, GoArrowDownRight } from "react-icons/go";

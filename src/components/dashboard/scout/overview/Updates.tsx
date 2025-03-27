@@ -3,7 +3,7 @@ import React from "react";
 import { MdOutlineUpdate } from "react-icons/md";
 
 import Pic from "@/public/dashboard/scout/ellipse-2374.png";
-import { convertTime } from "@/src/functions/dateFunctions";
+import { convertTime } from "functions/dateFunctions";
 
 interface iUpdate {
   image: string | StaticImageData;

@@ -2,7 +2,7 @@ import axios, { InternalAxiosRequestConfig } from "axios";
 // import {useGlobal} from "@/providers/GlobalContext";
 type IMethod = "GET" | "POST" | "PATCH" | "DELETE" | "PUT";
 
-import { useToken } from "@/src/providers/AuthProvider";
+import { useToken } from "@/providers/AuthProvider";
 
 export const useAxios = () => {
   // const {storage} = useGlobal();

@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import {
   convertDateWithDayName,
   convertTime,
-} from "@/src/functions/dateFunctions";
+} from "@/functions/dateFunctions";
 import Image, { StaticImageData } from "next/image";
 
 import Logo1 from "@/public/dashboard/player/dinamo-zagreb-1.png";

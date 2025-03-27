@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { FiMenu, FiX } from 'react-icons/fi';
-import { Urls } from '@/src/constants/constants';
+import { Urls } from '@/constants/constants';
 
 const MobileMenuToggle: React.FC = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
