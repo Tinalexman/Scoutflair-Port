@@ -1,4 +1,4 @@
-import SignUpSuccessPage from "@/src/components/auth/SignUpSuccess";
+import SignUpSuccessPage from "@/components/auth/SignUpSuccess";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

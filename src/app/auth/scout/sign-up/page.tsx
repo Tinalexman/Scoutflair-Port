@@ -1,4 +1,4 @@
-import ScoutSignUp from "@/src/components/auth/scout/ScoutSignUp";
+import ScoutSignUp from "@/components/auth/scout/ScoutSignUp";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

@@ -2,8 +2,8 @@
 
 import { ReactNode, FC } from "react";
 
-import SideBar, { iNavItem } from "@/src/components/reusable/SideBar";
-import TopBar from "@/src/components/reusable/TopBar";
+import SideBar, { iNavItem } from "@/components/reusable/SideBar";
+import TopBar from "@/components/reusable/TopBar";
 
 import SpotlightIcon from "@/public/icons/Spotlight Icon.svg";
 import ProfileIcon from "@/public/icons/Profile Icon.svg";

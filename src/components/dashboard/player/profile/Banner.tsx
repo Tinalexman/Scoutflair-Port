@@ -9,8 +9,8 @@ import Field from "@/public/dashboard/player/field.jpeg";
 import {
   useCurrentUserStore,
   usePlayerDataStore,
-} from "@/src/stores/userStore";
-import ProfileImageOrTextAvatar from "@/src/components/reusable/ProfileImageOrTextAvatar";
+} from "@/stores/userStore";
+import ProfileImageOrTextAvatar from "@/components/reusable/ProfileImageOrTextAvatar";
 
 const Banner = () => {
   const image = useCurrentUserStore((state) => state.image);

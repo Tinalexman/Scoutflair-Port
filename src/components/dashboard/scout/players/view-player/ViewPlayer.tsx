@@ -5,8 +5,8 @@ import { useSearchParams, useRouter } from "next/navigation";
 import { Loader } from "@mantine/core";
 import Banner from "./Banner";
 import Bio from "./Bio";
-import Posts from "@/src/components/reusable/post/Posts";
-import { useGetPlayerByEmail } from "@/src/hooks/player";
+import Posts from "@/components/reusable/post/Posts";
+import { useGetPlayerByEmail } from "@/hooks/player";
 
 const ViewPlayer = () => {
   return (

@@ -6,9 +6,9 @@ import Image from "next/image";
 
 import Field from "@/public/dashboard/player/field.jpeg";
 
-import ProfileImageOrTextAvatar from "@/src/components/reusable/ProfileImageOrTextAvatar";
-import { iPlayerResponse } from "@/src/hooks/player";
-import { getYearDifference } from "@/src/functions/dateFunctions";
+import ProfileImageOrTextAvatar from "@/components/reusable/ProfileImageOrTextAvatar";
+import { iPlayerResponse } from "@/hooks/player";
+import { getYearDifference } from "@/functions/dateFunctions";
 
 const Banner: FC<{ data: iPlayerResponse }> = ({ data }) => {
   const age = getYearDifference(new Date(), new Date(data.dob));

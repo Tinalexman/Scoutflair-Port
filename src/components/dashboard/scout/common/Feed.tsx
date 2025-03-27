@@ -2,9 +2,9 @@
 
 import React from "react";
 
-import { convertTime } from "@/src/functions/dateFunctions";
-import { useGetScoutActivityFeed } from "@/src/hooks/scout";
-import ProfileImageOrTextAvatar from "@/src/components/reusable/ProfileImageOrTextAvatar";
+import { convertTime } from "@/functions/dateFunctions";
+import { useGetScoutActivityFeed } from "@/hooks/scout";
+import ProfileImageOrTextAvatar from "@/components/reusable/ProfileImageOrTextAvatar";
 import { Loader } from "@mantine/core";
 import Image from "next/image";
 import Void from "@/public/images/Void.png";

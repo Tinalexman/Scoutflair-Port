@@ -1,4 +1,4 @@
-import EditPitch from "@/src/components/dashboard/scout/pitches/edit/EditPitch";
+import EditPitch from "@/components/dashboard/scout/pitches/edit/EditPitch";
 
 export const metadata = {
   title: "Edit Local Pitch",

@@ -1,4 +1,4 @@
-import PlayerSignUp from "@/src/components/auth/player/PlayerSignUp";
+import PlayerSignUp from "@/components/auth/player/PlayerSignUp";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

@@ -1,7 +1,7 @@
 import React, { FC } from "react";
-import { convertDateWithSlashes } from "@/src/functions/dateFunctions";
-import { iPlayerFullDetails } from "@/src/hooks/scout";
-import ProfileImageOrTextAvatar from "@/src/components/reusable/ProfileImageOrTextAvatar";
+import { convertDateWithSlashes } from "@/functions/dateFunctions";
+import { iPlayerFullDetails } from "@/hooks/scout";
+import ProfileImageOrTextAvatar from "@/components/reusable/ProfileImageOrTextAvatar";
 
 const Info: FC<{ data: iPlayerFullDetails | null }> = ({ data }) => {
   if (data === null) {
