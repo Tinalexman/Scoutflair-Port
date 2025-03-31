@@ -136,9 +136,8 @@ const AboutPage: React.FC = () => {
         </div>
 
         <div className="mt-10">
-          <div className="flex gap-[4rem] ">
-            <div className="">
-              <div className="flex gap-5 items-start">
+          <div className="flex justify-between gap-[4rem] w-full">
+              <div className="flex gap-5 items-start w-[25%] h-full">
                 <Image
                   src={Frame12}
                   alt=""
@@ -146,9 +145,8 @@ const AboutPage: React.FC = () => {
                 />
                 <Image src={Frame13} alt="" className="w-[300px] h-[320px]" />
               </div>
-            </div>
 
-            <div className="flex flex-col justify-end">
+            <div className="flex flex-col justify-end w-[40%]">
               <div className="flex items-center gap-2 justify-center border border-primary w-[136px] h-[22px] rounded-[100px] text-primary font-merriweather font-normal text-sm">
                 <span className="w-[6px] h-[6px] rounded-full bg-primary"></span>
                 Our Vision
