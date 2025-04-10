@@ -54,7 +54,7 @@ const Navbar: React.FC = () => {
           <Link href={"/auth/login"}>
             <button className="font-semibold text-black-50 text-base font-poppins border-none">Sign In</button>
             </Link>
-            <Link href={"/auth/signup"}>
+            <Link href={"/auth/sign-up"}>
             <button className="font-semibold text-white rounded-[20px] font-poppins bg-primary-2 w-[109px] h-[42px] flex justify-center items-center text-base border-none">
               Sign Up
             </button>
@@ -68,7 +68,7 @@ const Navbar: React.FC = () => {
       </div>
 
       {menuOpen && (
-        <div className="md:hidden absolute top-[110px] z-10 left-0 w-full bg-white shadow-md">
+        <div className="md:hidden absolute top-[100px] z-10 left-0 w-full bg-white shadow-md">
           <ul className="flex flex-col items-center gap-5 py-5">
             {navLinks.map(({ name, path }) => (
               <li key={name} className="w-full text-center">
@@ -90,7 +90,7 @@ const Navbar: React.FC = () => {
             <Link href={"/auth/login"}>
             <button className="font-semibold text-black-50 text-base border-none font-poppins">Sign In</button>
             </Link>
-            <Link href={"/auth/signup"}>
+            <Link href={"/auth/sign-up"}>
             <button className="font-semibold text-white rounded-[20px] font-poppins bg-primary-2 w-[109px] h-[42px] flex justify-center items-center text-base border-none">
               Sign Up
             </button>
