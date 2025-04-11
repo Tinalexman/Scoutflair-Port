@@ -148,7 +148,7 @@ const HomePage = () => {
           <span className="w-[6px] h-[6px] rounded-full bg-primary-2"></span>
           Core Features
         </div>
-        <div className="flex flex-col md:flex-row items-center gap-5 mt-4 mb-8 px-4">
+        <div className="flex flex-col md:flex-row items-center gap-5 mt-4 mb-8">
   <div className="flex-1">
     <h2 className="text-black-50 font-manrope font-bold text-2xl sm:text-3xl w-full sm:w-[90%] text-center md:text-left">
       Game-Changing Tools for Next-Level Scouting
