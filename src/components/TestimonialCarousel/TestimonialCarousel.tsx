@@ -75,7 +75,7 @@ export default function TestimonialCarousel() {
         </div>
 
         {/* Carousel */}
-        <div className="flex items-center mt-8 w-full sm:w-[90%] relative overflow-hidden px-8 sm:px-[40px] md:px-[106px] mx-auto">
+        <div className="flex items-center mt-8 w-full sm:w-full relative overflow-hidden px-8 sm:px-[40px] md:px-[106px] mx-auto">
           <FaRegArrowAltCircleLeft className="text-white text-3xl cursor-pointer mr-2 sm:mr-4" onClick={prevSlide} />
           <div className="relative right-[30px] md:right-0 w-full flex items-center py-10 overflow-hidden md:min-h-[200px] min-h-[100px]">
             <div className="relative flex items-center w-full justify-between">
