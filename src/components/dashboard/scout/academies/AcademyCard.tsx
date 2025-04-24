@@ -2,8 +2,8 @@ import React, { FC } from "react";
 
 import { FaStar, FaMedal } from "react-icons/fa";
 import { IoLocationOutline } from "react-icons/io5";
-import { iAcademyResponse } from "@/src/hooks/academy";
-import ProfileImageOrTextAvatar from "@/src/components/reusable/ProfileImageOrTextAvatar";
+import { iAcademyResponse } from "@/hooks/academy";
+import ProfileImageOrTextAvatar from "@/components/reusable/ProfileImageOrTextAvatar";
 
 const AcademyCard: FC<{
   academy: iAcademyResponse;

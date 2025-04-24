@@ -3,8 +3,8 @@
 import React, { useEffect, useRef, useState } from "react";
 
 import { useFormik } from "formik";
-import { useCreateAcademy } from "@/src/hooks/academy";
-import { useUploadLogo } from "@/src/hooks/common";
+import { useCreateAcademy } from "@/hooks/academy";
+import { useUploadLogo } from "@/hooks/common";
 import { FaImage } from "react-icons/fa6";
 import { Loader } from "@mantine/core";
 

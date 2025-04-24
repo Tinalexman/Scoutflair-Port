@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import Scoutflairlogo from "@/public/icons/Scoutflairlogo.svg";
+import Scoutflairlogo from "../../../public/icons/Scoutflairlogo.svg";
 import { Formik, Form, Field } from "formik";
 import { EmailValidationSchema } from "../../schemas/Schema";
 import bgImage from "@/public/images/frame-3404.png";
@@ -9,7 +9,7 @@ import { useAxios } from "../../api/base";
 import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
 import { IEmailPayload } from "../../types/types";
-import { Urls } from "@/src/constants/constants";
+import { Urls } from "@/constants/constants";
 import Image from "next/image";
 
 const PasswordResetPage: React.FC = () => {

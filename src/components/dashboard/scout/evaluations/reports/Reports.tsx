@@ -3,11 +3,8 @@
 import React, { Suspense, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Loader } from "@mantine/core";
-import Gallery from "./Gallery";
 import Info from "./Info";
-import Trending from "./Trending";
-import History from "./History";
-import { useGetScoutsPlayerDetails } from "@/src/hooks/scout";
+import { useGetScoutsPlayerDetails } from "@/hooks/scout";
 import Swal from "sweetalert2";
 import Comments from "./Comments";
 

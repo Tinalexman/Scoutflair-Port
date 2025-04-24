@@ -1,6 +1,6 @@
-import ProfileImageOrTextAvatar from "@/src/components/reusable/ProfileImageOrTextAvatar";
-import { getYearDifference } from "@/src/functions/dateFunctions";
-import { iScoutPlayersResponse } from "@/src/hooks/scout";
+import ProfileImageOrTextAvatar from "@/components/reusable/ProfileImageOrTextAvatar";
+import { getYearDifference } from "@/functions/dateFunctions";
+import { iScoutPlayersResponse } from "@/hooks/scout";
 import Link from "next/link";
 import React, { FC } from "react";
 

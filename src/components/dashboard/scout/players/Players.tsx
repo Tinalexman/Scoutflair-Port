@@ -6,7 +6,7 @@ import PlayerCard from "./PlayerCard";
 import { IoSearchOutline } from "react-icons/io5";
 
 import { TbColorFilter } from "react-icons/tb";
-import { useGetPlayers } from "@/src/hooks/scout";
+import { useGetPlayers } from "@/hooks/scout";
 import { Loader } from "@mantine/core";
 
 import Image from "next/image";

@@ -5,15 +5,15 @@ import { useRouter, useSearchParams } from "next/navigation";
 import Scoutflairlogo from "@/public/icons/Scoutflairlogo.svg";
 import bgImage from "@/public/images/scout-sign-in.png";
 import Link from "next/link";
-import { Urls } from "@/src/constants/constants";
-import { useAxios } from "@/src/api/base";
+import { Urls } from "@/constants/constants";
+import { useAxios } from "@/api/base";
 import { Form, Formik, Field, FormikHelpers } from "formik";
-import { LoginValidationSchema } from "@/src/schemas/Schema";
+import { LoginValidationSchema } from "@/schemas/Schema";
 import Swal from "sweetalert2";
 import Image from "next/image";
-import { useToken } from "@/src/providers/AuthProvider";
+import { useToken } from "@/providers/AuthProvider";
 import { Loader } from "@mantine/core";
-import { setPlayerData, setScoutData } from "@/src/providers/UserProvider";
+import { setPlayerData, setScoutData } from "@/providers/UserProvider";
 
 const LoginPage = () => {
   return (

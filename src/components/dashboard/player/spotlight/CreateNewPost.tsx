@@ -4,16 +4,16 @@ import React, { useState, useEffect, useRef, FC } from "react";
 import { Loader } from "@mantine/core";
 
 import { IoMdClose } from "react-icons/io";
-import { usePostPlayerSpotlight } from "@/src/hooks/player";
-import { useGlobalData } from "@/src/stores/globalStore";
+import { usePostPlayerSpotlight } from "@/hooks/player";
+import { useGlobalData } from "@/stores/globalStore";
 
 import { FaImage } from "react-icons/fa";
 
 import Image from "next/image";
-import { useUploadSpotlightImage } from "@/src/hooks/common";
+import { useUploadSpotlightImage } from "@/hooks/common";
 import Swal from "sweetalert2";
-import { useCurrentUserStore } from "@/src/stores/userStore";
-import ProfileImageOrTextAvatar from "@/src/components/reusable/ProfileImageOrTextAvatar";
+import { useCurrentUserStore } from "@/stores/userStore";
+import ProfileImageOrTextAvatar from "@/components/reusable/ProfileImageOrTextAvatar";
 
 const CreateNewPost = () => {
   const [post, setPost] = useState<string>("");

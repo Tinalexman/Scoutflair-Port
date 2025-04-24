@@ -1,4 +1,4 @@
-import Home from "@/src/components/auth/SignUpSelect";
+import Home from "@/components/auth/SignUpSelect";
 import { Metadata } from "next";
 import { Suspense } from "react";
 

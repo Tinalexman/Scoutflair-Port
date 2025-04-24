@@ -6,13 +6,12 @@ import Image, { StaticImageData } from "next/image";
 import CupImage from "@/public/dashboard/scout/Ellipse 2381.png";
 import Void from "@/public/images/Void.png";
 
-import { FaRegStar } from "react-icons/fa";
-import { iMatchResponse } from "@/src/hooks/match";
+import { iMatchResponse } from "@/hooks/match";
 
 import { Loader, Modal } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import AddMatch from "./AddMatch";
-import { useScoutDataStore } from "@/src/stores/userStore";
+import { useScoutDataStore } from "@/stores/userStore";
 
 interface iCupInfo {
   image: StaticImageData | string;

@@ -3,9 +3,9 @@ import Logo from "./Logo";
 import Image, { StaticImageData } from "next/image";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { useToken } from "@/src/providers/AuthProvider";
+import { useToken } from "@/providers/AuthProvider";
 import SignOutIcon from "@/public/icons/Sign Out Icon.svg";
-import { clearUserData } from "@/src/stores/userStore";
+import { clearUserData } from "@/stores/userStore";
 
 export interface iNavItem {
   name: string;

@@ -3,10 +3,10 @@
 import React, { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 
-import ProfileImageOrTextAvatar from "@/src/components/reusable/ProfileImageOrTextAvatar";
-import { iUpdateScoutPayload, useUpdateScout } from "@/src/hooks/scout";
-import { useCurrentUserStore, useScoutDataStore } from "@/src/stores/userStore";
-import { useUploadPicture } from "@/src/hooks/common";
+import ProfileImageOrTextAvatar from "@/components/reusable/ProfileImageOrTextAvatar";
+import { iUpdateScoutPayload, useUpdateScout } from "@/hooks/scout";
+import { useCurrentUserStore, useScoutDataStore } from "@/stores/userStore";
+import { useUploadPicture } from "@/hooks/common";
 import { useFormik } from "formik";
 import { Loader } from "@mantine/core";
 

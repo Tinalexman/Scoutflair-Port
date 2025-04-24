@@ -1,6 +1,6 @@
-import ProfileImageOrTextAvatar from "@/src/components/reusable/ProfileImageOrTextAvatar";
-import { getYearDifference } from "@/src/functions/dateFunctions";
-import { iPlayerResponse } from "@/src/hooks/player";
+import ProfileImageOrTextAvatar from "@/components/reusable/ProfileImageOrTextAvatar";
+import { getYearDifference } from "@/functions/dateFunctions";
+import { iPlayerResponse } from "@/hooks/player";
 import React, { FC } from "react";
 
 const PlayerCard: FC<{ player: iPlayerResponse }> = ({ player }) => {

@@ -1,83 +1,142 @@
-import React from "react";
-import Image from "next/image";
-import Scoutflairlogo from "@/public/icons/Scoutflairlogo.svg";
-import ballImage from "@/public/images/still-life-of-colombia-national-soccer-team.png";
+"use client";
+import React, { useState } from "react";
+import Logo from "./Logo";
+import { MdOutlineEmail } from "react-icons/md";
+import { BiLogoFacebook, BiLogoInstagramAlt } from "react-icons/bi";
+import { TiSocialLinkedin } from "react-icons/ti";
+import { BsTwitterX } from "react-icons/bs";
+import Link from "next/link";
+import { IoIosSend } from "react-icons/io";
 
 const Footer: React.FC = () => {
+  const [email, setEmail] = useState("");
+  const [error, setError] = useState("");
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email || !/\S+@\S+\.\S+/.test(email)) {
+      setError("Please enter a valid email address");
+      return;
+    }
+    setError(""); // Clear error after valid submission
+    setEmail(""); // Optionally reset the email field
+  };
+
   return (
-    <div
-      className="w-full relative overflow-hidden"
-      style={{ background: "linear-gradient(179.79deg, rgba(177,207,241,0.48) 0.29%, #fff 133.37%)" }}
-    >
-      <Image
-        src={ballImage}
-        className="w-full h-auto absolute right-0 top-0 opacity-[0.08] object-cover"
-        style={{ maxWidth: '100%' }}
-        alt="Background"
-      />
-      <div className="flex flex-col justify-start items-center relative pt-8 gap-8">
-        <div className="flex xs:flex-col lg:flex-row justify-around w-full gap-8 px-4 md:px-8 lg:px-16">
-          <div className="flex flex-col items-start gap-10 w-full sm:w-auto">
-            <div className="flex items-center gap-4">
-              <Image className="w-14 h-14" src={Scoutflairlogo} alt="Scoutflair Logo" />
-              <p className="text-2xl font-bold text-black">
-                Scout<span className="font-normal">Flair</span>
-              </p>
-            </div>
-            <p className="max-w-sm xs:hidden md:flex text-base text-black">
-              At ScoutFlair, our mission is to provide football enthusiasts, coaches, and analysts with the tools they need to unlock the game’s hidden insights.
+    <div className="w-full bg-primary pb-7">
+      <div className="pt-7 pb-10">
+        <hr className="text-ghostwhite" />
+      </div>
+
+      <div className="px-6 md:px-12 lg:px-[106px]">
+        <div className="flex flex-col lg:flex-row flex-wrap gap-10 justify-between text-white pb-12">
+          {/* Left column */}
+          <div className="flex flex-col gap-2 font-lato font-normal text-xs max-w-sm">
+            <Logo color="white" />
+            <p>
+              Scoutflair is a dynamic football scouting platform designed to
+              bridge the gap between talent and opportunity. Talent meets
+              opportunity.
             </p>
-          </div>
-
-          <div className="flex flex-col gap-4 w-full sm:w-auto">
-            <p className="text-2xl font-semibold text-black">Quick Links</p>
-            <div className="flex flex-col gap-4">
-              <a href="#about" className="text-xl text-black">About</a>
-              <a href="#services" className="text-xl text-black">Services</a>
-              <a href="#resources" className="text-xl text-black">Resources</a>
-              <a href="#contact" className="text-xl text-black">Contact Us</a>
+            <div>
+              <p>+2348123926919</p>
+              <div className="flex items-center gap-1 mt-1">
+                <MdOutlineEmail />
+                <span>support@scoutflair.com</span>
+              </div>
+            </div>
+            <div className="mt-3 flex items-center gap-4 flex-wrap">
+              <span>Follow Us</span>
+              <div className="flex items-center gap-2">
+                <Link
+                  href={"#"}
+                  className="bg-white w-[18px] h-[18px] rounded-full flex items-center justify-center"
+                >
+                  <BiLogoFacebook className="text-primary" />
+                </Link>
+                <Link
+                  href={"#"}
+                  className="bg-white w-[18px] h-[18px] rounded-full flex items-center justify-center"
+                >
+                  <TiSocialLinkedin className="text-primary" />
+                </Link>
+                <Link href={"#"}>
+                  <BiLogoInstagramAlt className="text-white w-[20px] h-[20px]" />
+                </Link>
+                <Link
+                  href={"#"}
+                  className="bg-white w-[16px] h-[16px] rounded-sm flex items-center justify-center"
+                >
+                  <BsTwitterX className="text-primary" />
+                </Link>
+              </div>
             </div>
           </div>
 
-          <div className="hidden md:flex flex-col gap-4 w-full sm:w-auto">
-            <p className="text-2xl font-semibold text-black">Useful Links</p>
-            <div className="flex flex-col gap-4">
-              <a href="#faq" className="text-xl text-black">F.A.Q</a>
-              <a href="#privacy" className="text-xl text-black">Privacy</a>
-              <a href="#cookies" className="text-xl text-black">Cookies</a>
-              <a href="#terms" className="text-xl text-black">Terms and Conditions</a>
+          {/* Quick Links */}
+          <div>
+            <h2 className="font-merriweather font-bold text-lg text-white mb-3">
+              Quick Links
+            </h2>
+            <div className="flex flex-col gap-3 text-white font-normal font-lato text-base">
+              <Link href={"/home"}>Home</Link>
+              <Link href={"/about"}>About</Link>
+              <Link href={"/features"}>Features</Link>
+              <Link href={"/contact"}>Contact Us</Link>
             </div>
           </div>
 
-          <div className="flex flex-col gap-9 w-full sm:w-auto">
-            <p className="text-2xl font-semibold text-black">Stay Connected</p>
-            <div className="flex flex-col gap-4">
-              <div className="flex flex-row gap-2.5 p-1 bg-white border border-black rounded-xl">
+          {/* Resources */}
+          <div>
+            <h2 className="font-merriweather font-bold text-lg text-white mb-3">
+              Resources
+            </h2>
+            <div className="flex flex-col gap-3 text-white font-normal font-lato text-base">
+              <Link href={"#"}>F. A. Q</Link>
+              <Link href={"#"}>Cookies</Link>
+              <Link href={"#"}>Privacy Policy</Link>
+              <Link href={"#"}>Terms & Conditions</Link>
+            </div>
+          </div>
+
+          {/* Newsletter */}
+          <div className="max-w-sm w-full">
+            <h2 className="font-merriweather font-bold text-lg text-white mb-3">
+              Get Exclusive Updates
+            </h2>
+            <div className="flex flex-col gap-3 text-white font-normal font-lato text-base">
+              <p>
+                Join our newsletter for the latest scouting opportunities,
+                highlights, and expert insights.
+              </p>
+
+              <form onSubmit={handleSubmit} className="relative w-full mt-2">
                 <input
                   type="email"
-                  placeholder="Enter your email address..."
-                  className="px-4 py-2 text-sm text-black bg-transparent outline-none w-full"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Enter your email address"
+                  className="pr-12 px-4 py-2 rounded-[4px] border text-white font-lato font-medium text-xs border-white bg-transparent outline-none w-full"
                 />
                 <button
-                  className="w-full py-2.5 text-sm font-bold text-black bg-[#f2a725] rounded-lg"
-                  style={{ boxShadow: "0px 12px 17px 2px rgba(0,0,0,0.14)" }}
+                  type="submit"
+                  className="absolute right-0 top-1/2 w-10 h-8 transform -translate-y-1/2 p-2 bg-white text-primary rounded-r-[4px] flex items-center justify-center"
                 >
-                  Subscribe
+                  <IoIosSend className="w-6 h-6" />
                 </button>
-              </div>
-              <div className="flex flex-col gap-4 opacity-80">
-                <p className="text-xl text-black">Floor 2, Morom Plaza, Utako, Abuja, Nigeria</p>
-                <p className="text-xl text-black">support@scoutflair.com</p>
-              </div>
+              </form>
+              {error && <p className="text-red-500 text-xs">{error}</p>}
             </div>
           </div>
         </div>
+      </div>
 
-        <div className="w-full bg-[#192b4d] py-4">
-          <div className="flex justify-center items-center">
-            <p className="text-lg text-white">ScoutFlair 2024</p>
-          </div>
-        </div>
+      <div className="pb-7">
+        <hr className="text-ghostwhite" />
+      </div>
+
+      <div className="font-lato font-normal text-sm text-center text-white">
+        © Copyright 2025, All Right Reserved. Scoutflair
       </div>
     </div>
   );

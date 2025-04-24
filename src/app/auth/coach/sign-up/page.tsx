@@ -1,4 +1,4 @@
-import CoachSignUp from "@/src/components/auth/coach/CoachSignUp";
+import CoachSignUp from "@/components/auth/coach/CoachSignUp";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

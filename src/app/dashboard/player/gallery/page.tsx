@@ -1,4 +1,4 @@
-import Gallery from "@/src/components/dashboard/player/gallery/Gallery";
+import Gallery from "@/components/dashboard/player/gallery/Gallery";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

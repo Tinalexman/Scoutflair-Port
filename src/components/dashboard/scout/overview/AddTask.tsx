@@ -1,8 +1,8 @@
 import React, { FC, useEffect, useState } from "react";
 import { IoMdCloseCircleOutline } from "react-icons/io";
 import { Modal, Loader } from "@mantine/core";
-import { useGetPlayerNamesList } from "@/src/hooks/player";
-import { useCreateScoutTask } from "@/src/hooks/scout";
+import { useGetPlayerNamesList } from "@/hooks/player";
+import { useCreateScoutTask } from "@/hooks/scout";
 import Swal from "sweetalert2";
 
 const AddTask: FC<{ close: () => void }> = ({ close }) => {

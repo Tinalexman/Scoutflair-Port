@@ -3,8 +3,8 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Void from "@/public/images/Void.png";
-import { convertDateWithDayName } from "@/src/functions/dateFunctions";
-import { useGetUserGallery, ImageData } from "@/src/hooks/player";
+import { convertDateWithDayName } from "@/functions/dateFunctions";
+import { useGetUserGallery, ImageData } from "@/hooks/player";
 
 import { Loader } from "@mantine/core";
 

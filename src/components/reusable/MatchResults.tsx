@@ -8,7 +8,7 @@ import FilterIcon from "@/public/icons/Filter Icon.svg";
 import SortIcon from "@/public/icons/Sort Icon.svg";
 import CalenderIcon from "@/public/icons/Calender Icon.svg";
 
-import { getCurrentMonthWithYear } from "@/src/functions/dateFunctions";
+import { getCurrentMonthWithYear } from "@/functions/dateFunctions";
 import { IoIosArrowForward } from "react-icons/io";
 
 import Logo1 from "@/public/dashboard/player/club-américa-1.png";

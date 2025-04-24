@@ -9,10 +9,10 @@ import Image from "next/image";
 
 import { FaStar } from "react-icons/fa";
 import Void from "@/public/images/Void.png";
-import { useCurrentUserStore } from "@/src/stores/userStore";
+import { useCurrentUserStore } from "@/stores/userStore";
 import AddTask from "./AddTask";
-import ProfileImageOrTextAvatar from "@/src/components/reusable/ProfileImageOrTextAvatar";
-import { useGetScoutsPlayers } from "@/src/hooks/scout";
+import ProfileImageOrTextAvatar from "@/components/reusable/ProfileImageOrTextAvatar";
+import { useGetScoutsPlayers } from "@/hooks/scout";
 import { Loader } from "@mantine/core";
 
 const Plan = () => {

@@ -1,4 +1,4 @@
-import { iLocalPitchResponse } from "@/src/hooks/pitch";
+import { iLocalPitchResponse } from "@/hooks/pitch";
 import React, { FC } from "react";
 import { MdEdit } from "react-icons/md";
 import { IoMdArrowBack } from "react-icons/io";

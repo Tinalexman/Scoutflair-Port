@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React, { FC, useEffect, useState } from "react";
 
-import { convertDateFullAndTime } from "@/src/functions/dateFunctions";
+import { convertDateFullAndTime } from "@/functions/dateFunctions";
 
 import { FaHeart, FaRegHeart, FaRegComment } from "react-icons/fa";
 import { BsFillSendFill } from "react-icons/bs";
@@ -11,12 +11,12 @@ import {
   useAddPlayerSpotlightComment,
   useGetPlayerSpotlightComments,
   useLikeOrUnlikePlayerSpotlightComments,
-} from "@/src/hooks/player";
+} from "@/hooks/player";
 import { Loader } from "@mantine/core";
 import { IoMdClose } from "react-icons/io";
 
 import CommentContainer from "./CommentContainer";
-import ProfileImageOrTextAvatar from "@/src/components/reusable/ProfileImageOrTextAvatar";
+import ProfileImageOrTextAvatar from "@/components/reusable/ProfileImageOrTextAvatar";
 
 const PostContainer: FC<{
   post: iPlayerSpotlightResponse;

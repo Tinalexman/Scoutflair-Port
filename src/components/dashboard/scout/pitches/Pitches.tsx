@@ -2,12 +2,12 @@
 
 import React, { useState } from "react";
 
-import Map from "@/src/components/reusable/MapImage";
+import Map from "@/components/reusable/MapImage";
 import Image from "next/image";
 import { MdOutlineFilterAlt } from "react-icons/md";
 import Void from "@/public/images/Void.png";
 import PitchCard from "./PitchCard";
-import { iLocalPitchResponse, useGetLocalPitches } from "@/src/hooks/pitch";
+import { iLocalPitchResponse, useGetLocalPitches } from "@/hooks/pitch";
 import { Loader } from "@mantine/core";
 import ViewPitch from "./ViewPitch";
 import Link from "next/link";

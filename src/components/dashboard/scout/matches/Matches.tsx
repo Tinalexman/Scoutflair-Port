@@ -1,12 +1,10 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React from "react";
 import UpcomingMatchBanner from "./UpcomingMatch";
-import Articles from "./Articles";
-import Reviews from "./Reviews";
 import UpcomingMatches from "./UpcomingMatches";
 import RecentMatches from "./RecentMatches";
-import { useGetUpcomingMatches } from "@/src/hooks/match";
+import { useGetUpcomingMatches } from "@/hooks/match";
 
 const Matches = () => {
   const { loading, data } = useGetUpcomingMatches();

@@ -1,10 +1,9 @@
-import ContactPage from "@/src/components/contact/ContactPage";
-import { Metadata } from "next";
+import ContactPage from "@/components/ContactUs/ContactPage";
 
-export const metadata: Metadata = {
-  title: "Contact Us",
+export const metadata = {
+  title: "Contact Page",
 };
 
-export default function Onboarding() {
-  return <ContactPage />;
+export default function ContactUs() {
+  return <ContactPage />
 }
