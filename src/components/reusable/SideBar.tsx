@@ -22,7 +22,7 @@ const SideBar: React.FC<{ items: iNavItem[]; active: number }> = ({
 
   return (
     <div className="w-[20%] h-[100vh] flex flex-col gap-12 bg-primary-2 pl-10 py-5">
-      <Logo />
+      <Logo color="white" />
       <div className="w-full h-fit flex flex-col">
         {items.map((item, i) => {
           return <NavComponent key={i} item={item} active={i === active} />;

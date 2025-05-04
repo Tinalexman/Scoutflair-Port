@@ -74,6 +74,8 @@ const Content: React.FC = () => {
             window.location.assign(Urls.PLAYER_SPOTLIGHT);
           } else if (response.data.userType === "SCOUT") {
             window.location.assign(Urls.SCOUT_OVERVIEW);
+          } else if (response.data.userType === "DEMOUSER") {
+            window.location.assign(Urls.SCOUT_OVERVIEW);
           }
         }
 
